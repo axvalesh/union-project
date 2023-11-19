@@ -1,0 +1,40 @@
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.shell {
+    position: relative;
+}
+
+.sliderOverflow {
+    overflow: hidden;
+}
+.chevron {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $text;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.left {
+    position: absolute;
+    left: -50px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.right {
+    position: absolute;
+    right: -50px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}

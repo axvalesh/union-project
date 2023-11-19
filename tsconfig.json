@@ -20,12 +20,17 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-
+    
     "baseUrl": "./src", 
     "outDir": "./dist", 
     "paths": {
-      "@assets/*": ["assets/*"], 
-      "@common/*": ["common/*"],
+      "@assets/images/*": ["assets/images/*"], 
+      "@assets/svg/*": ["assets/svg/*"],
+      "@common/components/*": ["common/components/*.tsx"],
+      "@common/helpers/*": ["common/helpers/*.ts"],
+      "@common/styles/*": ["common/styles/*.ts"],
+      "@pages/*": ["pages/*.tsx"],
     },
-  }
+  },
+  "include": ["./src"],
 }

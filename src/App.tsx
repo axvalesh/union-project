@@ -1,11 +1,12 @@
 import './App.scss'
+import HomeNotAuth from '@pages/Home-not-auth/HomeNotAuth'
 
 function App() {
 
   return (
-    <>
-     <div>start</div>
-    </>
+    // <div className='wrapper'>
+      <HomeNotAuth />
+    // </div>
   )
 }
 
