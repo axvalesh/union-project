@@ -29,6 +29,7 @@
       "@common/components/*": ["common/components/*.tsx"],
       "@common/helpers/*": ["common/helpers/*.ts"],
       "@common/styles/*": ["common/styles/*.ts"],
+      "@common/content/*": ["common/content/*.ts"],
       "@pages/*": ["pages/*.tsx"],
     },
   },

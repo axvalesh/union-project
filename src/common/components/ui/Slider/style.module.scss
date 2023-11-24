@@ -5,10 +5,12 @@
 
 .shell {
     position: relative;
+    display: inline-block;
 }
 
 .sliderOverflow {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 .chevron {
     width: 50px;
@@ -19,6 +21,11 @@
     background-color: $text;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #999999;
+    }
 }
 
 .left {

@@ -22,4 +22,7 @@ export default defineConfig({
       // Add other aliases as needed
     },
   },
+  build: {
+    target: 'esm',
+  },
 });

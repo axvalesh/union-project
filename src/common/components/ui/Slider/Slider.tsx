@@ -9,8 +9,10 @@ interface SliderProps {
     maxWidth: number;
     gap: number;
     itemWidth: number;
+    paddingTop?: string;
+    paddingBottom?: string;
 }
-const Slider = ({children,elementsCount,maxWidth,gap,itemWidth}:SliderProps) => {
+const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddingBottom}:SliderProps) => {
     const sliderRef = useRef<HTMLDivElement>(null);
     const [childrenWidth, setChildrenWidth] = useState<number | null>(null);
     const [currentIndex,setCurrentIndex] = useState(0);
@@ -29,7 +31,7 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth}:SliderProps) => 
         }
     }
     function moveBack() {
-        if(currentIndex < 2) {
+        if(currentIndex < 1) {
             setCurrentIndex(elementsCount-1)
         } else {
             setCurrentIndex(prev => prev - 1)
@@ -39,7 +41,7 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth}:SliderProps) => 
     
     return (
       <div className={styles.shell} ref={sliderRef}>
-        <div style={{width: maxWidth}} className={styles.sliderOverflow}>
+        <div style={{width: maxWidth,paddingTop: paddingTop,paddingBottom:paddingBottom}} className={styles.sliderOverflow}>
 
             <div style={{gap: gap,transform: `translateX(-${currentIndex * ((childrenWidth ?? 0) / elementsCount)}px)`}} className={styles.slider} >
                 {children}

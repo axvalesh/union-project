@@ -2,3 +2,18 @@ $white: #F5F5F5;
 $orange: #F4A72A;
 $text: #515151;
 $tabletSize: 769px;
+$blackTransparent: rgba(0, 0, 0, 0.5);
+
+@mixin full-size-position {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+@mixin weakShadow {
+  -webkit-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);
+  -moz-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);
+  box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);
+}
+  

@@ -1,6 +1,6 @@
 import Logo from "@common/components/Logo/Logo";
 import styles from './style.module.scss'
-import MyButton from "@common/components/MyButton/MyButton";
+import MyButton from "@common/components/ui/MyButton/MyButton";
 import AppColor from "@common/styles/variables-static";
 import mobile_user_svg from '@assets/svg/header_mobile-user.svg';
 

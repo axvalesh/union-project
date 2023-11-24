@@ -9,29 +9,30 @@ const allVariants: Record<string, React.FC<React.HTMLProps<any>>> = {
   body3: ({ children, ...props }) => <p {...props}>{children}</p>,
   body4: ({ children, ...props }) => <p {...props}>{children}</p>,
   body5: ({ children, ...props }) => <p {...props}>{children}</p>,
+  body6: ({ children, ...props }) => <p {...props}>{children}</p>,
   inputText: ({ children, ...props }) => <p {...props}>{children}</p>,
 };
 
 
-type VariantListTypes = 'title' | 'titleSmall' |'subtitle' |'body1' |'body2' | 'body3' | 'body4' | 'body5' |'inputText';
+type VariantListTypes = 'title' | 'titleSmall' |'subtitle' |'body1' |'body2' | 'body3' | 'body4' | 'body5' | 'body6' |'inputText';
 type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit' | 'start';
 type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial';
-
 interface TypographyProps {
-variant?: VariantListTypes;
-color?: string;
-textAlign?: TextAlign;
-textTransform?: TextTransform;
-children: React.ReactNode;
-[x: string]: any;
+  variant?: VariantListTypes;
+  color?: string;
+  textAlign?: TextAlign;
+  textTransform?: TextTransform;
+  children: React.ReactNode;
+  [x: string]: any;
+  textLineHeight?: string;
 }
 
-const Typography = ({ variant, color, children,textAlign,textTransform,style, ...props }: TypographyProps) => {
+const Typography = ({ variant, color, children,textAlign,textTransform,style,textLineHeight, ...props }: TypographyProps) => {
 
-const Component = variant ? allVariants[variant] : allVariants['body1'];
-const dynamicClassName = variant ? cl[variant] : cl['body1']
+  const Component = variant ? allVariants[variant] : allVariants['body1'];
+  const dynamicClassName = variant ? cl[variant] : cl['body1']
 
-return <Component {...props} className={`${dynamicClassName}`} style={{ color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
+  return <Component {...props} className={`${dynamicClassName}`} style={{ lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
 
 };
 

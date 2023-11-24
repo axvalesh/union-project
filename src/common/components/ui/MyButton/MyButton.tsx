@@ -15,7 +15,8 @@ const MyButton = ({
     textColor,
     textSize,
     hoverTextColor,
-    width
+    width,
+    textTransform,
 }: MyButtonProps) => {
     const style = {
         '--backgroundColor': color ?? 'transparent',
@@ -30,7 +31,7 @@ const MyButton = ({
         '--fontWeight': fontWeight ?? '400',
         '--hoverTextColor': hoverTextColor ?? 'white',
         '--width': width ?? 'auto',
-        
+        '--textTransform': textTransform,
     }
     return (
         <button

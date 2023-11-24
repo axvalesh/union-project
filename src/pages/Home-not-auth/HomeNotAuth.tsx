@@ -2,23 +2,41 @@ import HeaderNothAuthorized from '@common/components/Header/Header-not-authorize
 import styles from './style.module.scss'
 import {useState,useEffect} from 'react'
 import chevronDownTransparent from '@assets/svg/chevron-down-transparent.svg'
-import Typography from '@common/components/Typography/Typography';
+import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
-import MyButton from '@common/components/MyButton/MyButton';
+import MyButton from '@common/components/ui/MyButton/MyButton';
 
+import fourthBcSvg from '@assets/svg/home-page-fourth-background.svg';
+import listCheckedSvg from '@assets/svg/icon-checked.svg';
 import mobileImage from '@assets/images/home-not-auth_topBackground-mobile.png';
 import desktopImage from '@assets/images/home-not-auth_topBackground.png';
 import searchIcon from '@assets/svg/search-icon.svg';
+import testUserImage2 from '@assets/images/test-user-image2.png';
+import pointIcon from '@assets/svg/point-icon.svg';
 
-import { AdvantagesSectionCardProps, PopularCategorysCatalogCardProps } from './models';
-import { advantanges_section_card_content, popular_categorys_content } from './content';
-import Slider from '@common/components/Slider/Slider';
+import peoplesImage1 from '@assets/images/home-page-peoples1.png';
+import peoplesImage2 from '@assets/images/home-page-peoples2.png';
+import peoplesImage3 from '@assets/images/home-page-peoples3.png';
+import peoplesImage4 from '@assets/images/home-page-peoples4.png';
+import peoplesImage5 from '@assets/images/home-page-peoples5.png';
+import peoplesImage6 from '@assets/images/home-page-peoples6.png';
+import peoplesImage7 from '@assets/images/home-page-peoples7.png';
+import peoplesImage8 from '@assets/images/home-page-peoples8.png';
+
+import { AdvantagesSectionCardProps, PopularCategorysCatalogCardProps, PopularCategorysServiceCardProps, sixSectionCardProps } from './models';
+import { advantanges_section_card_content, popular_categorys_content, popular_categorys_content_services, six_section_cards_content } from './content';
+import Slider from '@common/components/ui/Slider/Slider';
+import { popular_services } from '@common/content/services';
+import CardTime from '@common/components/cards/CardTime/CardTime';
+import { user } from 'common/models/user';
+import { useGetImage } from '@common/helpers/UseGetImage';
+import Footer from '@common/components/Footer/Footer';
 
 
 
 
 const HomeNotAuth = () => {
-
+  
   const [bcImageFirst, setBcImageFirst] = useState('');
   const screenWidth = window.innerWidth;
   useEffect(() => {
@@ -42,6 +60,32 @@ const HomeNotAuth = () => {
         height: '100%',
       };
     
+      const fakeUser:user = {
+        country: 'Ukraine',
+        image: '',
+        name: 'Artem M.',
+        roles: 'Customer',
+        statistic: {
+          comments_count: 55,
+          sponsorship_count: 55,
+          rating: 98,
+          responses_count: 900
+        }
+      }
+      const fakeUser2:user = {
+        country: 'Ukraine',
+        image: '',
+        name: 'Antonio L.',
+        roles: 'Sponsor',
+        statistic: {
+          comments_count: 55,
+          sponsorship_count: 55,
+          rating: 98,
+          responses_count: 900
+        }
+      }
+
+      const flagImage = useGetImage(`flags/${fakeUser2.country}`,false);
 
     return (
       <>
@@ -152,18 +196,328 @@ const HomeNotAuth = () => {
                 />)}
             </div>
             }
-
-            <Slider itemWidth={300} maxWidth={1100} elementsCount={6} gap={21}>
-              <div className={styles.color_cube}></div>
-              <div className={styles.color_cube}></div>
-              <div className={styles.color_cube}></div>
-              <div className={styles.color_cube}></div>
-              <div className={styles.color_cube}></div>
-              <div className={styles.color_cube}></div>
+            <div className={styles.popular_categorys_slider}>
+            <Slider itemWidth={260} maxWidth={screenWidth <= AppColor.tabletSize ? 260 : 1100} elementsCount={popular_categorys_content_services.length} gap={21}>
+              {popular_categorys_content_services.map(item => <PopularCategorysServiceCard img={item.img} svg={item.svg} title={item.title}/>)}
             </Slider>
+            </div>
+            <div className={styles.popular_categorys_buttons}>
+           
+              <MyButton onClick={() => {}} fontWeight="500">
+              Browse all services
+              </MyButton>
+              <MyButton
+                border="1px solid transparent"
+                color="transparent"
+                textColor={AppColor.text}
+                hoverColor="transparent"
+                hoverTextColor={AppColor.orange}
+                fontWeight="500"
+                onClick={() => {}}>
+                Create own service
+              </MyButton>
+            </div>
+            <div className={styles.popular_categorys_skills}>
+              <div className={styles.popular_categorys_skills_title}>
+                <Typography variant='body3'>
+                Popular Skills
+                </Typography>
+              </div>
+              <section className={styles.popular_categorys_skills_list}>
+                {popular_services.map(service => <div><Typography variant='body1'>{service}</Typography></div>)}
+              </section>
+              <div className={styles.popular_categorys_buttons_mobile}>
+           
+              <MyButton onClick={() => {}} fontWeight="500">
+              Browse all services
+              </MyButton>
+              <MyButton
+                border="1px solid transparent"
+                color="transparent"
+                textColor={AppColor.text}
+                hoverColor="transparent"
+                hoverTextColor={AppColor.orange}
+                fontWeight="500"
+                onClick={() => {}}>
+                Create own service
+              </MyButton>
+            </div>
+            </div>
           </section>
           </div>
         </div>
+        <div className={styles.wrapper}>
+        <section className={styles.fourth_screen}>
+            <div className={styles.fourth_screen_shell}>
+              <div className={styles.fourth_screen_slider}>
+                <img className={styles.fourth_screen_bc_image} src={fourthBcSvg} alt="" />
+              <Slider paddingBottom='10px' paddingTop='20px' elementsCount={3} itemWidth={250} maxWidth={screenWidth <= AppColor.tabletSize ? 250 : 540} gap={40}>
+                <CardTime 
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
+                <CardTime 
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
+                <CardTime 
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
+              </Slider>
+              </div>
+              <div className={styles.fourth_screen_text}>
+                <Typography variant='titleSmall' color={AppColor.orange} textTransform='uppercase'>
+                  Ignite <span className={styles.fourth_screen_text_grey}>Change Together</span>
+                </Typography>
+
+                <div className={styles.fourth_screen_text_margin_top}>
+                  <Typography variant='body1'>
+                  Explore featured campaigns and contribute to projects that resonate with you
+                  </Typography>
+                </div>
+
+                <div className={styles.fourth_screen_details_none_mobile}>
+                  <ul className={styles.fourth_screen_list_ul}>
+                    <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
+                      <Typography>
+                      <span className={styles.fourth_screen_list_bold_text}>Innovation:</span> Support groundbreaking projects and be part of their success story.
+                      </Typography>
+                    </li>
+                    <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
+                      <Typography>
+                      <span className={styles.fourth_screen_list_bold_text}>Engagement:</span> Connect with creators, exchange ideas, and collaborate on unique ventures.
+                      </Typography>
+                    </li>
+                    <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
+                      <Typography>
+                      <span className={styles.fourth_screen_list_bold_text}>Exclusive Rewards:</span> Enjoy special perks, from early access to products to recognition for your contribution.
+                      </Typography>
+                    </li>
+                  </ul>
+                  <div className={styles.fourth_screen_buttons}>
+                    <MyButton
+                    color={AppColor.orange}
+                    textColor='white'
+                    hoverColor='transparent'
+                    hoverTextColor={AppColor.orange}
+                    onClick={() => {}} textTransform='uppercase'>
+                    try sponsorship
+                    </MyButton>
+                    <MyButton
+                      border="1px solid transparent"
+                      color="transparent"
+                      textColor={AppColor.text}
+                      hoverColor="transparent"
+                      hoverTextColor={AppColor.orange}
+                      textTransform='uppercase'
+                      fontWeight="500"
+                      onClick={() => {}}>
+                      Create own service
+                    </MyButton>
+                  </div>
+                </div>
+              </div>  
+              <div className={styles.fourth_screen_sponsor_wrapper}>
+                <img width={38} height={38} src={testUserImage2} alt="userImage" />
+                <div className={styles.fourth_screen_details_wrapper}>
+                  <div>
+                  <img width={16} height={13} src={flagImage} alt="" />
+                  <span className={styles.fourth_screen_inline_text}>
+                    <Typography variant='body4'>
+                      <span className={styles.fourth_screen_sponsor_bold_text}>{fakeUser2.name}</span>
+                      sponsored $2 500 in 
+                      <span className={styles.fourth_screen_sponsor_bold_text}>GameWithMe launch</span>
+                    </Typography>
+                  </span>
+                  </div>
+                  <Typography variant='body4' color={AppColor.transparentBlack}>
+                    2 hours ago
+                  </Typography>
+                </div>
+              </div>
+              <div className={styles.fourth_screen_details_none_desktop}>
+                  <ul className={styles.fourth_screen_list_ul}>
+                    <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
+                      <Typography>
+                      <span className={styles.fourth_screen_list_bold_text}>Innovation:</span> Support groundbreaking projects and be part of their success story.
+                      </Typography>
+                    </li>
+                    <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
+                      <Typography>
+                      <span className={styles.fourth_screen_list_bold_text}>Engagement:</span> Connect with creators, exchange ideas, and collaborate on unique ventures.
+                      </Typography>
+                    </li>
+                    <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
+                      <Typography>
+                      <span className={styles.fourth_screen_list_bold_text}>Exclusive Rewards:</span> Enjoy special perks, from early access to products to recognition for your contribution.
+                      </Typography>
+                    </li>
+                  </ul>
+                  <div className={styles.fourth_screen_buttons}>
+                    <MyButton
+                    color={AppColor.orange}
+                    textColor='white'
+                    hoverColor='transparent'
+                    hoverTextColor={AppColor.orange}
+                    onClick={() => {}} textTransform='uppercase'>
+                    try sponsorship
+                    </MyButton>
+                    <MyButton
+                      border="1px solid transparent"
+                      color="transparent"
+                      textColor={AppColor.text}
+                      hoverColor="transparent"
+                      hoverTextColor={AppColor.orange}
+                      textTransform='uppercase'
+                      fontWeight="500"
+                      onClick={() => {}}>
+                      Create own service
+                    </MyButton>
+                  </div>
+                </div>
+            </div>
+          </section>
+        </div>
+        <div className={styles.fifth_section_background}>
+          <div className={styles.wrapper}>
+          <section className={styles.fifth_sectin_wrapper}>
+          <div className={styles.fifth_sectin_wrapper_flex}>
+            <div className={styles.fifth_sectin_wrapper_details_wrapper}>
+              <Typography variant='titleSmall' textTransform='uppercase'>
+                Elevate Projects with Professional <span style={{color: AppColor.orange}}>Management</span>
+              </Typography>
+              <span className={styles.fifth_sectin_details_text_margin}>
+              <Typography variant='body4' color={AppColor.transparentBlack}>
+                Experience the advantages of being a manager on our platform
+              </Typography>
+              </span>
+              <div className={styles.fourth_screen_details_none_mobile}>
+                <ul className={styles.fourth_screen_list_ul}>
+                  <li style={{listStyleImage: `url(${pointIcon})`}}>
+                    <Typography>
+                    <span className={styles.fourth_screen_list_bold_text}>Strategic Alliances:</span> Establish lucrative partnerships with freelancers, earning a portion of project revenues for introducing clients or contributing to project success. 
+                    </Typography>
+                  </li>
+                  <li style={{listStyleImage: `url(${pointIcon})`}}>
+                    <Typography>
+                    <span className={styles.fourth_screen_list_bold_text}>Project Facilitation:</span> Guide clients through the project journey, ensuring a smooth experience and optimal utilization of our platform.
+                    </Typography>
+                  </li>
+                  <li style={{listStyleImage: `url(${pointIcon})`}}>
+                    <Typography>
+                    <span className={styles.fourth_screen_list_bold_text}>Expert Advisory:</span> Offer valuable advice to users, covering platform usage, project execution, and leveraging our services for maximum impact.
+                    </Typography>
+                  </li>
+                </ul>
+                  <div className={styles.fourth_screen_buttons}>
+                    <MyButton
+                    onClick={() => {}} textTransform='uppercase'>
+                    contact managers
+                    </MyButton>
+                    <MyButton
+                      border="1px solid transparent"
+                      color="transparent"
+                      textColor={AppColor.text}
+                      hoverColor="transparent"
+                      hoverTextColor={AppColor.orange}
+                      textTransform='uppercase'
+                      fontWeight="500"
+                      onClick={() => {}}>
+                      View partnerships
+                    </MyButton>
+                  </div>
+                </div>
+            </div>
+            
+            <div className={styles.fourth_screen_details_none_desktop}>
+                <ul className={styles.fourth_screen_list_ul}>
+                  <li style={{listStyleImage: `url(${pointIcon})`}}>
+                    <Typography>
+                    <span className={styles.fourth_screen_list_bold_text}>Strategic Alliances:</span> Establish lucrative partnerships with freelancers, earning a portion of project revenues for introducing clients or contributing to project success. 
+                    </Typography>
+                  </li>
+                  <li style={{listStyleImage: `url(${pointIcon})`}}>
+                    <Typography>
+                    <span className={styles.fourth_screen_list_bold_text}>Project Facilitation:</span> Guide clients through the project journey, ensuring a smooth experience and optimal utilization of our platform.
+                    </Typography>
+                  </li>
+                  <li style={{listStyleImage: `url(${pointIcon})`}}>
+                    <Typography>
+                    <span className={styles.fourth_screen_list_bold_text}>Expert Advisory:</span> Offer valuable advice to users, covering platform usage, project execution, and leveraging our services for maximum impact.
+                    </Typography>
+                  </li>
+                </ul>
+                  <div className={styles.fourth_screen_buttons}>
+                    <MyButton
+                    onClick={() => {}} textTransform='uppercase'>
+                    contact managers
+                    </MyButton>
+                    <MyButton
+                      border="1px solid transparent"
+                      color="transparent"
+                      textColor={AppColor.text}
+                      hoverColor="transparent"
+                      hoverTextColor={AppColor.orange}
+                      textTransform='uppercase'
+                      fontWeight="500"
+                      onClick={() => {}}>
+                      View partnerships
+                    </MyButton>
+                  </div>
+                </div>
+                <div className={styles.fifth_section_images_wrapper}>
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage1} alt="image" />
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage2} alt="image" />
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage3} alt="image" />
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage4} alt="image" />
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage5} alt="image" />
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage6} alt="image" />
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage7} alt="image" />
+                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage8} alt="image" />
+                </div>
+                <div>
+
+                </div>
+            </div>
+          </section>
+          </div>
+        </div>
+        <div className={styles.wrapper}>
+            <section className={styles.six_section_wrapper}>
+              <div className={styles.six_section_cards_wrapper}>
+                {six_section_cards_content.map(item => <SixSectionCard title={item.title} description={item.description} image={item.image}/>)}
+              </div>
+              <div className={styles.six_section_details}>
+                <Typography variant='titleSmall' textTransform='uppercase'>
+                  <span style={{color: AppColor.orange}}>Unveiling</span> More Features
+                </Typography>
+                <span className={styles.six_section_details_span}>
+                <Typography variant='body4' color={AppColor.transparentBlack}>
+                Unlock your projects' complete potential. Explore the extra benefits we offer
+                </Typography>
+                </span>
+                <MyButton
+                color={AppColor.orange}
+                textColor='white'
+                hoverColor='transparent'
+                hoverTextColor={AppColor.orange}
+                onClick={() => {}} textTransform='uppercase'>
+                  join us now
+                </MyButton>
+              </div>
+            </section>
+        </div>
+        <Footer />
       </>
     );
 };
@@ -199,6 +553,39 @@ const PopularCategorysCatalogCard = ({img,title,subtitle,width,height,activeInde
         {subtitle}
         </Typography>
       </div>
+    </div>
+  );
+};
+
+const PopularCategorysServiceCard = ({img,title,svg}:PopularCategorysServiceCardProps) => {
+  return (
+    <div style={{}} className={styles.popular_categorys_services_card}>
+      <img width={260} height={240} src={img} alt=""  className={styles.popular_categorys_card_image}/>
+     <div className={styles.popular_categorys_services_card_shell}>
+      
+      <img src={svg} alt="svg" />
+        <Typography variant='body2' color='white'>
+          {title}
+        </Typography>
+     </div>
+    </div>
+  );
+};
+
+
+const SixSectionCard = ({title,description,image}: sixSectionCardProps) => {
+  return (
+    <div className={styles.six_section_card}>
+      <div className={styles.six_section_card_image}>
+        <img src={image} width={30} height={30} alt="icon" />
+      </div>
+      <Typography variant='body3'>
+        {title}
+      </Typography>
+      <span className={styles.orange_line}></span>
+      <Typography variant='body1' textAlign='center'>
+        {description}
+      </Typography>
     </div>
   );
 };

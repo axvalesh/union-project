@@ -6,6 +6,7 @@
     cursor: pointer;
     border-radius: var(--borderRadius);
     transition: all 0.3s ease;
+    text-transform: var(--textTransform);
     
     &:hover {
         background-color: var(--hoverBcColor);

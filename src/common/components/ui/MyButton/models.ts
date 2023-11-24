@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-
+type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial';
 export interface MyButtonProps {
     children: React.ReactNode;
     onClick: MouseEventHandler<HTMLButtonElement>;
@@ -14,5 +14,6 @@ export interface MyButtonProps {
     textColor?: string;
     fontWeight?: string;
     width?: string;
+    textTransform?: TextTransform;
     
 }
