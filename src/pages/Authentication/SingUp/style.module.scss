@@ -1,0 +1,78 @@
+
+
+.wrapper {
+
+}
+
+.image_part {
+    position: relative;
+    height: 65vh;
+    background: rgb(138,131,131);
+    background: radial-gradient(ellipse at center, rgba(138,131,131,1) 0%, rgba(130,132,132,1) 20%, rgba(110,111,113,1) 40%, rgba(81,81,81,1) 100%);
+    .logo {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 30px;
+    }
+    .image {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 50%;
+        transform: translateX(calc(-50% - 10px));
+        bottom: 20%;
+        img {
+            max-width: 100%;
+        }
+    }
+}
+.content_part {
+    padding: 20px 12px 30px 12px;
+}
+.first_flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.center {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.border_input {
+    position: relative;
+    > input {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid rgba($color: #515151, $alpha: 0.1);
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+    > label {
+        position: absolute;
+        font-size: 14px;
+        color: #A8A8AD;
+        font-weight: 500;
+        top: 0;
+        left: 15px; /* Adjust this value based on your border radius */
+        transform: translateY(-50%);
+        background-color: white;
+        padding: 0px 5px;
+    }
+}
+.red_text {
+    color: #EB5757;
+}
+.title {
+    margin-bottom: 60px;
+}
+@media (min-width:$tabletSize) {
+    .wrapper {
+        display: flex;
+    }
+}

@@ -23,6 +23,7 @@
 .body1 { 
     font-size: 0.875rem; //14 fixed
     line-height: 150%;
+    font-weight: 500;
     color: $text;
 }
 
@@ -62,6 +63,14 @@
     color: $text;
 }
 
+.body7 {
+    font-size: 1rem;
+    line-height: 150%;
+    font-weight: 500;
+
+    color: $text;
+}
+
 .inputText { 
     font-size: 0.875rem;
     color: $text;
@@ -88,7 +97,7 @@
         font-size: 1.125rem;
     }
     .body2 {
-        font-size: 1.438rem;
+        font-size: 1.4375rem; //3
     }
 }
 

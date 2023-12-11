@@ -10,11 +10,12 @@ const allVariants: Record<string, React.FC<React.HTMLProps<any>>> = {
   body4: ({ children, ...props }) => <p {...props}>{children}</p>,
   body5: ({ children, ...props }) => <p {...props}>{children}</p>,
   body6: ({ children, ...props }) => <p {...props}>{children}</p>,
+  body7: ({ children, ...props }) => <p {...props}>{children}</p>,
   inputText: ({ children, ...props }) => <p {...props}>{children}</p>,
 };
 
 
-type VariantListTypes = 'title' | 'titleSmall' |'subtitle' |'body1' |'body2' | 'body3' | 'body4' | 'body5' | 'body6' |'inputText';
+type VariantListTypes = 'title' | 'titleSmall' |'subtitle' |'body1' |'body2' | 'body3' | 'body4' | 'body5' | 'body6' | 'body7' |'inputText';
 type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit' | 'start';
 type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial';
 interface TypographyProps {
@@ -32,7 +33,7 @@ const Typography = ({ variant, color, children,textAlign,textTransform,style,tex
   const Component = variant ? allVariants[variant] : allVariants['body1'];
   const dynamicClassName = variant ? cl[variant] : cl['body1']
 
-  return <Component {...props} className={`${dynamicClassName}`} style={{ lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
+  return <Component {...props} className={`${dynamicClassName}`} style={{transition: 'all 0.3s ease', lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
 
 };
 

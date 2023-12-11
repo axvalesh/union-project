@@ -17,3 +17,10 @@ export interface MyButtonProps {
     textTransform?: TextTransform;
     
 }
+
+
+export interface MyButtonVariantProps {
+    onClick: MouseEventHandler<HTMLButtonElement>,
+    children: React.ReactNode,
+    padding?: string
+}

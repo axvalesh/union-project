@@ -8,6 +8,11 @@
     justify-content: space-between;
 }
 
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 @mixin hamburger_wrapper_common() {
     background-color: transparent;
     border: 1px solid $orange;

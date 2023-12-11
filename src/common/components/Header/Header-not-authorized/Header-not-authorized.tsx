@@ -7,7 +7,8 @@ import mobile_user_svg from '@assets/svg/header_mobile-user.svg';
 const HeaderNothAuthorized = () => {
 
     return (
-      <header className={styles.header}>
+      <div className={styles.wrapper}>
+        <header className={styles.header}>
         <div className={styles.header__container}>
           <div className={styles.hamburger__wrapper}>
             <span className={styles.hamburger_line}></span>
@@ -48,6 +49,7 @@ const HeaderNothAuthorized = () => {
            </div>
           </div>
       </header>
+      </div>
     );
 };
 
