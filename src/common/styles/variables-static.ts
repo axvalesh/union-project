@@ -6,7 +6,22 @@ import { ReactComponent as home} from '@assets/svg/home.svg';
 import { ReactComponent as cookies} from '@assets/svg/cookies.svg';
 import { ReactComponent as chevronTop} from '@assets/svg/chevron-top.svg';
 import { ReactComponent as chevronBottom} from '@assets/svg/chevron-bottom.svg';
+
+import { ReactComponent as DisplayIcon} from '@assets/svg/display-icon.svg';
+import { ReactComponent as atSign} from '@assets/svg/at_sing-icon.svg';
+import { ReactComponent as colorFlag} from '@assets/svg/color-flag.svg';
+import { ReactComponent as pigCoins} from '@assets/svg/pig-coins.svg';
+import { ReactComponent as singTrue} from '@assets/svg/sing-true.svg';
+
+import { ReactComponent as cart} from '@assets/svg/cart.svg';
 class AppColor {
+
+    static displayIcon = DisplayIcon;
+    static atSing = atSign;
+    static pigCoins = pigCoins;
+    static colorFlag = colorFlag;
+    static singTrue = singTrue;
+    static cart = cart;
 
     static chevronLeft = chevronLeft;
     static chevronRight = chevronRight;

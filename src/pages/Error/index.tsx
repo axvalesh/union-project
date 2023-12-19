@@ -12,7 +12,6 @@ import { ReactComponent as CommunityImage} from '@assets/svg/community.svg';
 import { ReactComponent as ManagersImage} from '@assets/svg/managers.svg';
 import { ReactComponent as GeneralHelpImage} from '@assets/svg/general-help.svg';
 import { ReactComponent as ContactUs} from '@assets/svg/contact-us.svg';
-import { FunctionComponent } from "react";
 import Footer from "@common/components/Footer/Footer";
 
 const Error = () => {

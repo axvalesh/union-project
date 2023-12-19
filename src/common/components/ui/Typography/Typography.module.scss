@@ -76,7 +76,18 @@
     color: $text;
 }
 
+.body8 { //18-23
+    font-size: 1.125rem;
+    line-height: 150%;
+    font-weight: 500;
+
+    color: $text;
+}
+
 @media (min-width: $tabletSize) {
+    .body8 {
+        font-size: 1.438rem;
+    }
     .titleSmall { 
         font-size: 1.813rem; //29
         letter-spacing: 1.305px;

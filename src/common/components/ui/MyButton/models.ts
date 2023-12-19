@@ -22,5 +22,6 @@ export interface MyButtonProps {
 export interface MyButtonVariantProps {
     onClick: MouseEventHandler<HTMLButtonElement>,
     children: React.ReactNode,
-    padding?: string
+    padding?: string,
+    width?: string,
 }

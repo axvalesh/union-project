@@ -1,0 +1,46 @@
+.wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 14px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 226px;
+    cursor: pointer;
+}
+.button {
+    width: 100%;
+}
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media (min-width:$tabletSize) {
+    .button {
+        width: 432px;
+    }
+    .text {
+        width: 610px;
+    }
+    .cards {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+}

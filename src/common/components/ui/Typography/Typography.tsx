@@ -11,13 +11,17 @@ const allVariants: Record<string, React.FC<React.HTMLProps<any>>> = {
   body5: ({ children, ...props }) => <p {...props}>{children}</p>,
   body6: ({ children, ...props }) => <p {...props}>{children}</p>,
   body7: ({ children, ...props }) => <p {...props}>{children}</p>,
+  body8: ({ children, ...props }) => <p {...props}>{children}</p>,
   inputText: ({ children, ...props }) => <p {...props}>{children}</p>,
 };
 
 
-type VariantListTypes = 'title' | 'titleSmall' |'subtitle' |'body1' |'body2' | 'body3' | 'body4' | 'body5' | 'body6' | 'body7' |'inputText';
+type VariantListTypes = 'title' | 'titleSmall' |'subtitle' |'body1' |'body2' | 'body3' | 'body4' | 'body5' | 'body6' | 'body7' | 'body8' |'inputText';
 type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit' | 'start';
 type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial';
+type fontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+type TextDecoration = 'none' | 'underline' | 'overline' | 'line-through' | 'initial' | 'inherit';
+
 interface TypographyProps {
   variant?: VariantListTypes;
   color?: string;
@@ -25,15 +29,17 @@ interface TypographyProps {
   textTransform?: TextTransform;
   children: React.ReactNode;
   [x: string]: any;
+  fontWeight?: fontWeight;
   textLineHeight?: string;
+  textDecoration?: TextDecoration;
 }
 
-const Typography = ({ variant, color, children,textAlign,textTransform,style,textLineHeight, ...props }: TypographyProps) => {
+const Typography = ({ variant, color, children,textAlign,textTransform,style,textLineHeight,fontWeight,textDecoration, ...props }: TypographyProps) => {
 
   const Component = variant ? allVariants[variant] : allVariants['body1'];
   const dynamicClassName = variant ? cl[variant] : cl['body1']
 
-  return <Component {...props} className={`${dynamicClassName}`} style={{transition: 'all 0.3s ease', lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
+  return <Component {...props} className={`${dynamicClassName}`} style={{textDecoration: textDecoration,transition: 'all 0.3s ease', fontWeight: fontWeight, lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
 
 };
 
