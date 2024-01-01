@@ -24,4 +24,5 @@ export interface MyButtonVariantProps {
     children: React.ReactNode,
     padding?: string,
     width?: string,
+    fontWeight?: string;
 }

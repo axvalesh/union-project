@@ -1,0 +1,144 @@
+.header {
+    padding: 23px 10px;
+}
+
+.header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+@mixin hamburger_wrapper_common() {
+    background-color: transparent;
+    border: 1px solid $orange;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    height: 40px;
+    justify-content: space-between;
+};
+
+.button_wrapper {
+    display: none;
+}
+
+.hamburger__wrapper {
+    padding: 13px 10px;
+    @include hamburger_wrapper_common;
+}
+
+.hamburger_line {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: $orange;
+}
+
+.header_third_part,.header_second_part {
+    display: none;
+}
+.logo {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.6;
+    }
+}
+.header_second_part {
+    >li {
+        cursor: pointer;
+        display: flex;
+        gap: 19px;
+
+        >ul {
+            transition: all 0.3s ease;
+            &:hover {
+                fill: $orange;
+                font-weight: 500;
+                color: $orange;
+            }
+        }
+        >ul:hover * {
+             
+                fill: $orange;
+            
+        }
+    }
+}
+
+.button_content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.plus_box {
+    border: 1px solid $orange;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hover_wrapper.disabled {
+    display: none;
+}
+
+
+.header_first_part {
+    display: flex;
+    gap: 20px;
+
+
+}
+.hover_wrapper {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.header_third_part {
+    display: none;
+}
+
+@media (min-width: $tabletSize) {
+    .button_wrapper {
+        transition: all 0.3s ease;
+        &:hover {
+    
+            * {
+                stroke: white;
+            }
+    
+            .plus_box {
+                border: 1px solid white;
+            }
+        }
+    }
+    .header_third_part {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        > * {
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+    .hamburger__wrapper, .hamburger__wrapper_user {
+        display: none;
+    }
+    .header_second_part {
+        display: inline-block;
+    }
+}

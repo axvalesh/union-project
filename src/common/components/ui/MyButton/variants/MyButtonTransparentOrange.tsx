@@ -1,4 +1,3 @@
-import React, { MouseEventHandler } from 'react'
 import MyButton from '../MyButton'
 import { MyButtonVariantProps } from '../models'
 
@@ -8,6 +7,7 @@ const MyButtonTransparentOrange = (props:MyButtonVariantProps) => {
             padding={props.padding}
             onClick={props.onClick}
             children={props.children}
+            fontWeight={props.fontWeight}
         />
     )
 }

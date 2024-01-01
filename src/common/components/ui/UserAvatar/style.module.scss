@@ -1,0 +1,33 @@
+
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.active_status {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: $red;
+}
+
+.active_true {
+    background-color: $green;
+}
+.flex_wrapper {
+    display: none;
+}
+
+@media (min-width: $tabletSize) {
+    .flex_wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: start;
+    }
+}

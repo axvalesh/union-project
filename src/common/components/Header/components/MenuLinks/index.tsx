@@ -1,12 +1,13 @@
 
 import Typography from '@common/components/ui/Typography/Typography';
-import { LinksType } from './content';
+import { CategoryItemProps, LinksType, categorysText, links } from './content';
 import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
 import {useState} from 'react'
-
+import { Link as LinkRouter } from 'react-router-dom';
 const MenuLinks = () => {
     const [activeTab,setActiveTab] = useState(0);
+    const [activeCategory,setActiveCategory] = useState<categorysText>(categorysText.Development); 
     return (
       <div className={styles.wrapper}>
            <div className={styles.links_wrapper}>
@@ -72,11 +73,67 @@ const MenuLinks = () => {
            <div className={styles.horizontal_line}></div>
            <div className={styles.content_wrapper}>
               <div className={styles.search_section}>
+                <div className={styles.search_block}><input type="text" placeholder='Search' /></div>
 
+                <div className={styles.search_categorys}>
+                  <CategoryItem
+                  onHover = {() => {setActiveCategory(categorysText.Development)}}
+                    icon={<AppColor.development />}
+                    title={categorysText.Development}
+            
+                  />
+                  <CategoryItem
+                  onHover = {() => {setActiveCategory(categorysText.Design)}}
+                    icon={<AppColor.desing />}
+                    title={categorysText.Design}
+        
+                  />
+                  <CategoryItem
+                  onHover = {() => {setActiveCategory(categorysText.Marketing)}}
+                    icon={<AppColor.marketing />}
+                    title={categorysText.Marketing}
+          
+                  />
+                  <CategoryItem
+                  onHover = {() => {setActiveCategory(categorysText.Writing)}}
+                    icon={<AppColor.writing />}
+                    title={categorysText.Writing}
+         
+                  />
+                  <CategoryItem
+                  onHover = {() => {setActiveCategory(categorysText.Management)}}
+                    icon={<AppColor.managment />}
+                    title={categorysText.Management}
+   
+                  />
+                  <CategoryItem
+                  onHover = {() => {setActiveCategory(categorysText.Consulting)}}
+                    icon={<AppColor.consulting />}
+                    title={categorysText.Consulting}
+
+                  />
+                </div>
               </div>
               <div className={styles.vertical_line}></div>
               <div className={styles.search_result_wrapper}>
-                
+                {links[activeCategory].map(item =>
+                  <div className={styles.category_link_wrapper}>
+                    
+                    <Typography textLineHeight='100%' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>
+                        {item.title}
+                    </Typography>
+                 
+                      <div className={styles.category_link_children}>
+                        {item.content.map(item =>
+                          <LinkRouter to={item.link}>
+                            <Typography textLineHeight='100%' variant='body4' fontWeight='400' color={AppColor.text}>
+                                {item.text}
+                            </Typography>
+                          </LinkRouter>  
+                        )}
+                      </div>
+                  </div>  
+                )}
               </div>
            </div>
       </div>
@@ -92,6 +149,22 @@ const Link = ({activeIndex,ImageNode,text,index,onClick,ImageNodeActive}:LinksTy
       </Typography>
     </div>
   );
+}
+
+
+const CategoryItem = ({icon,title,onHover}:CategoryItemProps) => {
+  return (
+    <div onMouseOver={onHover} className={styles.category_item}>
+        {icon}
+        <Typography variant='body4' fontWeight='500'>
+          {title}
+        </Typography>
+
+       <div className={styles.category_chevron}>
+       <AppColor.chevronRight fill={AppColor.text} width={9} height={15}/>
+       </div>
+    </div>
+  )
 }
 
 export default MenuLinks;

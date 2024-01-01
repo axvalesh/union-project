@@ -35,8 +35,23 @@ import { ReactComponent as searchIconLines} from '@assets/svg/search-icon-lines.
 
 import { ReactComponent as freelancerWhite} from '@assets/svg/freelancer-white.svg';
 import { ReactComponent as managersWhite} from '@assets/svg/managers-white.svg';
-class AppColor {
 
+import { ReactComponent as development} from '@assets/svg/development.svg';
+import { ReactComponent as desing} from '@assets/svg/desing.svg';
+import { ReactComponent as marketing} from '@assets/svg/marketing.svg';
+import { ReactComponent as writing} from '@assets/svg/writing.svg';
+import { ReactComponent as managment} from '@assets/svg/managment.svg';
+import { ReactComponent as consulting} from '@assets/svg/consulting.svg';
+
+import { ReactComponent as plus} from '@assets/svg/plus-icon.svg';
+
+import { ReactComponent as search} from '@assets/svg/search-icon-loop.svg';
+
+import { ReactComponent as news} from '@assets/svg/news.svg';
+import { ReactComponent as sound} from '@assets/svg/sound.svg';
+
+class AppColor {
+    static search = search;
     static displayIcon = DisplayIcon;
     static atSing = atSign;
     static pigCoins = pigCoins;
@@ -44,8 +59,18 @@ class AppColor {
     static singTrue = singTrue;
     static cart = cart;
     static ordersWhite = ordersWhite;
-
+    static plus = plus;
     static managersWhite = managersWhite;
+
+    static news = news;
+    static sound = sound;
+    
+    static development = development; 
+    static desing = desing;
+    static marketing = marketing;
+    static writing = writing;
+    static managment = managment;
+    static consulting = consulting;
 
     static freelancerWhite = freelancerWhite;
     static searchIconLines = searchIconLines;

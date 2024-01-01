@@ -1,15 +1,15 @@
-import HeaderNothAuthorized from '@common/components/Header/Header-not-authorized/Header-not-authorized'
 import styles from './style.module.scss'
 import NavigationBar from '@common/components/NavigationBar/index'
 import NavigationItem from '@common/components/navigation_history/NavigationItem/index'
 import AppColor from '@common/styles/variables-static'
 import DynamicPadding from '@common/components/ui/DynamicPadding/index'
 import Typography from '@common/components/ui/Typography/Typography'
+import Header from '@common/components/Header/Header/index'
 
 const DashboardHome = () => {
     return (
         <div>
-            <HeaderNothAuthorized />
+            <Header />
             <NavigationBar
                 currentCategoryTitle="Dashboard"
                 activePageIndex={0}

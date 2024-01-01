@@ -1,13 +1,10 @@
 import AppColor from '@common/styles/variables-static'
-import {
-    nav_categorys,
-    nav_var_categorys,
-    nav_var_categorys_titles,
-} from './content'
 import styles from './style.module.scss'
 import NavBarLink from './components/NavBarLink'
 import { useHover } from '@common/helpers/useHover'
 import Typography from '../ui/Typography/Typography'
+import { nav_categorys, nav_var_categorys, nav_var_categorys_titles } from './components/PagesNav/content'
+import PagesNav from './components/PagesNav'
 
 type NavigationBarProps = {
     currentCategoryTitle: nav_var_categorys_titles
@@ -38,26 +35,10 @@ const NavigationBar = ({
                     <span className={styles.currentTitle}>
                         <Typography textTransform='uppercase' variant='body4' color='white'>{currentCategory.title}</Typography>
                     </span>
-
-                    <div className={`${styles.hover_wrapper} ${hovered ? styles.active : styles.disabled}`}>
-                        {nav_var_categorys.map(item =>
-                            <div className={styles.hover_content}>
-                                <div className={styles.category_image}>
-                                    {<item.image width={'30px'} height={'30px'}/>}
-                                </div>
-                                <div className={styles.categoty_text}>
-                                    <Typography variant='body4' fontWeight='500'>
-                                        {item.title}
-                                    </Typography>
-                                    <div>
-                                    <Typography color={AppColor.transparentBlack} variant='body1'>
-                                        {item.text}
-                                    </Typography>
-                                    </div>
-                                </div>
-                            </div>    
-                        )}
-                    </div>
+                    
+                    <PagesNav
+                        hovered={hovered}
+                    />
                 </div>
                 <div className={styles.vertical_line}></div>
                <div className={styles.links_wrapper}>
