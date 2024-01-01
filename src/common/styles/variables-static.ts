@@ -50,6 +50,13 @@ import { ReactComponent as search} from '@assets/svg/search-icon-loop.svg';
 import { ReactComponent as news} from '@assets/svg/news.svg';
 import { ReactComponent as sound} from '@assets/svg/sound.svg';
 
+import { ReactComponent as fourOfFive} from '@assets/svg/four-of-five.svg';
+import { ReactComponent as flag} from '@assets/svg/flag.svg';
+import { ReactComponent as puzle} from '@assets/svg/puzles.svg';
+
+import { ReactComponent as hearPlus} from '@assets/svg/heart-plus.svg';
+import { ReactComponent as notes} from '@assets/svg/notes.svg';
+import { ReactComponent as hideEye} from '@assets/svg/hide-eye.svg';
 class AppColor {
     static search = search;
     static displayIcon = DisplayIcon;
@@ -62,9 +69,17 @@ class AppColor {
     static plus = plus;
     static managersWhite = managersWhite;
 
+    static hearPlus  = hearPlus;
+    static notes  = notes;
+    static hideEye  = hideEye;
+
+    static fourOfFive = fourOfFive;
+    static flag = flag;
+    static puzle = puzle;
+
     static news = news;
     static sound = sound;
-    
+
     static development = development; 
     static desing = desing;
     static marketing = marketing;

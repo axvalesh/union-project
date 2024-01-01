@@ -2,6 +2,7 @@ import { useRef,useEffect,useState } from 'react'
 import styles from './style.module.scss'
 import leftChevron from '@assets/svg/chevron-left.svg';
 import rightChevron from '@assets/svg/chevron-right.svg';
+import AppColor from '@common/styles/variables-static';
 
 interface SliderProps {
     children: React.ReactNode;
@@ -13,18 +14,13 @@ interface SliderProps {
     paddingBottom?: string;
 }
 const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddingBottom}:SliderProps) => {
-    const sliderRef = useRef<HTMLDivElement>(null);
-    const [childrenWidth, setChildrenWidth] = useState<number | null>(null);
     const [currentIndex,setCurrentIndex] = useState(0);
-    useEffect(() => {
-        if (sliderRef.current) {
-        const width = itemWidth*elementsCount + ((elementsCount - 1) * gap);
-        setChildrenWidth(width);
-        }
-    }, [children]);
-    
+    const elementsToShow = Math.round(maxWidth/(itemWidth))
+    console.log(currentIndex + 'is index')
+    console.log(elementsCount + 'is elements count')
+    console.log(elementsToShow + 'is elements to show')
     function moveOn() {
-        if(currentIndex < elementsCount-1) {
+        if(currentIndex < elementsCount-elementsToShow) {
             setCurrentIndex(prev => prev + 1)
         } else {
             setCurrentIndex(0)
@@ -32,7 +28,7 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddin
     }
     function moveBack() {
         if(currentIndex < 1) {
-            setCurrentIndex(elementsCount-1)
+            setCurrentIndex(elementsCount-elementsToShow)
         } else {
             setCurrentIndex(prev => prev - 1)
         }
@@ -40,21 +36,21 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddin
     
     
     return (
-      <div className={styles.shell} ref={sliderRef}>
-        <div style={{width: maxWidth,paddingTop: paddingTop,paddingBottom:paddingBottom}} className={styles.sliderOverflow}>
+      <div className={styles.shell}>
+        <div style={{width: (maxWidth+20),paddingTop: paddingTop,paddingBottom:paddingBottom}} className={styles.sliderOverflow}>
 
-            <div style={{gap: gap,transform: `translateX(-${currentIndex * ((childrenWidth ?? 0) / elementsCount)}px)`}} className={styles.slider} >
+            <div style={{gap: gap,transform: `translateX(-${(currentIndex)*(itemWidth)+(currentIndex)*gap}px)`}} className={styles.slider} >
                 {children}
            </div>
         </div>
         <span className={styles.left}>
            <span onClick={moveBack} className={styles.chevron}>
-            <img width={17} height={30} src={leftChevron} alt="" />
+            <AppColor.chevronLeft fill='white' width={17} height={30} />
            </span>
         </span>
         <span className={styles.right}>
            <span onClick={moveOn} className={styles.chevron}>
-            <img width={17} height={30} src={rightChevron} alt="" />
+            <AppColor.chevronRight fill='white' width={17} height={30} />
            </span>
            </span>
       </div>

@@ -251,7 +251,28 @@ const HomeNotAuth = () => {
             <div className={styles.fourth_screen_shell}>
               <div className={styles.fourth_screen_slider}>
                 <img className={styles.fourth_screen_bc_image} src={fourthBcSvg} alt="" />
-              <Slider paddingBottom='10px' paddingTop='20px' elementsCount={3} itemWidth={250} maxWidth={screenWidth <= AppColor.tabletSize ? 250 : 540} gap={40}>
+              <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={screenWidth <= AppColor.tabletSize ? 250 : 540} gap={40}>
+                <CardTime 
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
+                <CardTime 
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
+                <CardTime 
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
                 <CardTime 
                 title='Logo by sample in vector in maximum quality' 
                 currentMoneyRange={500} totalMoneyRange={5000} 

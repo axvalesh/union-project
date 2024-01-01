@@ -23,8 +23,8 @@ const Dropdown = ({title,description,showLine=true}:DropdownProps) => {
                     </Typography>
                 </div>
                 {isActive
-                ? <AppColor.chevronTop/>
-                : <AppColor.chevronBottom color='#010101' fillOpacity={0.5}/>
+                ? <AppColor.chevronTop fill={AppColor.text}/>
+                : <AppColor.chevronBottom fill={AppColor.text} fillOpacity={0.5}/>
                 }
            </div>
            <div className={`${isActive ? styles.description_block_active :styles.description_block}`}>

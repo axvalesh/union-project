@@ -5,7 +5,28 @@ import AppColor from '@common/styles/variables-static'
 import DynamicPadding from '@common/components/ui/DynamicPadding/index'
 import Typography from '@common/components/ui/Typography/Typography'
 import Header from '@common/components/Header/Header/index'
+import DropdownNode from '@common/components/ui/Dropdown/DropdownNodes/index'
+import Slider from '@common/components/ui/Slider/Slider'
+import CardTime from '@common/components/cards/CardTime/CardTime'
+import { user } from 'common/models/user'
+import CardStatistics from '@common/components/cards/CardStatistics/index'
+import CardStatisticTest from '@common/components/cards/CardStatistics/variants/CardStatisticTest'
+import AskedQuestion from '@common/components/AskedQuestions/index'
+import Footer from '@common/components/Footer/Footer'
 
+const fakeUser:user = {
+    country: 'Ukraine',
+    image: '',
+    name: 'Artem M.',
+    roles: 'Customer',
+    statistic: {
+      comments_count: 55,
+      sponsorship_count: 55,
+      rating: 98,
+      responses_count: 900
+    }
+  }
+  
 const DashboardHome = () => {
     return (
         <div>
@@ -56,7 +77,7 @@ const DashboardHome = () => {
               
                        <div className={styles.icome_flex_box}>
                           <div className={styles.orange_circle}>
-                              <AppColor.caseIcon />
+                              <AppColor.caseWhite />
                           </div>
                           <div>
                             <Typography color={AppColor.transparentBlack} variant='body9'>
@@ -91,22 +112,67 @@ const DashboardHome = () => {
           
                     </div>
                 </div>
+                <DynamicPadding
+                    desktop='70px'
+                    mobile='30px'
+                />
                 <section className={styles.second_section}>
-                    <div className={styles.box}>
-                        <div>
-                           <div>
-                           <Typography variant='body3' fontWeight='500' textLineHeight='100%'>
-                                Roadmap
-                            </Typography>
-                            <span>
-                                1
-                            </span>
-                           </div>
-                           
-                        </div>
-                    </div>
+                   <div className={styles.dropdown_first}>
+                        <DropdownNode
+                            countNotifications={1}
+                            dropnodes={<div>hi</div>}
+                            filters={['All', 'Guide', 'Mission']}
+                            title='Roadmap'
+                        />
+                        <DropdownNode
+                            countNotifications={5}
+                            dropnodes={<div>hi</div>}
+                            filters={['All', 'Service', 'Order','Sponsorship']}
+                            title='Sponsorship'
+                        />
+                   </div>
+                   <div className={styles.dropdown_second}>
+                        <DropdownNode
+                            countNotifications={2}
+                            dropnodes={<div>hi</div>}
+                            filters={[]}
+                            title='Notifications'
+                        />
+                        <DropdownNode
+                            countNotifications={3}
+                            dropnodes={<div>hi</div>}
+                            filters={[]}
+                            title='Messages'
+                        />
+                   </div>
                 </section>
+                <DynamicPadding
+                    desktop='50px'
+                    mobile='30px'
+                />
+                
             </div>
+            <section className={styles.third_section}>
+                    <div className={styles.wrapper}>
+                        <Typography variant='subtitle' fontWeight='500' textTransform='uppercase'>
+                        related 
+                        </Typography>
+
+                        <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={1120} gap={40}>
+                           <CardStatisticTest />
+                           <CardStatisticTest />
+                           <CardStatisticTest />
+                           <CardStatisticTest />
+                           <CardStatisticTest />
+                           <CardStatisticTest />
+                        </Slider>
+                    </div>
+
+                </section>
+
+                <section className={styles.wrapper}><AskedQuestion /></section>
+
+                <Footer />
         </div>
     )
 }

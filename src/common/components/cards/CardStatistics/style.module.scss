@@ -65,6 +65,20 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     @include weakShadow;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+}
+
+.shell_middle {
+    margin-top: 3px;
+    background-color: white;
+    padding: 20px 13px;
+    @include weakShadow;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 15px;
 }
 
 .bottom_details_money {
@@ -76,4 +90,21 @@
     p {
         display: inline;
     }
+}
+
+
+.static_wrapper {
+    display: flex;
+    gap: 5px;
+    align-items: end;
+}
+
+.static_text {
+    
+}
+
+.dots {
+    display: flex;
+    flex: 1;
+    border-bottom: 2px dotted rgba($color: $text, $alpha: 0.5);
 }
