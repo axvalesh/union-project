@@ -11,6 +11,7 @@
 .wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 @mixin hamburger_wrapper_common() {
@@ -66,7 +67,17 @@
     }
 }
 
+.hover_wrapper.disabled {
+    display: none;
+}
 
+.hover_wrapper {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    left: 0;
+    z-index: 5;
+}
 @media (min-width: $tabletSize) {
     .hamburger__wrapper, .hamburger__wrapper_user {
         display: none;

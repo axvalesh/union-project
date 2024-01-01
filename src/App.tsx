@@ -5,6 +5,7 @@ import Error from './pages/Error'
 import SingUp from './pages/Authentication/SingUp'
 import Onboarding from './pages/Authentication/Onboarding'
 import StartGuide from './pages/Authentication/Onboarding/pages/StartGuide'
+import DashboardHome from './pages/Dashboard/pages/Home'
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
           <Route path="/sing-up" element={<SingUp />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/start-guide" element={<StartGuide />} />
+
+          <Route path="/dashboard/home" element={<DashboardHome />} />
 
        </Routes>
     </>

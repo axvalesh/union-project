@@ -3,9 +3,12 @@ import styles from './style.module.scss'
 import MyButton from "@common/components/ui/MyButton/MyButton";
 import AppColor from "@common/styles/variables-static";
 import mobile_user_svg from '@assets/svg/header_mobile-user.svg';
+import { useHover } from "@common/helpers/useHover";
+import MenuLinks from "../components/MenuLinks";
 
 const HeaderNothAuthorized = () => {
 
+  const [hovered, eventHandlers] = useHover({delayInMilliseconds: 2000}); 
     return (
       <div className={styles.wrapper}>
         <header className={styles.header}>
@@ -26,11 +29,14 @@ const HeaderNothAuthorized = () => {
            </div>
            <div className={styles.header_second_part}>
               <li>
-                <ul>Customers</ul>
-                <ul>Freelancers</ul>
-                <ul>Sponsors</ul>
-                <ul>Managers</ul>
+                <ul {...eventHandlers} >Customers</ul>
+                <ul {...eventHandlers} >Freelancers</ul>
+                <ul {...eventHandlers} >Sponsors</ul>
+                <ul {...eventHandlers} >Managers</ul>
               </li>
+              <div {...eventHandlers} className={`${styles.hover_wrapper} ${hovered ? styles.active : styles.disabled}`}>
+                <MenuLinks />
+              </div>
            </div>
            <div className={styles.header_third_part}>
               <MyButton

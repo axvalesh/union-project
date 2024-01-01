@@ -3,6 +3,7 @@ import cl from './Typography.module.scss'
 const allVariants: Record<string, React.FC<React.HTMLProps<any>>> = {
   title: ({ children, ...props }) => <h2 {...props}>{children}</h2>,
   titleSmall: ({ children, ...props }) => <h4 {...props}>{children}</h4>,
+  titleBig: ({ children, ...props }) => <h4 {...props}>{children}</h4>,
   subtitle: ({ children, ...props }) => <h6 {...props}>{children}</h6>,
   body1: ({ children, ...props }) => <span {...props}>{children}</span>,
   body2: ({ children, ...props }) => <p {...props}>{children}</p>,
@@ -12,11 +13,26 @@ const allVariants: Record<string, React.FC<React.HTMLProps<any>>> = {
   body6: ({ children, ...props }) => <p {...props}>{children}</p>,
   body7: ({ children, ...props }) => <p {...props}>{children}</p>,
   body8: ({ children, ...props }) => <p {...props}>{children}</p>,
+  body9: ({ children, ...props }) => <p {...props}>{children}</p>,
   inputText: ({ children, ...props }) => <p {...props}>{children}</p>,
 };
 
 
-type VariantListTypes = 'title' | 'titleSmall' |'subtitle' |'body1' |'body2' | 'body3' | 'body4' | 'body5' | 'body6' | 'body7' | 'body8' |'inputText';
+type VariantListTypes =
+    | 'title'
+    | 'titleBig'
+    | 'titleSmall'
+    | 'subtitle'
+    | 'body1'
+    | 'body2'
+    | 'body3'
+    | 'body4'
+    | 'body5'
+    | 'body6'
+    | 'body7'
+    | 'body8'
+    | 'body9'
+    | 'inputText';
 type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit' | 'start';
 type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial';
 type fontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
