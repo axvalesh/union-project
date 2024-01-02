@@ -8,7 +8,8 @@
 
 .active_status {
     position: absolute;
-    top: 30px;
+    top: calc(100% - 5px);
+    transform: translateY(-50%);
     left: 0px;
     width: 11px;
     height: 11px;
@@ -22,7 +23,15 @@
 .flex_wrapper {
     display: none;
 }
-
+.position_relative {
+    position: relative;
+}
+.wrapper_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
 @media (min-width: $tabletSize) {
     .flex_wrapper {
         display: flex;

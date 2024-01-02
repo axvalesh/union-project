@@ -51,13 +51,27 @@ import { ReactComponent as news} from '@assets/svg/news.svg';
 import { ReactComponent as sound} from '@assets/svg/sound.svg';
 
 import { ReactComponent as fourOfFive} from '@assets/svg/four-of-five.svg';
+import { ReactComponent as twoOFFive} from '@assets/svg/two-of-five.svg';
 import { ReactComponent as flag} from '@assets/svg/flag.svg';
 import { ReactComponent as puzle} from '@assets/svg/puzles.svg';
 
 import { ReactComponent as hearPlus} from '@assets/svg/heart-plus.svg';
 import { ReactComponent as notes} from '@assets/svg/notes.svg';
 import { ReactComponent as hideEye} from '@assets/svg/hide-eye.svg';
+
+import { ReactComponent as openEye} from '@assets/svg/open-eye.svg';
+
+import { ReactComponent as UkraineFlag} from '@assets/svg/flags/Ukraine.svg';
+
+import { ReactComponent as noteText} from '@assets/svg/note-text.svg';
+
+import { ReactComponent as info} from '@assets/svg/info.svg';
 class AppColor {
+    static info = info;
+    static noteText = noteText;
+    static UkraineFlag = UkraineFlag;
+    static twoOFFive = twoOFFive;
+    static openEye = openEye;
     static search = search;
     static displayIcon = DisplayIcon;
     static atSing = atSign;

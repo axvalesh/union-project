@@ -6,6 +6,7 @@ import SingUp from './pages/Authentication/SingUp'
 import Onboarding from './pages/Authentication/Onboarding'
 import StartGuide from './pages/Authentication/Onboarding/pages/StartGuide'
 import DashboardHome from './pages/Dashboard/pages/Home'
+import Account from './pages/Dashboard/pages/Account'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/start-guide" element={<StartGuide />} />
 
           <Route path="/dashboard/home" element={<DashboardHome />} />
+          <Route path="/dashboard/account" element={<Account />} />
 
        </Routes>
     </>

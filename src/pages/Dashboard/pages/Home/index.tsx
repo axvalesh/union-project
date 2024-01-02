@@ -13,6 +13,7 @@ import CardStatistics from '@common/components/cards/CardStatistics/index'
 import CardStatisticTest from '@common/components/cards/CardStatistics/variants/CardStatisticTest'
 import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange'
 
 const fakeUser:user = {
     country: 'Ukraine',
@@ -119,28 +120,44 @@ const DashboardHome = () => {
                 <section className={styles.second_section}>
                    <div className={styles.dropdown_first}>
                         <DropdownNode
-                            countNotifications={1}
-                            dropnodes={<div>hi</div>}
-                            filters={['All', 'Guide', 'Mission']}
+                            countNotifications={0}
+                            dropnodes={null}
+                            filters={[]}
+                            noneIcon={<AppColor.news />}
+                            noneText='Find suitable missions and guides for you'
+                            noneTitle='No Roadmap Yet'
+                            noneButton={<MyButtonOrange onClick={() => {}}>Missions</MyButtonOrange>}
                             title='Roadmap'
                         />
                         <DropdownNode
-                            countNotifications={5}
-                            dropnodes={<div>hi</div>}
-                            filters={['All', 'Service', 'Order','Sponsorship']}
-                            title='Sponsorship'
+                            countNotifications={0}
+                            dropnodes={null}
+                            noneIcon={<AppColor.news />}
+                            noneText='Create something useful for the world'
+                            noneTitle='No Activity Yet'
+                            noneButton={<MyButtonOrange onClick={() => {}}>Create</MyButtonOrange>}
+                            filters={[]}
+                            title='Activity'
                         />
                    </div>
                    <div className={styles.dropdown_second}>
                         <DropdownNode
-                            countNotifications={2}
-                            dropnodes={<div>hi</div>}
+                            countNotifications={0}
+                            dropnodes={null}
+                            noneIcon={<AppColor.sound />}
+                            noneText='Begin the actions on the site to view notifications'
+                            noneTitle='No Notifications Yet'
+                            noneButton={<></>}
                             filters={[]}
                             title='Notifications'
                         />
                         <DropdownNode
-                            countNotifications={3}
-                            dropnodes={<div>hi</div>}
+                            countNotifications={0}
+                            dropnodes={null}
+                            noneIcon={<AppColor.sound />}
+                            noneText='Message someone on Messenger'
+                            noneTitle='No Messages Yet'
+                            noneButton={<MyButtonOrange onClick={() => {}}>Messenger</MyButtonOrange>}
                             filters={[]}
                             title='Messages'
                         />

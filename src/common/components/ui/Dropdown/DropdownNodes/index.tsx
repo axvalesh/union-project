@@ -1,20 +1,31 @@
 import AppColor from "@common/styles/variables-static";
 import styles from './style.module.scss';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Typography from "../../Typography/Typography";
 
 type DropdownNodeProps = {
     title:string;
     countNotifications: number;
     filters: string[];
-    dropnodes: React.ReactNode;
+    dropnodes?: React.ReactNode;
+    noneIcon: any;
+    noneTitle: string;
+    noneText: string;
+    noneButton?: any;
 
 }
-const DropdownNode = ({title,countNotifications,dropnodes,filters}:DropdownNodeProps) => {
+const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneTitle,noneButton,noneIcon}:DropdownNodeProps) => {
     const [isActive,setIsActive] = useState(false);
+    useEffect(() => {
+        if(countNotifications == 0) {
+            setIsActive(true);
+        }
+    },[])
     const [categoryActiveIndex,setCategoryActiveIndex] = useState(0);
     function changeState(event: any) {
-        setIsActive((prev) => !prev);
+        if(countNotifications > 0) {
+            setIsActive((prev) => !prev);
+        }
     }
     return (
       <div className={styles.wrapper}>
@@ -23,7 +34,7 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters}:DropdownNodeP
                     <Typography variant="body3" color={isActive ? '#515151' : AppColor.colorWithOpacity('#515151', 0.5)}>
                         {title}
                     </Typography>
-                    <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span>
+                    {countNotifications > 0 ? <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span> : <></>}
                 </div>
 
                 <div className={styles.filter_all_wrapper}>
@@ -37,17 +48,29 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters}:DropdownNodeP
                 )}
                 </div>
 
-                <div className={styles.close_chevron}>
+                {countNotifications > 0
+                ? <div className={styles.close_chevron}>
                 {isActive
                 ? <AppColor.chevronTop fill={AppColor.text}/>
                 : <AppColor.chevronBottom fill={AppColor.text} fillOpacity={0.5}/>
                 }
                 </div>
+                : <></>
+                }
            </div>
            <div className={`${isActive ? styles.description_block_active :styles.description_block}`}>
                 <div className={styles.horizontal_line}></div>
                 <div className={styles.nodes_hover_wrapper}>
-                    {dropnodes}
+                    {dropnodes != null
+                    ? dropnodes
+                    : 
+                    <div className={styles.none_wrapper}>
+                        {noneIcon}
+                        <Typography variant="body2" fontWeight="500">{noneTitle}</Typography>
+                        <Typography variant="body1" fontWeight="400" color={AppColor.transparentBlack}>{noneText}</Typography>
+                        {noneButton}
+                    </div>
+                    }
                 </div>
            </div>
       </div>
