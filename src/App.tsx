@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, HashRouter as Router, Routes }  from 'react-router-dom'
 import './App.scss'
 import HomeNotAuth from '@pages/Home-not-auth/HomeNotAuth'
 import Error from './pages/Error'
@@ -11,21 +11,23 @@ import Account from './pages/Dashboard/pages/Account'
 function App() {
 
   return (
-    <>
-       <Routes>
-          <Route path="/" element={<HomeNotAuth />} />
-          <Route path="/error" element={<Error />} />
-
-        
-          <Route path="/sing-up" element={<SingUp />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/start-guide" element={<StartGuide />} />
-
-          <Route path="/dashboard/home" element={<DashboardHome />} />
-          <Route path="/dashboard/account" element={<Account />} />
-
-       </Routes>
-    </>
+   <div className='App'>
+      <Router>
+         <Routes>
+            <Route path="/" element={<HomeNotAuth />} />
+            <Route path="/error" element={<Error />} />
+  
+          
+            <Route path="/sing-up" element={<SingUp />} />
+            <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/start-guide" element={<StartGuide />} />
+  
+            <Route path="/dashboard/home" element={<DashboardHome />} />
+            <Route path="/dashboard/account" element={<Account />} />
+  
+         </Routes>
+      </Router>
+   </div>
 
   )
 }

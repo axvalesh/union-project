@@ -33,6 +33,7 @@ const HeaderNothAuthorized = () => {
                 <ul {...eventHandlers} >Freelancers</ul>
                 <ul {...eventHandlers} >Sponsors</ul>
                 <ul {...eventHandlers} >Managers</ul>
+                
               </li>
               <div {...eventHandlers} className={`${styles.hover_wrapper} ${hovered ? styles.active : styles.disabled}`}>
                 <MenuLinks />
