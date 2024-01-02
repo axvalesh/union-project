@@ -176,9 +176,9 @@ const DropdownNode = ({
                 }}
                 className={styles.dropdown}>
                 {isShow ? (
-                    <AppColor.chevronTop />
+                    <AppColor.chevronTop fill={AppColor.text} />
                 ) : (
-                    <AppColor.chevronBottom />
+                    <AppColor.chevronBottom fill={AppColor.text} />
                 )}
                 <div>
                     {icon}

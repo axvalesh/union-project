@@ -18,6 +18,8 @@
     top: calc(100% + 50px);
     padding: 15px;
     @include weakShadow;
+    z-index: 2;
+    background-color: white;
 }
 
 .hover_wrapper {

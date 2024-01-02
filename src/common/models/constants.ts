@@ -1,1 +1,1 @@
-type countries = 'Ukraine'
+export type countries = 'Ukraine'

@@ -178,7 +178,8 @@
         
         .popular_categorys_services_card {
             position: relative;
-            display: block;
+            display: flex;
+            align-items: end;
             box-sizing: border-box;
             flex: 0 0 260px;
             height: 240px;
@@ -187,6 +188,7 @@
             
             .popular_categorys_card_image {
                 position: absolute;
+                z-index: -1;
                 top: 0;
                 bottom: 0;
                 right: 0;
@@ -221,6 +223,7 @@
                 display: flex;
                 gap: 7.5px;
                 align-items: center;
+                z-index: 2;
             }
         }
 
@@ -252,6 +255,7 @@
 .fourth_screen_shell {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .fourth_screen_bc_image {
@@ -377,7 +381,7 @@
 .six_section_cards_wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     row-gap: 40px;
 }
 
@@ -413,6 +417,7 @@
     
     .six_section_cards_wrapper {
         flex: 0 0 737px;
+        justify-content: space-between;
 
         &:nth-child(2n) .six_section_card{
             margin-top: 40px;

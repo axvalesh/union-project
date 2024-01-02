@@ -31,6 +31,7 @@ import CardTime from '@common/components/cards/CardTime/CardTime';
 import { user } from 'common/models/user';
 import { useGetImage } from '@common/helpers/UseGetImage';
 import Footer from '@common/components/Footer/Footer';
+import { useScreenSize } from '@common/helpers/useScreenSize';
 
 
 
@@ -38,11 +39,11 @@ import Footer from '@common/components/Footer/Footer';
 const HomeNotAuth = () => {
   
   const [bcImageFirst, setBcImageFirst] = useState('');
-  const screenWidth = window.innerWidth;
+  const {width,height} = useScreenSize();
   useEffect(() => {
     let imageUrl;
 
-    if (screenWidth <= 768) {
+    if (width <= 768) {
       imageUrl = mobileImage;
     } else {
       imageUrl = desktopImage;
@@ -94,7 +95,7 @@ const HomeNotAuth = () => {
            <HeaderNothAuthorized />
             <div className={styles.emptyLine}></div>
             <div className={styles.welcome_text}>
-                <Typography textTransform='uppercase' textAlign={screenWidth <= 768 ? 'center' : 'start'} variant='title' color={AppColor.text}>
+                <Typography textTransform='uppercase' textAlign={width <= 768 ? 'center' : 'start'} variant='title' color={AppColor.text}>
                     Empower Your Projects with
                    <span className={styles.welcome_text_orange_span}> Zero Commission</span>
                 </Typography>
@@ -143,7 +144,7 @@ const HomeNotAuth = () => {
       </div>
       <div className={styles.wrapper}>
         <section className={styles.advantanges_section}>
-          <Typography textAlign={screenWidth <= 768 ? 'center' : 'start'} textTransform='uppercase' variant='titleSmall' color={AppColor.orange}>
+          <Typography textAlign={width <= 768 ? 'center' : 'start'} textTransform='uppercase' variant='titleSmall' color={AppColor.orange}>
             One Account, <span className={styles.advantanges_section_title_grey}>Four Distinct Roles</span>       
           </Typography>
 
@@ -168,7 +169,7 @@ const HomeNotAuth = () => {
 
           
           <section className={styles.popular_categorys}>
-            <Typography textAlign={screenWidth <= 768 ? 'center' : 'start'} textTransform='uppercase' variant='titleSmall'>
+            <Typography textAlign={width <= 768 ? 'center' : 'start'} textTransform='uppercase' variant='titleSmall'>
               Explore Popular <span className={styles.popular_categorys_title_orange}>Categories</span> in Demand
             </Typography>
 
@@ -179,7 +180,7 @@ const HomeNotAuth = () => {
             </div>
 
             {
-              screenWidth <= AppColor.tabletSize
+              width <= AppColor.tabletSize
             ? <div className={styles.popular_categorys_categorysDisplay}>
                 <div className={styles.popular_categorys_categorysDisplay_mobile}></div>
               </div>
@@ -197,7 +198,7 @@ const HomeNotAuth = () => {
             </div>
             }
             <div className={styles.popular_categorys_slider}>
-            <Slider itemWidth={260} maxWidth={screenWidth <= AppColor.tabletSize ? 260 : 1100} elementsCount={popular_categorys_content_services.length} gap={21}>
+            <Slider itemWidth={260} maxWidth={width <= AppColor.tabletSize ? 260 : 1100} elementsCount={popular_categorys_content_services.length} gap={21}>
               {popular_categorys_content_services.map(item => <PopularCategorysServiceCard img={item.img} svg={item.svg} title={item.title}/>)}
             </Slider>
             </div>
@@ -251,7 +252,7 @@ const HomeNotAuth = () => {
             <div className={styles.fourth_screen_shell}>
               <div className={styles.fourth_screen_slider}>
                 <img className={styles.fourth_screen_bc_image} src={fourthBcSvg} alt="" />
-              <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={screenWidth <= AppColor.tabletSize ? 250 : 540} gap={40}>
+              <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width <= AppColor.tabletSize ? 250 : 540} gap={40}>
                 <CardTime 
                 title='Logo by sample in vector in maximum quality' 
                 currentMoneyRange={500} totalMoneyRange={5000} 
@@ -497,14 +498,14 @@ const HomeNotAuth = () => {
                   </div>
                 </div>
                 <div className={styles.fifth_section_images_wrapper}>
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage1} alt="image" />
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage2} alt="image" />
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage3} alt="image" />
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage4} alt="image" />
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage5} alt="image" />
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage6} alt="image" />
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage7} alt="image" />
-                  <img width={screenWidth <= AppColor.tabletSize ? 61 : 112} height={screenWidth <= AppColor.tabletSize ? 61 : 112} src={peoplesImage8} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage1} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage2} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage3} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage4} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage5} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage6} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage7} alt="image" />
+                  <img width={width <= AppColor.tabletSize ? 61 : 112} height={width <= AppColor.tabletSize ? 61 : 112} src={peoplesImage8} alt="image" />
                 </div>
                 <div>
 

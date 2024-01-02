@@ -14,6 +14,7 @@ import CardStatisticTest from '@common/components/cards/CardStatistics/variants/
 import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange'
+import { useScreenSize } from '@common/helpers/useScreenSize'
 
 const fakeUser:user = {
     country: 'Ukraine',
@@ -29,6 +30,7 @@ const fakeUser:user = {
   }
   
 const DashboardHome = () => {
+    const {width,height} = useScreenSize();
     return (
         <div>
             <Header />
@@ -175,7 +177,7 @@ const DashboardHome = () => {
                         related 
                         </Typography>
 
-                        <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={1120} gap={40}>
+                        <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width > 768 ? 1120 : 250} gap={40}>
                            <CardStatisticTest />
                            <CardStatisticTest />
                            <CardStatisticTest />
