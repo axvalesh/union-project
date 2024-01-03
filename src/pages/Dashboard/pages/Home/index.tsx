@@ -15,6 +15,8 @@ import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange'
 import { useScreenSize } from '@common/helpers/useScreenSize'
+import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index'
+import DropdownNodeRoadmap from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownRoadmap/index'
 
 const fakeUser:user = {
     country: 'Ukraine',
@@ -29,6 +31,116 @@ const fakeUser:user = {
     }
   }
   
+  const activityItems = [
+    {
+      filter: 'Service',
+      image: <AppColor.freelancer />,
+      percent: 39,
+      present: '16 Oct - Present',
+      price: '100',
+      tag: ['Logo Design', 'A. Markevych'],
+      title: 'Logo by sample in vector in maximum quality ',
+      iconNode: (
+        <div>
+          <AppColor.cart height={22} fill={AppColor.text} />
+          <AppColor.flag height={22} />
+        </div>
+      ),
+    },
+    {
+        filter: 'Service',
+        image: <AppColor.freelancer />,
+        percent: 39,
+        present: '16 Oct - Present',
+        price: '100',
+        tag: ['Logo Design', 'A. Markevych'],
+        title: 'Logo by sample in vector in maximum quality ',
+        iconNode: (
+          <div>
+            <AppColor.cart height={22} fill={AppColor.text} />
+            <AppColor.flag height={22} />
+          </div>
+        ),
+      },
+      {
+        filter: 'Service',
+        image: <AppColor.freelancer />,
+        percent: 39,
+        present: '16 Oct - Present',
+        price: '100',
+        tag: ['Logo Design', 'A. Markevych'],
+        title: 'Logo by sample in vector in maximum quality ',
+        iconNode: (
+          <div>
+            <AppColor.cart height={22} fill={AppColor.text} />
+            <AppColor.flag height={22} />
+          </div>
+        ),
+      },
+      {
+        filter: 'Service',
+        image: <AppColor.freelancer />,
+        percent: 39,
+        present: '16 Oct - Present',
+        price: '100',
+        tag: ['Logo Design', 'A. Markevych'],
+        title: 'Logo by sample in vector in maximum quality ',
+        iconNode: (
+          <div>
+            <AppColor.cart height={22} fill={AppColor.text} />
+            <AppColor.flag height={22} />
+          </div>
+        ),
+      },
+  ];
+
+  const roadmapItems = [
+    {
+      icon: <AppColor.taskCheck />,
+      title: 'Entrance challenge',
+      text: 'Provide complete information about yourself',
+      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      stepsCompleted: '1 of 12 completed',
+      amount: '25',
+      filter: 'Mission',
+    },
+    {
+      icon: <AppColor.taskCheck />,
+      title: 'Entrance challenge',
+      text: 'Provide complete information about yourself',
+      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      stepsCompleted: '1 of 12 completed',
+      amount: '25',
+      filter: 'Mission',
+    },
+    {
+      icon: <AppColor.taskCheck />,
+      title: 'Entrance challenge',
+      text: 'Provide complete information about yourself',
+      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      stepsCompleted: '1 of 12 completed',
+      amount: '25',
+      filter: 'Mission',
+    },
+    {
+      icon: <AppColor.taskCheck />,
+      title: 'Entrance challenge',
+      text: 'Provide complete information about yourself',
+      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      stepsCompleted: '1 of 12 completed',
+      amount: '25',
+      filter: 'Mission',
+    },
+    {
+      icon: <AppColor.taskCheck />,
+      title: 'Entrance challenge',
+      text: 'Provide complete information about yourself',
+      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      stepsCompleted: '1 of 12 completed',
+      amount: '25',
+      filter: 'Mission',
+    }
+  ]
 const DashboardHome = () => {
     const {width,height} = useScreenSize();
     return (
@@ -121,26 +233,8 @@ const DashboardHome = () => {
                 />
                 <section className={styles.second_section}>
                    <div className={styles.dropdown_first}>
-                        <DropdownNode
-                            countNotifications={0}
-                            dropnodes={null}
-                            filters={[]}
-                            noneIcon={<AppColor.news />}
-                            noneText='Find suitable missions and guides for you'
-                            noneTitle='No Roadmap Yet'
-                            noneButton={<MyButtonOrange onClick={() => {}}>Missions</MyButtonOrange>}
-                            title='Roadmap'
-                        />
-                        <DropdownNode
-                            countNotifications={0}
-                            dropnodes={null}
-                            noneIcon={<AppColor.news />}
-                            noneText='Create something useful for the world'
-                            noneTitle='No Activity Yet'
-                            noneButton={<MyButtonOrange onClick={() => {}}>Create</MyButtonOrange>}
-                            filters={[]}
-                            title='Activity'
-                        />
+                        <DropdownNodeRoadmap countNotification={roadmapItems.length}  filters={['All', 'Guide', 'Mission']} roadmapItems={roadmapItems} />
+                       <DropdownNodeActivity filters={['All', 'Service', 'Sponsorship']} countNotification={activityItems.length} activityItems={activityItems} />;
                    </div>
                    <div className={styles.dropdown_second}>
                         <DropdownNode

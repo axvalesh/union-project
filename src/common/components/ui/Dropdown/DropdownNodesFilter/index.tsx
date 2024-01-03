@@ -3,7 +3,7 @@ import styles from './style.module.scss';
 import {useEffect, useState} from 'react';
 import Typography from "../../Typography/Typography";
 
-type DropdownNodeProps = {
+type DropdownNodeFilterProps = {
     title:string;
     countNotifications: number;
     filters: string[];
@@ -13,10 +13,9 @@ type DropdownNodeProps = {
     noneText?: string;
     noneButton?: any;
     textAfterCount?: any;
-    callback?: (item:string) => void;
 
 }
-const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneTitle,noneButton,noneIcon,textAfterCount,callback}:DropdownNodeProps) => {
+const DropdownNodeFilter = ({title,countNotifications,dropnodes,filters,noneText,noneTitle,noneButton,noneIcon,textAfterCount}:DropdownNodeFilterProps) => {
     const [isActive,setIsActive] = useState(false);
     useEffect(() => {
         if(countNotifications == 0) {
@@ -46,7 +45,7 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
                         text={filter}
                         activeIndex={categoryActiveIndex}
                         itemIndex={index}
-                        onClick={() => { setCategoryActiveIndex(index); callback(filter);}}
+                        onClick={() => { setCategoryActiveIndex(index)}}
                     />
                 )}
                 </div>
@@ -63,17 +62,23 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
            </div>
            <div className={`${isActive ? styles.description_block_active :styles.description_block}`}>
                 <div className={styles.horizontal_line}></div>
-                <div className={styles.nodes_hover_wrapper}>
-                    {dropnodes != null
-                    ? dropnodes
-                    : 
-                    <div className={styles.none_wrapper}>
-                        {noneIcon}
-                        <Typography variant="body2" fontWeight="500">{noneTitle}</Typography>
-                        <Typography variant="body1" fontWeight="400" color={AppColor.transparentBlack}>{noneText}</Typography>
-                        {noneButton}
+                <div className={styles.padding}>
+                    <div className={styles.filte_wrapper}>
+                        <div className={styles.filter_item}><AppColor.filter/><Typography variant="body4" color={AppColor.transparentBlack}>Filters</Typography></div>
+                        <div className={styles.filter_item}><AppColor.sort/><Typography variant="body4" color={AppColor.transparentBlack}>Most recent</Typography></div>
                     </div>
-                    }
+                    <div className={styles.nodes_hover_wrapper}>
+                        {dropnodes != null
+                        ? dropnodes
+                        : 
+                        <div className={styles.none_wrapper}>
+                            {noneIcon}
+                            <Typography variant="body2" fontWeight="500">{noneTitle}</Typography>
+                            <Typography variant="body1" fontWeight="400" color={AppColor.transparentBlack}>{noneText}</Typography>
+                            {noneButton}
+                        </div>
+                        }
+                    </div>
                 </div>
            </div>
       </div>
@@ -95,4 +100,4 @@ const FilterItem = ({activeIndex,itemIndex,text,onClick}:FilterItemProps) => {
     )
 }
 
-export default DropdownNode;
+export default DropdownNodeFilter;

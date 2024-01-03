@@ -11,6 +11,11 @@ import { useScreenSize } from '@common/helpers/useScreenSize';
 import { useState } from 'react';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
 import PercentBar from '@common/components/ui/PercentBar/PercentBar';
+import DropdownNode from '@common/components/ui/Dropdown/DropdownNodes/index';
+import DropdownNodeFilter from '@common/components/ui/Dropdown/DropdownNodesFilter/index';
+import AskedQuestion from '@common/components/AskedQuestions/index';
+import Footer from '@common/components/Footer/Footer';
+import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index';
 
 const skillsContent:SkillsItemProps[] = [
     {
@@ -39,6 +44,68 @@ const skillsContent:SkillsItemProps[] = [
         skills: ['Wordpress', 'Wix']
     },
 ]
+const activityItems = [
+    {
+      filter: 'Service',
+      image: <AppColor.freelancer />,
+      percent: 39,
+      present: '16 Oct - Present',
+      price: '100',
+      tag: ['Logo Design', 'A. Markevych'],
+      title: 'Logo by sample in vector in maximum quality ',
+      iconNode: (
+        <div>
+          <AppColor.cart height={22} fill={AppColor.text} />
+          <AppColor.flag height={22} />
+        </div>
+      ),
+    },
+    {
+        filter: 'Service',
+        image: <AppColor.freelancer />,
+        percent: 39,
+        present: '16 Oct - Present',
+        price: '100',
+        tag: ['Logo Design', 'A. Markevych'],
+        title: 'Logo by sample in vector in maximum quality ',
+        iconNode: (
+          <div>
+            <AppColor.cart height={22} fill={AppColor.text} />
+            <AppColor.flag height={22} />
+          </div>
+        ),
+      },
+      {
+        filter: 'Service',
+        image: <AppColor.freelancer />,
+        percent: 39,
+        present: '16 Oct - Present',
+        price: '100',
+        tag: ['Logo Design', 'A. Markevych'],
+        title: 'Logo by sample in vector in maximum quality ',
+        iconNode: (
+          <div>
+            <AppColor.cart height={22} fill={AppColor.text} />
+            <AppColor.flag height={22} />
+          </div>
+        ),
+      },
+      {
+        filter: 'Service',
+        image: <AppColor.freelancer />,
+        percent: 39,
+        present: '16 Oct - Present',
+        price: '100',
+        tag: ['Logo Design', 'A. Markevych'],
+        title: 'Logo by sample in vector in maximum quality ',
+        iconNode: (
+          <div>
+            <AppColor.cart height={22} fill={AppColor.text} />
+            <AppColor.flag height={22} />
+          </div>
+        ),
+      },
+  ];
 
 const tagsText:string[] = [
     'Logos','Logo Design','Logo','Logo Maker','Modern Logo '
@@ -270,9 +337,20 @@ const Account = () => {
                                 </div>
                             }
                         />
+                        <DropdownNodeFilter
+                            countNotifications={5}
+                            filters={[]}
+                            title='Reviews'
+                            textAfterCount={<Typography textLineHeight='80%' variant='body4' color={AppColor.green}>95% positive reviews </Typography>}
+                        />
+                         <DropdownNodeActivity filters={['All', 'Service', 'Sponsorship']} countNotification={activityItems.length} activityItems={activityItems} />;
                     </div>
                 </div>
+
+                <DynamicPadding />
+                <AskedQuestion />
           </div>
+        <Footer />
       </div>
     );
 };

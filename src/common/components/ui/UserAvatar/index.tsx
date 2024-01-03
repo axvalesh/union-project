@@ -10,17 +10,18 @@ type UserAvatarProps = {
     role?: string;
     flag?: any;
     money?: string;
-    variant?: UserAvatarVariants
+    variant?: UserAvatarVariants;
+    preventMobileNone?: boolean;
 }
 
 type UserAvatarVariants = "row" | "column" | "money"
 
 
-const UserAvatar = ({active,name,role,url,variant='row',flag,money}:UserAvatarProps) => {
+const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow active={active} name={name} role={role} url={url} />;
+            return <UserAvatarRow active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
             return <UserAvatarColumn active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
@@ -30,7 +31,7 @@ const UserAvatar = ({active,name,role,url,variant='row',flag,money}:UserAvatarPr
     }
 };
 
-const UserAvatarRow = ({active,name,role,url}:UserAvatarProps) => {
+const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag}:UserAvatarProps) => {
     return (
         <div className={styles.wrapper}>
            <div className={styles.position_relative}>
@@ -39,9 +40,9 @@ const UserAvatarRow = ({active,name,role,url}:UserAvatarProps) => {
                  : <AppColor.freelancer />}
                <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
            </div>
-           <div className={styles.flex_wrapper}>
+           <div style={preventMobileNone ? { display: 'block' } : {}} className={styles.flex_wrapper}>
                 <Typography textLineHeight='100%' variant='body5' fontWeight='500'>
-                    {name}
+                  {flag}  {name}
                 </Typography>
                 <Typography color={AppColor.orange} textLineHeight='100%'>
                     {role}
@@ -52,6 +53,12 @@ const UserAvatarRow = ({active,name,role,url}:UserAvatarProps) => {
 }
 
 const UserAvatarMoney = ({active,name,role,url,money,flag}:UserAvatarProps) => {
+    const stylesItem = {
+        'display': 'flex',
+        'flexDirection': 'column' as 'column',
+        'gap': '5px',
+        'alignItems': 'start',
+    } as const;
     return (
         <div className={styles.wrapper}>
            <div className={styles.position_relative}>
@@ -60,7 +67,7 @@ const UserAvatarMoney = ({active,name,role,url,money,flag}:UserAvatarProps) => {
                  : <AppColor.freelancer />}
                <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
            </div>
-           <div className={styles.flex_wrapper}>
+           <div style={stylesItem} className={styles.flex_wrapper}>
                 <Typography textLineHeight='100%' variant='body5' fontWeight='500'>
                   {flag}  {name}
                 </Typography>

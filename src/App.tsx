@@ -7,6 +7,9 @@ import Onboarding from './pages/Authentication/Onboarding'
 import StartGuide from './pages/Authentication/Onboarding/pages/StartGuide'
 import DashboardHome from './pages/Dashboard/pages/Home'
 import Account from './pages/Dashboard/pages/Account'
+import Missions from './pages/Dashboard/pages/Missions'
+import Rewards from './pages/Dashboard/pages/Rewards'
+import Upgrades from './pages/Dashboard/pages/Upgrades'
 
 function App() {
 
@@ -24,7 +27,9 @@ function App() {
   
             <Route path="/dashboard/home" element={<DashboardHome />} />
             <Route path="/dashboard/account" element={<Account />} />
-  
+            <Route path="/dashboard/missions" element={<Missions />} />
+            <Route path="/dashboard/rewards" element={<Rewards />} />
+            <Route path="/dashboard/upgrades" element={<Upgrades />} />
          </Routes>
       </Router>
    </div>

@@ -9,11 +9,12 @@ import { ReactComponent as ManagersImage} from '@assets/svg/managers.svg';
 import { ReactComponent as GeneralHelpImage} from '@assets/svg/general-help.svg';
 import { ReactComponent as ContactUs} from '@assets/svg/contact-us.svg';
 import {useState} from 'react'
+import { useScreenSize } from '@common/helpers/useScreenSize';
 const AskedQuestion = () => {
-    const screenWidth = window.innerWidth;
+    const {width,height} = useScreenSize();
     return (
        <div>
-        {screenWidth <= 768 && <Cookies />}
+        {width <= 768 && <Cookies />}
             <div className={styles.dropdown_parent}>
             <div className={styles.absolute}>
                  <div className={styles.flex_center_child}>
@@ -48,7 +49,7 @@ const AskedQuestion = () => {
                   <Dropdown 
                   title="What to do being in staff ?"
                   description="In risus nec etiam nunc, leo velit. Turpis et diam cursus adipiscing dolor posuere. Velit elit metus tempus volutpat turpis iaculis tempor nam. Sapien felis at ipsum aliquet commodo."
-                  showLine= {screenWidth <= 768 ? false : true}
+                  showLine= {width <= 768 ? false : true}
                   />
                 
               </div>

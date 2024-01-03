@@ -66,7 +66,40 @@ import { ReactComponent as UkraineFlag} from '@assets/svg/flags/Ukraine.svg';
 import { ReactComponent as noteText} from '@assets/svg/note-text.svg';
 
 import { ReactComponent as info} from '@assets/svg/info.svg';
+
+import { ReactComponent as sort} from '@assets/svg/sort.svg';
+import { ReactComponent as filter} from '@assets/svg/filter.svg';
+import { ReactComponent as taskCheck} from '@assets/svg/task-check.svg';
+import { ReactComponent as calendar} from '@assets/svg/calendar.svg';
+
+import { ReactComponent as trianleDown} from '@assets/svg/triangle-down.svg';
+
+import { ReactComponent as repeat} from '@assets/svg/repeat.svg';
+import { ReactComponent as taskBox} from '@assets/svg/task-box.svg';
+
+import { ReactComponent as threeLines} from '@assets/svg/three-lines.svg';
+
+import { ReactComponent as doubleChevronLeft} from '@assets/svg/double-chevron-left.svg';
+import { ReactComponent as doubleChevronRight} from '@assets/svg/double-chevron-right.svg';
+
+import { ReactComponent as box} from '@assets/svg/box.svg';
+import { ReactComponent as zeroOfFive} from '@assets/svg/zero-of-five.svg';
+
+import { ReactComponent as star} from '@assets/svg/star.svg';
 class AppColor {
+    static box = box;
+    static star = star;
+    static zeroOfFive = zeroOfFive;
+    static doubleChevronLeft = doubleChevronLeft;
+    static doubleChevronRight = doubleChevronRight;
+    static threeLines = threeLines;
+    static repeat = repeat;
+    static taskBox = taskBox;
+    static trianleDown = trianleDown;
+    static calendar = calendar;
+    static taskCheck = taskCheck;
+    static sort = sort;    
+    static filter = filter;
     static info = info;
     static noteText = noteText;
     static UkraineFlag = UkraineFlag;
@@ -132,6 +165,7 @@ class AppColor {
     static chevronColor = '#A8A8AD';
     static green = '#219653';
     static red = '#EB5757';
+    static whiteGreen = '#B6DE59';
     static transparentBlack = 'rgba(0, 0, 0, 0.5)';
     static tabletSize = 768;
 
