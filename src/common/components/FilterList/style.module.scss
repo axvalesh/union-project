@@ -1,0 +1,19 @@
+
+.filters_wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+@media (min-width:$tabletSize) {
+    .filters_wrapper {
+        gap: 30px;
+    }
+}
+
+.filter_item {
+    cursor: pointer;
+    user-select: none;
+}

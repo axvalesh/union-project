@@ -8,6 +8,7 @@ const MyButtonTransparentOrange = (props:MyButtonVariantProps) => {
             onClick={props.onClick}
             children={props.children}
             fontWeight={props.fontWeight}
+            width={props.width}
         />
     )
 }

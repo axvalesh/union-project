@@ -86,7 +86,23 @@ import { ReactComponent as box} from '@assets/svg/box.svg';
 import { ReactComponent as zeroOfFive} from '@assets/svg/zero-of-five.svg';
 
 import { ReactComponent as star} from '@assets/svg/star.svg';
+
+import { ReactComponent as overlays} from '@assets/svg/overlays.svg';
+import { ReactComponent as clock} from '@assets/svg/clock.svg';
+import { ReactComponent as teamThree} from '@assets/svg/team-3.svg';
+import { ReactComponent as infinity} from '@assets/svg/infinity.svg';
+import { ReactComponent as graphicColumnsThree} from '@assets/svg/graphic-columns-3.svg';
+
+import { ReactComponent as clockPlus} from '@assets/svg/clock-plus.svg';
+import { ReactComponent as circleRepeat} from '@assets/svg/circle-repeat.svg';
 class AppColor {
+    static clockPlus = clockPlus;
+    static circleRepeat = circleRepeat; 
+    static infinity = infinity;
+    static overlays = overlays;
+    static clock = clock;
+    static teamThree = teamThree;
+    static graphicColumnsThree = graphicColumnsThree;    
     static box = box;
     static star = star;
     static zeroOfFive = zeroOfFive;

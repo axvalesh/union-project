@@ -42,7 +42,9 @@ export const nav_var_categorys:nav_categorys[] = [
         text: 'Your new privileges',
         image: AppColor.subscriptions,
         index: 2,
-        links: [],
+        links: [
+            {title: 'my subscriptions'}
+        ],
     },
     {
         title: "Messenger",

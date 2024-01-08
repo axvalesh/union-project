@@ -12,16 +12,18 @@ type UserAvatarProps = {
     money?: string;
     variant?: UserAvatarVariants;
     preventMobileNone?: boolean;
+    width?: string;
+    height?: string;
 }
 
 type UserAvatarVariants = "row" | "column" | "money"
 
 
-const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone}:UserAvatarProps) => {
+const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone,height,width}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
+            return <UserAvatarRow width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
             return <UserAvatarColumn active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
@@ -31,13 +33,13 @@ const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobile
     }
 };
 
-const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag}:UserAvatarProps) => {
+const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width}:UserAvatarProps) => {
     return (
         <div className={styles.wrapper}>
            <div className={styles.position_relative}>
                {url != null
-               ? <img width={'38px'} height={'38px'} src={url} alt="" />
-                 : <AppColor.freelancer />}
+               ? <img width={width != null ? width : '38px'} height={height != null ? height : '38px'} src={url} alt="" />
+                 : <AppColor.freelancer width={width} height={height} />}
                <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
            </div>
            <div style={preventMobileNone ? { display: 'block' } : {}} className={styles.flex_wrapper}>

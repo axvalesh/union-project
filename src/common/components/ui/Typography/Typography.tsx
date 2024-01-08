@@ -37,6 +37,7 @@ type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit'
 type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial';
 type fontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 type TextDecoration = 'none' | 'underline' | 'overline' | 'line-through' | 'initial' | 'inherit';
+type TextDecorationStyle = 'dashed'
 
 interface TypographyProps {
   variant?: VariantListTypes;
@@ -48,14 +49,15 @@ interface TypographyProps {
   fontWeight?: fontWeight;
   textLineHeight?: string;
   textDecoration?: TextDecoration;
+  textDecorationStyle?: TextDecorationStyle
 }
 
-const Typography = ({ variant, color, children,textAlign,textTransform,style,textLineHeight,fontWeight,textDecoration, ...props }: TypographyProps) => {
+const Typography = ({ variant, color, children,textAlign,textTransform,style,textLineHeight,fontWeight,textDecoration,textDecorationStyle, ...props }: TypographyProps) => {
 
   const Component = variant ? allVariants[variant] : allVariants['body1'];
   const dynamicClassName = variant ? cl[variant] : cl['body1']
 
-  return <Component {...props} className={`${dynamicClassName}`} style={{textDecoration: textDecoration,transition: 'all 0.3s ease', fontWeight: fontWeight, lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
+  return <Component {...props} className={`${dynamicClassName}`} style={{textDecorationStyle: textDecorationStyle,textDecoration: textDecoration,transition: 'all 0.3s ease', fontWeight: fontWeight, lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
 
 };
 

@@ -10,9 +10,13 @@ import Account from './pages/Dashboard/pages/Account'
 import Missions from './pages/Dashboard/pages/Missions'
 import Rewards from './pages/Dashboard/pages/Rewards'
 import Upgrades from './pages/Dashboard/pages/Upgrades'
+import Activity from './pages/Dashboard/pages/Activity'
+import MySubscription from './pages/Subscriptions/pages/MySubscription'
+import FreelancersSubscriptions from './pages/Freelancers/pages/Subscriptions'
+import SubscriptionsPlans from './pages/Subscriptions/pages/Plans'
 
 function App() {
-
+   
   return (
    <div className='App'>
       <Router>
@@ -30,6 +34,12 @@ function App() {
             <Route path="/dashboard/missions" element={<Missions />} />
             <Route path="/dashboard/rewards" element={<Rewards />} />
             <Route path="/dashboard/upgrades" element={<Upgrades />} />
+            <Route path="/dashboard/activity" element={<Activity />} />
+
+            <Route path="/subscriptions" element={<MySubscription />} />
+
+            <Route path="/freelancers/subscriptions" element={<FreelancersSubscriptions />} />
+            <Route path="/subscriptions/plans" element={<SubscriptionsPlans />} />
          </Routes>
       </Router>
    </div>

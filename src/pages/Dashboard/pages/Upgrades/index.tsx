@@ -16,6 +16,7 @@ import DropdownNodeFilter from '@common/components/ui/Dropdown/DropdownNodesFilt
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 
 const skillsContent:SkillsItemProps[] = [
     {
@@ -49,6 +50,7 @@ const skillsContent:SkillsItemProps[] = [
 const Upgrades = () => {
 
     const {width,height} = useScreenSize();
+    const [activeUpgradeSection,setActiveUpgradeSection] = useState('Opened Projects')
     console.log(width);
     return (
       <div>
@@ -102,6 +104,7 @@ const Upgrades = () => {
                                     </Typography>
                                 </div>
                             </div>
+                            <div className={styles.vertical_line}></div>
                             <div className={styles.flex}>
                                 <div className={styles.orange_circle}><AppColor.star /></div>
                                <div>
@@ -116,9 +119,24 @@ const Upgrades = () => {
                         </div>
 
                         <DynamicPadding desktop='70px' mobile='30px' />
-                        
+                        <div className={styles.upgrade_items_wrapper}>
+                            <UpgradeItemSection activeTitle={activeUpgradeSection} onMouseEnter={(item) => {setActiveUpgradeSection(item)}} title='Opened Projects' count={'3'} grade={<div>Grade 1/5</div>} icon={<AppColor.overlays />} />
+                            <UpgradeItemSection activeTitle={activeUpgradeSection} onMouseEnter={(item) => {setActiveUpgradeSection(item)}} title='Projects Lifetime' count={'3 days'} grade={<div>Grade 1/<AppColor.infinity /> </div>} icon={<AppColor.clock />} />
+                            <UpgradeItemSection activeTitle={activeUpgradeSection} onMouseEnter={(item) => {setActiveUpgradeSection(item)}} title='Teams Count' count={'1'} grade={<div>Grade 1/<AppColor.infinity /></div>} icon={<AppColor.teamThree />} />
+                            <UpgradeItemSection activeTitle={activeUpgradeSection} onMouseEnter={(item) => {setActiveUpgradeSection(item)}} title='Sponsorship Campaigns' count={'4'} grade={<div>Grade 1/5</div>} icon={<AppColor.caseIcon />} />
+                            <UpgradeItemSection activeTitle={activeUpgradeSection} onMouseEnter={(item) => {setActiveUpgradeSection(item)}} title='Boost Count' count={'2'} grade={<div>Grade 1/<AppColor.infinity /></div>} icon={<AppColor.graphicColumnsThree />} />
+                        </div>
                     </div>
-                    <div className={styles.main_section_right}></div>
+                    <div className={styles.main_section_right}>
+                        <ActiveUpgradeMenu 
+                            bottomBarText={<Typography variant='body4' fontWeight='400'> ensures a trusted marketplace for all users by confirming their identity through the submission and verification of valid documentation. </Typography>}
+                            bottomBarTitle='Opened Projects Upgrade'
+                            buttonText='+1 Opened Project'
+                            canDoIt={false}
+                            currentGrade={1}
+                            topBarText={<Typography variant='body4' fontWeight='500'>Opened Projects <Typography variant='body4'>ensures a trusted marketplace for all users by confirming their identity through the submission and verification of valid documentation.</Typography> </Typography>}
+                        />
+                    </div>
                 </div>
 
                 <DynamicPadding />
@@ -130,61 +148,102 @@ const Upgrades = () => {
 };
 
 
-type StatisticTextProps = {
+type UpgradeItemSectionProps = {
+    icon: any;
     title: string;
-    text: string;
+    grade: React.ReactNode;
+    count: string;
+    onMouseEnter: (item:string) => void;
+    activeTitle: string;
 }
-const  StatisticText = ({text,title}:StatisticTextProps) => {
-    return ( 
-        <div className={styles.statistic_text}>
-            <Typography variant='body5' color={AppColor.transparentBlack}>
-                {title}
-            </Typography>
-            <Typography variant='body1' fontWeight='500'>
-                {text}
-            </Typography>
-        </div>
-    )
-}
-type ContentShellProps = {
-    node?: React.ReactNode;
-    title: React.ReactNode;
-}
-const ContentShell = ({node,title}:ContentShellProps) => {
+const UpgradeItemSection = ({count,grade,icon,title,onMouseEnter,activeTitle}:UpgradeItemSectionProps) => {
     return (
-        <div className={styles.content_shell_wrapper}>
-            <div className={styles.content_shell_top}>
-                {title}
-            </div>
-            <div className={styles.horizontal_line}></div>
-            <div className={styles.content_shell_bottom}>
-                {node != null ?
-                node : <Typography variant='body4' color={AppColor.transparentBlack}>No info</Typography>}
+        <div style={{backgroundColor: activeTitle == title ? AppColor.white : 'transparent'}}  onMouseEnter={() => { onMouseEnter(title) }} className={styles.upgrade_item_section}>
+            {icon}
+            <div className={styles.upgrade_item_text}>
+                <Typography variant='body5' fontWeight='500'>
+                    {title} <Typography color={AppColor.transparentBlack}> ({count})</Typography>
+                </Typography>
+                <Typography variant='body5'>
+                    {grade}
+                </Typography>
             </div>
         </div>
     )
 }
-const TagDisplay = ({ text }: { text: string }) => {
-    return (
-        <span className={styles.tag}>
-            <Typography textLineHeight={'100%'} variant="body5" fontWeight='500' color={AppColor.white}>
-                {text}
-            </Typography>
-        </span>
-    );
-};
-type DetailInfoProps = {
-    title:string;
-    details: string;
+
+type ActiveUpgradeMenuProps = {
+    topBarText: React.ReactNode;
+    bottomBarTitle: string;
+    bottomBarText: React.ReactNode;
+    buttonText: string;
+    canDoIt: boolean;
+    currentGrade: number;
 }
-const DetailInfo = ({details,title}:DetailInfoProps) => {
+const ActiveUpgradeMenu = ({bottomBarText,bottomBarTitle,buttonText,canDoIt,topBarText,currentGrade}:ActiveUpgradeMenuProps) => {
     return (
-        <div className={styles.details_info}>
-            <Typography variant='body4' color={AppColor.transparentBlack} textLineHeight='60%'>{title}</Typography>
-            <Typography variant='body4'  textLineHeight='60%' fontWeight='500'>{details}</Typography>
+        <div>
+            <DynamicPadding mobile='30px' desktop='0px' />
+            <div className={styles.top_bar_text}>
+                {topBarText}
+            </div>
+            <DynamicPadding mobile='75px' desktop='90px' />
+            <div className={styles.active_menu_grades_wrapper}>
+                <div className={styles.grade_absolute}>
+                    <MyButtonTransparentOrange onClick={() => {}}>+1 Opened Project</MyButtonTransparentOrange>
+                </div>
+                <ActiveUpgradeGradeCircle bottomText='1 Project' insideText='1' active={true} />
+                <ActiveUpgradeGradeCircle bottomText='2 Project' insideText='2' isNext={true} />
+                <ActiveUpgradeGradeCircle bottomText='3 Project' insideText='3' disabled={true} />
+                <ActiveUpgradeGradeCircle bottomText='4 Project' insideText='4' disabled={true} />
+                <ActiveUpgradeGradeCircle bottomText='5 Project' insideText='5' disabled={true} />
+            </div>
+            <DynamicPadding desktop='50px' mobile='0px' />
+            <div className={styles.botom_bar_wrapper}>
+                <Typography variant='body3' fontWeight='500'>{bottomBarTitle}</Typography>
+                {bottomBarText}
+                <MyButtonOrange onClick={() => {}}>{buttonText}</MyButtonOrange>
+            </div>
         </div>
     )
 }
+
+type ActiveUpgradeGradeCircle = {
+    active?: boolean;
+    isNext?: boolean;
+    disabled?: boolean;
+    insideText: string;
+    bottomText: string;
+}
+const ActiveUpgradeGradeCircle = ({active,disabled,isNext,bottomText,insideText}:ActiveUpgradeGradeCircle) => {
+    return (
+     
+         <div className={styles.not_active}>
+                <div className={styles.menu_wrapper}>
+                   <div className={styles.arrow_wrapper}>
+                        <div className={styles.active_upgrade_circle} style={{border: isNext ? '1px solid #515151' : '1px solid transparent',backgroundColor: active ? AppColor.orange : isNext ? 'white' : AppColor.transparentBlack}}>
+                            <Typography textTransform='uppercase' variant='body4' color={isNext ? AppColor.text : 'white'}>
+                                Grade
+                            </Typography>
+                            <Typography variant='titleSmall' color={isNext ? AppColor.text : 'white'}>
+                                {insideText}
+                            </Typography>
+                        </div>
+                        {active 
+                    && <div className={styles.chevron_absolute}><AppColor.chevronRight fill={AppColor.text} width={14} height={24} /></div> 
+                    }
+                   </div>
+                    <div><AppColor.chevronRight /></div>
+                    <Typography textLineHeight='100%' variant='body4' color={active ? AppColor.orange : isNext ? AppColor.text : AppColor.transparentBlack}> 
+                        {bottomText}
+                    </Typography>
+                </div>
+                {!active && <DynamicPadding desktop='34px' mobile='px' side='right'/>}
+         </div>
+    )
+}
+
+
 const DropdownSkills = () => {
     const [activeIndex,setActiveIndex] = useState(0);
     const [showDropdown,setShowDropdown] = useState(false);

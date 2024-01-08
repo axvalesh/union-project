@@ -14,13 +14,14 @@ type DetailsTableProps = {
   callbackNav: (item:number) => void;
   showUsers?: boolean;
   users?: any[];
+  maxWidth?: string;
 }
 
 type DetailsTableItem = {
   title: string;
   child: React.ReactNode;
 }
-const DetailsTable = ({details,page,filters,callbackNav,showUsers,users}:DetailsTableProps) => {
+const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth}:DetailsTableProps) => {
 
     const [currentFilter,setCurrentFilter] = useState('All');
     const {width,height} = useScreenSize();
@@ -72,7 +73,7 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users}:Details
                     <div className={styles.absolute_background}></div>
                       <div className={styles.desktop_items_wrapper}>
                         {details.map(item =>
-                          <div>
+                          <div style={{maxWidth: maxWidth}}>
                            <div className={styles.title_wrapper_desktop}>
                               <Typography variant='body4' fontWeight='500'>
                               {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
