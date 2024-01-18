@@ -25,7 +25,7 @@ const InputCommon = ({ placeholder,callback,padding,rightPadding }: InputCommonP
                 style={{padding:padding,paddingRight: `${rightPadding+15}px`}}
                 placeholder={placeholder}
             />
-            <div onClick={() => {setText('')}} style={{opacity: text != '' ? '1' : '0',right: `${rightPadding}px`}} className={styles.close_icon}><AppColor.close width={'12px'} height={'12px'} /></div>
+            <div onClick={() => {setText('')}} style={{opacity: text != '' ? '1' : '0',right: `${rightPadding}px`}} className={styles.close_icon}><AppColor.close fill={AppColor.text} width={'12px'} height={'12px'} /></div>
         </div>
     )
 }

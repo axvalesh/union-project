@@ -16,9 +16,12 @@ const NavBarLink = ({
     activeIndex,
     parentRoute,
 }: NavBarLinkProps) => {
+
+    const modifiedTitle = title.replace('&', '-').replace(/\s/g, '');;
+
     return (
         <Link
-            to={`/${parentRoute.toLowerCase()}/${title}`}
+            to={`/${parentRoute.toLowerCase()}/${modifiedTitle}`}
             className={styles.nav_bar_link}
             style={{
                 backgroundColor:

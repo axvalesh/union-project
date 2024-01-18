@@ -2,7 +2,7 @@ import MyButton from '../MyButton'
 import AppColor from '@common/styles/variables-static'
 import { MyButtonVariantProps } from '../models'
 
-const MyButtonBlack = (props:MyButtonVariantProps) => {
+const MyButtonRed = (props:MyButtonVariantProps) => {
     return (
         <MyButton
             padding={props.padding}
@@ -10,13 +10,13 @@ const MyButtonBlack = (props:MyButtonVariantProps) => {
             children={props.children}
             border="none"
             borderHover='none'
-            color={AppColor.text}
+            color={AppColor.red}
             textColor='white'
-            hoverColor={AppColor.colorWithOpacity(AppColor.text, 0.7)}
+            hoverColor={AppColor.colorWithOpacity(AppColor.red, 0.7)}
             hoverTextColor='white'
             textTransform={props.textTransform}
         />
     )
 }
 
-export default MyButtonBlack;
+export default MyButtonRed;

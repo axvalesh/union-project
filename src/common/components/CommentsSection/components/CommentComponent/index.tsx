@@ -10,6 +10,8 @@ import { useEffect, useRef, useState } from 'react';
 import { comment } from '../..';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
+import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 
 
 const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,answeredUserComment,depth}:comment) => {
@@ -73,7 +75,10 @@ const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,ans
                     }
                 </div>
                 {showReplies && <SizeBox height='20px'/>}
-                {addReply && <AddReplyItem replyTo={user}/>}
+                {addReply && <div style={{marginLeft: `${depth+1*leftMargin}px`}}>
+                    <AddReplyItem
+                        callbackCancel={ () => {setAddReply(false)}}
+                        replyTo={user}/><SizeBox height='20px'/></div>}
                 {
                     showReplies &&
                     answeredUserComment.map(item => 
@@ -98,35 +103,30 @@ const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,ans
 
 type AddReplyItemProps = {
     replyTo: userModel;
+    callbackCancel: () => void;
 }
-const AddReplyItem = ({ replyTo }: AddReplyItemProps) => {
-    const ref = useRef(null);
-  
-    const handleChange = () => {
-      if (ref.current) {
-        const value = ref.current.textContent;
-        const atIndex = value.indexOf('@');
-  
-        if (atIndex !== -1) {
-          const spaceIndex = value.slice(atIndex).indexOf(' ');
-  
-          if (spaceIndex !== -1) {
-            const newValue = value.slice(0, atIndex) + `<span class=${styles.orangeText}>${value.slice(atIndex, atIndex + spaceIndex)}</span>` + value.slice(atIndex + spaceIndex);
-  
-            ref.current.innerHTML = newValue;
-            ref.current.setSelectionRange(ref.current.textContent.length, ref.current.textContent.length);
-          }
-        }
-      }
-      ref.current.setSelectionRange(ref.current.textContent.length, ref.current.textContent.length);
-    };
-  
+const AddReplyItem = ({ replyTo,callbackCancel }: AddReplyItemProps) => {
+    const [text,setText] = useState('');
     return (
-      <div>
-        <div ref={ref} contentEditable={true} onInput={handleChange} className={styles.new_reply_item}>
-          {/* Your editable content goes here */}
-        </div>
+      
+      <div className={styles.wrapper_new_reply}>
+            <div className={styles.new_reply_item}>
+                <Typography contentEditable={false} variant='body4' fontWeight='500' color={AppColor.orange}>@{replyTo.name} </Typography>
+            
+                <div contentEditable={true} onInput={(e) => setText(e.currentTarget.textContent)}>
+                </div>
+            </div>
+            <DynamicPadding desktop='40px' mobile='22px'/>
+            <div className={styles.end_flex}>
+                <Typography variant='body4'>{text.length} / 3000</Typography>
+
+                <div className={styles.flex_center_10}>
+                    <MyButtonTransparent onClick={() => {callbackCancel()}} textTransform='uppercase'>cancel</MyButtonTransparent>
+                    <MyButtonOrange onClick={() => {}} textTransform='uppercase'>Reply</MyButtonOrange>
+                </div>
+            </div>
       </div>
+      
     );
   };
 const CustomInput = () => {

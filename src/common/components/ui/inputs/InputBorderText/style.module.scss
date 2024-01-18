@@ -2,11 +2,19 @@
     position: relative;
     width: 100%;
     > input {
+        transition: all 0.3s ease;
         width: 100%;
         padding: 20px 50px 20px 25px;
         border: 1px solid rgba($color: #515151, $alpha: 0.1);
         border-radius: 20px;
         box-sizing: border-box;
+        color: $text;
+        font-size: 0.875rem;
+
+        &:focus {
+            border: 1px solid rgba($color: #515151, $alpha: 1);
+            outline: none;
+        }
     }
     > label {
         position: absolute;
@@ -32,5 +40,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+@media (min-width:$tabletSize) {
+    .border_input {
+        > input {
+            font-size: 1rem;
+        }
     }
 }

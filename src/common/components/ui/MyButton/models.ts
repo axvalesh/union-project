@@ -25,4 +25,5 @@ export interface MyButtonVariantProps {
     padding?: string,
     width?: string,
     fontWeight?: string;
+    textTransform?: TextTransform;
 }

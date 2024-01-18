@@ -13,7 +13,7 @@ export type nav_categorys = {
     links:linkType[];
 };
 
-export type nav_var_categorys_titles = 'Dashboard' | 'Teams' | 'Subscriptions' | 'Messenger' | 'Community' | 'Team' | '';
+export type nav_var_categorys_titles = 'Dashboard' | 'Teams' | 'Subscriptions' | 'Messenger' | 'Community' | 'Team' | 'Settings';
 
 export const nav_var_categorys:nav_categorys[] = [
     {
@@ -71,6 +71,18 @@ export const nav_var_categorys:nav_categorys[] = [
         links: [
             {title: 'members'},
             {title: 'squads'}
+        ],
+    },
+    {
+        title: "Settings",
+        text: 'Customise your profile',
+        image: AppColor.settings,
+        index: 6,
+        links: [
+            {title: 'profile'},
+            {title: 'password & security'},
+            {title: 'verification'},
+            {title: 'notifications'}
         ],
     },
     

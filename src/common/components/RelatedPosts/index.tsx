@@ -108,7 +108,7 @@ const RelatedPosts = ({popularLinks,relatedPosts}:RelatedPostsProps) => {
                     </Typography>
                     <AppColor.greenCheckTrue/>
                 </div>
-                <MyButtonBlack onClick={() => {}}>Show best reply</MyButtonBlack>
+                <MyButtonBlack textTransform='uppercase' onClick={() => {}}>Show best reply</MyButtonBlack>
             </div>
         </div>
     )

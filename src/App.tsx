@@ -19,6 +19,9 @@ import TeamMembers from './pages/Team/pages/Members'
 import TeamSquads from './pages/Team/pages/Squads'
 import CommunityPosts from './pages/Community'
 import PostPageById from './pages/Community/components/PostPage'
+import SettingsProfile from './pages/Settings/pages/Profile'
+import PasswordAndSecurity from './pages/Settings/pages/PasswordAndSecurity'
+import Verification from './pages/Settings/pages/Verification'
 
 function App() {
    
@@ -53,6 +56,10 @@ function App() {
 
             <Route path="/community/posts" element={<CommunityPosts />} />
             <Route path="/community/post" element={<PostPageById />} />
+
+            <Route path="/settings/profile" element={<SettingsProfile />} />
+            <Route path="/settings/password-security" element={<PasswordAndSecurity />} />
+            <Route path="/settings/verification" element={<Verification />} />
          </Routes>
       </Router>
    </div>

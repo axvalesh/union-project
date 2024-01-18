@@ -23,7 +23,7 @@ const SquadCard = ({ members, title }: SquadCardProps) => {
                 {' '}
                 <AppColor.threeLines />
                 <ModalBottomCenter node={<div className={styles.modal_edit_wrapper}>
-                    <div><AppColor.edit/> <Typography variant='body5'>Edit</Typography></div>
+                    <div><AppColor.edit fill={AppColor.text}/> <Typography variant='body5'>Edit</Typography></div>
                     <div><AppColor.lightning/> <Typography variant='body5'>Report</Typography></div>
                 </div>} isActive={hovered} />
             </div>

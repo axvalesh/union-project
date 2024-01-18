@@ -118,8 +118,41 @@ import { ReactComponent as dislike} from '@assets/svg/dislike.svg';
 import { ReactComponent as greenCheckTrue} from '@assets/svg/green-check-true.svg';
 import { ReactComponent as triangleTop} from '@assets/svg/triangle-top.svg';
 
+import { ReactComponent as settings} from '@assets/svg/settings.svg';
+
+import { ReactComponent as passportSvg} from '@assets/svg/svg-passport.svg';
+import { ReactComponent as earth} from '@assets/svg/earth.svg';
+import { ReactComponent as location} from '@assets/svg/location.svg';
+import { ReactComponent as buildings} from '@assets/svg/buildings.svg';
+import { ReactComponent as nameplate} from '@assets/svg/nameplate.svg';
+import { ReactComponent as terrainMap} from '@assets/svg/terrain-map.svg';
+
+import { ReactComponent as phone} from '@assets/svg/phone.svg';
+import { ReactComponent as gmail} from '@assets/svg/gmail.svg';
+import { ReactComponent as key} from '@assets/svg/key.svg';
+import { ReactComponent as twoFactorAuth} from '@assets/svg/two-factor-auth.svg';
+import { ReactComponent as searchEarth} from '@assets/svg/search-earth.svg';
+
+import { ReactComponent as closeRed} from '@assets/svg/close-red.svg';
+import { ReactComponent as longChevronRight} from '@assets/svg/long-chevron-right.svg';
+
 
 class AppColor {
+    static closeRed = closeRed;
+    static longChevronRight = longChevronRight;    
+    static phone = phone;
+    static gmail = gmail;
+    static key = key;
+    static twoFactorAuth = twoFactorAuth;
+    static searchEarth = searchEarth;
+
+    static terrainMap = terrainMap;
+    static passportSvg = passportSvg;
+    static earth = earth;
+    static location = location;
+    static buildings = buildings;
+    static nameplate = nameplate;    
+    static settings = settings;
     static triangleTop = triangleTop;
     static greenCheckTrue = greenCheckTrue;
     static like = like;
@@ -216,6 +249,7 @@ class AppColor {
 
     static orange = '#F4A72A';
     static white = '#F5F5F5';
+    static grey = '#A8A8AD'
     static text = '#515151';
     static chevronColor = '#A8A8AD';
     static green = '#219653';

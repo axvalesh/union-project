@@ -1,0 +1,26 @@
+
+
+.desktop_wrapper {
+    display: flex;
+}
+
+.item_desktop {
+    min-height: 42px;
+    cursor: pointer;
+    min-width: 175px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.desktop {
+    display: none;
+}
+@media (min-width:$tabletSize) {
+    .desktop {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
+}

@@ -18,6 +18,7 @@ import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import { useScreenSize } from '@common/helpers/useScreenSize';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import { Link } from 'react-router-dom';
 
 type postsContentType = {
     title: string;
@@ -240,16 +241,18 @@ const CommunityPosts = () => {
                 <div className={styles.right_part}>
                     <div>
                         {currentPost.posts.slice(currentPage*4,(currentPage+1)*4).map((post,index) =>
-                            <PostCard
-                                comments={post.comments}
-                                created={post.created}
-                                description={post.description}  
-                                saved={post.saved}
-                                title={post.title}
-                                user={post.user}
-                                indexInParent={index}
-                                createdAgo={post.createdAgo}
-                            />
+                            <Link to={'/community/post'}>
+                                <PostCard
+                                    comments={post.comments}
+                                    created={post.created}
+                                    description={post.description}  
+                                    saved={post.saved}
+                                    title={post.title}
+                                    user={post.user}
+                                    indexInParent={index}
+                                    createdAgo={post.createdAgo}
+                                />
+                            </Link>
                         )}
                         {currentPost.posts.length > 0 && <div className={styles.bottom_nav}>
                             <div className={styles.flex}>
