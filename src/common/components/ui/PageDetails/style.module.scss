@@ -16,8 +16,19 @@
     flex-direction: column;
     gap: 20px;
 }
+.title_icon {
+    display: none;
+}
 @media (min-width:$tabletSize) {
-
+    .title_icon {
+        display: flex;
+        justify-content: center;
+    }
+    .flex_center {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
     /*====================================================================================================*/
     .top_flex {
         align-items: start;

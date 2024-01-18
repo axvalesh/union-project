@@ -15,7 +15,7 @@ const PagesNav = ({hovered}:PagesNavProps) => {
         {nav_var_categorys.map(item => {
         console.log(item.title, 'is item');
            return (
-            <Link to={`/${item.title.toLowerCase()}/`}>
+            <Link to={`/${item.title.toLowerCase()}/${item.links[0] != null ? item.links[0].title : ''}`}>
                 <div className={styles.hover_content}>
                     <div className={styles.category_image}>
                         {<item.image width={'30px'} height={'30px'}/>}

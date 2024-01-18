@@ -14,6 +14,8 @@ import { ReactComponent as pigCoins} from '@assets/svg/pig-coins.svg';
 import { ReactComponent as singTrue} from '@assets/svg/sing-true.svg';
 
 import { ReactComponent as messageIconRound} from '@assets/svg/message-icon-round.svg';
+import { ReactComponent as message} from '@assets/svg/message-icon.svg';
+
 import { ReactComponent as community} from '@assets/svg/community.svg';
 import { ReactComponent as dashboard} from '@assets/svg/dashboard.svg';
 import { ReactComponent as teams} from '@assets/svg/teams.svg';
@@ -95,7 +97,44 @@ import { ReactComponent as graphicColumnsThree} from '@assets/svg/graphic-column
 
 import { ReactComponent as clockPlus} from '@assets/svg/clock-plus.svg';
 import { ReactComponent as circleRepeat} from '@assets/svg/circle-repeat.svg';
+
+import { ReactComponent as contract} from '@assets/svg/contract.svg';
+import { ReactComponent as edit} from '@assets/svg/edit.svg';
+import { ReactComponent as lightning} from '@assets/svg/lightning.svg';
+
+import { ReactComponent as close} from '@assets/svg/close.svg';
+
+import { ReactComponent as recent} from '@assets/svg/recent.svg';
+
+import { ReactComponent as heart} from '@assets/svg/heart.svg';
+import { ReactComponent as pause} from '@assets/svg/pause.svg';
+
+import { ReactComponent as pinned_process} from '@assets/svg/pinned_process.svg';
+import { ReactComponent as pinned_true} from '@assets/svg/pinned_true.svg';
+import { ReactComponent as threePoints} from '@assets/svg/three-points.svg';
+
+import { ReactComponent as like} from '@assets/svg/like.svg';
+import { ReactComponent as dislike} from '@assets/svg/dislike.svg';
+import { ReactComponent as greenCheckTrue} from '@assets/svg/green-check-true.svg';
+import { ReactComponent as triangleTop} from '@assets/svg/triangle-top.svg';
+
+
 class AppColor {
+    static triangleTop = triangleTop;
+    static greenCheckTrue = greenCheckTrue;
+    static like = like;
+    static dislike = dislike;    
+    static threePoints = threePoints;
+    static message = message;
+    static pinned_process = pinned_process;
+    static pinned_true = pinned_true;
+    static heart = heart;
+    static pause = pause;
+    static recent = recent;
+    static close = close;
+    static edit = edit;
+    static lightning = lightning;   
+    static contract = contract;
     static clockPlus = clockPlus;
     static circleRepeat = circleRepeat; 
     static infinity = infinity;
@@ -184,6 +223,10 @@ class AppColor {
     static whiteGreen = '#B6DE59';
     static transparentBlack = 'rgba(0, 0, 0, 0.5)';
     static tabletSize = 768;
+
+    static weakShadow = `-webkit-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);
+    -moz-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);
+    box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);`;
 
     static colorWithOpacityRgb = (color: string, opacity: number): string => {
         const rgbaColor = color.replace('rgb', 'rgba').replace(')', `, ${opacity})`);

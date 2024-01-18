@@ -14,6 +14,11 @@ import Activity from './pages/Dashboard/pages/Activity'
 import MySubscription from './pages/Subscriptions/pages/MySubscription'
 import FreelancersSubscriptions from './pages/Freelancers/pages/Subscriptions'
 import SubscriptionsPlans from './pages/Subscriptions/pages/Plans'
+import MyTeams from './pages/Teams/pages/MyTeams'
+import TeamMembers from './pages/Team/pages/Members'
+import TeamSquads from './pages/Team/pages/Squads'
+import CommunityPosts from './pages/Community'
+import PostPageById from './pages/Community/components/PostPage'
 
 function App() {
    
@@ -40,6 +45,14 @@ function App() {
 
             <Route path="/freelancers/subscriptions" element={<FreelancersSubscriptions />} />
             <Route path="/subscriptions/plans" element={<SubscriptionsPlans />} />
+
+            <Route path="/teams/my-teams" element={<MyTeams />} />{/* customer*/}
+
+            <Route path="/team/members" element={<TeamMembers />} />
+            <Route path="/team/squads" element={<TeamSquads />} />
+
+            <Route path="/community/posts" element={<CommunityPosts />} />
+            <Route path="/community/post" element={<PostPageById />} />
          </Routes>
       </Router>
    </div>

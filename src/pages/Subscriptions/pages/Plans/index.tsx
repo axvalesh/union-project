@@ -11,6 +11,7 @@ import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import { useState } from 'react';
 import SaleCard from './components/SaleCard';
+import DropdownText from '@common/components/ui/Dropdown/DropdownText/index';
 
 const SubscriptionsPlans = () => {
 
@@ -23,10 +24,13 @@ const SubscriptionsPlans = () => {
           <div className={styles.wrapper}>
             <PageDetails
                 historyNode={<NavigationItem image={<AppColor.home/>} textList={['Users', 'Freelancers', 'Programmatis']} />}
-                pageTitle='Subscriptions'
+                pageTitle='plans'
+                pageTitleIcon={<AppColor.openEye />}
+                
             />
             <DynamicPadding />
             <ComparisonTable 
+            switchButton={true}
                 card1={
                     <SaleCard
                         filter='Start'
@@ -69,9 +73,21 @@ const SubscriptionsPlans = () => {
                     {
                         title: 'Guarantee',
                         titleInfo: '',
-                        card1Text: '7days',
-                        card2Text: 'Unlimited',
-                        card3Text: 'Unlimited'
+                        card1Text: <DropdownText 
+                                        callback={() => {}}
+                                        dropTitles={Array.from({ length: 34 }, (_, index) => `${index + 7} days`)}
+                                          title='7 days'
+                                    />,
+                        card2Text: <DropdownText 
+                                    callback={() => {}}
+                                    dropTitles={['Unlimited', 'General', 'Higher priority']}
+                                    title='Unlimited'
+                                />,
+                        card3Text: <DropdownText 
+                        callback={() => {}}
+                        dropTitles={['Unlimited', 'General', 'Higher priority']}
+                        title='Unlimited'
+                    />,
                     },
                     {
                         title: 'Special Groups',

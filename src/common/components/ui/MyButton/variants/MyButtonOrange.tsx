@@ -14,6 +14,7 @@ const MyButtonOrange = (props:MyButtonVariantProps) => {
             borderHover='none'
             hoverColor={AppColor.colorWithOpacity(AppColor.orange,0.7)}
             children={props.children}
+            fontWeight={props.fontWeight}
         />
     )
 }

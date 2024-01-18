@@ -1,9 +1,13 @@
-export interface user {
+import { countries } from "./constants";
+
+export interface userModel {
     name: string;
-    image: string;
+    image: string | null;
     roles: user_roles;
-    country: string;
-    statistic: user_statistic;
+    country: countries;
+    statistic?: user_statistic;
+    activeAgo?: string;
+    isActive: boolean;
 };
 
 type user_roles = 'Customer' | 'Admin' | 'Sponsor';
@@ -13,3 +17,18 @@ type user_statistic = {
     rating: number;
     responses_count: number;
 }
+
+export const fakeUserConstant: userModel = {
+    name: "John Doe",
+    image: null,
+    roles: 'Customer',
+    country: 'Ukraine',
+    activeAgo: '1 min ago',
+    isActive: true,
+    statistic: {
+        sponsorship_count: 0,
+        comments_count: 0,
+        rating: 0,
+        responses_count: 0,
+    }
+};

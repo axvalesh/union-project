@@ -93,6 +93,17 @@
     align-items: center;
 }
 @media (min-width:$tabletSize) {
+    .dessktop_item_shell {
+        display: flex;
+        flex-direction: column;
+
+        .child_wrapper_desktop {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
     .filter_text_wrapper {
         gap: 30px;
     }

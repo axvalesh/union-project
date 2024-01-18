@@ -8,15 +8,17 @@ type NavBarLinkProps = {
     title: string
     index: number
     activeIndex: number
+    parentRoute: string;
 }
 const NavBarLink = ({
     title,
     index,
     activeIndex,
+    parentRoute,
 }: NavBarLinkProps) => {
     return (
         <Link
-            to={`/dashboard/${title}`}
+            to={`/${parentRoute.toLowerCase()}/${title}`}
             className={styles.nav_bar_link}
             style={{
                 backgroundColor:

@@ -1,0 +1,39 @@
+
+.top_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex_center {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.flex_center_10 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.new_reply_item {
+    padding: 7px 14px;
+    @include weakShadow;
+    border-radius: 20px;
+}
+
+.orangeText {
+    color:$orange;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+@media (min-width:$tabletSize) {
+    .orangeText {
+        font-size: 1rem;
+    }
+    .new_reply_item {
+        padding: 15px 20px;
+    }
+    .mobile {
+        display: none;
+    }
+}

@@ -212,7 +212,7 @@ const Goal = ({ isRiched, text, title, solveLink }: GoalProps) => {
         <div className={styles.goal_wrapper}>
             {isRiched ? (
                 <div className={styles.goal_riched}>
-                    <AppColor.singTrue />
+                    <AppColor.singTrue stroke='white' />
                 </div>
             ) : (
                 <div className={styles.goal_unriched}></div>

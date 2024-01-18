@@ -44,6 +44,7 @@ const NavigationBar = ({
                <div className={styles.links_wrapper}>
                 {currentCategory.links.map((item,index) => (
                         <NavBarLink 
+                            parentRoute={currentCategory.title}
                             index={index}
                             activeIndex={activePageIndex}
                             title={item.title}

@@ -4,10 +4,11 @@ import Typography from '../Typography/Typography';
 
 type PageDetailsProps = {
     pageTitle: string;
+    pageTitleIcon?: React.ReactNode;
     historyNode: React.ReactNode;
     endNode?: React.ReactNode;
 }
-const PageDetails = ({historyNode,pageTitle,endNode}:PageDetailsProps) => {
+const PageDetails = ({historyNode,pageTitle,endNode,pageTitleIcon}:PageDetailsProps) => {
 
     return (
       <div>
@@ -20,7 +21,7 @@ const PageDetails = ({historyNode,pageTitle,endNode}:PageDetailsProps) => {
                             textTransform="uppercase"
                             fontWeight="600">
                             <div className={styles.flex_center}>
-                                {pageTitle}
+                                {pageTitle} <div className={styles.title_icon}>{pageTitleIcon}</div>
                             </div>
                         </Typography>
                     </div>

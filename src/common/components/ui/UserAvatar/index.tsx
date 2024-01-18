@@ -14,37 +14,44 @@ type UserAvatarProps = {
     preventMobileNone?: boolean;
     width?: string;
     height?: string;
+    activeAgo?: string;
 }
 
 type UserAvatarVariants = "row" | "column" | "money"
 
 
-const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone,height,width}:UserAvatarProps) => {
+const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
+            return <UserAvatarRow activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
-            return <UserAvatarColumn active={active} name={name} role={role} url={url} flag={flag} />;
+            return <UserAvatarColumn activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
-            return <UserAvatarMoney active={active} name={name} role={role} url={url} flag={flag} money={money} />;
+            return <UserAvatarMoney activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
         default:
             return null;
     }
 };
 
-const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width}:UserAvatarProps) => {
+const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width,activeAgo}:UserAvatarProps) => {
+    
+    const currentWidth = width != null ? width : '38px';
+    const currentHeight = height != null ? height : '38px';
     return (
         <div className={styles.wrapper}>
            <div className={styles.position_relative}>
                {url != null
                ? <img width={width != null ? width : '38px'} height={height != null ? height : '38px'} src={url} alt="" />
-                 : <AppColor.freelancer width={width} height={height} />}
+                 : <AppColor.freelancer fill={AppColor.text} width={currentWidth} height={currentHeight} />}
                <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
            </div>
            <div style={preventMobileNone ? { display: 'block' } : {}} className={styles.flex_wrapper}>
                 <Typography textLineHeight='100%' variant='body5' fontWeight='500'>
                   {flag}  {name}
+                </Typography>
+                <Typography color={AppColor.transparentBlack} fontWeight='400' variant='body5' textLineHeight='160%'>
+                    {activeAgo}
                 </Typography>
                 <Typography color={AppColor.orange} textLineHeight='100%'>
                     {role}

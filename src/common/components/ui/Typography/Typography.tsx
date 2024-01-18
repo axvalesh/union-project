@@ -44,21 +44,53 @@ interface TypographyProps {
   color?: string;
   textAlign?: TextAlign;
   textTransform?: TextTransform;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   [x: string]: any;
   fontWeight?: fontWeight;
   textLineHeight?: string;
   textDecoration?: TextDecoration;
   textDecorationStyle?: TextDecorationStyle
+  fontSizeStatic?: string;
 }
 
-const Typography = ({ variant, color, children,textAlign,textTransform,style,textLineHeight,fontWeight,textDecoration,textDecorationStyle, ...props }: TypographyProps) => {
+const Typography = ({
+    variant,
+    color,
+    fontSizeStatic,
+    children,
+    textAlign,
+    textTransform,
+    style,
+    textLineHeight,
+    fontWeight,
+    textDecoration,
+    textDecorationStyle,
+    ...props
+}: TypographyProps) => {
+    const Component = variant
+        ? allVariants[variant]
+        : allVariants['body1']
+    const dynamicClassName = variant ? cl[variant] : cl['body1']
 
-  const Component = variant ? allVariants[variant] : allVariants['body1'];
-  const dynamicClassName = variant ? cl[variant] : cl['body1']
-
-  return <Component {...props} className={`${dynamicClassName}`} style={{textDecorationStyle: textDecorationStyle,textDecoration: textDecoration,transition: 'all 0.3s ease', fontWeight: fontWeight, lineHeight: textLineHeight,color: color, textAlign: textAlign,textTransform: textTransform,...style}}>{children}</Component>;
-
-};
+    return (
+        <Component
+            {...props}
+            className={`${dynamicClassName}`}
+            style={{
+                fontSize: fontSizeStatic,
+                textDecorationStyle: textDecorationStyle,
+                textDecoration: textDecoration,
+                transition: 'all 0.3s ease',
+                fontWeight: fontWeight,
+                lineHeight: textLineHeight,
+                color: color,
+                textAlign: textAlign,
+                textTransform: textTransform,
+                ...style,
+            }}>
+            {children}
+        </Component>
+    )
+}
 
 export default Typography;

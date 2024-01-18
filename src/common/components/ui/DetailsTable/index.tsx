@@ -73,7 +73,7 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                     <div className={styles.absolute_background}></div>
                       <div className={styles.desktop_items_wrapper}>
                         {details.map(item =>
-                          <div style={{maxWidth: maxWidth}}>
+                          <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
                            <div className={styles.title_wrapper_desktop}>
                               <Typography variant='body4' fontWeight='500'>
                               {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
@@ -84,6 +84,14 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                             </div>
                           </div>
                         )}
+                        <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
+                          <div className={styles.title_wrapper_desktop}>
+                            <Typography color='transparent'>a</Typography>
+                          </div>
+                          <div className={styles.child_wrapper_desktop}>
+                            <AppColor.threeLines />
+                          </div>
+                        </div>
                       </div>
                   </div>
                 }
@@ -107,13 +115,13 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                 <Typography variant='body4'>
                   11 841 missions
                 </Typography>
-                <NavBarLine callback={(item) => {callbackNav(item)}} />
+                <NavBarLine maxCountPage={11841} callback={(item) => {callbackNav(item)}} />
               </div>
       </div>
     );
 };
 
-const NavBarLine = ({callback}: {callback: (item:number) => void}) => {
+export const NavBarLine = ({callback,maxCountPage}: {callback: (item:number) => void,maxCountPage:number}) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIdx = Math.max(1, currentPage - 3);
@@ -128,10 +136,28 @@ const NavBarLine = ({callback}: {callback: (item:number) => void}) => {
 
   for (let i = startIdx; i <= endIdx; i++) {
     numberBoxes.push(
-      <div onClick={() => {setCurrentPage(i)}} key={i} className={styles.box} style={{ backgroundColor: i === currentPage ? AppColor.orange : 'transparent' }}>
-        <Typography variant='body4' color={i === currentPage ? 'white' : AppColor.text}>{i}</Typography>
-      </div>
-    );
+        <div
+            onClick={() => {
+                if(i <= maxCountPage) {
+                  setCurrentPage(i)
+                }
+            }}
+            key={i}
+            className={styles.box}
+            style={{
+                backgroundColor:
+                    i === currentPage
+                        ? AppColor.orange
+                        : 'transparent',
+                  opacity: i < maxCountPage+1 ? 1 : 0.3
+            }}>
+            <Typography
+                variant="body4"
+                color={i === currentPage ? 'white' : AppColor.text}>
+                {i}
+            </Typography>
+        </div>
+    )
   }
 
   function prevFunction() {
@@ -141,7 +167,9 @@ const NavBarLine = ({callback}: {callback: (item:number) => void}) => {
   }
 
   function nextFunction() {
+    if(currentPage + 7 <= maxCountPage) {
       setCurrentPage(prev => prev + 7)
+    }
   }
 
 

@@ -8,6 +8,7 @@ import ModalTriangleTop from '@common/components/ui/modals/ModalTriangleTop/inde
 import SwitchButton from '@common/components/ui/SwitchButton/index';
 import { useState } from 'react';
 import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange';
+import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 
 export type SaleCardProps = {
     filter: string;
@@ -21,17 +22,15 @@ const SaleCard = ({filter,price,description,isActive,callback}:SaleCardProps) =>
 
     return (
       <div className={styles.box_wrapper}>
-          
            <Typography textLineHeight='100%' variant='body4' color={AppColor.orange} fontWeight='500'>{filter}</Typography>
 
            {price > 0
            ? <div className={styles.text_flex}>
-                <Typography textLineHeight='1' variant='titleSmall' color={AppColor.text} fontWeight='600'>${price}</Typography>
-                <Typography textLineHeight='1' variant='body7' color={AppColor.transparentBlack} fontWeight='500'>/month</Typography>
+                <Typography contenteditable="true" textLineHeight='1' variant='body4' color={AppColor.text} fontWeight='400'></Typography>
              </div>
            : <Typography textLineHeight='100%' variant='titleSmall' color={AppColor.text} fontWeight='600'>FREE</Typography> }
-
-           <Typography variant='body4'>{description}</Typography>
+            <HorizontalLine width='154px' />
+           <Typography contenteditable="true" variant='body4'>{description}</Typography>
 
       </div>
     );

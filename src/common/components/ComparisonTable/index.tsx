@@ -14,6 +14,7 @@ type ComparisonTableProps = {
     card3: any;
 
     rows: RowType[];
+    switchButton?: boolean;
 }
 
 type RowType = {
@@ -26,10 +27,11 @@ type RowType = {
 
 type CardRowContent = string | React.ReactNode | boolean;
 
-const ComparisonTable = ({card1,card2,card3,rows}:ComparisonTableProps) => {
+const ComparisonTable = ({card1,card2,card3,rows,switchButton}:ComparisonTableProps) => {
 
     const [isMonthly,setIsMonthly] = useState(true);
-
+    const [isSwitchActive2,setIsSwitchActive2] = useState(false);
+    const [isSwitchActive3,setIsSwitchActive3] = useState(false);
     return (
         <div className={styles.wrapper}>
             <div className={styles.top_wrapper}>
@@ -50,9 +52,15 @@ const ComparisonTable = ({card1,card2,card3,rows}:ComparisonTableProps) => {
                         </div>
                     </div>
                 </div>
-                <div className={styles.details_box}>{card1}</div>
-                <div className={styles.details_box}>{card2}</div>
-                <div className={styles.details_box}>{card3}</div>
+                <div className={styles.details_box}>
+                    {card1}
+                </div>
+                <div style={{opacity: switchButton && !isSwitchActive2 ? 0.3 : 1}}  className={styles.details_box}>{card2}
+                <div className={styles.absolute_switch}>{switchButton &&  <SwitchButton callback={(item) => setIsSwitchActive2(item)} />} </div>
+                </div>
+                <div style={{opacity: switchButton && !isSwitchActive3 ? 0.3 : 1}} className={styles.details_box}>{card3}
+                <div className={styles.absolute_switch}>{switchButton &&  <SwitchButton callback={(item) => setIsSwitchActive3(item)} />} </div>
+                </div>
             </div>
 
             <div className={styles.bottom_wrapper}>
@@ -77,10 +85,10 @@ const ComparisonTable = ({card1,card2,card3,rows}:ComparisonTableProps) => {
                         <div className={styles.bottom_row_item}>
                             <RowItem item={row.card1Text} />
                         </div>
-                        <div className={styles.bottom_row_item}>
+                        <div style={{opacity: switchButton && !isSwitchActive2 ? 0.3 : 1,pointerEvents: !isSwitchActive2 ? 'none' : 'auto'}} className={styles.bottom_row_item}>
                             <RowItem item={row.card2Text} />
                         </div>
-                        <div className={styles.bottom_row_item}>
+                        <div style={{opacity: switchButton && !isSwitchActive3 ? 0.3 : 1,pointerEvents: !isSwitchActive2 ? 'none' : 'auto'}} className={styles.bottom_row_item}>
                             <RowItem item={row.card3Text} />
                         </div>
                     </div>
@@ -92,11 +100,13 @@ const ComparisonTable = ({card1,card2,card3,rows}:ComparisonTableProps) => {
 
 
 const RowItem = ({item}: {item:CardRowContent}) => {
-    
+    const [isChecked,setIsCheked] = useState(item);
     const typeComponentMap = {
         object: (item: React.ReactNode) => React.isValidElement(item) ? item : <></>,
         string: (item: string) => <Typography variant='body4'>{item}</Typography>,
-        boolean: () =>  <div className={styles.checked}> <AppColor.singTrue width={14} height={10}/> </div>,
+        boolean: () =>  <div 
+                        style={!isChecked ? {backgroundColor:'white', boxShadow: '-1px 1px 6px 2px rgba(0,0,0,0.11)'} : {}}
+                        onClick={() => {setIsCheked(prev => !prev)}} className={styles.checked}> {isChecked && <AppColor.singTrue width={14} height={10}/>} </div>,
     };
     
     const itemType = typeof item;

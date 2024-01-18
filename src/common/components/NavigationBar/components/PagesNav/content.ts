@@ -13,7 +13,7 @@ export type nav_categorys = {
     links:linkType[];
 };
 
-export type nav_var_categorys_titles = 'Dashboard' | 'Teams' | 'Subscriptions' | 'Messenger' | 'Community';
+export type nav_var_categorys_titles = 'Dashboard' | 'Teams' | 'Subscriptions' | 'Messenger' | 'Community' | 'Team' | '';
 
 export const nav_var_categorys:nav_categorys[] = [
     {
@@ -58,6 +58,20 @@ export const nav_var_categorys:nav_categorys[] = [
         text: 'Share yourself ',
         image: AppColor.community,
         index: 4,
-        links: [],
+        links:  [
+            {title: 'posts'},
+            {title: 'faq'}
+        ],
     },
+    {
+        title: "Team",
+        text: 'Share yourself ',
+        image: AppColor.teams,
+        index: 5,
+        links: [
+            {title: 'members'},
+            {title: 'squads'}
+        ],
+    },
+    
 ];
