@@ -1,0 +1,10 @@
+.slider_item {
+    padding: 18px 20px;
+    border-radius: 20px;
+    background-color: $white;
+    border: 1px solid rgba($color: $text, $alpha: 0.1);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

@@ -106,7 +106,7 @@ const RowItem = ({item}: {item:CardRowContent}) => {
         string: (item: string) => <Typography variant='body4'>{item}</Typography>,
         boolean: () =>  <div 
                         style={!isChecked ? {backgroundColor:'white', boxShadow: '-1px 1px 6px 2px rgba(0,0,0,0.11)'} : {}}
-                        onClick={() => {setIsCheked(prev => !prev)}} className={styles.checked}> {isChecked && <AppColor.singTrue width={14} height={10}/>} </div>,
+                        onClick={() => {setIsCheked(prev => !prev)}} className={styles.checked}> {isChecked && <AppColor.singTrue stroke='white' width={14} height={10}/>} </div>,
     };
     
     const itemType = typeof item;

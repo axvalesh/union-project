@@ -1,0 +1,33 @@
+.wrapper {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0px 10px;
+}
+.details_end_node {
+    svg {
+        transform: all 0.3s ease;
+    }
+}
+.details_end_node:hover {
+    svg {
+        fill: white;
+    }
+}
+
+.main_part {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.justify_flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (min-width:$tabletSize) {
+    .main_part {
+        grid-template-columns: 1fr 3fr;
+        gap: 80px;
+    }
+}

@@ -6,20 +6,25 @@ import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import InputBorderText from '@common/components/ui/inputs/InputBorderText/index';
 import AppColor from '@common/styles/variables-static';
 import InputBorderTextDropdown from '@common/components/ui/inputs/InputBorderTextDropdown/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const FirstStep = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        country: '', // You can set a default value
-        stateProvince: '', // You can set a default value
-        addressLine1: '',
-        addressLine2: '',
-        city: '',
-        postCode: '',
-    });
+type dataType = {
+    firstName: string;
+    lastName: string;
+    country: string;
+    stateProvince: string;
+    addressLine1: string;
+    addressLine2: string;
+    city: string;
+    postCode: string;
+}
+const FirstStep = ({callback,formData1,updateFormData1}: {callback:() => void,formData1: dataType,updateFormData1:any}) => {
+    const [formData, setFormData] = useState<dataType>(structuredClone(formData1));
 
+    console.log(formData1);
+    const isCanMoveOn = () => {
+        return Object.values(formData).every(value => value.trim() !== '');
+    }; 
     const updateField = (field, value) => {
         setFormData({ ...formData, [field]: value });
       };
@@ -27,6 +32,11 @@ const FirstStep = () => {
     const handleCallback = (field,item) => {
         updateField(field, item);
     };
+
+    function handleMove() {
+        updateFormData1(formData)
+        callback() 
+    }
     return (
      <div>
           <div className={styles.wrapper}>
@@ -48,6 +58,7 @@ const FirstStep = () => {
                                     stroke={formData.firstName != '' ? AppColor.text : AppColor.grey} />}
                                     placeholderText=''
                                     callback={(item) => {handleCallback('firstName',item)}}
+                                    inputText={formData.firstName}
                                 />  
                                 <InputBorderText
                                     borderText='Last Name'
@@ -55,9 +66,10 @@ const FirstStep = () => {
                                     stroke={formData.lastName != '' ? AppColor.text : AppColor.grey} />}
                                     placeholderText=''
                                     callback={(item) => {handleCallback('lastName',item)}}
+                                    inputText={formData.lastName}
                                 />  
                                 <InputBorderTextDropdown
-                                    initText='Select country'
+                                    initText={formData.country != '' ? formData.country : 'Select country'}
                                     labelIcon={<AppColor.earth fill={formData.country != '' ? AppColor.text : AppColor.grey}
                                     />}
                                     borderText='Country'
@@ -66,7 +78,7 @@ const FirstStep = () => {
                                     
                                 />  
                                 <InputBorderTextDropdown
-                                    initText='Select State/Province'
+                                    initText={formData.stateProvince != '' ? formData.stateProvince : 'Select State/Province'}
                                     labelIcon={<AppColor.terrainMap fill={formData.stateProvince != '' ? AppColor.text : AppColor.grey} />}
                                     borderText='State/Province'
                                     dropdownVariants={['aaaa','bbbb','cccc','dddd']}
@@ -76,24 +88,28 @@ const FirstStep = () => {
                                     borderText='Address Line 1'
                                     labelIcon={<AppColor.location fill={formData.addressLine1 != '' ? AppColor.text : AppColor.grey} />}
                                     callback={(item) => {handleCallback('addressLine1',item)}}
+                                    inputText={formData.addressLine1}
                                     placeholderText=''
                                 />  
                                 <InputBorderText
                                     borderText='Address Line 2'
                                     labelIcon={<AppColor.location fill={formData.addressLine2 != '' ? AppColor.text : AppColor.grey} />}
                                     callback={(item) => {handleCallback('addressLine2',item)}}
+                                    inputText={formData.addressLine2}
                                     placeholderText=''
                                 />  
                                 <InputBorderText
                                     borderText='City'
                                     labelIcon={<AppColor.buildings fill={formData.city != '' ? AppColor.text : AppColor.grey} />}
                                     callback={(item) => {handleCallback('city',item)}}
+                                    inputText={formData.city}
                                     placeholderText=''
                                 />  
                                 <InputBorderText
                                     borderText='Post Code'
                                     labelIcon={<AppColor.nameplate fill={formData.postCode != '' ? AppColor.text : AppColor.grey} />}
                                     callback={(item) => {handleCallback('postCode',item)}}
+                                    inputText={formData.postCode}
                                     placeholderText=''
                                 />  
                             </div>
@@ -111,7 +127,7 @@ const FirstStep = () => {
                </div>
           </div>
           <DynamicPadding/>
-          <div className={styles.justify}>
+          <div onClick={() => { isCanMoveOn() ? handleMove() : () => { } }} className={styles.justify}>
                 <div className={styles.column}>
                     <Typography textTransform='uppercase' variant='body4' fontWeight='500'>User ID</Typography>
                     <Typography variant='body5' fontWeight='400'>Next step</Typography>

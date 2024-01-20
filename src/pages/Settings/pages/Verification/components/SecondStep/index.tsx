@@ -5,8 +5,13 @@ import PercentBar from '@common/components/ui/PercentBar/PercentBar';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import ChooseVariant from './components/ChooseVariant';
+import MyCheckbox from '@common/components/ui/inputs/Checkbox/index';
+import InputDropdown from '@common/components/ui/inputs/InputDropdown/index';
+import InputCommon from '@common/components/ui/inputs/InputCommon/index';
+import ImagePlaceholder from './components/ImagePlaceholder';
+import AppColor from '@common/styles/variables-static';
 
-const SecondStep = () => {
+const SecondStep = ({callbackUndo,callbackOn}: {callbackUndo:() => void,callbackOn:() => void;}) => {
 
     return (
         <div>
@@ -26,6 +31,86 @@ const SecondStep = () => {
                     items={['id cards', 'passport', 'Driving licence']}
                     callback={() => {}}
                   />
+
+                  <DynamicPadding desktop='20px' mobile='15px'/>
+
+                  <div className={styles.flex_center}>
+                    <MyCheckbox
+                        height='20px'
+                        width='20px'
+                    />
+                    <Typography variant='body5'>No expiration</Typography>
+                  </div>
+                  <DynamicPadding desktop='30px' mobile='20px'/>
+                  <div className={styles.middle_details}>
+                        <div className={styles.middle_details_item}>
+                            <Typography variant='body3' fontWeight='500'>Issued сountry</Typography>
+                            <DynamicPadding desktop='30px' mobile='20px'/>
+                            <InputDropdown 
+                                dropdownVariants={['Ukraine', 'England', 'Poland', 'USA']}
+                                initText='Select country'
+                                labelIcon={null}
+                            />
+                        </div>
+                        <div className={styles.middle_details_item}>
+                            <Typography variant='body3' fontWeight='500'>ID card number</Typography>
+                            <DynamicPadding desktop='30px' mobile='20px'/>
+                            <InputCommon 
+                                placeholder='SJ 123 345'
+                                callback={() => {}}  
+                                padding='20px 20px'
+                                rightPadding={20} 
+
+                            />
+                        </div>
+                        <div className={styles.middle_details_item}>
+                            <Typography variant='body3' fontWeight='500'>Expiration date</Typography>
+                            <DynamicPadding desktop='30px' mobile='20px'/>
+                            <InputCommon 
+                                placeholder='MM/YY'
+                                callback={() => {}}  
+                                padding='20px 20px'
+                                rightPadding={20} 
+
+                            />
+                        </div>
+                  </div>
+                  <DynamicPadding desktop='30px' mobile='20px'/>
+                  <div className={styles.middle_details_picker}>
+                        <div className={styles.middle_details_item}>
+                            <Typography variant='body3' fontWeight='500'>ID front</Typography>
+                            <DynamicPadding desktop='10px' mobile='10px'/>
+                            <ImagePlaceholder image={null} />
+                        </div>
+                        <div className={styles.middle_details_item}>
+                            <Typography variant='body3' fontWeight='500'>ID back</Typography>
+                            <DynamicPadding desktop='10px' mobile='10px'/>
+                           <ImagePlaceholder image={null} />
+                        </div>
+                        <div className={styles.middle_details_item}>
+                            <Typography variant='body3' fontWeight='500'>Selfie with ID</Typography>
+                            <DynamicPadding desktop='10px' mobile='10px'/>
+                            <ImagePlaceholder image={null} />
+                        </div>
+                  </div>
+                  <DynamicPadding />
+                  <div className={styles.flex_justify}>
+                  <div onClick={callbackUndo} className={styles.justify}>
+                  <div className={styles.box}><AppColor.longChevronLeft/></div>
+                        <div style={{alignItems: 'start'}} className={styles.column}>
+                            <Typography textTransform='uppercase' variant='body4' fontWeight='500'>User info</Typography>
+                            <Typography variant='body5' fontWeight='400'>Step back</Typography>
+                        </div>
+                     </div>
+                      <div onClick={callbackOn} className={styles.justify}>
+                        
+                        <div style={{alignItems: 'end'}} className={styles.column}>
+                            <Typography textTransform='uppercase' variant='body4' fontWeight='500'>Proof of address</Typography>
+                            <Typography variant='body5' fontWeight='400'>Next step</Typography>
+                        </div>
+                        <div className={styles.box}><AppColor.longChevronRight/></div>
+                     </div>
+                  </div>
             </div>
             <div className={styles.right}>
                     <div className={styles.right_wrapper}>

@@ -1,0 +1,33 @@
+.wrapper_shell {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0px 10px;
+}
+
+.wrapper {
+    position: relative;
+    padding: 22px 0px;
+    box-sizing: content-box;
+    @include backgroundGradientGreyWhite;
+}
+
+.nav_items_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.vertical_line {
+    width: 0px;
+    height: 42px;
+    border: 1px solid $white;
+}
+.wrapper_shell {
+    display: flex;
+    align-items: center;
+}
+
+.flex_center {
+    display: flex;
+    align-items: center;
+    gap: 10px;   
+}

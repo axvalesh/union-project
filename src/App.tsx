@@ -22,6 +22,8 @@ import PostPageById from './pages/Community/components/PostPage'
 import SettingsProfile from './pages/Settings/pages/Profile'
 import PasswordAndSecurity from './pages/Settings/pages/PasswordAndSecurity'
 import Verification from './pages/Settings/pages/Verification'
+import SettingsNotifications from './pages/Settings/pages/Notifications'
+import PartnershipManager from './pages/Partnership/pages/PartnershipManager'
 
 function App() {
    
@@ -60,6 +62,9 @@ function App() {
             <Route path="/settings/profile" element={<SettingsProfile />} />
             <Route path="/settings/password-security" element={<PasswordAndSecurity />} />
             <Route path="/settings/verification" element={<Verification />} />
+            <Route path="/settings/notifications" element={<SettingsNotifications />} />
+
+            <Route path="/partnership" element={<PartnershipManager />} />
          </Routes>
       </Router>
    </div>

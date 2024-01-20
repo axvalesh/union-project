@@ -10,7 +10,7 @@ interface HoverHandlers {
 type useHoverProps = {
     delayInMilliseconds?: number;
 }
-export const useHover = ({ delayInMilliseconds }: useHoverProps): [boolean, HoverHandlers] => {
+export const useHover = ({ delayInMilliseconds }: useHoverProps): [boolean, HoverHandlers,any] => {
   const [hovered, setHovered] = useState(false);
   const isHoveredRef = useRef(false);
 
@@ -36,5 +36,5 @@ export const useHover = ({ delayInMilliseconds }: useHoverProps): [boolean, Hove
     [delayInMilliseconds]
   );
 
-  return [hovered, eventHandlers];
+  return [hovered, eventHandlers,setHovered];
 };

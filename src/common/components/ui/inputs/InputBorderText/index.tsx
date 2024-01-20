@@ -8,9 +8,10 @@ type InputBorderTextProps = {
     labelIcon: any;
     isRequired?: boolean;
     callback?: (item:string) => void;
+    inputText?: string;
 }
-const InputBorderText = ({borderText,placeholderText,labelIcon,isRequired,callback}:InputBorderTextProps) => {
-    const [text,setText] = useState('');
+const InputBorderText = ({borderText,placeholderText,labelIcon,isRequired,callback,inputText=''}:InputBorderTextProps) => {
+    const [text,setText] = useState(inputText);
     function handleInput(event:React.ChangeEvent<HTMLInputElement>) {
         if(callback != null) {
             callback(event.target.value)

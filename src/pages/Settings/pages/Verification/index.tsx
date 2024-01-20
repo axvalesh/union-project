@@ -10,14 +10,29 @@ import FirstStep from './components/FirstStep'
 import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
 import SecondStep from './components/SecondStep'
+import ThirdStep from './components/ThirdStep'
+import { useState } from 'react'
+import VerificationFinal from './components/VerificationFinal'
 
 const Verification = () => {
 
-    const stepsSolved = 2;
+    const [stepsSolved,setStepsSolved] = useState(1);
+    const [formData1, setFormData1] = useState({
+        firstName: '',
+        lastName: '',
+        country: '',
+        stateProvince: '',
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        postCode: '',
+    });
 
     const map = {
-        1: <FirstStep />,
-        2: <SecondStep />,
+        1: <FirstStep  formData1={formData1} updateFormData1={setFormData1} callback={() => {setStepsSolved(prev => prev+1)}}/>,
+        2: <SecondStep callbackOn={() => {setStepsSolved(prev => prev+1)}} callbackUndo={() => {setStepsSolved(prev => prev-1)}}/>,
+        3: <ThirdStep callbackOn={() => {setStepsSolved(prev => prev+1)}} callbackUndo={() => {setStepsSolved(prev => prev-1)}}/>,
+        4: <VerificationFinal />
     }
 
     return (
@@ -35,7 +50,7 @@ const Verification = () => {
                             textList={['Settings']}
                         />
                     }
-                    pageTitle="password & security"
+                    pageTitle="verification"
                     endNode={
                         // @ts-ignore
                         stepsSolved != 3 

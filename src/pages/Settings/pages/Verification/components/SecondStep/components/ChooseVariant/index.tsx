@@ -11,11 +11,22 @@ type ChooseVariantProps ={
 const ChooseVariant = ({callback,items}:ChooseVariantProps) => {
 
     const [activeItem,setActiveItem] = useState(items[0]);
-
+    const [showDropdown,setShowDropdown] = useState(false);
     function handleChoose(item:string) {
         callback(item);
         setActiveItem(item);
     }
+    function handleOpen(event) {
+        event.preventDefault();
+        setShowDropdown(prev => !prev);
+    }
+
+    const borderStyles = {
+        borderTopLeftRadius: showDropdown ? '20px' : '20px',
+        borderTopRightRadius: showDropdown ? '20px' : '20px',
+        borderBottomLeftRadius: showDropdown ? '0px' : '20px',
+        borderBottomRightRadius: showDropdown ? '0px' : '20px',
+    };
     return (
       <div>
            <div className={styles.desktop}>
@@ -28,8 +39,17 @@ const ChooseVariant = ({callback,items}:ChooseVariantProps) => {
                 </div>
            </div>
            <div className={styles.mobile}>
-                <div>
-                    <Typography>{activeItem}</Typography> <AppColor.chevronBottom fill={AppColor.orange} />
+                <div style={{...borderStyles}} onClick={(e) => {handleOpen(e)}} className={styles.mobile_active_item}>
+                    <Typography variant='body4' textTransform='uppercase' color={AppColor.orange}>{activeItem}</Typography>
+                    { showDropdown
+                     ? <AppColor.chevronTop fill={AppColor.orange} />
+                     : <AppColor.chevronBottom fill={AppColor.orange} />
+                    }
+                    <div style={{display: showDropdown ? 'block' : 'none',}} className={styles.dropdown}>
+                        {items.map(item =>
+                           <div onClick={() => {setActiveItem(item)}} className={styles.dropdown_item}> <Typography variant='body4' textTransform='uppercase'>{item}</Typography>    </div>
+                        )}
+                    </div>
                 </div>
            </div>
       </div>

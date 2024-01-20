@@ -136,8 +136,51 @@ import { ReactComponent as searchEarth} from '@assets/svg/search-earth.svg';
 import { ReactComponent as closeRed} from '@assets/svg/close-red.svg';
 import { ReactComponent as longChevronRight} from '@assets/svg/long-chevron-right.svg';
 
+import { ReactComponent as longChevronLeft} from '@assets/svg/long-chevron-left.svg';
+import { ReactComponent as iconImage} from '@assets/svg/icon-image.svg';
+import { ReactComponent as personalInfo} from '@assets/svg/personal-info.svg';
+import { ReactComponent as passportYellow} from '@assets/svg/passport-yellow.svg';
+
+import { ReactComponent as soundOn} from '@assets/svg/sound-on.svg';
+import { ReactComponent as soundMute} from '@assets/svg/sound-mute.svg';
+import { ReactComponent as partnership} from '@assets/svg/partnership.svg';
+
+import { ReactComponent as minimalist} from '@assets/svg/minimalist.svg';
+import { ReactComponent as mascot} from '@assets/svg/mascot.svg';
+import { ReactComponent as freestyle} from '@assets/svg/freestyle.svg';
+import { ReactComponent as threeD} from '@assets/svg/threeD.svg';
+import { ReactComponent as pngBox} from '@assets/svg/png-box.svg';
+import { ReactComponent as jpgBox} from '@assets/svg/jpg-box.svg';
+import { ReactComponent as gifBox} from '@assets/svg/gif-box.svg';
+import { ReactComponent as pdfBox} from '@assets/svg/pdf-box.svg';
+import { ReactComponent as code} from '@assets/svg/code.svg';
+import { ReactComponent as vectorFiles} from '@assets/svg/vector-files.svg';
+import { ReactComponent as chessBoard} from '@assets/svg/chess-board.svg';
+import { ReactComponent as printer} from '@assets/svg/printer.svg';
+import { ReactComponent as template} from '@assets/svg/template.svg';
 
 class AppColor {
+    static template = template;
+    static minimalist = minimalist;
+    static mascot = mascot;
+    static freestyle = freestyle;
+    static threeD = threeD;
+    static pngBox = pngBox;
+    static jpgBox = jpgBox;
+    static gifBox = gifBox;
+    static pdfBox = pdfBox;
+    static code = code;
+    static vectorFiles = vectorFiles;
+    static chessBoard = chessBoard;
+    static printer = printer;
+
+    static partnership = partnership;
+    static soundOn = soundOn;
+    static soundMute = soundMute;  
+    static personalInfo = personalInfo;
+    static passportYellow = passportYellow;    
+    static longChevronLeft = longChevronLeft;
+    static iconImage = iconImage;  
     static closeRed = closeRed;
     static longChevronRight = longChevronRight;    
     static phone = phone;
