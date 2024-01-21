@@ -5,6 +5,7 @@ import Typography from '../Typography/Typography';
 import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
 import { useScreenSize } from '@common/helpers/useScreenSize';
+import SizeBox from '../SizeBox';
 
 
 type DetailsTableProps = {
@@ -15,16 +16,18 @@ type DetailsTableProps = {
   showUsers?: boolean;
   users?: any[];
   maxWidth?: string;
+  dropdownNode?: React.ReactNode;
 }
 
 type DetailsTableItem = {
   title: string;
   child: React.ReactNode;
 }
-const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth}:DetailsTableProps) => {
+const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth,dropdownNode}:DetailsTableProps) => {
 
     const [currentFilter,setCurrentFilter] = useState('All');
     const {width,height} = useScreenSize();
+    const [showDropdown,setShowDropdown] = useState(false);
 
     return (
       <div>
@@ -72,15 +75,32 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                   : <div className={styles.desktop_wrapper}>
                     <div className={styles.absolute_background}></div>
                       <div className={styles.desktop_items_wrapper}>
-                        {details.map(item =>
+                        {details.map((item,index) =>
                           <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
                            <div className={styles.title_wrapper_desktop}>
-                              <Typography variant='body4' fontWeight='500'>
-                              {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
-                              </Typography>
+                             <div style={{display: 'flex'}}>
+                                {dropdownNode && index == 0
+                                ? <SizeBox width='40px'/>
+                                : <></>
+                                }
+                                <Typography variant='body4' fontWeight='500'>
+                                {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
+                                </Typography>
+                             </div>
                            </div>
                             <div className={styles.child_wrapper_desktop}>
-                              {item.child}
+                              {
+                                dropdownNode && index == 0 
+                                ? <div style={{cursor: 'pointer'}} onClick={() => {setShowDropdown(prev => !prev)}} className={styles.gap_20}>
+                                  {
+                                    showDropdown
+                                    ? <AppColor.chevronTop width={'20px'} fill={AppColor.text}/>
+                                    : <AppColor.chevronBottom width={'20px'} fill={AppColor.text}/>
+                                  }
+                                  {item.child}
+                                </div>
+                                : item.child
+                              }
                             </div>
                           </div>
                         )}
@@ -111,6 +131,10 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                 <DynamicPadding mobile='20px' desktop='20px' />
               </>
               : <></>}
+               {showDropdown
+              ? <div>hellloooo</div>
+              : <></>}
+              
               <div className={styles.flex_space}>
                 <Typography variant='body4'>
                   11 841 missions

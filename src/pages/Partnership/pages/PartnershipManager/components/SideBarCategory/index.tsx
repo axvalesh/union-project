@@ -10,7 +10,7 @@ type SideBarCategoryProps = {
     title: string;
     dropItems: {
         text: string;
-        icon: any;
+        icon: React.ReactNode;
         count: number;
     }[]
 }
@@ -30,7 +30,7 @@ const SideBarCategory = ({dropItems,title}:SideBarCategoryProps) => {
 
            <div className={styles.wrapper_scroll} style={{display: showDropdown ? 'block' : 'none',maxHeight: `${(35*countShow+30)}px`,}}>
                <DynamicPadding desktop='30px' mobile='15px'/>
-               <div className={styles.dropdown_wrapper}>
+               <div style={{paddingBottom: '10px'}} className={styles.dropdown_wrapper}>
                     {dropItems.map(item =>
                         <div className={styles.flex_center}>
                             <MyCheckbox

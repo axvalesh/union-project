@@ -1,8 +1,9 @@
 import AppColor from "@common/styles/variables-static";
-import CardStatistics from "..";
+
 import Typography from "@common/components/ui/Typography/Typography";
 import styles from './style.module.scss';
 import { userModel } from "common/models/user";
+import CardStatisticPartnership from "../..";
 const fakeUser:userModel = {
     country: 'Ukraine',
     image: '',
@@ -17,36 +18,34 @@ const fakeUser:userModel = {
     }
   }
   
-const CardStatisticTest = () => {
+const CardStatisticsParthnershipConstant  = () => {
 
     return (
-        <CardStatistics 
+        <CardStatisticPartnership 
         title='Logo by sample in vector in maximum quality' 
         tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
         user={fakeUser}
 
-        price={ 
+        rate={ 
             <div className={styles.statistic_flex}>
-                <AppColor.fourOfFive />
-                <Typography variant='body4'>
-                    from $5 K <Typography textDecoration='line-through' color={AppColor.transparentBlack}>$6K</Typography>
+                <Typography textLineHeight="0.6" variant='body4'>
+                    5% - 10%
                 </Typography>
             </div> 
         }
-        payments= {
-            <div className={styles.statistic_flex}>
-                <AppColor.flag />
-                <AppColor.puzle />
-            </div>
-        }
-        delivery= {
-            <Typography variant='body4'>
-                avg. 3 days
+        EPC= {
+            <Typography textLineHeight="0.6" variant='body4'>
+                    5$
             </Typography>
         }
-        queue= {
-            <Typography variant='body4'>
-                35
+        CR= {
+            <Typography textLineHeight="0.6" variant='body4'>
+                10%
+            </Typography>
+        }
+        CR48hours= {
+            <Typography textLineHeight="0.6" variant='body4'>
+                8.78%
             </Typography>
         }
         
@@ -54,4 +53,4 @@ const CardStatisticTest = () => {
     );
 };
 
-export default CardStatisticTest;
+export default CardStatisticsParthnershipConstant;

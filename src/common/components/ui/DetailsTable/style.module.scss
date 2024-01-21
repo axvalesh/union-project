@@ -17,7 +17,11 @@
 .desktop_wrapper {
     position: relative;
 }
-
+.gap_20 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 .absolute_background {
     position: absolute;
     top: 0;

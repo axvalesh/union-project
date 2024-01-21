@@ -52,6 +52,7 @@ const SliderByRef = ({ nodes,endToFrontIndex }: SliderByRefProps) => {
           <div ref={totalRef} className={styles.flex_wrapper} style={{ transform: `translateX(-${totalTransform}px)`, gap: gap }}>
             {nodes.map((node, index) => (
               <div
+                key={index}
                 ref={index === currentIndex ? currentItemRef : index-1 === currentIndex ? previousItemRef : index == endToFrontIndex ? stayAtRef : null}
               >
                 {node}

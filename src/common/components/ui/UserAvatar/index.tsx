@@ -15,16 +15,17 @@ type UserAvatarProps = {
     width?: string;
     height?: string;
     activeAgo?: string;
+    nodeAfterText?: React.ReactNode;
 }
 
 type UserAvatarVariants = "row" | "column" | "money"
 
 
-const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo}:UserAvatarProps) => {
+const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
+            return <UserAvatarRow nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
             return <UserAvatarColumn activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
@@ -34,12 +35,12 @@ const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobile
     }
 };
 
-const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width,activeAgo}:UserAvatarProps) => {
+const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
     
     const currentWidth = width != null ? width : '38px';
     const currentHeight = height != null ? height : '38px';
     return (
-        <div className={styles.wrapper}>
+        <div style={{maxWidth: '240px'}} className={styles.wrapper}>
            <div className={styles.position_relative}>
                {url != null
                ? <img width={width != null ? width : '38px'} height={height != null ? height : '38px'} src={url} alt="" />
@@ -47,8 +48,8 @@ const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width
                <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
            </div>
            <div style={preventMobileNone ? { display: 'block' } : {}} className={styles.flex_wrapper}>
-                <Typography textLineHeight='100%' variant='body5' fontWeight='500'>
-                  {flag}  {name}
+                <Typography  variant='body5' fontWeight='500'>
+                  {flag}  {name} {nodeAfterText}
                 </Typography>
                 <Typography color={AppColor.transparentBlack} fontWeight='400' variant='body5' textLineHeight='160%'>
                     {activeAgo}

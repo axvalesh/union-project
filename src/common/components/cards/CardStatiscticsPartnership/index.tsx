@@ -13,24 +13,24 @@ import PercentBar from '@common/components/ui/PercentBar/PercentBar'
 import { formatNumberWithSpaces } from '@common/helpers/stringFunctions'
 import DaysLeftTimer from '@common/components/ui/DaysLeftTimer/DaysLeftTimer'
 import CardTypeDisplay from '../CardTypeDisplay/CardTypeDisplay'
-type CardTimeProps = {
+type CardStatisticPartnershipProps = {
     title: string
     user: userModel
     tags: string[]
-    price: React.ReactNode
-    payments: React.ReactNode
-    delivery: React.ReactNode
-    queue: React.ReactNode
+    rate: React.ReactNode
+    EPC: React.ReactNode
+    CR: React.ReactNode
+    CR48hours: React.ReactNode
 }
-const CardStatistics = ({
+const CardStatisticPartnership = ({
     title,
     user,
     tags,
-    delivery,
-    payments,
-    price,
-    queue,
-}: CardTimeProps) => {
+    rate,
+    EPC,
+    CR,
+    CR48hours,
+}: CardStatisticPartnershipProps) => {
     const flagImage = useGetImage(`flags/${user.country}`, false)
 
     const topImageStyles = {
@@ -51,6 +51,7 @@ const CardStatistics = ({
                     backgroundColor={AppColor.text}
                 />
             </span>
+            <div className={styles.right_abolute}><AppColor.refresh/></div>
             <div
                 style={topImageStyles}
                 className={styles.shell_top_image}>
@@ -75,21 +76,18 @@ const CardStatistics = ({
                 </div>
                 <div className={styles.content_top_second}>
                     <SvgText
-                        img={icon_sponsorship}
+                        nodeImg={<AppColor.handshake/>}
                         text={`${user.statistic.sponsorship_count}`}
                     />
                     <SvgText
-                        img={icon_message}
+                        nodeImg={<AppColor.message fill='white' />}
                         text={`${user.statistic.responses_count}`}
                     />
                     <SvgText
                         img={icon_star}
                         text={`${user.statistic.rating}%`}
                     />
-                    <SvgText
-                        img={icon_comments}
-                        text={`${user.statistic.comments_count}`}
-                    />
+                   
                 </div>
                 <div className={styles.tags_wrapper}>
                     {tags.map((tag) => (
@@ -99,30 +97,30 @@ const CardStatistics = ({
             </div>
             <div className={styles.shell_middle}>
                 <StatisticItem
-                    text="Price"
+                    text="Rate"
                     endNode={
-                        price
+                        rate
                     }
                 />
 
                 <StatisticItem
-                    text="Payments"
+                    text="EPC"
                     endNode={
-                       payments
+                       EPC
                     }
                 />
 
                 <StatisticItem
-                    text="Delivery"
+                    text="CR"
                     endNode={
-                      delivery
+                      CR
                     }
                 />
 
                 <StatisticItem
-                    text="Queue"
+                    text="CR for 48 hours"
                     endNode={
-                      queue
+                      CR48hours
                     }
                 />
             </div>
@@ -136,13 +134,16 @@ const CardStatistics = ({
 }
 
 type svgTextProps = {
-    img: string
+    img?: string
     text: string
+    nodeImg?: any;
 }
-const SvgText = ({ img, text }: svgTextProps) => {
+const SvgText = ({ img, text,nodeImg }: svgTextProps) => {
     return (
         <div className={styles.svgText}>
-            <img src={img} alt="img" />
+            { nodeImg == null
+            ?<img src={img} alt="img" />
+            : nodeImg}
             <Typography
                 textLineHeight={'100%'}
                 variant="body5"
@@ -189,4 +190,4 @@ const StatisticItem = ({ text, endNode }: StatisticItemProps) => {
         </div>
     )
 }
-export default CardStatistics
+export default CardStatisticPartnership

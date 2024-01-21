@@ -13,6 +13,23 @@
     }
 }
 
+.wrapper {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+}
+
+.flex_center {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    align-items: center;
+}
+.vertical_lone {
+    height: 14px;
+    width: 0px;
+    border: 1px solid #A8A8AD;
+}
 .filter_item {
     cursor: pointer;
     user-select: none;

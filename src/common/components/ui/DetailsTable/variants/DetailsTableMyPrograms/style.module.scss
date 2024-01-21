@@ -1,0 +1,11 @@
+.gap_5 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.category_wrapper {
+    padding: 3px 10px;
+    background-color: $text;
+    border-radius: 20px;
+}

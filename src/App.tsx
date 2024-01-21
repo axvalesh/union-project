@@ -24,6 +24,7 @@ import PasswordAndSecurity from './pages/Settings/pages/PasswordAndSecurity'
 import Verification from './pages/Settings/pages/Verification'
 import SettingsNotifications from './pages/Settings/pages/Notifications'
 import PartnershipManager from './pages/Partnership/pages/PartnershipManager'
+import PartnershipMyPrograms from './pages/Partnership/pages/MyPrograms'
 
 function App() {
    
@@ -65,6 +66,7 @@ function App() {
             <Route path="/settings/notifications" element={<SettingsNotifications />} />
 
             <Route path="/partnership" element={<PartnershipManager />} />
+            <Route path="/partnership/my-programs" element={<PartnershipMyPrograms />} />
          </Routes>
       </Router>
    </div>

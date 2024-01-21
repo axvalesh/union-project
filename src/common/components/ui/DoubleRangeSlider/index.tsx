@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from './style.module.scss';
+import DynamicPadding from "../DynamicPadding";
 
 
 type DoubleRangeSliderProps = {
@@ -13,7 +14,17 @@ const DoubleRangeSlider = ({ min, max, onChange }:DoubleRangeSliderProps) => {
     const minValRef = useRef(min);
     const maxValRef = useRef(max);
     const range = useRef(null);
-  
+
+    useEffect(() => {
+      setMaxVal(max);
+      setMinVal(min);
+    },[min,max])
+
+    console.log(min);
+    console.log(max);
+    console.log(minVal);
+    console.log(maxVal);
+    
     // Convert to percentage
     const getPercent = useCallback(
       (value) => Math.round(((value - min) / (max - min)) * 100),
@@ -47,60 +58,41 @@ const DoubleRangeSlider = ({ min, max, onChange }:DoubleRangeSliderProps) => {
     }, [minVal, maxVal, onChange]);
   
     return (
-      <div className={styles.container}>
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={minVal}
-          onChange={(event) => {
-            const value = Math.min(Number(event.target.value), maxVal - 1);
-            setMinVal(value);
-            minValRef.current = value;
-          }}
-          className={`${styles.thumb} ${styles.thumb_left}`}
-          style={{ zIndex: minVal > max - 100 && "5" }}
-        />
-        <input
-          type="range"
-          min={min}
-          max={max}
-          value={maxVal}
-          onChange={(event) => {
-            const value = Math.max(Number(event.target.value), minVal + 1);
-            setMaxVal(value);
-            maxValRef.current = value;
-          }}
-          className={`${styles.thumb} ${styles.thumb_right}`}
-        />
-  
-        <div className={styles.slider}>
-          <div className={styles.slider_track} />
-          <div ref={range} className={styles.slider_range} />
-          <div className={styles.slider_left_value}>
-            <input
-              value={minVal}
-              min={min}
-              max={max}
-              style={{ width: "40px", height: "25px", marginLeft: "-10px" }}
-              onChange={(e) => {
-                setMinVal(parseInt(e.target.value));
-              }}
-            />
-          </div>
-          <div className={styles.slider_right_value}>
-            <input
-              value={maxVal}
-              min={min - 1}
-              max={max}
-              style={{ width: "40px", height: "25px", marginLeft: "-10px" }}
-              onChange={(e) => {
-                setMaxVal(parseInt(e.target.value));
-              }}
-            />
+     <div>
+        <div className={styles.container}>
+          <input
+            type="range"
+            min={min}
+            max={max}
+            value={minVal}
+            onChange={(event) => {
+              const value = Math.min(Number(event.target.value), maxVal - 1);
+              setMinVal(value);
+              minValRef.current = value;
+            }}
+            className={`${styles.thumb} ${styles.thumb_left}`}
+            style={{ zIndex: minVal > max - 100 && "5" }}
+          />
+          <input
+            type="range"
+            min={min}
+            max={max}
+            value={maxVal}
+            onChange={(event) => {
+              const value = Math.max(Number(event.target.value), minVal + 1);
+              setMaxVal(value);
+              maxValRef.current = value;
+            }}
+            className={`${styles.thumb} ${styles.thumb_right}`}
+          />
+    
+          <div className={styles.slider}>
+            <div className={styles.slider_track} />
+            <div ref={range} className={styles.slider_range} />
           </div>
         </div>
-      </div>
+        <DynamicPadding desktop="30px" mobile="30px" />
+     </div>
     );
   };
   

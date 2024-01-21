@@ -158,8 +158,19 @@ import { ReactComponent as vectorFiles} from '@assets/svg/vector-files.svg';
 import { ReactComponent as chessBoard} from '@assets/svg/chess-board.svg';
 import { ReactComponent as printer} from '@assets/svg/printer.svg';
 import { ReactComponent as template} from '@assets/svg/template.svg';
+import { ReactComponent as handshake} from '@assets/svg/handshake.svg';
+import { ReactComponent as refresh} from '@assets/svg/refresh.svg';
+
+import { ReactComponent as relevant} from '@assets/svg/relevant.svg';
+import { ReactComponent as playButton} from '@assets/svg/play-button.svg';
+import { ReactComponent as refreshColored} from '@assets/svg/refresh-colored.svg';
 
 class AppColor {
+    static refreshColored = refreshColored;
+    static playButton = playButton;
+    static relevant = relevant;
+    static refresh = refresh;
+    static handshake = handshake;
     static template = template;
     static minimalist = minimalist;
     static mascot = mascot;
