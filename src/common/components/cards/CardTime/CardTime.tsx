@@ -1,4 +1,4 @@
-import { user } from "common/models/user";
+import { userModel } from "common/models/user";
 import Typography from "../../ui/Typography/Typography";
 import testUserImage from '@assets/images/test-user-image.png';
 import bc_image from '@assets/images/card-time-background.png';
@@ -15,7 +15,7 @@ import DaysLeftTimer from "@common/components/ui/DaysLeftTimer/DaysLeftTimer";
 import CardTypeDisplay from "../CardTypeDisplay/CardTypeDisplay";
 type CardTimeProps = {
     title: string;
-    user: user;
+    user: userModel;
     tags: string[];
     totalMoneyRange: number;
     currentMoneyRange: number;

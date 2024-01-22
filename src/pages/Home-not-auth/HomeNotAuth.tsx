@@ -28,7 +28,7 @@ import { advantanges_section_card_content, popular_categorys_content, popular_ca
 import Slider from '@common/components/ui/Slider/Slider';
 import { popular_services } from '@common/content/services';
 import CardTime from '@common/components/cards/CardTime/CardTime';
-import { user } from 'common/models/user';
+import { userModel } from 'common/models/user';
 import { useGetImage } from '@common/helpers/UseGetImage';
 import Footer from '@common/components/Footer/Footer';
 import { useScreenSize } from '@common/helpers/useScreenSize';
@@ -61,11 +61,13 @@ const HomeNotAuth = () => {
         height: '100%',
       };
     
-      const fakeUser:user = {
+      const fakeUser:userModel = {
         country: 'Ukraine',
         image: '',
         name: 'Artem M.',
         roles: 'Customer',
+        activeAgo: '2 days',
+        isActive: true,
         statistic: {
           comments_count: 55,
           sponsorship_count: 55,
@@ -73,11 +75,13 @@ const HomeNotAuth = () => {
           responses_count: 900
         }
       }
-      const fakeUser2:user = {
+      const fakeUser2:userModel = {
         country: 'Ukraine',
         image: '',
         name: 'Antonio L.',
         roles: 'Sponsor',
+        activeAgo: '2 days',
+        isActive: true,
         statistic: {
           comments_count: 55,
           sponsorship_count: 55,
