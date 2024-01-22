@@ -81,7 +81,7 @@ export const FilterListBig = ({filters,callback,category=[]}:FilterListProps) =>
                  {category.length > 0 &&
                     <div className={styles.flex_center}>
                     <div style={{display: 'flex',alignItems: 'center',gap: '5px',cursor: 'pointer'}}>
-                        <Typography variant="subtitle">
+                        <Typography variant="body4" fontWeight="500">
                             {currentCategory}
                         </Typography>
                         <AppColor.chevronBottom fill={AppColor.text} />
@@ -91,7 +91,7 @@ export const FilterListBig = ({filters,callback,category=[]}:FilterListProps) =>
                 }
                 <div className={styles.filters_wrapper}>
     
-                    {filters.map((filter) => (
+                    {filters.map((filter,index) => (
                         <div
                             className={styles.filter_item}
                             onClick={() => {
@@ -99,14 +99,13 @@ export const FilterListBig = ({filters,callback,category=[]}:FilterListProps) =>
                             }}>
                             <Typography
                                 fontWeight={
-                                    activeFilter == filter ? '500' : '400'
+                                    activeFilter == filter || index == filters.length -1 ? '500' : '400'
                                 }
+                                textTransform={activeFilter == filter ? 'uppercase' : 'none'}
                                 color={
-                                    activeFilter == filter
-                                        ? AppColor.orange
-                                        : AppColor.text
+                                    index == filters.length-1 ? AppColor.orange : AppColor.text
                                 }
-                                variant="body4">
+                                variant={activeFilter == filter ? 'subtitle' : 'body4'}>
                                 {filter}
                             </Typography>
                         </div>

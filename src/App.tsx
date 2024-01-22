@@ -25,6 +25,7 @@ import Verification from './pages/Settings/pages/Verification'
 import SettingsNotifications from './pages/Settings/pages/Notifications'
 import PartnershipManager from './pages/Partnership/pages/PartnershipManager'
 import PartnershipMyPrograms from './pages/Partnership/pages/MyPrograms'
+import Program from './pages/Partnership/pages/Program'
 
 function App() {
    
@@ -67,6 +68,7 @@ function App() {
 
             <Route path="/partnership" element={<PartnershipManager />} />
             <Route path="/partnership/my-programs" element={<PartnershipMyPrograms />} />
+            <Route path="/partnership/program" element={<Program />} />
          </Routes>
       </Router>
    </div>

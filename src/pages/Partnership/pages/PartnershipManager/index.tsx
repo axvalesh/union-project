@@ -32,6 +32,7 @@ import minimalist from '@assets/images/minimalist.png';
 import mascot from '@assets/images/mascot.png';
 import freestyle from '@assets/images/freestyle.png';
 import threeD from '@assets/images/threeD.png';
+import CardsSliderRelated from '@common/components/CardsSliderRelated/index'
 
 const PartnershipManager = () => {
     const { width, height } = useScreenSize()
@@ -525,6 +526,10 @@ const PartnershipManager = () => {
                         <DynamicPadding />
                     </div>
                 </div>
+                
+            </div>
+            <CardsSliderRelated />
+            <div className={styles.wrapper}>
                 <AskedQuestion />
             </div>
             <Footer />

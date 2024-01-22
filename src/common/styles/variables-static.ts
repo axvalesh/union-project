@@ -166,7 +166,32 @@ import { ReactComponent as playButton} from '@assets/svg/play-button.svg';
 import { ReactComponent as refreshColored} from '@assets/svg/refresh-colored.svg';
 import { ReactComponent as openInBrowser} from '@assets/svg/open-in-browser.svg';
 
+import { ReactComponent as clicks} from '@assets/svg/clicks.svg';
+import { ReactComponent as leads} from '@assets/svg/leads.svg';
+import { ReactComponent as sales} from '@assets/svg/sales.svg';
+import { ReactComponent as refreshA} from '@assets/svg/refresh-A.svg';
+import { ReactComponent as deeplink} from '@assets/svg/deeplink.svg';
+import { ReactComponent as banners} from '@assets/svg/banners.svg';
+
+import { ReactComponent as fiveOfFive} from '@assets/svg/five-of-five.svg';
+import { ReactComponent as subscriptionsWhite} from '@assets/svg/subscriptions-white.svg';
+import { ReactComponent as completed} from '@assets/svg/completed.svg';
+import { ReactComponent as checkedFile} from '@assets/svg/checked-file.svg';
+import { ReactComponent as starFilled} from '@assets/svg/star-filled.svg';
+
+
 class AppColor {
+    static starFilled = starFilled;
+    static checkedFile = checkedFile;
+    static fiveOfFive = fiveOfFive;
+    static subscriptionsWhite = subscriptionsWhite;
+    static completed = completed;    
+    static deeplink = deeplink;
+    static banners = banners;  
+    static clicks = clicks;
+    static leads = leads;
+    static sales = sales;
+    static refreshA = refreshA;    
     static openInBrowser = openInBrowser;
     static refreshColored = refreshColored;
     static playButton = playButton;

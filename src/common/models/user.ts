@@ -1,5 +1,5 @@
 import { countries } from "./constants";
-
+import fakeUserImage from '@assets/images/user-fake.png';
 export interface userModel {
     name: string;
     image: string | null;
@@ -8,6 +8,7 @@ export interface userModel {
     statistic?: user_statistic;
     activeAgo?: string;
     isActive: boolean;
+    lvl: string;
 };
 
 type user_roles = 'Customer' | 'Admin' | 'Sponsor';
@@ -20,11 +21,12 @@ type user_statistic = {
 
 export const fakeUserConstant: userModel = {
     name: "John Doe",
-    image: null,
+    image: fakeUserImage,
     roles: 'Customer',
     country: 'Ukraine',
     activeAgo: '1 min ago',
     isActive: true,
+    lvl: '100',
     statistic: {
         sponsorship_count: 0,
         comments_count: 0,
