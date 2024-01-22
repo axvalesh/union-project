@@ -164,8 +164,10 @@ import { ReactComponent as refresh} from '@assets/svg/refresh.svg';
 import { ReactComponent as relevant} from '@assets/svg/relevant.svg';
 import { ReactComponent as playButton} from '@assets/svg/play-button.svg';
 import { ReactComponent as refreshColored} from '@assets/svg/refresh-colored.svg';
+import { ReactComponent as openInBrowser} from '@assets/svg/open-in-browser.svg';
 
 class AppColor {
+    static openInBrowser = openInBrowser;
     static refreshColored = refreshColored;
     static playButton = playButton;
     static relevant = relevant;

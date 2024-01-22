@@ -1,0 +1,16 @@
+.wrapper {
+    background-color: $white;
+    padding: 25px 0px;
+}
+
+.content {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0px 10px;
+}
+@media (min-width:$tabletSize) {
+    .wrapper {
+        padding: 50px 0px;
+    }
+}

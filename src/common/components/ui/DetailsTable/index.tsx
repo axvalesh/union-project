@@ -6,6 +6,7 @@ import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
 import { useScreenSize } from '@common/helpers/useScreenSize';
 import SizeBox from '../SizeBox';
+import HorizontalLine from '../Lines/HorizontalLine';
 
 
 type DetailsTableProps = {
@@ -59,7 +60,7 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                 {
                   width < 768
                   ? <div className={styles.mobile_wrapper_all}>
-                     {details.map(item => 
+                     {details.map((item,index) => 
                         <div className={styles.mobile_wrapper}>
                           <div className={styles.mobile_text}>
                             <Typography variant='body4' fontWeight='500'>
@@ -67,8 +68,27 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                             </Typography>
                           </div>
                           <div className={styles.mobile_child}>
-                            {item.child}
+                          {
+                                dropdownNode && index == 0 
+                                ? <div style={{cursor: 'pointer'}} onClick={() => {setShowDropdown(prev => !prev)}} className={styles.gap_20}>
+                                  {
+                                    showDropdown
+                                    ? <AppColor.chevronTop width={'20px'} fill={AppColor.text}/>
+                                    : <AppColor.chevronBottom width={'20px'} fill={AppColor.text}/>
+                                  }
+                                  {item.child}
+                                </div>
+                                : item.child
+                              }
                           </div>
+                          {index == 0 && dropdownNode
+                            ? <div>
+                              <SizeBox height='15px'/>
+                              <HorizontalLine/>
+                              <SizeBox height='15px'/>
+                              <div style={{display: showDropdown ? 'block' : 'none'}}>{dropdownNode}</div>
+                              </div>
+                            : <></>}
                         </div>
                       )}
                    </div>
@@ -90,7 +110,7 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                            </div>
                             <div className={styles.child_wrapper_desktop}>
                               {
-                                dropdownNode && index == 0 
+                                dropdownNode && index == 0
                                 ? <div style={{cursor: 'pointer'}} onClick={() => {setShowDropdown(prev => !prev)}} className={styles.gap_20}>
                                   {
                                     showDropdown
@@ -103,6 +123,8 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                               }
                             </div>
                           </div>
+                          
+                        
                         )}
                         <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
                           <div className={styles.title_wrapper_desktop}>
@@ -118,11 +140,11 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
               </div>
               <DynamicPadding mobile='20px' desktop='30px' />
               <div className={styles.vertical_line}></div>
-              <DynamicPadding mobile='20px' desktop='20px' />
 
               {showUsers
               ? 
               <>
+              <DynamicPadding mobile='20px' desktop='20px' />
                   <div className={styles.users_wrapper}>
                     {...users}
                   </div>
@@ -131,10 +153,10 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                 <DynamicPadding mobile='20px' desktop='20px' />
               </>
               : <></>}
-               {showDropdown
-              ? <div>hellloooo</div>
+               {showDropdown && dropdownNode && width > 768
+              ? <div>{dropdownNode}</div>
               : <></>}
-              
+              <DynamicPadding mobile='20px' desktop='20px' />
               <div className={styles.flex_space}>
                 <Typography variant='body4'>
                   11 841 missions

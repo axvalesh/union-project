@@ -8,7 +8,7 @@ import Header from '@common/components/Header/Header/index'
 import DropdownNode from '@common/components/ui/Dropdown/DropdownNodes/index'
 import Slider from '@common/components/ui/Slider/Slider'
 import CardTime from '@common/components/cards/CardTime/CardTime'
-import { user } from 'common/models/user'
+import { userModel } from 'common/models/user'
 import CardStatistics from '@common/components/cards/CardStatistics/index'
 import CardStatisticTest from '@common/components/cards/CardStatistics/variants/CardStatisticTest'
 import AskedQuestion from '@common/components/AskedQuestions/index'
@@ -18,11 +18,12 @@ import { useScreenSize } from '@common/helpers/useScreenSize'
 import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index'
 import DropdownNodeRoadmap from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownRoadmap/index'
 
-const fakeUser:user = {
+const fakeUser:userModel = {
     country: 'Ukraine',
     image: '',
     name: 'Artem M.',
     roles: 'Customer',
+    isActive: false,
     statistic: {
       comments_count: 55,
       sponsorship_count: 55,

@@ -13,6 +13,10 @@ import FilterList from '@common/components/FilterList/index';
 import DetailsTableMyPrograms from '@common/components/ui/DetailsTable/variants/DetailsTableMyPrograms/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import Typography from '@common/components/ui/Typography/Typography';
+import { fakeUserConstant, userModel } from '@common/models/user';
+import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 
 const PartnershipMyPrograms = () => {
 
@@ -62,7 +66,7 @@ const PartnershipMyPrograms = () => {
 
             <DynamicPadding desktop='30px' mobile='20px'/>
             <DetailsTableMyPrograms
-                information={[
+                informationTable={[
                     {
                         memberName: 'Artem Markevych Logo Design Partnership ',
                         category: 'Logo design',
@@ -74,10 +78,27 @@ const PartnershipMyPrograms = () => {
                         rate: '5% - 10% '
                     }
                 ]}
+                informationDropdown={[
+                    {
+                        id: '352',
+                        freelancer: fakeUserConstant,
+                        manager: fakeUserConstant,
+                        CTR: '5',
+                        eCPC: '5',
+                        CR: '2',
+                        Clicks: '1521',
+                        Leads: '373',
+                        Sales: '64',
+                        Earned: '50321',
+                        Duration: '3',
+                        status: 'Progress',
+                        page: 0,
+                    }
+                ]}
             />
-
-            <AskedQuestion />
         </div>
+        <CardsSliderRelated />
+            <div className={styles.wrapper}><AskedQuestion /></div>
            <Footer />
       </div>
     );
