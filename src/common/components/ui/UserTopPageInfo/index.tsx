@@ -12,7 +12,7 @@ const UserTopPageInfo = ({user,nodeAfter}:UserTopPageInfoProps) => {
 
     return (
       <div className={styles.wrapper}>
-           <UserAvatar name={user.name} flag={<AppColor.UkraineFlag/>} role='Freelancer' active={true}/>
+           <UserAvatar preventMobileNone={true} name={user.name} flag={<AppColor.UkraineFlag/>} role='Freelancer' active={true}/>
 
            <div style={{display: 'flex',alignItems: 'center', gap:'10px'}}>
                 <div className={styles.box}>

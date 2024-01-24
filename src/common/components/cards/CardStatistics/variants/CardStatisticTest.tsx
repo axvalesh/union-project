@@ -8,6 +8,7 @@ const fakeUser:userModel = {
     image: '',
     name: 'Artem M.',
     roles: 'Customer',
+    lvl: '100',
     isActive: false,
     statistic: {
       comments_count: 55,

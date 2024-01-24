@@ -1,0 +1,34 @@
+
+
+
+.main_part {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.left_part {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 100%;
+    order: var(--order1M);
+}   
+.right_part {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 100%;
+    order: var(--order2M);
+}
+@media (min-width:$tabletSize) {
+    .main_part {
+        column-gap: var(--gap);
+    }
+    .left_part {
+        flex: 1 1 var(--maxWidth1);
+        order: var(--order1D);
+    }   
+    .right_part {
+        flex: 1 1 var(--maxWidth2);
+        order: var(--order2D);
+    }
+}

@@ -1,10 +1,16 @@
-import Typography from "../Typography/Typography";
+import Typography, { fontWeight } from "../Typography/Typography";
 import { useState,useEffect } from "react";
 import styles from './style.module.scss';
 type DaysLeftTimerProps = {
     time: Date;
+    width?: string;
+    height?: string;
+    borderRadius?: string;
+    dotsWidth?: string;
+    dotsHeight?: string;
+    fontWeightTextTime?: fontWeight;
 }
-const DaysLeftTimer = ({time}: DaysLeftTimerProps) => {
+const DaysLeftTimer = ({time,borderRadius,height,width,dotsHeight,dotsWidth,fontWeightTextTime}: DaysLeftTimerProps) => {
     const calculateTimeLeft = () => {
         const now = new Date();
         const difference = time.getTime() - now.getTime();
@@ -34,41 +40,49 @@ const DaysLeftTimer = ({time}: DaysLeftTimerProps) => {
 
     return (
       <div className={styles.timer_wrapper}>
-           <span className={styles.timer_box}>
-                <Typography variant="body5">
-                    {timeLeft.days}
-                </Typography>
-                <p className={styles.date_text}>Days</p>
+           <span style={{borderRadius: borderRadius,width: width,height:height}} className={styles.timer_box}>
+               <div>
+                     <Typography fontWeight={fontWeightTextTime ?? '400'} variant="body5">
+                         {timeLeft.days}
+                     </Typography>
+                     <p className={styles.date_text}>Days</p>
+               </div>
            </span>
            <div className={styles.timer_dots}>
-                <span></span>
-                <span></span>
+                <span style={{width: dotsWidth,height:dotsHeight}}></span>
+                <span style={{width: dotsWidth,height:dotsHeight}}></span>
            </div>
-           <span className={styles.timer_box}>
-                <Typography variant="body5">
-                    {timeLeft.hours}
-                </Typography>
-                <p className={styles.date_text}>HR</p>
+           <span style={{borderRadius: borderRadius,width: width,height:height}} className={styles.timer_box}>
+               <div>
+                     <Typography fontWeight={fontWeightTextTime ?? '400'} variant="body5">
+                         {timeLeft.hours}
+                     </Typography>
+                     <p className={styles.date_text}>HR</p>
+               </div>
            </span>
            <div className={styles.timer_dots}>
-                <span></span>
-                <span></span>
+                <span style={{width: dotsWidth,height:dotsHeight}}></span>
+                <span style={{width: dotsWidth,height:dotsHeight}}></span>
            </div>
-           <span className={styles.timer_box}>
-                <Typography variant="body5">
-                    {timeLeft.minutes}
-                </Typography>
-                <p className={styles.date_text}>min</p>
+           <span style={{borderRadius: borderRadius,width: width,height:height}} className={styles.timer_box}>
+               <div>
+                     <Typography fontWeight={fontWeightTextTime  ?? '400'} variant="body5">
+                         {timeLeft.minutes}
+                     </Typography>
+                     <p className={styles.date_text}>min</p>
+               </div>
            </span>
            <div className={styles.timer_dots}>
-                <span></span>
-                <span></span>
+                <span style={{width: dotsWidth,height:dotsHeight}}></span>
+                <span style={{width: dotsWidth,height:dotsHeight}}></span>
            </div>
-           <span className={styles.timer_box}>
-                <Typography variant="body5">
-                    {timeLeft.seconds}
-                </Typography>
-                <p className={styles.date_text}>sec</p>
+           <span style={{borderRadius: borderRadius,width: width,height:height}} className={styles.timer_box}>
+                <div>
+                     <Typography fontWeight={fontWeightTextTime ?? '400'} variant="body5">
+                         {timeLeft.seconds}
+                     </Typography>
+                     <p className={styles.date_text}>sec</p>
+                </div>
            </span>
       </div>
     );

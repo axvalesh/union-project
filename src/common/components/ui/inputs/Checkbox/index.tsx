@@ -7,11 +7,15 @@ type MyCheckboxProps = {
     height: string
     callback?: (isTrue: boolean) => void
     basicValue?: boolean
+    checkWidth?: string;
+    checkHeight?: string;
 }
 const MyCheckbox = ({
     width,
     height,
     callback,
+    checkHeight='12px',
+    checkWidth='12px',
     basicValue = false,
 }: MyCheckboxProps) => {
     const [isTrue, setIsTrue] = useState(basicValue)
@@ -40,7 +44,7 @@ const MyCheckbox = ({
             onClick={() => {
                 handleChange(!isTrue);
             }}>
-            {isTrue && <AppColor.singTrue stroke="white" />}
+            {isTrue && <AppColor.singTrue width={checkWidth} height={checkHeight} stroke="white" />}
         </div>
     )
 }

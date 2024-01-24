@@ -178,9 +178,40 @@ import { ReactComponent as subscriptionsWhite} from '@assets/svg/subscriptions-w
 import { ReactComponent as completed} from '@assets/svg/completed.svg';
 import { ReactComponent as checkedFile} from '@assets/svg/checked-file.svg';
 import { ReactComponent as starFilled} from '@assets/svg/star-filled.svg';
+import { ReactComponent as walletIcon} from '@assets/svg/wallet.svg';
+
+import { ReactComponent as newIcon} from '@assets/svg/new.svg';
+import { ReactComponent as shortlisted} from '@assets/svg/shortlisted.svg';
+import { ReactComponent as hired} from '@assets/svg/hired.svg';
+import { ReactComponent as speficChevronRight} from '@assets/svg/spefic-chevron-right.svg';
+import { ReactComponent as contractPartnership} from '@assets/svg/contract-parthnership.svg';
+import { ReactComponent as speficChevronRightFilled} from '@assets/svg/spefic-chevron-right-filled.svg';
+import { ReactComponent as searchingWaitingImage} from '@assets/svg/searching-waiting.svg';
+import { ReactComponent as queue} from '@assets/svg/queue.svg';
+import { ReactComponent as moneyHummer} from '@assets/svg/money-hummer.svg';
+import { ReactComponent as shield} from '@assets/svg/shield.svg';
+import { ReactComponent as infoCircle} from '@assets/svg/info-circle.svg';
+import { ReactComponent as returnIcon} from '@assets/svg/return.svg';
+import { ReactComponent as heartEmpty} from '@assets/svg/heart-empty.svg';
+import { ReactComponent as fire} from '@assets/svg/fire.svg';
 
 
 class AppColor {
+    static fire = fire;
+    static heartEmpty = heartEmpty;
+    static returnIcon = returnIcon;
+    static infoCircle = infoCircle;
+    static moneyHummer = moneyHummer;
+    static shield = shield;   
+    static queue = queue;
+    static searchingWaitingImage = searchingWaitingImage;
+    static speficChevronRightFilled = speficChevronRightFilled;
+    static contractPartnership = contractPartnership;
+    static speficChevronRight = speficChevronRight;
+    static newIcon = newIcon;
+    static shortlisted = shortlisted;
+    static hired = hired;    
+    static walletIcon = walletIcon;
     static starFilled = starFilled;
     static checkedFile = checkedFile;
     static fiveOfFive = fiveOfFive;
@@ -330,6 +361,7 @@ class AppColor {
 
     static orange = '#F4A72A';
     static white = '#F5F5F5';
+    static ligthWhite = '#FCFCFC'
     static grey = '#A8A8AD'
     static text = '#515151';
     static chevronColor = '#A8A8AD';
@@ -337,6 +369,7 @@ class AppColor {
     static red = '#EB5757';
     static whiteGreen = '#B6DE59';
     static transparentBlack = 'rgba(0, 0, 0, 0.5)';
+    static transparentWhite = 'rgba(255, 255, 255, 0.5)';
     static tabletSize = 768;
 
     static weakShadow = `-webkit-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);

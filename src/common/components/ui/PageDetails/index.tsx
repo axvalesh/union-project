@@ -11,23 +11,27 @@ type PageDetailsProps = {
 const PageDetails = ({historyNode,pageTitle,endNode,pageTitleIcon}:PageDetailsProps) => {
 
     return (
-      <div>
-           <DynamicPadding />
-                <div className={styles.top_section}>
+        <>
+        <DynamicPadding />
+            <div className={styles.wrapper}>
+                
                     <div className={styles.top_flex}>
                         {historyNode}
+                        <DynamicPadding desktop='20px' mobile='15px'/>
+                        <div className={styles.flex_center}></div>
                         <Typography
                             variant="titleBig"
                             textTransform="uppercase"
                             fontWeight="600">
-                            <div className={styles.flex_center}>
-                                {pageTitle} <div className={styles.title_icon}>{pageTitleIcon}</div>
-                            </div>
+                                {pageTitle}             
+                            
                         </Typography>
-                    </div>
+                        <div className={styles.title_icon}>{pageTitleIcon}</div>
+                        </div>
+                    
                     {endNode}
                 </div>
-      </div>
+            </>
     );
 };
 

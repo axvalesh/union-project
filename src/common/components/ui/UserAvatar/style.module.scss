@@ -8,8 +8,7 @@
 
 .active_status {
     position: absolute;
-    top: calc(100% - 5px);
-    transform: translateY(-50%);
+    bottom: 0;
     left: 0px;
     width: 11px;
     height: 11px;
@@ -24,6 +23,7 @@
     display: none;
 }
 .position_relative {
+    display: flex;
     position: relative;
 }
 .wrapper_column {

@@ -18,9 +18,17 @@ import { useState } from 'react';
 import TextDotted from '@common/components/ui/TextDotted/index';
 import fakeUserImage from '@assets/images/user-fake.png';
 import CardTypeDisplay from '@common/components/cards/CardTypeDisplay/CardTypeDisplay';
+import ReviewsProgramCard from '@common/components/ReviewsProgram/index';
+import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
+import AskedQuestion from '@common/components/AskedQuestions/index';
+import Footer from '@common/components/Footer/Footer';
+import Dropdown from '@common/components/ui/Dropdown/index';
+import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
+import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 
 const Program = () => {
-
+    const [showAllDetailsRight,setShowAllDetailsRight] = useState(false);
     const title = 'Artem Markevych WordPress Partnership'
     const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress']
     return (
@@ -83,6 +91,7 @@ const Program = () => {
             <DynamicPadding />
 
             <FilterList
+                activeStartItem='Rates'
                 filters={['Description', 'Rates', 'Tools', 'Freelancer', 'Reviews (25)', 'FAQ (2)']}
             />
              <DynamicPadding />
@@ -127,14 +136,146 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
 
                     <DynamicPadding desktop='40px' mobile='30px'/>
                     <FreelancerCard user={fakeUserConstant} />
+                    <DynamicPadding />
+                    <div className={styles.review_wrapper}>
+                        <div className={styles.gap_10}>
+                            <Typography variant='body3' fontWeight='500'>Reviews</Typography>
+                            <div className={styles.box_black}>
+                                <Typography variant='body3' color='white' fontWeight='500'>1</Typography>
+                            </div>
+                            <div className={styles.margin_mobile}><Typography variant='body4' fontWeight='500' color={AppColor.green}>100% positive reviews </Typography></div>
+                        </div>
+                        <div className={styles.gap_30}>
+                            <div className={styles.gap_5}>
+                                <AppColor.filter />
+                                <Typography variant='body4' textTransform='uppercase' fontWeight='500'>Filters</Typography>
+                            </div>
+                            <div className={styles.gap_5}>
+                                <AppColor.relevant />
+                                <Typography variant='body4' textTransform='uppercase' fontWeight='500'>Most recent</Typography>
+                            </div>
+                        </div>
+                    </div>
+
+                    <DynamicPadding desktop='30px' mobile='20px'/>
+                    <ReviewsProgramCard 
+                        money='2000'
+                        sales='20'
+                        likes='15'
+                        text='Saro was very patient and willing to make all the revisions as required. Provided advice based on his knowledge and really easy to chat to.'
+                        user={fakeUserConstant}
+
+                    />
+
+                    <DynamicPadding />
+                    <div className={styles.questions_answers}>
+                        <Typography variant='body3' fontWeight='500'>Questions & Answers</Typography>
+                        <div className={styles.box_black}>
+                            <Typography variant='body3' color='white' fontWeight='500'>2</Typography>
+                        </div>
+                    </div>
+                    <DynamicPadding desktop='30px' mobile='20px'/>
+
+                    <Dropdown 
+                        title="What if your requirements does not meet any of my package?                        "
+                        description="In risus nec etiam nunc, leo velit. Turpis et diam cursus adipiscing dolor posuere. Velit elit metus tempus volutpat turpis iaculis tempor nam. Sapien felis at ipsum aliquet commodo. "
+                    showLine={false}
+                   />
+                   <SizeBox height='15px'/>
+                    <Dropdown 
+                        title="What software do you use?                        "
+                        description="In risus nec etiam nunc, leo velit. Turpis et diam cursus adipiscing dolor posuere. Velit elit metus tempus volutpat turpis iaculis tempor nam. Sapien felis at ipsum aliquet commodo. "
+                        showLine={false}
+                    />
+
+                    <DynamicPadding />
+                   <div className={styles.justify_flex}>
+                        <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='catalog' />
+                        <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Selection' />
+                   </div>
 
                 </div>
                 <div className={styles.right_part}>
+                    <div className={styles.right_part_item}>
+                      <div>
+                            <Typography variant='body3'>Details</Typography>
+                            <DynamicPadding desktop='25px' mobile='15px'/>
+                            <div className={styles.details_dotted_text_wrapper}>
+                                <TextDotted
+                                    text='EPC'
+                                    textEnd='3$'
+                                />
+                                <TextDotted
+                                    text='CR'
+                                    textEnd='5.61%'
+                                />
+                                <TextDotted
+                                    text='CR for 48 hours'
+                                    textEnd='8.61%'
+                                />
+                            </div>
+                      </div>
+                      <DynamicPadding desktop='30px' mobile='20px'/>
+                      <HorizontalLine />
+                      <DynamicPadding desktop='30px' mobile='20px'/>
+                      <div>
+                            <Typography variant='body3'>Managers</Typography>
+                            <DynamicPadding desktop='25px' mobile='15px'/>
+                           <div className={styles.details_dotted_text_wrapper}>
+                                <TextDotted
+                                    text='Level'
+                                    textEnd='3$'
+                                />
+                                <TextDotted
+                                    text='Positive Reviews'
+                                    textEnd='5.61%'
+                                />
+                                <TextDotted
+                                    text='Organization'
+                                    textEnd='8.61%'
+                                />
+                              {!showAllDetailsRight && <div onClick={() => {setShowAllDetailsRight(true)}} style={{cursor: 'pointer'}}> 
+                                <Typography variant='body4' fontWeight='500'>Show 3 more</Typography>
+                               </div>}
 
+                               {
+                                showAllDetailsRight && <div className={styles.details_dotted_text_wrapper}>
+                                    <TextDotted
+                                    text='Level'
+                                    textEnd='3$'
+                                />
+                                <TextDotted
+                                    text='Positive Reviews'
+                                    textEnd='5.61%'
+                                />
+                                <TextDotted
+                                    text='Organization'
+                                    textEnd='8.61%'
+                                />
+                                </div>
+                               }
+                               
+                           </div>
+                           <DynamicPadding desktop='30px' mobile='20px'/>
+                            <HorizontalLine />
+                            <DynamicPadding desktop='30px' mobile='20px'/>
+
+                            <Typography variant='body4' fontWeight='500' color={AppColor.red}>You do not qualify for this program</Typography>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <MyButtonOrange disabled={true} width='100%' onClick={() => {}}>Submit</MyButtonOrange>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <MyButtonTransparentOrange width='100%' onClick={() => {}}>Submit</MyButtonTransparentOrange>
+                      </div>
+                    </div>
                 </div>
              </div>
+             
         </div>
-           
+           <CardsSliderRelated />
+           <div className={styles.wrapper}>
+                <AskedQuestion/>
+           </div>
+           <Footer/>
       </div>
     );
 };
@@ -221,7 +362,7 @@ const ConditionSection = () => {
     const [activeItem,setActiveItem] = useState<"Services" | "Orders" | "Subscriptions">("Services");
     return (
         <div>
-            <div>
+            <div style={{display: 'flex',alignItems: 'center',justifyContent: 'space-between'}}>
                 <Typography variant='body3' fontWeight='500'>Conditions</Typography>
                 <div className={styles.condition_buttons}>
                     <div style={activeItem == "Services" ? {border: `1px solid ${AppColor.orange}`} : {}} className={styles.condition_swith_buttton} onClick={() => {setActiveItem('Services')}}> 

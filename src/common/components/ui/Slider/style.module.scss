@@ -1,11 +1,13 @@
 .slider {
     display: flex;
     transition: transform 0.5s ease;
+    user-select: none;
 }
 
 .shell {
     position: relative;
-    display: inline-block;
+    display: flex;
+    width: 100%;
 }
 
 .sliderOverflow {
@@ -38,6 +40,8 @@
     align-items: center;
 }
 
+
+
 .right {
     position: absolute;
     right: -50px;
@@ -45,4 +49,40 @@
     bottom: 0;
     display: flex;
     align-items: center;
+}
+.remove_on_mobile {
+    display: none;
+}
+
+.dots {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+.dots > span {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+.dot {
+    background-color: $text;
+}
+.activeDot {
+    background-color: $orange;
+}
+
+@media (min-width:$tabletSize) {
+    .remove_on_desktop {
+        display: none;
+    }
+    .remove_on_mobile {
+        display: flex;
+    }
 }

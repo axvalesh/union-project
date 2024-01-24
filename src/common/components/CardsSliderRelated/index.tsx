@@ -14,10 +14,16 @@ const CardsSliderRelated = () => {
       <DynamicPadding />
         <div className={styles.wrapper}>
              <div className={styles.content}>
-                  <FilterListBig
-                    filters={['Related', 'Partnership', 'Projects', 'History']}
-                  />
-                   <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width > 768 ? 1120 : 250} gap={40}>
+                 <div>
+                    <FilterListBig
+                      filters={['Related', 'Partnership', 'Projects', 'History']}
+                    />
+                 </div>
+                   <Slider swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width > 768 ? 1120 : 250} gap={40}>
+                      <CardStatisticTest />
+                      <CardStatisticTest />
+                      <CardStatisticTest />
+                      <CardStatisticTest />
                       <CardStatisticTest />
                       <CardStatisticTest />
                       <CardStatisticTest />

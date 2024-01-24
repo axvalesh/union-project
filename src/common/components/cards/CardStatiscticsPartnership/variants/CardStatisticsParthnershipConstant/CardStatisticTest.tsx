@@ -10,6 +10,7 @@ const fakeUser:userModel = {
     name: 'Artem M.',
     roles: 'Customer',
     isActive: false,
+    lvl: '100',
     statistic: {
       comments_count: 55,
       sponsorship_count: 55,

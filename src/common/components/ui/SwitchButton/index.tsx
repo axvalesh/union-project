@@ -5,8 +5,10 @@ import styles from './style.module.scss';
 type SwitchButtonProps = {
     callback?: (bool:boolean) => void;
     startValue?: boolean; 
+    width?: string;
+    height?: string;
 }
-const SwitchButton = ({callback,startValue=false}:SwitchButtonProps) => {
+const SwitchButton = ({callback,startValue=false,height,width}:SwitchButtonProps) => {
 
     const [isActive,setIsActive] = useState(startValue);
 
@@ -18,7 +20,7 @@ const SwitchButton = ({callback,startValue=false}:SwitchButtonProps) => {
     }
     return (
       <div>
-           <label className={styles.switch}>
+           <label style={{width: width,height:height}} className={styles.switch}>
                 <input checked={isActive} onChange={(value) => {handleSwitch(value.target.checked)}} type="checkbox" />
                 <span className={`${styles.slider} ${styles.round}`}></span>
             </label>

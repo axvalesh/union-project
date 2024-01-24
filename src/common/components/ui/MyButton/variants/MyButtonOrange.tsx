@@ -15,6 +15,8 @@ const MyButtonOrange = (props:MyButtonVariantProps) => {
             hoverColor={AppColor.colorWithOpacity(AppColor.orange,0.7)}
             children={props.children}
             fontWeight={props.fontWeight}
+            disabled={props.disabled}
+            textTransform={props.textTransform}
         />
     )
 }

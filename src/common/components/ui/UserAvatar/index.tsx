@@ -54,7 +54,7 @@ const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width
                 <Typography color={AppColor.transparentBlack} fontWeight='400' variant='body5' textLineHeight='160%'>
                     {activeAgo}
                 </Typography>
-                <Typography color={AppColor.orange} textLineHeight='100%'>
+                <Typography color={AppColor.orange} variant='body5' textLineHeight='120%'>
                     {role}
                 </Typography>
            </div>

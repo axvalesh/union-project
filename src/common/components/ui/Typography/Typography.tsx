@@ -35,7 +35,7 @@ type VariantListTypes =
     | 'inputText';
 type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'initial' | 'inherit' | 'start';
 type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initial';
-type fontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
+export type fontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 type TextDecoration = 'none' | 'underline' | 'overline' | 'line-through' | 'initial' | 'inherit';
 type TextDecorationStyle = 'dashed'
 

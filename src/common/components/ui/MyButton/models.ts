@@ -15,11 +15,13 @@ export interface MyButtonProps {
     fontWeight?: string;
     width?: string;
     textTransform?: TextTransform;
+    disabled?: boolean;
     
 }
 
 
 export interface MyButtonVariantProps {
+    disabled?: boolean;
     onClick: MouseEventHandler<HTMLButtonElement>,
     children: React.ReactNode,
     padding?: string,

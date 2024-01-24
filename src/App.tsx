@@ -26,6 +26,13 @@ import SettingsNotifications from './pages/Settings/pages/Notifications'
 import PartnershipManager from './pages/Partnership/pages/PartnershipManager'
 import PartnershipMyPrograms from './pages/Partnership/pages/MyPrograms'
 import Program from './pages/Partnership/pages/Program'
+import SelectionFreelancer from './pages/Partnership/pages/SelectionFreelancer'
+import SelectionManager from './pages/Partnership/pages/SelectionManager'
+import ProgressFreelancer from './pages/Partnership/pages/ProgressFreelancer'
+import PartnershipCompleted from './pages/Partnership/pages/PartnershipCompleted'
+import ServiceAll from './pages/Service/ServiceAll'
+import ServiceMy from './pages/Service/ServiceMy'
+import Service from './pages/Service/Service'
 
 function App() {
    
@@ -69,6 +76,14 @@ function App() {
             <Route path="/partnership" element={<PartnershipManager />} />
             <Route path="/partnership/my-programs" element={<PartnershipMyPrograms />} />
             <Route path="/partnership/program" element={<Program />} />
+            <Route path="/partnership/freelancer/selection" element={<SelectionFreelancer />} />
+            <Route path="/partnership/manager/selection" element={<SelectionManager />} />
+            <Route path="/partnership/freelancer/progress" element={<ProgressFreelancer />} />
+            <Route path="/partnership/freelancer/completed" element={<PartnershipCompleted />} />
+
+            <Route path="/partnership/service/all" element={<ServiceAll />} />
+            <Route path="/partnership/service/my" element={<ServiceMy />} />
+            <Route path="/service/" element={<Service />} />
          </Routes>
       </Router>
    </div>

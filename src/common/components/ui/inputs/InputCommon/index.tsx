@@ -7,8 +7,12 @@ type InputCommonProps = {
     callback: (item:string) => void;
     padding?: string;
     rightPadding?: number;
+    textAlingCenter?: boolean;
+    backgroundColor?: string;
+    textColor?: string;
+    type?: React.HTMLInputTypeAttribute;
 }
-const InputCommon = ({ placeholder,callback,padding,rightPadding }: InputCommonProps) => {
+const InputCommon = ({ placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
     const [text,setText] = useState('');
 
     function handleChange(item:string) {
@@ -21,8 +25,8 @@ const InputCommon = ({ placeholder,callback,padding,rightPadding }: InputCommonP
                 value={text}
                 onChange={(item) => {handleChange(item.target.value)}}
                 className={styles.input}
-                type="text"
-                style={{padding:padding,paddingRight: `${rightPadding+15}px`}}
+                type={type ?? 'text'}
+                style={{color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+15}px`,textAlign: textAlingCenter ? 'center' : 'start',backgroundColor: backgroundColor ?? 'white'}}
                 placeholder={placeholder}
             />
             <div onClick={() => {setText('')}} style={{opacity: text != '' ? '1' : '0',right: `${rightPadding}px`}} className={styles.close_icon}><AppColor.close fill={AppColor.text} width={'12px'} height={'12px'} /></div>

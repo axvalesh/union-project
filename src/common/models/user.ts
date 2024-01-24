@@ -20,7 +20,7 @@ type user_statistic = {
 }
 
 export const fakeUserConstant: userModel = {
-    name: "John Doe",
+    name: "Artem M.",
     image: fakeUserImage,
     roles: 'Customer',
     country: 'Ukraine',
@@ -28,9 +28,9 @@ export const fakeUserConstant: userModel = {
     isActive: true,
     lvl: '100',
     statistic: {
-        sponsorship_count: 0,
-        comments_count: 0,
-        rating: 0,
-        responses_count: 0,
+        sponsorship_count: 10,
+        comments_count: 15,
+        rating: 98,
+        responses_count: 10,
     }
 };

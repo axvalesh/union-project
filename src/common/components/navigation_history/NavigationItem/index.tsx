@@ -11,20 +11,22 @@ type NavigationItemProps = {
 const NavigationItem = ({image,textList}:NavigationItemProps) => {
 
     return (
-      <div style={{display: 'flex'}} className={styles.wrapper}>
-          {image}
-          <SizeBox width='15px' />
-          <AppColor.chevronRight height={'12px'} fill={AppColor.transparentBlack}  />
-          <SizeBox width='15px' />
-          {textList.map((item,index) => <div className={styles.wrapper}>
-            {item}
-            {index == textList.length-1
-            ? <></>
-            : <div className={styles.chevron}><AppColor.chevronRight fill={AppColor.transparentBlack} height={'12px'} /></div>
-            }
-
-          </div> )}
-      </div>
+     <div className={styles.nav_wrapper} style={{overflow: 'hidden',width:'100%'}}>
+        <div style={{display: 'flex'}} className={styles.wrapper}>
+            {image}
+            <SizeBox width='15px' />
+            <AppColor.chevronRight height={'12px'} fill={AppColor.transparentBlack}  />
+            <SizeBox width='15px' />
+            {textList.map((item,index) => <div className={styles.wrapper + ' ' + `${index+2 >= textList.length ? styles.mobile_items : styles.empty}`}>
+              {item}
+              {index == textList.length-1
+              ? <></>
+              : <div className={styles.chevron}><AppColor.chevronRight fill={AppColor.transparentBlack} height={'12px'} /></div>
+              }
+  
+            </div> )}
+        </div>
+     </div>
     );
 };
 

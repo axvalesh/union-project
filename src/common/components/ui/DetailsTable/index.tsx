@@ -12,19 +12,22 @@ import HorizontalLine from '../Lines/HorizontalLine';
 type DetailsTableProps = {
   details: DetailsTableItem[];
   page?: number;
-  filters?: string[];
+  filters: string[];
   callbackNav: (item:number) => void;
   showUsers?: boolean;
   users?: any[];
   maxWidth?: string;
   dropdownNode?: React.ReactNode;
+  removeNavBar?: boolean;
+  removeThreeLines?: boolean;
 }
 
 type DetailsTableItem = {
   title: string;
   child: React.ReactNode;
+  maxWidth?: string;
 }
-const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth,dropdownNode}:DetailsTableProps) => {
+const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
 
     const [currentFilter,setCurrentFilter] = useState('All');
     const {width,height} = useScreenSize();
@@ -53,9 +56,11 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                       </div>
                   ))}
                 </div>
-                <DynamicPadding mobile='15px' desktop='15px' />
+                {filters.length > 0 && <>
+                  <DynamicPadding mobile='15px' desktop='15px' />
                 <div className={styles.vertical_line}></div>
                 <DynamicPadding mobile='20px' desktop='30px' />
+                </>}
               <div>
                 {
                   width < 768
@@ -96,7 +101,7 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                     <div className={styles.absolute_background}></div>
                       <div className={styles.desktop_items_wrapper}>
                         {details.map((item,index) =>
-                          <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
+                          <div className={styles.dessktop_item_shell} style={{maxWidth: item.maxWidth != null ? item.maxWidth : maxWidth,}}>
                            <div className={styles.title_wrapper_desktop}>
                              <div style={{display: 'flex'}}>
                                 {dropdownNode && index == 0
@@ -126,14 +131,14 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                           
                         
                         )}
-                        <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
+                        {!removeThreeLines && <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
                           <div className={styles.title_wrapper_desktop}>
                             <Typography color='transparent'>a</Typography>
                           </div>
                           <div className={styles.child_wrapper_desktop}>
                             <AppColor.threeLines />
                           </div>
-                        </div>
+                        </div>}
                       </div>
                   </div>
                 }
@@ -156,13 +161,15 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                {showDropdown && dropdownNode && width > 768
               ? <div>{dropdownNode}</div>
               : <></>}
-              <DynamicPadding mobile='20px' desktop='20px' />
+              {!removeNavBar && <> <DynamicPadding mobile='20px' desktop='20px' />
               <div className={styles.flex_space}>
                 <Typography variant='body4'>
                   11 841 missions
                 </Typography>
                 <NavBarLine maxCountPage={11841} callback={(item) => {callbackNav(item)}} />
               </div>
+              </>
+              }
       </div>
     );
 };

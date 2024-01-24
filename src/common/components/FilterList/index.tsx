@@ -10,10 +10,11 @@ type FilterListProps = {
     category?: string[];
     filters: string[];
     callback?: (item:string) => void;
+    activeStartItem?: string;
 }
-const FilterList = ({filters,callback,category=[]}:FilterListProps) => {
+const FilterList = ({filters,callback,category=[],activeStartItem='All'}:FilterListProps) => {
 
-    const [activeFilter,setActiveFilter] = useState('All');
+    const [activeFilter,setActiveFilter] = useState(activeStartItem);
     const [currentCategory,setCurrentCategory] = useState(category[0]);
     function setActive(item:string) {
         if(callback != null) {

@@ -1,0 +1,66 @@
+.recommended_comment {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.comment_wrapper {
+    padding: 20px 14px;
+    @include weakShadow;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+}
+.absolute_bottom {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+.comments_wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.comment_user_info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.sales_text {
+    order: 0;
+}
+.recommended_comment {
+    order: 1;
+}
+@media (min-width:$tabletSize) {
+    .sales_text {
+        order: 1;
+    }
+    .recommended_comment {
+        order: 0;
+    }
+    .absolute_bottom {
+        bottom: 30px;
+        right: 30px;
+    }
+    .comments_wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    .recommended_comment {
+        justify-content: start;
+        gap: 20px;
+    }
+    .comment_user_info {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+    .comment_wrapper {
+        gap: 20px;
+        padding: 30px;
+    }
+}

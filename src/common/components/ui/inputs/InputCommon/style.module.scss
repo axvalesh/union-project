@@ -1,5 +1,15 @@
 .wrapper {
     position: relative;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
 }
 
 .input {
@@ -9,7 +19,8 @@
     padding: 8px 27px 8px 15px;
     color: $text;
     border-radius: 20px;
-}
+    
+}   
 
 
 

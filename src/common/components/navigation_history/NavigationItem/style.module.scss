@@ -1,10 +1,31 @@
 .wrapper {
     display: flex;
     align-items: center;
+    max-width: 320px;
+    text-overflow: ellipsis;
 }
 
 
-    .chevron {
-        padding-left: 15px;
-        padding-right: 15px;
+.chevron {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.empty {
+    display: none;
+}
+.nav_wrapper {
+    display: flex;
+    justify-content: center;
+}
+@media (min-width:$tabletSize) {
+    .nav_wrapper {
+        justify-content: start;
     }
+    .empty {
+        display: flex;
+    }
+    .wrapper {
+        max-width: none;
+    }
+}

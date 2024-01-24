@@ -17,8 +17,9 @@ const MyButton = ({
     hoverTextColor,
     width,
     textTransform,
+    disabled
 }: MyButtonProps) => {
-    const style = {
+    const style = !disabled ? {
         '--backgroundColor': color ?? 'transparent',
         '--padding': padding ?? '10px 12px',
         '--hoverBcColor': hoverColor ?? AppColor.orange,
@@ -32,12 +33,30 @@ const MyButton = ({
         '--hoverTextColor': hoverTextColor ?? 'white',
         '--width': width ?? 'auto',
         '--textTransform': textTransform,
+        'opacity': !disabled ? '1' : '0.3'
+    } : {
+        '--backgroundColor': color ?? 'transparent',
+        '--padding': padding ?? '10px 12px',
+        '--hoverBcColor': color ?? 'transparent',
+        '--border': border ?? `1px solid ${AppColor.orange}`,
+        '--hoverBorder': border ?? `1px solid ${AppColor.orange}`,
+        '--borderRadius': borderRadius ?? '20px',
+        'border': border,
+        '--textSize': textSize ?? '1rem',
+        '--textColor': textColor ?? AppColor.orange,
+        '--fontWeight': fontWeight ?? '400',
+        '--hoverTextColor': textColor ?? AppColor.orange,
+        '--width': width ?? 'auto',
+        '--textTransform': textTransform,
+        'opacity': !disabled ? '1' : '0.3'
     }
     return (
         <button
             style={style}
             onClick={onClick}
-            className={styles.button}>
+            className={styles.button}
+            disabled={disabled}
+            >
             {children}
         </button>
     )
