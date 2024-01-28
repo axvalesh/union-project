@@ -24,11 +24,13 @@
         column-gap: var(--gap);
     }
     .left_part {
-        flex: 1 1 var(--maxWidth1);
+        flex: 0 1 var(--maxWidth1);
+        max-width: var(--maxWidth1);
         order: var(--order1D);
     }   
     .right_part {
-        flex: 1 1 var(--maxWidth2);
+        flex: 0 1 var(--maxWidth2);
+        max-width: var(--maxWidth2);
         order: var(--order2D);
     }
 }

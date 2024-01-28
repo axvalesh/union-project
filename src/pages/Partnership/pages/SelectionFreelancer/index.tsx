@@ -178,6 +178,7 @@ const SelectionFreelancer = () => {
                             {itemsToshow.map((item,index) => (
                                <div className={styles.center_card}>
                                     <CardManager
+                                    showCardManagerActions={true}
                                     position={
                                         width < 769 ? 'center' :
                                         index % 3 === 0 ? 'left' : index % 3 === 1 ? 'center' : 'right'

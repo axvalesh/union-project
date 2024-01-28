@@ -40,6 +40,14 @@ $grey: #A8A8AD;
   background-size: 5px 1px;
   background-repeat: repeat-x;
 }
+@mixin noSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
+}
 
 @mixin scrollStyles {
   scrollbar-width: thin;  /* For Firefox */
@@ -64,6 +72,7 @@ $grey: #A8A8AD;
   justify-content: space-between;
 }
 
+
 .circle_shadow {
   display: flex;
   align-items: center;
@@ -80,10 +89,22 @@ $grey: #A8A8AD;
   align-items: center;
   gap: 5px;
 }
+.gap_5_wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .gap_10 {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.gap_20 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .box_shadow {
@@ -101,7 +122,13 @@ $grey: #A8A8AD;
   align-items: center;
   justify-content: center;
 }
+.transition {
+  transition: all 0.3s ease;
+}
 @media (min-width:$tabletSize) {
+  .gap_5_wrap {
+    justify-content: start;
+  }
   .desktop {
     display: flex;
   }

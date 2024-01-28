@@ -12,6 +12,12 @@
     top: 0;
     transform: translateY(-50%);
     right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.box_black {
     width: 30px;
     height: 25px;
     background-color: $text;
@@ -19,7 +25,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
 }
 
 .shell_absolute {
@@ -173,6 +178,12 @@
     border-bottom: 2px dotted rgba($color: $text, $alpha: 0.5);
 }
 
+.links_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 @media (min-width:$tabletSize) {
     .absolute_select {
         width: calc(300% + 60px);

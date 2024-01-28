@@ -1,15 +1,20 @@
 
 import { useState } from 'react';
 import styles from './style.module.scss';
+import AppColor from '@common/styles/variables-static';
 
 type SwitchButtonProps = {
     callback?: (bool:boolean) => void;
     startValue?: boolean; 
     width?: string;
     height?: string;
+    bakcgroundColorActive?: string;
+    activeIcon?: React.ReactNode;
 }
-const SwitchButton = ({callback,startValue=false,height,width}:SwitchButtonProps) => {
-
+const SwitchButton = ({activeIcon,bakcgroundColorActive,callback,startValue=false,height,width}:SwitchButtonProps) => {
+    const buttonsVariables = {
+        '--colorActive': bakcgroundColorActive ?? AppColor.orange
+    }
     const [isActive,setIsActive] = useState(startValue);
 
     function handleSwitch(item:boolean) {
@@ -20,9 +25,11 @@ const SwitchButton = ({callback,startValue=false,height,width}:SwitchButtonProps
     }
     return (
       <div>
-           <label style={{width: width,height:height}} className={styles.switch}>
+           <label style={{width: width,height:height,...buttonsVariables}} className={styles.switch}>
                 <input checked={isActive} onChange={(value) => {handleSwitch(value.target.checked)}} type="checkbox" />
-                <span className={`${styles.slider} ${styles.round}`}></span>
+                <span className={`${styles.slider} ${styles.round}`}>
+                   {activeIcon != null &&  <div style={{opacity: isActive ? 1 : 0}} className={styles.absolute_icon}>{activeIcon}</div>}
+                </span>
             </label>
       </div>
     );

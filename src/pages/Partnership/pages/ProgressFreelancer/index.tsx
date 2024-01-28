@@ -220,11 +220,11 @@ type DetailsDropdownItemProps = {
     initState: boolean
     node: React.ReactNode;
 }
-const DetailsDropdownItem = ({text,initState,title,node}:DetailsDropdownItemProps) => {
+export const DetailsDropdownItem = ({text,initState,title,node}:DetailsDropdownItemProps) => {
     const [showDropdown,setShowDropdown] = useState(initState);
     return (
        <div className={styles.dropdown_details}>
-            <div style={{userSelect: 'none'}} onClick={() => {setShowDropdown(prev => !prev)}} className='flex_space_between'>
+            <div style={{userSelect: 'none',cursor: 'pointer'}} onClick={() => {setShowDropdown(prev => !prev)}} className='flex_space_between'>
                 <div>
                     <Typography variant='body3' fontWeight='500'>{title}</Typography>
                     <Typography variant='body5' color={AppColor.transparentBlack}>{text}</Typography>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
 import { useScreenSize } from '@common/helpers/useScreenSize';
@@ -17,17 +17,20 @@ const SliderByRef = ({ nodes,endToFrontIndex }: SliderByRefProps) => {
   const previousItemRef = useRef<HTMLDivElement | null>(null);
   const totalRef = useRef<HTMLDivElement | null>(null);
   const stayAtRef = useRef<HTMLDivElement | null>(null);
+  const [nodesShow,setNodesShow] = useState<React.ReactNode[]>(nodes);
 
   function handleMoveOn() {
     
     if (currentItemRef.current && currentItemRef.current.offsetWidth) {
-      if(currentIndex < endToFrontIndex) {
+      if(currentIndex < nodes.length) {
         const currentItemWidth = currentItemRef.current.offsetWidth;
         setTotalTransform((prev) => prev + currentItemWidth + gap);
         setCurrentIndex((prev) => prev + 1);
       } else {
-        setTotalTransform(0);
-        setCurrentIndex(0)
+        setNodesShow(prev => [...prev,...nodes]);
+        const currentItemWidth = currentItemRef.current.offsetWidth;
+        setTotalTransform((prev) => prev + currentItemWidth + gap);
+        setCurrentIndex((prev) => prev + 1);
       }
     }
   }
@@ -39,9 +42,10 @@ const SliderByRef = ({ nodes,endToFrontIndex }: SliderByRefProps) => {
         setTotalTransform((prev) => prev - previousWidth - gap);
         setCurrentIndex((prev) => prev - 1);
       } else {
-        const totalWidth = stayAtRef.current.offsetWidth;
-        setTotalTransform(totalWidth);
-        setCurrentIndex(endToFrontIndex)
+        const previousWidth = previousItemRef.current.offsetWidth;
+        setNodesShow(prev => [...nodes,...prev]);
+        setTotalTransform((prev) => prev - previousWidth - gap);
+        setCurrentIndex((prev) => prev - 1);
       }
     }
   }
@@ -50,10 +54,10 @@ const SliderByRef = ({ nodes,endToFrontIndex }: SliderByRefProps) => {
     <div className={styles.relative}>
         <div className={styles.wrapper}>
           <div ref={totalRef} className={styles.flex_wrapper} style={{ transform: `translateX(-${totalTransform}px)`, gap: gap }}>
-            {nodes.map((node, index) => (
+            {nodesShow.map((node, index) => (
               <div
                 key={index}
-                ref={index === currentIndex ? currentItemRef : index-1 === currentIndex ? previousItemRef : index == endToFrontIndex ? stayAtRef : null}
+                ref={index === currentIndex ? currentItemRef : index === currentIndex-1 ? previousItemRef : index == endToFrontIndex ? stayAtRef : null}
               >
                 {node}
               </div>

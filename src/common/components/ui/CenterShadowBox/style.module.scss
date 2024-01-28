@@ -1,0 +1,22 @@
+.box_shadow {
+    width: 100%;
+    @include weakShadow;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: var(--align);
+    flex-direction: column;
+    gap: var(--gap);
+    padding: var(--paddingMobile);
+}
+.absolute_node {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+@media (min-width:$tabletSize) {
+    .box_shadow {
+        padding: var(--paddoingDesktop);
+    }
+}

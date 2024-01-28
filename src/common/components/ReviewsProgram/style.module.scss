@@ -35,6 +35,29 @@
 .recommended_comment {
     order: 1;
 }
+
+.image_row {
+    position: relative;
+}
+.absolute_image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.images_length_show {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 22px;
+    height: 22px;
+    @include weakShadow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+}
 @media (min-width:$tabletSize) {
     .sales_text {
         order: 1;

@@ -33,6 +33,12 @@ import PartnershipCompleted from './pages/Partnership/pages/PartnershipCompleted
 import ServiceAll from './pages/Service/ServiceAll'
 import ServiceMy from './pages/Service/ServiceMy'
 import Service from './pages/Service/Service'
+import ServiceSelection from './pages/Service/ServiceSelection'
+import ServiceNegotiationFreelancer from './pages/Service/ServiceNegotiationFreelancer'
+import ServiceNegotiationCustomer from './pages/Service/ServiceNegotiationCustomer'
+import ServiceProgress from './pages/Service/ServiceProgress'
+import ServiceCompleted from './pages/Service/ServiceCompleted'
+import OrdersAll from './pages/Orders/OrdersAll'
 
 function App() {
    
@@ -81,9 +87,17 @@ function App() {
             <Route path="/partnership/freelancer/progress" element={<ProgressFreelancer />} />
             <Route path="/partnership/freelancer/completed" element={<PartnershipCompleted />} />
 
-            <Route path="/partnership/service/all" element={<ServiceAll />} />
-            <Route path="/partnership/service/my" element={<ServiceMy />} />
+            <Route path="/service/all" element={<ServiceAll />} />
+            <Route path="/service/my" element={<ServiceMy />} />
             <Route path="/service/" element={<Service />} />
+            <Route path="/service/selection" element={<ServiceSelection />} />
+            <Route path="/service/negotioation/freelancer" element={<ServiceNegotiationFreelancer />} />
+            <Route path="/service/negotioation/customer" element={<ServiceNegotiationCustomer />} /> {/*negotiation stage is in process */}
+            <Route path="/service/progress/customer" element={<ServiceProgress />} />
+            <Route path="/service/completed" element={<ServiceCompleted />} />
+
+            <Route path="/orders/all" element={<OrdersAll />} />
+
          </Routes>
       </Router>
    </div>

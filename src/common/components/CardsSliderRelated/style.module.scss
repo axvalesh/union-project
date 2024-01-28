@@ -1,6 +1,8 @@
 .wrapper {
     background-color: $white;
     padding: 25px 0px;
+    @include weakShadow;
+    @include noSelect;
 }
 
 .content {
@@ -11,6 +13,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.slider_wrapper_item {
+    padding: 20px;
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:hover {
+        .absolute_shadow {
+            opacity: 0;
+        }   
+    }
+}
+
+.absolute_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 20px;
+    z-index: -2;
+    
+
+}
+.absolute_shadow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
+    background-color: rgba($color: $text, $alpha: 0.8);
+    z-index: -1;
+    border-radius: 20px;
 }
 @media (min-width:$tabletSize) {
     .content {

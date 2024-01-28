@@ -3,6 +3,7 @@
     background-color: var(--backgroundColor);
     border: var(--border);
     width: var(--width);
+    white-space: nowrap;
     cursor: pointer;
     border-radius: var(--borderRadius);
     transition: all 0.3s ease;
@@ -16,4 +17,7 @@
     color: var(--textColor);
     font-size: var(--textSize);
     font-weight: var(--fontWeight);
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }

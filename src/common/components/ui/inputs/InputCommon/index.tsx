@@ -11,8 +11,9 @@ type InputCommonProps = {
     backgroundColor?: string;
     textColor?: string;
     type?: React.HTMLInputTypeAttribute;
+    width?: string;
 }
-const InputCommon = ({ placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
+const InputCommon = ({width, placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
     const [text,setText] = useState('');
 
     function handleChange(item:string) {
@@ -20,7 +21,7 @@ const InputCommon = ({ placeholder,callback,padding,rightPadding,textAlingCenter
         setText(item)
     } 
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} style={{width: width}}>
             <input
                 value={text}
                 onChange={(item) => {handleChange(item.target.value)}}

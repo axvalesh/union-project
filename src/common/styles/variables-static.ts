@@ -194,9 +194,74 @@ import { ReactComponent as infoCircle} from '@assets/svg/info-circle.svg';
 import { ReactComponent as returnIcon} from '@assets/svg/return.svg';
 import { ReactComponent as heartEmpty} from '@assets/svg/heart-empty.svg';
 import { ReactComponent as fire} from '@assets/svg/fire.svg';
+import { ReactComponent as threeOfFive} from '@assets/svg/threeOfFive.svg';
+import { ReactComponent as minus} from '@assets/svg/minus.svg';
+import { ReactComponent as likeRounded} from '@assets/svg/like-rounded.svg';
+import { ReactComponent as shieldTrue} from '@assets/svg/shield-true.svg';
+import { ReactComponent as buy} from '@assets/svg/buy.svg';
+import { ReactComponent as reward10PTS} from '@assets/svg/reward10PTS.svg';
+import { ReactComponent as reward30Xp} from '@assets/svg/reward30Xp.svg';
 
+import { ReactComponent as oneOfFive} from '@assets/svg/one-of-five.svg';
+import { ReactComponent as settings2} from '@assets/svg/settings2.svg';
+import { ReactComponent as parthnershipTrue} from '@assets/svg/partnership-true.svg';
+import { ReactComponent as writingWaiting} from '@assets/svg/writing-waiting.svg';
+
+import { ReactComponent as reward10PTSDisabled} from '@assets/svg/reward10PTSDisabled.svg';
+import { ReactComponent as reward30XpDisabled} from '@assets/svg/reward30XpDisabled.svg';
+import { ReactComponent as gift} from '@assets/svg/gift.svg';
+import { ReactComponent as time} from '@assets/svg/time.svg';
+
+import { ReactComponent as doubleUp} from '@assets/svg/double-up.svg';
+import { ReactComponent as doubleDown} from '@assets/svg/double-down.svg';
+import { ReactComponent as files} from '@assets/svg/files.svg';
+import { ReactComponent as negotiation} from '@assets/svg/negotiation.svg';
+import { ReactComponent as cancel} from '@assets/svg/cancel.svg';
+import { ReactComponent as moveOn} from '@assets/svg/move-on.svg';
+
+import { ReactComponent as textAlingleft} from '@assets/svg/text-align-left.svg';
+import { ReactComponent as bold} from '@assets/svg/bold.svg';
+import { ReactComponent as cursive} from '@assets/svg/cursive.svg';
+import { ReactComponent as underline} from '@assets/svg/underline.svg';
+import { ReactComponent as idontknow} from '@assets/svg/idontknow.svg';
+import { ReactComponent as ol} from '@assets/svg/ol.svg';
+import { ReactComponent as ul} from '@assets/svg/ul.svg';
+import { ReactComponent as pin} from '@assets/svg/pin.svg';
+import { ReactComponent as image} from '@assets/svg/image.svg';
+import { ReactComponent as lock} from '@assets/svg/lock.svg';
 
 class AppColor {
+    static lock = lock;
+    static textAlingleft = textAlingleft;
+    static bold = bold;
+    static cursive = cursive;
+    static underline = underline;
+    static idontknow = idontknow;
+    static ol = ol;
+    static ul = ul;
+    static pin = pin;
+    static image = image;   
+    static moveOn = moveOn;
+    static doubleUp = doubleUp;
+    static doubleDown = doubleDown;
+    static files = files;
+    static negotiation = negotiation;
+    static cancel = cancel;  
+    static time = time;
+    static gift = gift;
+    static reward10PTSDisabled = reward10PTSDisabled;
+    static reward30XpDisabled = reward30XpDisabled;   
+    static writingWaiting = writingWaiting;
+    static parthnershipTrue = parthnershipTrue;
+    static settings2 = settings2;
+    static oneOfFive = oneOfFive;
+    static reward10PTS = reward10PTS;
+    static reward30Xp = reward30Xp;   
+    static likeRounded = likeRounded;
+    static shieldTrue = shieldTrue;
+    static buy = buy;  
+    static minus = minus;
+    static threeOfFive = threeOfFive;
     static fire = fire;
     static heartEmpty = heartEmpty;
     static returnIcon = returnIcon;
@@ -370,6 +435,7 @@ class AppColor {
     static whiteGreen = '#B6DE59';
     static transparentBlack = 'rgba(0, 0, 0, 0.5)';
     static transparentWhite = 'rgba(255, 255, 255, 0.5)';
+    static transparent = 'transparent';
     static tabletSize = 768;
 
     static weakShadow = `-webkit-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);

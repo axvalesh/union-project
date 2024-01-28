@@ -7,8 +7,9 @@ import AppColor from '@common/styles/variables-static';
 type UserTopPageInfoProps = {
     user: userModel;
     nodeAfter?: React.ReactNode;
+    settings?: boolean;
 }
-const UserTopPageInfo = ({user,nodeAfter}:UserTopPageInfoProps) => {
+const UserTopPageInfo = ({user,nodeAfter,settings}:UserTopPageInfoProps) => {
 
     return (
       <div className={styles.wrapper}>
@@ -18,9 +19,13 @@ const UserTopPageInfo = ({user,nodeAfter}:UserTopPageInfoProps) => {
                 <div className={styles.box}>
                     <AppColor.message fill={AppColor.text} height={'22px'}/>
                 </div>
-                <div className={styles.box}>
+                {!settings
+                ? <div className={styles.box}>
                     <AppColor.hearPlus fill={AppColor.text} height={'22px'}/>
-                </div>
+                 </div>
+                    : <div className={styles.box}>
+                        <AppColor.settings2 fill={AppColor.text} height={'22px'}/>
+                    </div>}
                 <div className={styles.box}>
                     <AppColor.threePoints fill={AppColor.text} height={'22px'}/>
                 </div>

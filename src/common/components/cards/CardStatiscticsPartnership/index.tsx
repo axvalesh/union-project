@@ -125,7 +125,7 @@ const CardStatisticPartnership = ({
                 />
             </div>
             <div className={styles.shell_bottom}>
-                <AppColor.hearPlus />
+                <AppColor.hearPlus fill={AppColor.text} />
                 <AppColor.notes />
                 <AppColor.hideEye />
             </div>

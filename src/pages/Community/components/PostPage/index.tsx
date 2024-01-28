@@ -361,7 +361,7 @@ const PostDetails = ({user,percentLike}:PostDetailsProps) => {
                         <AppColor.message />
                     </div>
                     <div className={styles.post_details_box}>
-                        <AppColor.hearPlus />
+                        <AppColor.hearPlus fill={AppColor.text} />
                     </div>
                     <div className={styles.post_details_box}>
                         <AppColor.threePoints />

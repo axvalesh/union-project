@@ -288,7 +288,7 @@ type ToolsItemProps = {
 type FreelancerCardProps = {
     user: userModel;
 }
-const FreelancerCard = ({user}: FreelancerCardProps) => {
+export const FreelancerCard = ({user}: FreelancerCardProps) => {
     return (
        <div style={{position: 'relative'}}>
          <span className={styles.shell_absolute}>

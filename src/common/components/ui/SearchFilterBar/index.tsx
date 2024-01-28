@@ -19,16 +19,16 @@ const SearchFilterBar = ({recent}:SearchFilterBarProps) => {
            <div className={styles.filters_wrapper}>
                <div className={styles.flex_item}>
                     <AppColor.filter />
-                    <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Filters</Typography>
+                    <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Filters</Typography>
                </div>
                {recent
                && <div className={styles.flex_item}>
                          <AppColor.recent />
-                         <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Most recent</Typography>
+                         <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Most recent</Typography>
                     </div>
                }
                <div className={styles.flex_item}>
-                    <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>12</Typography>
+                    <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>12</Typography>
                     <AppColor.chevronBottom fill={AppColor.transparentBlack}/>
                </div>
            </div>

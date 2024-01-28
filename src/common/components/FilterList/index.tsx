@@ -66,9 +66,16 @@ const FilterList = ({filters,callback,category=[],activeStartItem='All'}:FilterL
     )
 };
 
-export const FilterListBig = ({filters,callback,category=[]}:FilterListProps) => {
+type FilterListBigProps = {
+    category?: string[];
+    filters: string[];
+    callback?: (item:string) => void;
+    activeStartItem: string;
+    orangeText: string;
+}
+export const FilterListBig = ({filters,callback,category=[],activeStartItem,orangeText}:FilterListBigProps) => {
 
-    const [activeFilter,setActiveFilter] = useState('Related');
+    const [activeFilter,setActiveFilter] = useState(activeStartItem);
     const [currentCategory,setCurrentCategory] = useState(category[0]);
     function setActive(item:string) {
         if(callback != null) {
@@ -100,11 +107,11 @@ export const FilterListBig = ({filters,callback,category=[]}:FilterListProps) =>
                             }}>
                             <Typography
                                 fontWeight={
-                                    activeFilter == filter || index == filters.length -1 ? '500' : '400'
+                                    activeFilter == filter || filter == orangeText ? '500' : '400'
                                 }
                                 textTransform={activeFilter == filter ? 'uppercase' : 'none'}
                                 color={
-                                    index == filters.length-1 ? AppColor.orange : AppColor.text
+                                    filter == orangeText ? AppColor.orange : AppColor.text
                                 }
                                 variant={activeFilter == filter ? 'subtitle' : 'body4'}>
                                 {filter}

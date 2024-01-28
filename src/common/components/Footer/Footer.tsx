@@ -7,7 +7,15 @@ import instagram from '@assets/svg/instagram.svg';
 import twitter from '@assets/svg/twitter.svg';
 import facebook from '@assets/svg/facebook.svg';
 import telegram from '@assets/svg/telegram.svg';
+import AppColor from '@common/styles/variables-static';
 
+export const levelMap = {
+    1: <AppColor.oneOfFive />,
+    2: <AppColor.twoOFFive />,
+    3: <AppColor.threeOfFive />,
+    4: <AppColor.fourOfFive />,
+    5: <AppColor.fiveOfFive />
+}
 const Footer = () => {
 
     return (

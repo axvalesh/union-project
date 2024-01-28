@@ -1,0 +1,11 @@
+.buttons_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.button_item {
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+}

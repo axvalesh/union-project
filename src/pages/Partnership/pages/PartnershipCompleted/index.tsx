@@ -203,15 +203,15 @@ const PartnershipCompleted = () => {
     );
 };
 
-const TipsItem =() => {
-    const [activeTips,setActiveTips] = useState<string>('');
+export const TipsItem =() => {
+    const [activeTips,setActiveTips] = useState<string>('5');
     return (
        <div className={styles.tips_main_wrapper}>
             <div className={styles.tips_wrapper}>
                 <InputCommon
                     backgroundColor={AppColor.ligthWhite}
                     textAlingCenter={true}  
-                    callback={() => {}}
+                    callback={(item) => {setActiveTips(item)}}
                     placeholder='Enter Price Manually'
                     padding='13px 45px'
                     rightPadding={45}
@@ -231,7 +231,7 @@ const TipsItem =() => {
             <div className={styles.end_text_tips}>
                 <Typography variant='body4'>You can tip only once</Typography>
                 <DynamicPadding desktop='20px' mobile='10px' side='right'/>
-                <MyButtonOrange textTransform='uppercase' onClick={() => {}}>Tip $5 now</MyButtonOrange>
+                <MyButtonOrange textTransform='uppercase' onClick={() => {}}>Tip ${activeTips} now</MyButtonOrange>
             </div>
 
             <DynamicPadding/>

@@ -16,21 +16,30 @@ import Typography from '@common/components/ui/Typography/Typography'
 import MyCheckbox from '@common/components/ui/inputs/Checkbox/index'
 import { useState } from 'react'
 import UserAvatar from '@common/components/ui/UserAvatar/index'
+import SwitchButton from '@common/components/ui/SwitchButton/index'
+import SizeBox from '@common/components/ui/SizeBox/index'
 
 type CardManagerProps = {
     title: string
     user: userModel
     tags: string[]
-    programs: React.ReactNode
-    sales: React.ReactNode
-    leads: React.ReactNode
-    earned: React.ReactNode
+    programs?: React.ReactNode
+    sales?: React.ReactNode
+    leads?: React.ReactNode
+    earned?: React.ReactNode
+    details?: {node: React.ReactNode,title: string}[];
     position?: 'right' | 'center' | 'left'
     borderTopRadius?: string;
     disableAbsoluteItems?: boolean;
+    showCardManagerActions: boolean;
+    specificIconsEnd?: React.ReactNode[];
+    role?: string;
+    switchButton?: boolean;
+    links?: string[]
 }
 const CardManager = ({
     title,
+    role,
     user,
     tags,
     programs,
@@ -39,7 +48,12 @@ const CardManager = ({
     earned,
     position,
     borderTopRadius=null,
-    disableAbsoluteItems=false
+    disableAbsoluteItems=false,
+    showCardManagerActions,
+    specificIconsEnd,
+    switchButton,
+    links,
+    details
 }: CardManagerProps) => {
     const flagImage = useGetImage(`flags/${user.country}`, false)
     const [isSelected,setIsSelected] = useState(false);
@@ -60,7 +74,7 @@ const CardManager = ({
     console.log(position)
     return (
         <div className={styles.shell}>
-            {!disableAbsoluteItems && <div style={{display: isSelected ? 'flex' : 'none',...positionStyle}} className={styles.absolute_select}>
+            {!disableAbsoluteItems &&  showCardManagerActions && <div style={{display: isSelected ? 'flex' : 'none',...positionStyle}} className={styles.absolute_select}>
                 <div className={styles.gap_20}>
                     <Typography variant='body3' fontWeight='500'>Move</Typography>
                     <UserAvatar name={fakeUserConstant.name} active={true} 
@@ -91,7 +105,14 @@ const CardManager = ({
                 checkWidth='14px'    
               />
             </span>}
-            {!disableAbsoluteItems && <div className={styles.right_abolute}><AppColor.completed width={'15px'} height={'15px'}/></div>}
+            {!disableAbsoluteItems && 
+            <div className={styles.right_abolute}>
+                {switchButton && <SwitchButton startValue={true} height='22px' width='44px' bakcgroundColorActive={AppColor.text} activeIcon={<AppColor.freelancer width={'10px'} height={'12px'}/>} />}
+                <div className={styles.box_black}>
+                    
+                    <AppColor.completed width={'15px'} height={'15px'}/>
+                    </div>
+            </div>}
             <div
                 style={borderTopRadius != null ? {...topImageStyles,borderTopLeftRadius: borderTopRadius,borderTopRightRadius: borderTopRadius} : {...topImageStyles}}
                 className={styles.shell_top_image}>
@@ -114,7 +135,7 @@ const CardManager = ({
                             textLineHeight='1.2'
                             variant="body5"
                             color={AppColor.orange}>
-                            Manager 
+                            {role ?? 'Manager'} 
                         </Typography>
                     </div>
                 </div>
@@ -131,6 +152,11 @@ const CardManager = ({
                     />
                    
                 </div>
+                {links != null && <SizeBox height='15px'/>}
+                {links != null &&
+                <div className={styles.links_wrapper}>
+                    {links.map(item => <Typography textTransform='uppercase' color='white' variant='body5' fontWeight='500'>{item}</Typography>)}
+                </div>}
                 <div className={styles.tags_wrapper}>
                     {tags.map((tag) => (
                         <TagDisplay text={tag} />
@@ -138,7 +164,19 @@ const CardManager = ({
                 </div>
             </div>
             <div className={styles.shell_middle}>
-                <StatisticItem
+               {details != null 
+               ? <>
+                    {details.map(item =>
+                           <StatisticItem
+                           text={item.title}
+                           endNode={
+                               item.node
+                           }
+                       /> 
+                    )}
+                </>
+                : <>
+                     <StatisticItem
                     text="Programs"
                     endNode={
                         programs
@@ -165,11 +203,20 @@ const CardManager = ({
                       earned
                     }
                 />
+                </>}
             </div>
             <div className={styles.shell_bottom}>
-                <AppColor.speficChevronRight />
-                <AppColor.contractPartnership />
-                <AppColor.message fill={AppColor.text} />
+                {specificIconsEnd != null 
+                ? <>
+                    {...specificIconsEnd}
+                </>
+                : 
+                   <>
+                     <AppColor.speficChevronRight />
+                    <AppColor.contractPartnership />
+                    <AppColor.message fill={AppColor.text} />
+                   </>
+                }
             </div>
         </div>
     )

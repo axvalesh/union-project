@@ -25,7 +25,7 @@ const NavigationBarSelection = ({allItemsProgress,currentItemProgress}:Navigatio
                 <div className={styles.titles_wrapper + " " + styles.desktop}>
                     {allItemsProgress.map((item,index) =>
                         <Typography variant='body4'
-                        color={index == itemIndex ? AppColor.orange : index == itemIndex+1 ? 'white' : AppColor.transparentWhite}
+                        color={index == itemIndex ? 'white' : index < itemIndex ? AppColor.orange : AppColor.transparentWhite}
                         >{item}</Typography>    
                     )}
                 </div>

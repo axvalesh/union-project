@@ -10,9 +10,14 @@ type ReviewsProgramCardProps = {
     text: string;
     likes: string;
     money: string;
-    sales: string;
+    sales?: string;
+    afterPriceNode?: React.ReactNode;
+    images?: string[];
+    addInfo?: {text:string,icon:React.ReactNode,users: userModel[]}
 }
-const ReviewsProgramCard = ({text,user,likes,money,sales}:ReviewsProgramCardProps) => {
+const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,addInfo}:ReviewsProgramCardProps) => {
+
+    const imagesArray = addInfo != null ? addInfo.users.map(item => item.image) : null;
     return (
         <div className={styles.comment_wrapper}>
             <div className={styles.comment_user_info}>
@@ -26,10 +31,11 @@ const ReviewsProgramCard = ({text,user,likes,money,sales}:ReviewsProgramCardProp
                </div>
                <div className={styles.sales_text} style={{marginLeft: 'auto',display: 'flex',alignItems:'center',gap: '10px'}}>
                     <Typography variant='subtitle' fontWeight='500' textTransform='uppercase'>${money} </Typography>
-                    <div style={{display: 'flex',alignItems:'center',gap: '5px'}}>
+                    {sales != null && <div style={{display: 'flex',alignItems:'center',gap: '5px'}}>
                         <AppColor.walletIcon />
                         <Typography variant='body4'>{sales} sales </Typography>
-                    </div>
+                    </div>}
+                    {afterPriceNode}
                </div>
             </div>
 
@@ -37,8 +43,15 @@ const ReviewsProgramCard = ({text,user,likes,money,sales}:ReviewsProgramCardProp
                 {text}
             </Typography>
 
+            {images != null && <div className='gap_10'>{ images.map(item => <img style={{borderRadius: '20px'}} src={item} height={'33px'} />)}</div>}
+            {addInfo != null && 
+                <div className='gap_10'>
+                    {addInfo.icon}
+                    <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Musguard OMNI: Rollable Bicycle Mudguards</Typography>
+                    <ImagesArrayDisplay images={imagesArray} />
+                </div>}
             <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>   
-                <Typography variant='body4'>{likes}% users like this review </Typography>
+                <Typography color={parseInt(likes) < 50 ? AppColor.red :parseInt(likes) < 90 ? AppColor.orange : AppColor.green} variant='body4'>{likes}% users like this review </Typography>
                 <AppColor.like/>
                 <AppColor.dislike/>
             </div>
@@ -48,6 +61,26 @@ const ReviewsProgramCard = ({text,user,likes,money,sales}:ReviewsProgramCardProp
 }
 
 export default ReviewsProgramCard;
+
+const ImagesArrayDisplay = ({images}: {images:string[]}) => {
+    return (
+        <div className={styles.image_row}>
+            {images.length > 4 
+            ? <div>
+                <img src={images[0]} width={'22px'} height={'22px'} alt="" />
+                <img style={{left: `${(1*11)}px`,zIndex:'1'}} className={styles.absolute_image} src={images[0]} width={'22px'} height={'22px'} alt="" />
+                <img style={{left: `${(1*22)}px`,zIndex:'1'}} className={styles.absolute_image} src={images[0]} width={'22px'} height={'22px'} alt="" />
+                <div style={{left: `${(1*33)}px`,zIndex: '2'}} className={styles.images_length_show}>
+                    <Typography fontSizeStatic='10px' fontWeight='500'>+{images.length-3}</Typography>
+                </div>
+            </div>
+            : <div>
+                {images.map((item,index) => <img style={{marginLeft: `${-(index*22)}px`}} width={'22px'} height={'22px'} src={item}/>)}
+            </div>
+            }   
+        </div>
+    )
+}
 
 
 // import { userModel } from '@common/models/user';
