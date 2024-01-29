@@ -22,7 +22,7 @@
 .justify_flex {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -88,7 +88,19 @@ input[type=number] {
         }
     }
 }
+.card_center {
+    display: flex;
+    justify-content: center;
+}
+
 @media (min-width:$tabletSize) {
+    .justify_flex {
+        justify-content: space-between;
+    }
+    .flex_center {
+        justify-content: end;
+    }
+    
     .cards_wrapper {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 40px;

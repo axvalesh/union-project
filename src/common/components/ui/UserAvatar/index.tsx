@@ -2,6 +2,7 @@
 import AppColor from '@common/styles/variables-static';
 import Typography from '../Typography/Typography';
 import styles from './style.module.scss';
+import SizeBox from '../SizeBox';
 
 type UserAvatarProps = {
     url?: string;
@@ -16,26 +17,27 @@ type UserAvatarProps = {
     height?: string;
     activeAgo?: string;
     nodeAfterText?: React.ReactNode;
+    noWrap?: boolean
 }
 
 type UserAvatarVariants = "row" | "column" | "money"
 
 
-const UserAvatar = ({active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatar = ({noWrap,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
+            return <UserAvatarRow noWrap={noWrap} nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
-            return <UserAvatarColumn activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
+            return <UserAvatarColumn noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
-            return <UserAvatarMoney activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
+            return <UserAvatarMoney noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
         default:
             return null;
     }
 };
 
-const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
     
     const currentWidth = width != null ? width : '38px';
     const currentHeight = height != null ? height : '38px';
@@ -47,14 +49,15 @@ const UserAvatarRow = ({active,name,role,url,preventMobileNone,flag,height,width
                  : <AppColor.freelancer fill={AppColor.text} width={currentWidth} height={currentHeight} />}
                <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
            </div>
-           <div style={preventMobileNone ? { display: 'block' } : {}} className={styles.flex_wrapper}>
+           <div style={preventMobileNone ? { display: 'block',whiteSpace: noWrap ? 'nowrap' : 'pre-wrap' } : {}} className={styles.flex_wrapper}>
                 <Typography  variant='body5' fontWeight='500'>
                   {flag}  {name} {nodeAfterText}
                 </Typography>
-                <Typography color={AppColor.transparentBlack} fontWeight='400' variant='body5' textLineHeight='160%'>
+                <Typography color={AppColor.transparentBlack} fontWeight='400' variant='body5' textLineHeight='1'>
                     {activeAgo}
                 </Typography>
-                <Typography color={AppColor.orange} variant='body5' textLineHeight='120%'>
+                {role && <SizeBox height='5px'/>}
+                <Typography color={AppColor.orange} variant='body5' textLineHeight='1'>
                     {role}
                 </Typography>
            </div>

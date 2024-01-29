@@ -26,6 +26,7 @@ import Dropdown from '@common/components/ui/Dropdown/index';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
+import { links } from 'common/components/Header/components/MenuLinks/content';
 
 const Program = () => {
     const [showAllDetailsRight,setShowAllDetailsRight] = useState(false);
@@ -287,25 +288,30 @@ type ToolsItemProps = {
 }
 type FreelancerCardProps = {
     user: userModel;
+    type?: string;
+    links?: string[];
+    disableFirstTwo?: boolean
 }
-export const FreelancerCard = ({user}: FreelancerCardProps) => {
+export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCardProps) => {
     return (
        <div style={{position: 'relative'}}>
          <span className={styles.shell_absolute}>
                     <CardTypeDisplay
                         textColor={AppColor.white}
-                        text="Business"
+                        text={type ?? "Business"}
                         backgroundColor={AppColor.text}
                     />
                 </span>
     
                 <div className={styles.shell_absolute_right}>
+                   {!disableFirstTwo && <>
                     <div className={styles.absolute_black}>
                         <AppColor.checkedFile width={'13px'}/>
                     </div>
                     <div className={styles.absolute_black}>
                         <AppColor.subscriptionsWhite width={'13px'}/>
                     </div>
+                   </>}
                     <div className={styles.absolute_black}>
                         <AppColor.completed width={'13px'}/>
                     </div>
@@ -334,11 +340,15 @@ export const FreelancerCard = ({user}: FreelancerCardProps) => {
                         </div>
                         <DynamicPadding desktop='20px' mobile='15px'/>
                         <div className={styles.freelancer_links}>
-                            <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>ACCOUNT</Typography>
+                            {links 
+                            ? links.map(item => <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>)
+                            : <>
+                                <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>ACCOUNT</Typography>
                             <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>Stats</Typography>
                             <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>services</Typography>
                             <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>portfolio</Typography>
                             <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>Reviews</Typography>
+                            </>}
                         </div>
                     </div>
                 </div>

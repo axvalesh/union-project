@@ -6,8 +6,9 @@ import InputCommon from '../inputs/InputCommon';
 
 type SearchFilterBarProps = {
      recent?: boolean;
+     date?: string;
 }
-const SearchFilterBar = ({recent}:SearchFilterBarProps) => {
+const SearchFilterBar = ({recent,date}:SearchFilterBarProps) => {
 
     return (
       <div className={styles.wrapper}>
@@ -17,18 +18,23 @@ const SearchFilterBar = ({recent}:SearchFilterBarProps) => {
            />
 
            <div className={styles.filters_wrapper}>
+           {date && <div className={styles.flex_item}>
+                         <AppColor.calendar />
+                         <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>{date}</Typography>
+                    </div>}
                <div className={styles.flex_item}>
                     <AppColor.filter />
-                    <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Filters</Typography>
+                    <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Filters</Typography>
                </div>
                {recent
                && <div className={styles.flex_item}>
                          <AppColor.recent />
-                         <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Most recent</Typography>
+                         <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Most recent</Typography>
                     </div>
                }
+              
                <div className={styles.flex_item}>
-                    <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>12</Typography>
+                    <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>12</Typography>
                     <AppColor.chevronBottom fill={AppColor.transparentBlack}/>
                </div>
            </div>

@@ -1,0 +1,13 @@
+.sponsors_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+@media (min-width:$tabletSize) {
+    .sponsors_wrapper {
+        flex-direction: row;
+    }
+}

@@ -229,8 +229,22 @@ import { ReactComponent as ul} from '@assets/svg/ul.svg';
 import { ReactComponent as pin} from '@assets/svg/pin.svg';
 import { ReactComponent as image} from '@assets/svg/image.svg';
 import { ReactComponent as lock} from '@assets/svg/lock.svg';
+import { ReactComponent as upCirlcle} from '@assets/svg/up-circle.svg';
+import { ReactComponent as attention} from '@assets/svg/attention.svg';
+import { ReactComponent as noteCard} from '@assets/svg/note-card.svg';
+import { ReactComponent as goal} from '@assets/svg/goal.svg';
+import { ReactComponent as eye} from '@assets/svg/eye.svg';
+import { ReactComponent as earchSecondVariant} from '@assets/svg/earth-second-variant.svg';
+import { ReactComponent as layers} from '@assets/svg/layers.svg';
 
 class AppColor {
+    static earchSecondVariant = earchSecondVariant;
+    static layers = layers;  
+    static eye = eye;
+    static goal = goal;
+    static noteCard = noteCard;
+    static attention = attention;
+    static upCirlcle = upCirlcle;
     static lock = lock;
     static textAlingleft = textAlingleft;
     static bold = bold;

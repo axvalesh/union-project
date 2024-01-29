@@ -13,14 +13,23 @@ import PercentBar from '@common/components/ui/PercentBar/PercentBar'
 import { formatNumberWithSpaces } from '@common/helpers/stringFunctions'
 import DaysLeftTimer from '@common/components/ui/DaysLeftTimer/DaysLeftTimer'
 import CardTypeDisplay from '../CardTypeDisplay/CardTypeDisplay'
+import Urgent from '../../ui/Urgent'
+import { CSSProperties } from 'react';
 type CardStatisticPartnershipProps = {
     title: string
     user: userModel
     tags: string[]
-    rate: React.ReactNode
-    EPC: React.ReactNode
-    CR: React.ReactNode
-    CR48hours: React.ReactNode
+    rate?: React.ReactNode
+    EPC?: React.ReactNode
+    details?: {node: React.ReactNode,title: string}[];
+    CR?: React.ReactNode
+    CR48hours?: React.ReactNode
+    dateAgo?: string;
+    isUrgent?: boolean;
+    cardType?: string;
+    iconsAbsolute?: React.ReactNode;
+    textTransform?: CSSProperties['textTransform'];
+    typeColor?: string;
 }
 const CardStatisticPartnership = ({
     title,
@@ -30,6 +39,13 @@ const CardStatisticPartnership = ({
     EPC,
     CR,
     CR48hours,
+    details,
+    dateAgo,
+    isUrgent,
+    cardType,
+    typeColor,
+    textTransform,
+    iconsAbsolute
 }: CardStatisticPartnershipProps) => {
     const flagImage = useGetImage(`flags/${user.country}`, false)
 
@@ -46,12 +62,13 @@ const CardStatisticPartnership = ({
         <div className={styles.shell}>
             <span className={styles.shell_absolute}>
                 <CardTypeDisplay
-                    textColor={AppColor.white}
-                    text="Business"
+                    textTransform={textTransform}
+                    textColor={typeColor??AppColor.white}
+                    text={cardType ?? "Business"}
                     backgroundColor={AppColor.text}
                 />
             </span>
-            <div className={styles.right_abolute}><AppColor.refresh/></div>
+            <div className={styles.right_abolute}>{iconsAbsolute ?? <AppColor.refresh/>}</div>
             <div
                 style={topImageStyles}
                 className={styles.shell_top_image}>
@@ -75,7 +92,10 @@ const CardStatisticPartnership = ({
                     </div>
                 </div>
                 <div className={styles.content_top_second}>
-                    <SvgText
+                   {dateAgo != null
+                   ? <Typography variant='body5' color='white'>{dateAgo}</Typography>
+                    : <>
+                         <SvgText
                         nodeImg={<AppColor.handshake/>}
                         text={`${user.statistic.sponsorship_count}`}
                     />
@@ -87,6 +107,8 @@ const CardStatisticPartnership = ({
                         img={icon_star}
                         text={`${user.statistic.rating}%`}
                     />
+                    </>}
+                    {isUrgent && <Urgent />}
                    
                 </div>
                 <div className={styles.tags_wrapper}>
@@ -96,7 +118,20 @@ const CardStatisticPartnership = ({
                 </div>
             </div>
             <div className={styles.shell_middle}>
-                <StatisticItem
+            {details != null 
+               ? <>
+                    {details.map(item =>
+                           <StatisticItem
+                           text={item.title}
+                           endNode={
+                               item.node
+                           }
+                       /> 
+                    )}
+                </>
+                : 
+                <>
+                    <StatisticItem
                     text="Rate"
                     endNode={
                         rate
@@ -121,8 +156,9 @@ const CardStatisticPartnership = ({
                     text="CR for 48 hours"
                     endNode={
                       CR48hours
-                    }
-                />
+                }/>
+                </>}
+                
             </div>
             <div className={styles.shell_bottom}>
                 <AppColor.hearPlus fill={AppColor.text} />

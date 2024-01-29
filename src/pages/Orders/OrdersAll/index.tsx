@@ -28,6 +28,13 @@ import minimalist from '@assets/images/minimalist.png';
 import mascot from '@assets/images/mascot.png';
 import freestyle from '@assets/images/freestyle.png';
 import threeD from '@assets/images/threeD.png';
+import InfoBox from '@common/components/ui/InfoBox/index';
+import SizeBox from '@common/components/ui/SizeBox/index';
+import PercentBar from '@common/components/ui/PercentBar/PercentBar';
+import CardManager from '@common/components/cards/CardStatiscticsPartnership/variants/CardManager/index';
+import { fakeUserConstant } from '@common/models/user';
+import CardStatisticPartnership from '@common/components/cards/CardStatiscticsPartnership/index';
+import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 const OrdersAll = () => {
     const { width, height } = useScreenSize()
     const [tags, setTags] = useState<string[]>([])
@@ -72,6 +79,9 @@ const OrdersAll = () => {
         setRemovedTagFromSideBar(passedText);
       
     }
+
+
+    const [showModalSideBar,setShowModalSideBar] = useState(false);
     return (
         <div>
             <Header />
@@ -200,12 +210,28 @@ const OrdersAll = () => {
                 <DynamicPadding />
 
                 <ResponsiveLayoutTwo
+                    callbackModal={(item) => {setShowModalSideBar(item)}}
+                    item1ToAModalLeftMobile={true}
+                    showModal={showModalSideBar}
                     gap='80px'
                     item1MaxWidth='290px'
                     item2MaxWidth='830px'
-                    item1={
+                    item0MobileWhenModal={
                         <div style={{width: '100%'}}>
-                            
+                            <div className="flex_space_between">
+                                <Typography variant='body4'><span style={{fontWeight: '500'}}>Replenishment</span> Fab 27</Typography>
+                                <InfoBox />
+                            </div>
+                            <SizeBox height='12px'/>
+                            <PercentBar currentPercent={50} height='5px' />
+                            <SizeBox height='12px'/>
+                            <div className="flex_space_between">
+                               <div className='gap_5'>
+                                    <Typography variant='body4'>Bids</Typography>
+                                    <AppColor.upCirlcle />
+                               </div>
+                               <Typography variant='body4' fontWeight='500' color={AppColor.orange}>10/20</Typography>
+                            </div>
                             <DynamicPadding desktop='30px' mobile='15px'/>
                             <div className={styles.justify_flex}>
                                 <Typography
@@ -217,7 +243,59 @@ const OrdersAll = () => {
                                 </Typography>
                                 <AppColor.template />
                             </div>
+
                             <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <InputCommon 
+                                placeholder='Search'
+                                callback={() => {}}
+                            />
+                             <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                        </div>
+                    }
+                    item1={
+                        <div style={{width: '100%'}}>
+                            <div className="flex_space_between">
+                                <Typography variant='body4'><span style={{fontWeight: '500'}}>Replenishment</span> Fab 27</Typography>
+                                <InfoBox />
+                            </div>
+                            <SizeBox height='12px'/>
+                            <PercentBar currentPercent={50} height='5px' />
+                            <SizeBox height='12px'/>
+                            <div className="flex_space_between">
+                               <div className='gap_5'>
+                                    <Typography variant='body4'>Bids</Typography>
+                                    <AppColor.upCirlcle />
+                               </div>
+                               <Typography variant='body4' fontWeight='500' color={AppColor.orange}>10/20</Typography>
+                            </div>
+                            <DynamicPadding desktop='30px' mobile='15px'/>
+                            <div className={styles.justify_flex}>
+                                <Typography
+                                    variant="body4"
+                                    color={AppColor.transparentBlack}
+                                    textTransform='uppercase'
+                                    >
+                                    My filter templates
+                                </Typography>
+                                <AppColor.template />
+                            </div>
+                            
+
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <InputCommon 
+                                placeholder='Search'
+                                callback={() => {}}
+                            />
+                             <DynamicPadding
                                 desktop="30px"
                                 mobile="15px"
                             />
@@ -384,6 +462,7 @@ const OrdersAll = () => {
                                         count: 500,
                                         icon: (
                                             <AppColor.code
+                                                fill={AppColor.text}
                                                 width={'20px'}
                                                 height={'20px'}
                                             />
@@ -525,21 +604,35 @@ const OrdersAll = () => {
                     item2={
                         <div style={{width: '100%'}}>
                              <div className={styles.justify_flex}>
-                            <Typography variant="body4">
-                                11 841 programs
-                            </Typography>
+                                <div className='desktop'>
+                                <Typography variant="body4">
+                                    11 841 programs
+                                </Typography>
+                            </div>
                             <div className={styles.flex_center}>
-                                <div className={styles.gap_5}>
-                                    <AppColor.relevant />
-                                    <Typography
-                                        variant="body4"
-                                        fontWeight="500"
-                                        color={
-                                            AppColor.transparentBlack
-                                        }
-                                        textTransform="uppercase">
-                                        Relevant
-                                    </Typography>
+                                <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
+                                        <AppColor.filter />
+                                        <Typography
+                                            variant="body4"
+                                            fontWeight="500"
+                                            color={
+                                                AppColor.transparentBlack
+                                            }
+                                            textTransform="uppercase">
+                                            Filters
+                                        </Typography>
+                                </div>
+                                    <div className={'gap_5'}>
+                                        <AppColor.relevant />
+                                        <Typography
+                                            variant="body4"
+                                            fontWeight="500"
+                                            color={
+                                                AppColor.transparentBlack
+                                            }
+                                            textTransform="uppercase">
+                                            Relevant
+                                        </Typography>
                                 </div>
                                 <div>
                                     <AppColor.chevronBottom
@@ -551,8 +644,45 @@ const OrdersAll = () => {
                         <DynamicPadding />
 
                         <div className={styles.cards_wrapper}>
-                            {itemsToshow.map((item) => (
-                                <CardStatisticsParthnershipConstant />
+                            {itemsToshow.map((item,index) => (
+                               <div className={styles.card_center}>
+                                    <CardStatisticPartnership
+                                    typeColor='white'
+                                    textTransform='uppercase'
+                                    iconsAbsolute={<AppColor.noteCard fill='white'/>}
+                                    cardType='Logo design'
+                                    isUrgent={index % 2 == 0}
+                                    dateAgo='2 days 35 min'
+                                    details={[
+                                        {
+                                            title: 'Price',
+                                            node: <div className='gap_5'><AppColor.fourOfFive />
+                                                <Typography textLineHeight='1' variant='body5' fontWeight='500'>
+                                                    $5K-6K
+                                                </Typography>
+                                                <AppColor.puzle />
+                                            </div>
+                                        },
+                                        {
+                                            title: 'Delivery',
+                                            node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>need offer</Typography>
+                                        },
+                                        {
+                                            title: 'Delivery',
+                                            node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>1 of 2</Typography>
+                                        },
+                                        {
+                                            title: 'Bids',
+                                            node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>35</Typography>
+                                        }
+                                    ]}
+                                    tags={['Logo', 'Logo Design', 'Logo Maker']}
+                                    title='Logo by sample in vector in maximum quality'
+                                    user={fakeUserConstant}
+    
+                                    
+                                    />
+                               </div>
                             ))}
                         </div>
                         <DynamicPadding

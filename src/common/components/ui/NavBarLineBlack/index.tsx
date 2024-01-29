@@ -17,32 +17,34 @@ const NavBarLineBlack = ({callback,maxCountPage}: {callback: (item:number) => vo
   
     for (let i = startIdx; i <= endIdx; i++) {
       numberBoxes.push(
-          <div
-              onClick={() => {
-                  if(i <= maxCountPage) {
-                    setCurrentPage(i)
-                  }
-              }}
-              key={i}
-              className={styles.box}
-              style={i == startIdx ? {opacity: 1} : {}}>
-              <Typography
-                  variant="body4"
-                  >
-                  {i}
-              </Typography>
-          </div>
+          i < maxCountPage
+          ? <div
+          onClick={() => {
+              if(i <= maxCountPage) {
+                setCurrentPage(i)
+              }
+          }}
+          key={i}
+          className={styles.box}
+          style={i == currentPage ? {opacity: 1} : {}}>
+          <Typography
+              variant="body4"
+              >
+              {i}
+          </Typography>
+      </div>
+      : <></>
       )
     }
     numberBoxes.push(
-        <div className={styles.box}>...</div>,
-        <div onClick={() => {
-            if(currentPage+30 < maxCountPage) {
-                setCurrentPage(currentPage+30)
-              }
-        }} className={styles.box}>
-            <Typography variant="body4">{currentPage+30}</Typography>
-        </div>
+        currentPage + 30 < maxCountPage && <div className={styles.box}>...</div>,
+        currentPage + 30 < maxCountPage && <div onClick={() => {
+          if(currentPage+30 < maxCountPage) {
+              setCurrentPage(currentPage+30)
+            }
+      }} className={styles.box}>
+          <Typography variant="body4">{currentPage+30}</Typography>
+      </div>
     )
   
     function prevFunction() {

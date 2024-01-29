@@ -39,6 +39,8 @@ import ServiceNegotiationCustomer from './pages/Service/ServiceNegotiationCustom
 import ServiceProgress from './pages/Service/ServiceProgress'
 import ServiceCompleted from './pages/Service/ServiceCompleted'
 import OrdersAll from './pages/Orders/OrdersAll'
+import OrdersMy from './pages/Orders/OrdersMy'
+import OrdersOrder from './pages/Orders/OrdersOrder'
 
 function App() {
    
@@ -97,7 +99,8 @@ function App() {
             <Route path="/service/completed" element={<ServiceCompleted />} />
 
             <Route path="/orders/all" element={<OrdersAll />} />
-
+            <Route path="/orders/myorders" element={<OrdersMy />} />
+            <Route path="/orders/order" element={<OrdersOrder />} />
          </Routes>
       </Router>
    </div>

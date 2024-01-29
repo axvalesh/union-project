@@ -5,10 +5,10 @@ import { useScreenSize } from '@common/helpers/useScreenSize';
 
 type SliderByRefProps = {
   nodes: React.ReactNode[];
-  endToFrontIndex: number;
+  endToFrontIndex?: number;
 };
 
-const SliderByRef = ({ nodes,endToFrontIndex }: SliderByRefProps) => {
+const SliderByRef = ({ nodes, }: SliderByRefProps) => {
   const { width, height } = useScreenSize();
   const gap = width < 769 ? 5 : 10;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,7 +16,6 @@ const SliderByRef = ({ nodes,endToFrontIndex }: SliderByRefProps) => {
   const currentItemRef = useRef<HTMLDivElement | null>(null);
   const previousItemRef = useRef<HTMLDivElement | null>(null);
   const totalRef = useRef<HTMLDivElement | null>(null);
-  const stayAtRef = useRef<HTMLDivElement | null>(null);
   const [nodesShow,setNodesShow] = useState<React.ReactNode[]>(nodes);
 
   function handleMoveOn() {
@@ -57,7 +56,7 @@ const SliderByRef = ({ nodes,endToFrontIndex }: SliderByRefProps) => {
             {nodesShow.map((node, index) => (
               <div
                 key={index}
-                ref={index === currentIndex ? currentItemRef : index === currentIndex-1 ? previousItemRef : index == endToFrontIndex ? stayAtRef : null}
+                ref={index === currentIndex ? currentItemRef : index === currentIndex-1 ? previousItemRef : null}
               >
                 {node}
               </div>

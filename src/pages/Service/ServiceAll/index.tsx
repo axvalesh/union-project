@@ -115,7 +115,7 @@ const ServiceAll = () => {
 
                 <DynamicPadding />
                 <SliderByRef
-                    endToFrontIndex={4}
+            
                     nodes={[
                         <SliderItem
                             icon={<img src={minimalist}  height={'30px'}/>}
