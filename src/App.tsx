@@ -41,6 +41,16 @@ import ServiceCompleted from './pages/Service/ServiceCompleted'
 import OrdersAll from './pages/Orders/OrdersAll'
 import OrdersMy from './pages/Orders/OrdersMy'
 import OrdersOrder from './pages/Orders/OrdersOrder'
+import OrdersSelection from './pages/Orders/OrdersSelection'
+import OrdersNegotiation from './pages/Orders/OrdersNegotiation'
+import OrdersProgress from './pages/Orders/OrdersProgress'
+import OrdersCompleted from './pages/Orders/OrdersCompleted'
+import CrowdfreelanceAll from './pages/Crowdfreelance/CrowdfreelanceAll'
+import CrowdfreelanceMy from './pages/Crowdfreelance/CrowdfreelanceMy'
+import CrowdfreelanceCustomer from './pages/Crowdfreelance/CrowdfreelanceCustomer'
+import CrowdfreelanceProgress from './pages/Crowdfreelance/CrowdfreelanceProgress'
+import CrowdfreelanceCompleted from './pages/Crowdfreelance/CrowdfreelanceCompleted'
+import UsersAll from './pages/Users/UsersAll'
 
 function App() {
    
@@ -101,6 +111,18 @@ function App() {
             <Route path="/orders/all" element={<OrdersAll />} />
             <Route path="/orders/myorders" element={<OrdersMy />} />
             <Route path="/orders/order" element={<OrdersOrder />} />
+            <Route path="/orders/selection" element={<OrdersSelection />} />
+            <Route path="/orders/negotiation" element={<OrdersNegotiation />} />
+            <Route path="/orders/progress" element={<OrdersProgress />} />
+            <Route path="/orders/completed" element={<OrdersCompleted />} />
+
+            <Route path="/crowdfreelance/all" element={<CrowdfreelanceAll />} />
+            <Route path="/crowdfreelance/my" element={<CrowdfreelanceMy />} />
+            <Route path="/crowdfreelance/customer" element={<CrowdfreelanceCustomer />} />
+            <Route path="/crowdfreelance/progress" element={<CrowdfreelanceProgress />} /> {/* is in process */}
+            <Route path="/crowdfreelance/completed" element={<CrowdfreelanceCompleted />} />
+
+            <Route path="/users/all" element={<UsersAll />} />
          </Routes>
       </Router>
    </div>

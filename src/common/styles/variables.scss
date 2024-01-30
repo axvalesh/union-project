@@ -125,6 +125,11 @@ $grey: #A8A8AD;
 .transition {
   transition: all 0.3s ease;
 }
+.center_card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @media (min-width:$tabletSize) {
   .gap_5_wrap {
     justify-content: start;

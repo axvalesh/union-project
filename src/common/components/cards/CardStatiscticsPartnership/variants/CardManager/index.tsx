@@ -35,10 +35,13 @@ type CardManagerProps = {
     specificIconsEnd?: React.ReactNode[];
     role?: string;
     switchButton?: boolean;
-    links?: string[]
+    links?: string[];
+    nodeAfterDetails?: React.ReactNode;
+    absoluteIcons?: React.ReactNode[];
 }
 const CardManager = ({
     title,
+    nodeAfterDetails,
     role,
     user,
     tags,
@@ -52,6 +55,7 @@ const CardManager = ({
     showCardManagerActions,
     specificIconsEnd,
     switchButton,
+    absoluteIcons,
     links,
     details
 }: CardManagerProps) => {
@@ -108,10 +112,16 @@ const CardManager = ({
             {!disableAbsoluteItems && 
             <div className={styles.right_abolute}>
                 {switchButton && <SwitchButton startValue={true} height='22px' width='44px' bakcgroundColorActive={AppColor.text} activeIcon={<AppColor.freelancer width={'10px'} height={'12px'}/>} />}
-                <div className={styles.box_black}>
-                    
-                    <AppColor.completed width={'15px'} height={'15px'}/>
-                    </div>
+                {absoluteIcons
+                ? absoluteIcons.map((item,index) =>
+                    <div className={styles.box_black}> 
+                    {item}
+                    </div>    
+                )
+                :  <div className={styles.box_black}> 
+                <AppColor.completed width={'15px'} height={'15px'}/>
+                </div>}
+
             </div>}
             <div
                 style={borderTopRadius != null ? {...topImageStyles,borderTopLeftRadius: borderTopRadius,borderTopRightRadius: borderTopRadius} : {...topImageStyles}}
@@ -174,6 +184,7 @@ const CardManager = ({
                            }
                        /> 
                     )}
+                    {nodeAfterDetails}
                 </>
                 : <>
                      <StatisticItem

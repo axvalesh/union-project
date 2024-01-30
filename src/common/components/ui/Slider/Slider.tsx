@@ -77,7 +77,7 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddin
     const dots = Array.from({ length: elementsCount}, (_, index) => index);
 
     return (
-        <div style={{ maxWidth: maxWidth + 20}} className={styles.shell}>
+        <div className={styles.shell}>
             <div
                 onMouseDown={handleDragStart}
                 onTouchStart={handleDragStart}

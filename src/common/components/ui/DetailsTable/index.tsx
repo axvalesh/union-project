@@ -20,6 +20,7 @@ type DetailsTableProps = {
   dropdownNode?: React.ReactNode;
   removeNavBar?: boolean;
   removeThreeLines?: boolean;
+  projectsCount?: string;
 }
 
 type DetailsTableItem = {
@@ -27,7 +28,7 @@ type DetailsTableItem = {
   child: React.ReactNode;
   maxWidth?: string;
 }
-const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
+const DetailsTable = ({details,page,projectsCount,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
 
     const [currentFilter,setCurrentFilter] = useState('All');
     const {width,height} = useScreenSize();
@@ -169,6 +170,12 @@ const DetailsTable = ({details,page,filters,callbackNav,showUsers,users,maxWidth
                 <NavBarLine maxCountPage={11841} callback={(item) => {callbackNav(item)}} />
               </div>
               </>
+              }
+              {projectsCount && <DynamicPadding mobile='20px' desktop='20px' />}
+              {projectsCount &&
+                 <Typography variant='body4'>
+                 {projectsCount} {parseInt(projectsCount) > 1 ? 'projects' : 'project'}
+               </Typography>
               }
       </div>
     );

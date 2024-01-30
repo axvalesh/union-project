@@ -22,6 +22,7 @@ const SliderItem = ({icon,text,onClick,removedTag,tags}:SliderItemProps) => {
     }
 
     useEffect(() => {
+        console.log('update')
         if(removedTag == text) {
           setIsSelected(false);
         }

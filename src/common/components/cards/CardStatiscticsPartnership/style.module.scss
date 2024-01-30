@@ -7,6 +7,12 @@
     position: relative;
 }
 
+.links_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
 .right_abolute {
     position: absolute;
     top: 0;

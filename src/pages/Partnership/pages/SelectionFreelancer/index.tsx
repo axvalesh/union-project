@@ -239,7 +239,7 @@ type SelectionItemProps = {
     onClick: (item:string) => void;
     activeItem: string;
 }
-const SelectionItem = ({icon,text,color,count,onClick,activeItem   }:SelectionItemProps) => {
+export const SelectionItem = ({icon,text,color,count,onClick,activeItem   }:SelectionItemProps) => {
     return (
         <div style={{backgroundColor: activeItem == text ? AppColor.white : 'white',opacity: parseInt(count) != 0 ? 1 : 0.35}} onClick={() => {onClick(text)}} className={styles.selection_item}>
             {icon}

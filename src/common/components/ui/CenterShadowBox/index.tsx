@@ -14,7 +14,7 @@ const CenterShadowBox = ({elements,gap,paddingBoxDesktop,absoluteItem,paddingBox
         '--gap': gap,
         '--paddingMobile': paddingBoxMobile ?? paddingBoxDesktop,
         '--paddoingDesktop': paddingBoxDesktop,
-        '--align': align as string | 'center',
+        '--align': align as string ?? 'center',
         border: 'none'
     }
     return (

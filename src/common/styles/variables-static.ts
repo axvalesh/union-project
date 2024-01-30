@@ -236,8 +236,18 @@ import { ReactComponent as goal} from '@assets/svg/goal.svg';
 import { ReactComponent as eye} from '@assets/svg/eye.svg';
 import { ReactComponent as earchSecondVariant} from '@assets/svg/earth-second-variant.svg';
 import { ReactComponent as layers} from '@assets/svg/layers.svg';
+import { ReactComponent as managerSettings} from '@assets/svg/managerSettingsWhite.svg';
+import { ReactComponent as noteCompleted} from '@assets/svg/note-completed.svg';
+import { ReactComponent as caseWhiteOrange} from '@assets/svg/case-small-whiteorange.svg';
+import { ReactComponent as rewardBox} from '@assets/svg/rewardBox.svg';
+import { ReactComponent as filePdf} from '@assets/svg/file-pdf.svg';
 
 class AppColor {
+    static filePdf = filePdf;
+    static rewardBox = rewardBox;
+    static caseWhiteOrange = caseWhiteOrange;
+    static managerSettings = managerSettings;
+    static noteCompleted = noteCompleted;
     static earchSecondVariant = earchSecondVariant;
     static layers = layers;  
     static eye = eye;

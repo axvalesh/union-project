@@ -13,7 +13,12 @@ const NavigationItem = ({image,textList}:NavigationItemProps) => {
     return (
      <div className={styles.nav_wrapper} style={{overflow: 'hidden',width:'100%'}}>
         <div style={{display: 'flex'}} className={styles.wrapper}>
-            {image}
+            <div className={textList.length > 2 && 'desktop'}>
+                {image}
+            </div>
+            <div className={`${textList.length > 2 ? styles.dots_not_remove : styles.dots_remove} ${styles.dots}`}>
+                <AppColor.threePoints />
+            </div>
             <SizeBox width='15px' />
             <AppColor.chevronRight height={'12px'} fill={AppColor.transparentBlack}  />
             <SizeBox width='15px' />

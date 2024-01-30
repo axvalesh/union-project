@@ -221,7 +221,7 @@ type CategorySelectProps = {
   activeCategory?: string;
   callbackCategory?: (item:string) => void;
 }
-const CategorySelect = ({count,icon,title,children,activeCategory,callbackCategory}:CategorySelectProps) => {
+export const CategorySelect = ({count,icon,title,children,activeCategory,callbackCategory}:CategorySelectProps) => {
   const [selectedChild,setSelectedChild] = useState('');
   
   useEffect(() => {

@@ -1,5 +1,5 @@
 
-import { userModel } from '@common/models/user';
+import { fakeUserConstant, userModel } from '@common/models/user';
 import styles from './style.module.scss';
 import UserAvatar from '../UserAvatar';
 import AppColor from '@common/styles/variables-static';
@@ -13,7 +13,7 @@ const UserTopPageInfo = ({user,nodeAfter,settings}:UserTopPageInfoProps) => {
 
     return (
       <div className={styles.wrapper}>
-           <UserAvatar preventMobileNone={true} name={user.name} flag={<AppColor.UkraineFlag/>} role='Freelancer' active={true}/>
+           <UserAvatar url={fakeUserConstant.image} preventMobileNone={true} name={user.name} flag={<AppColor.UkraineFlag/>} role='Freelancer' active={true}/>
 
            <div style={{display: 'flex',alignItems: 'center', gap:'10px'}}>
                 <div className={styles.box}>

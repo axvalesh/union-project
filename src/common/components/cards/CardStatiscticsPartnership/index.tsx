@@ -30,11 +30,13 @@ type CardStatisticPartnershipProps = {
     iconsAbsolute?: React.ReactNode;
     textTransform?: CSSProperties['textTransform'];
     typeColor?: string;
+    links?: string[];
 }
 const CardStatisticPartnership = ({
     title,
     user,
     tags,
+    links,
     rate,
     EPC,
     CR,
@@ -111,6 +113,9 @@ const CardStatisticPartnership = ({
                     {isUrgent && <Urgent />}
                    
                 </div>
+                {links && <div className={styles.links_wrapper}>
+                    {links.map(item => <Typography color='white' textTransform='uppercase' variant='body5' fontWeight='500'>{item}</Typography>)}
+                    </div>}
                 <div className={styles.tags_wrapper}>
                     {tags.map((tag) => (
                         <TagDisplay text={tag} />

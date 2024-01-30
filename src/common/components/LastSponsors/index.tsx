@@ -6,6 +6,7 @@ import InfoBox from '../ui/InfoBox';
 import SliderByRef from '../ui/SliderByRef';
 import UserAvatar from '../ui/UserAvatar';
 import { fakeUserConstant } from '@common/models/user';
+import Slider from '../ui/Slider/Slider';
 
 const LastSponsors = () => {
 
@@ -17,24 +18,20 @@ const LastSponsors = () => {
                </Typography>
                <InfoBox />
            </div>
-           <div style={{width: '100%'}}>
-               <SliderByRef
-                    nodes={[
-                        SliderItemCurrent,
-                        SliderItemCurrent,
-                        SliderItemCurrent,
-                        SliderItemCurrent,
-                        SliderItemCurrent,
-                        SliderItemCurrent,
-                        SliderItemCurrent,
-                        
-                    ]}
-               />
+           <div >
+               <Slider elementsCount={6} gap={10} itemWidth={130} maxWidth={600} swiper={true}>
+                    {SliderItemCurrent}
+                    {SliderItemCurrent}
+                    {SliderItemCurrent}
+                    {SliderItemCurrent}
+                    {SliderItemCurrent}
+                    {SliderItemCurrent}
+               </Slider>
            </div>
       </div>
     );
 };
 
-const SliderItemCurrent =<div> <UserAvatar noWrap={true} preventMobileNone={true} active={true} name='Artem M.' role='$4 305' flag={<AppColor.UkraineFlag/>} url={fakeUserConstant.image}/></div>
+const SliderItemCurrent =<div className={styles.user_wrapper_flex}> <UserAvatar noWrap={true} preventMobileNone={true} active={true} name='Artem M.' role='$4 305' flag={<AppColor.UkraineFlag/>} url={fakeUserConstant.image}/></div>
 
 export default LastSponsors;

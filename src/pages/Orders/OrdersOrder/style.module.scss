@@ -11,3 +11,12 @@
     background-color: $text;
     width: fit-content;
 }
+
+.text_dotted_wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.user_wrappper {
+    padding: 11px 14px;
+}

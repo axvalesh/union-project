@@ -18,6 +18,14 @@ import { FreelancerCard } from '@pages/Partnership/pages/Program/index';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 import Dropdown from '@common/components/ui/Dropdown/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
+import UserAvatar from '@common/components/ui/UserAvatar/index';
+import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import PercentBar from '@common/components/ui/PercentBar/PercentBar';
+import TextDotted from '@common/components/ui/TextDotted/index';
+import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer/index';
+import CenterShadowBox from '@common/components/ui/CenterShadowBox/index';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
+import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange';
 
 const OrdersOrder = () => {
     const arrayHistory = ['Order', 'Development ', 'Web Development', 'WordPress'] 
@@ -41,6 +49,13 @@ const OrdersOrder = () => {
                     />
                 }
                 pageTitle={title}
+                endNode={
+                    <MyButtonTransparentOrange
+                     textTransform='uppercase'
+                     onClick={() => {}}>
+                        All orders <AppColor.chevronBottom fill={AppColor.orange}/>
+                    </MyButtonTransparentOrange>
+                }
             />
 
             <DynamicPadding desktop='30px' mobile='20px'/>
@@ -65,13 +80,17 @@ const OrdersOrder = () => {
 
             <FilterList filters={['Description', 'Specification', 'Customer', 'FAQ (2)']} activeStartItem='Customer' />
 
-            <DynamicPadding />
+            <DynamicPadding mobile='0px' />
 
 
             <ResponsiveLayoutTwo
                 gap='80px'
                 item1MaxWidth='730px'
                 item2MaxWidth='390px'
+                orderItem1Desktop={0}
+                orderItem1Mobile={1}
+                orderItem2Desktop={1}
+                orderItem2Mobile={0}
                 item1={
                     <div style={{width: '100%'}}>
                          {/* <LastSponsors/> */}
@@ -109,7 +128,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                             user={fakeUserConstant} />
 
                     <DynamicPadding />
-                    <div className={'gap_5'}>
+                    <div className={'gap_5  '}>
                         <Typography variant='body3' fontWeight='500'>FAQ</Typography>
                         <div className={styles.box_black}>
                             <Typography variant='body3' color='white' fontWeight='500'>2</Typography>
@@ -138,7 +157,109 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                 }
                 item2={
                     <div style={{width: '100%'}}>
+                        <div className={`flex_space_between box_shadow ${styles.user_wrappper}`}>
+                            <UserAvatar role='Freelancer' preventMobileNone={true} url={fakeUserConstant.image} name={fakeUserConstant.name} flag={<AppColor.UkraineFlag/>} active={true} />
 
+                            <div className='gap_10'>
+                                <Typography variant='body5' color={AppColor.transparentBlack}>15 hr 59 min ago</Typography>
+                                <AppColor.chevronBottom fill={AppColor.text} width={'16px'} height={'8px'}/>
+                            </div>
+                        </div>
+                        <DynamicPadding desktop='30px' mobile='20px'/>
+
+                        
+                        <CenterShadowBox
+                        align='start'
+                        elements={[
+                            <div style={{width: '100%'}}>
+                                <Typography variant='body3' fontWeight='500'>Details</Typography>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+                                
+                                <div className={styles.text_dotted_wrapper}>
+                                <TextDotted
+                                    fontWeightEndText='500'
+                                    
+                                    startTextColor={AppColor.transparentBlack}
+                                    text='Price' 
+                                    endNode={ <div className='gap_5'><AppColor.fourOfFive />
+                                    <Typography textLineHeight='1' variant='body5' fontWeight='500'>
+                                        $5K-6K
+                                    </Typography>
+                                    <AppColor.puzle />
+                                </div>}
+    
+                                />
+                                <TextDotted
+                                    fontWeightEndText='500'
+                                    
+                                    startTextColor={AppColor.transparentBlack}
+                                    text='Delivery' 
+                                    textEnd='need offer'
+                                />
+                                <TextDotted
+                                    fontWeightEndText='500'
+                                    
+                                    startTextColor={AppColor.transparentBlack}
+                                    text='Need To Hire' 
+                                    textEnd='0 of 1'
+                                />
+                                <TextDotted
+                                    fontWeightEndText='500'
+                                    
+                                    startTextColor={AppColor.transparentBlack}
+                                    text='Bids' 
+                                    textEnd='3'
+                                />
+                    </div>
+                            <DynamicPadding />
+                            <Typography variant='body3' fontWeight='500'>Freelancers</Typography>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+                                
+                                <div className={styles.text_dotted_wrapper}>
+                                <TextDotted
+                                    fontWeightEndText='500'
+                                    
+                                    startTextColor={AppColor.transparentBlack}
+                                    text='Level' 
+                                    endNode={
+                                        <div className='gap_5'>
+                                            <Typography textLineHeight='1' variant='body4' fontWeight='500'>1 and up</Typography>
+                                            <AppColor.singTrue stroke='#B6DE59'/>
+                                        </div>
+                                    }
+    
+                                />
+                                <TextDotted
+                                    fontWeightEndText='500'
+                                    
+                                    startTextColor={AppColor.transparentBlack}
+                                    text='Positive Reviews' 
+                                    textEnd=' 95% and up'
+                                />
+                                <TextDotted
+                                    fontWeightEndText='500'
+                                    
+                                    startTextColor={AppColor.transparentBlack}
+                                    text='Organization' 
+                                    endNode={
+                                        <div className='gap_5'>
+                                            <Typography textLineHeight='1' variant='body4' fontWeight='500'>no preference</Typography>
+                                            <AppColor.singTrue stroke='#B6DE59'/>
+                                        </div>
+                                    }
+                                />
+                                <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>More 3</Typography>
+                    </div>
+                    <DynamicPadding desktop='30px' mobile='20px'/>
+                    <HorizontalLine />
+                    <DynamicPadding desktop='30px' mobile='20px'/>
+                    <MyButtonOrange width='100%' textTransform='uppercase' onClick={() => {}}>Place a bid 10/20</MyButtonOrange>
+                            </div>
+                        ]}
+                        gap='0px'
+                        paddingBoxDesktop='25px 30px'
+                        paddingBoxMobile='15px'
+                        />
                     </div>
                 }
             />

@@ -20,8 +20,10 @@ type CardTimeProps = {
     totalMoneyRange: number;
     currentMoneyRange: number;
     date: Date;
+    showBottomActions?: boolean;
+    topUsers?: userModel[];
 }
-const CardTime = ({title,user,tags,totalMoneyRange,currentMoneyRange,date}:CardTimeProps) => {
+const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMoneyRange,topUsers,date}:CardTimeProps) => {
     const flagImage = useGetImage(`flags/${user.country}`,false);
 
     const topImageStyles = {
@@ -31,7 +33,7 @@ const CardTime = ({title,user,tags,totalMoneyRange,currentMoneyRange,date}:CardT
         backgroundPosition: 'center',
         zIndex: 0,
     }
-    const today = new Date('2023-11-23');
+    const today = new Date('2024-1-23');
     const futureDate = new Date(today.getTime() + (53 * 24 * 60 * 60 * 1000) + (3 * 60 * 60 * 1000) + (40 * 60 * 1000) + (20 * 1000));
 
     const moneyRangePercent = (currentMoneyRange / totalMoneyRange)*100
@@ -40,12 +42,27 @@ const CardTime = ({title,user,tags,totalMoneyRange,currentMoneyRange,date}:CardT
             <span className={styles.shell_absolute}>
                 <CardTypeDisplay textColor={AppColor.white} text="Business" backgroundColor={AppColor.text}/>
             </span>
+            {topUsers != null &&
+              topUsers.map((item,index) => {
+                const totalOffset = topUsers.length > 1 ? ((topUsers.length-1)*11) : 0
+                const itemOffset = index == 0 ? totalOffset : totalOffset-(index*11);
+                return (
+                    <div style={{right: `${itemOffset}px`}} className={styles.absolute_users}>
+                        <img src={item.image} height={'22px'} width={'22px'} alt="" />
+                    </div>
+                )
+              }
+            )
+            }
            <div style={topImageStyles} className={styles.shell_top_image}>
             <Typography variant="body5" color="white">
                 {title}
             </Typography>
                 <div className={styles.content_top_first}>
-                        <img src={testUserImage} alt="userImage" />
+                        <div className={styles.image_center} style={{position: 'relative'}}>
+                            <img src={testUserImage} alt="userImage" height={'38px'} width={'38px'} />
+                            <div className={styles.is_active_status}></div>
+                        </div>
                         <div>
                             <img src={flagImage} alt="countryFlag" />
                         <span className={styles.name}>
@@ -60,7 +77,7 @@ const CardTime = ({title,user,tags,totalMoneyRange,currentMoneyRange,date}:CardT
                 </div>
                 <div className={styles.content_top_second}>
                         <SvgText img={icon_sponsorship} text={`${user.statistic.sponsorship_count}`}/>
-                        <SvgText img={icon_message} text={`${user.statistic.responses_count}`}/>
+                        <SvgText img={<AppColor.message fill="white"/>} text={`${user.statistic.responses_count}`}/>
                         <SvgText img={icon_star} text={`${user.statistic.rating}%`}/>
                         <SvgText img={icon_comments} text={`${user.statistic.comments_count}`}/>
                 </div>
@@ -68,37 +85,43 @@ const CardTime = ({title,user,tags,totalMoneyRange,currentMoneyRange,date}:CardT
                         {tags.map(tag => <TagDisplay text={tag}/>)}
                 </div>
            </div>
-           <div className={styles.shell_bottom}>
-                <PercentBar currentPercent={moneyRangePercent}/>
-                <div className={styles.bottom_details_money}>
-               <div className={styles.bottom_details_money_range}>
-                <Typography variant="body6" textLineHeight="100%">
-                        ${formatNumberWithSpaces(currentMoneyRange)} <span> </span>
-                        <Typography variant="body5" color={AppColor.transparentBlack} textLineHeight="100%">
-                            of ${formatNumberWithSpaces(totalMoneyRange)}
-                        </Typography>
+           <div className={`${showBottomActions ? styles.middle_part : styles.shell_bottom}`}>
+                    <PercentBar currentPercent={moneyRangePercent}/>
+                    <div className={styles.bottom_details_money}>
+                <div className={styles.bottom_details_money_range}>
+                    <Typography variant="body6" textLineHeight="100%">
+                            ${formatNumberWithSpaces(currentMoneyRange)} <span> </span>
+                            <Typography variant="body5" color={AppColor.transparentBlack} textLineHeight="100%">
+                                of ${formatNumberWithSpaces(totalMoneyRange)}
+                            </Typography>
+                    </Typography>
+                </div>
+                <Typography variant="body6" textLineHeight="100%" color={AppColor.orange}>
+                        {moneyRangePercent}%
                 </Typography>
-               </div>
-               <Typography variant="body6" textLineHeight="100%" color={AppColor.orange}>
-                    {moneyRangePercent}%
-               </Typography>
+            </div>
+            <div>
+                    <DaysLeftTimer time={futureDate}/>
+            </div>
            </div>
-           <div>
-                <DaysLeftTimer time={futureDate}/>
-           </div>
-           </div>
+           {showBottomActions &&
+                <div className={`${styles.activity_items}`}>
+                <AppColor.hearPlus fill={AppColor.text} />
+                <AppColor.notes />
+                <AppColor.hideEye />
+             </div>}
       </div>
     );
 };
 
 type svgTextProps = {
-    img: string;
+    img: string | React.ReactNode;
     text: string;
 }
 const SvgText = ({img,text}: svgTextProps) => {
    return (
     <div className={styles.svgText}>
-        <img src={img} alt="img" />
+        {typeof img == 'string' ? <img src={img} alt="" /> : img}
         <Typography textLineHeight={'100%'} variant="body5" color="white">
             {text}
         </Typography>

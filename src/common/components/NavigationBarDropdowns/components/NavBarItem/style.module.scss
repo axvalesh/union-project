@@ -17,6 +17,7 @@
 
 .absolute_wrapper {
     position: absolute;
+    z-index: 3;
     padding: 22px 30px 30px 22px;
     border-radius: 20px;
     top: calc(100% + 36px);

@@ -116,6 +116,7 @@ const SelectionManager = () => {
                 item2={ 
                 <div style={{display: 'flex',justifyContent: 'center',flexDirection: 'column'}}>
                     <CardManager
+                        showCardManagerActions={false}
                         disableAbsoluteItems={true}
                         borderTopRadius='20px'
                         tags={['Logo', 'Logo Design', 'Logo Maker', 'Logo Create']}

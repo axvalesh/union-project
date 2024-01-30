@@ -8,7 +8,7 @@ import AppColor from '@common/styles/variables-static';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import UserTopPageInfo from '@common/components/ui/UserTopPageInfo/index';
 import { fakeUserConstant } from '@common/models/user';
-import Typography from '@common/components/ui/Typography/Typography';
+import Typography, { fontWeight } from '@common/components/ui/Typography/Typography';
 import FilterList from '@common/components/FilterList/index';
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
@@ -243,9 +243,9 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
 
                     <DynamicPadding desktop='30px' mobile='20px'/>
                         <div className={styles.plan_box}>
-                            <SelectItem selectedPrice={selectedPricePlan} callback={(item) => {setSelectedPricePlan(item)}} lvl={3} price='1250' priceWithDiscount='1000' title='Easy Start' />
-                            <SelectItem selectedPrice={selectedPricePlan} callback={(item) => {setSelectedPricePlan(item)}} lvl={4} price='1750' priceWithDiscount='1500' title='Easy Start' />
-                            <SelectItem selectedPrice={selectedPricePlan} callback={(item) => {setSelectedPricePlan(item)}} lvl={5} price='2250' priceWithDiscount='2000' title='Easy Start' />
+                            <SelectItem selectedPrice={selectedPricePlan} callback={(item) => {setSelectedPricePlan(item)}} lvl={3} price='1250' priceWithDiscount='1000' titleProps='Easy Start' />
+                            <SelectItem selectedPrice={selectedPricePlan} callback={(item) => {setSelectedPricePlan(item)}} lvl={4} price='1750' priceWithDiscount='1500' titleProps='Easy Start' />
+                            <SelectItem selectedPrice={selectedPricePlan} callback={(item) => {setSelectedPricePlan(item)}} lvl={5} price='2250' priceWithDiscount='2000' titleProps='Easy Start' />
                             <Selectbox selectedPrice={selectedPricePlan} callback={(item) => {setSelectedPricePlan(item)}} price='custom' />
                             
 
@@ -399,7 +399,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
 type SliderUsersProps = {
     items: React.ReactNode[];
 }
-const SliderUsers = ({items}:SliderUsersProps) => {
+export const SliderUsers = ({items}:SliderUsersProps) => {
     const [activeIndex,setActiveIndex] = useState(0);
     const [offsetMove,setOffsetMove] = useState(0);
     const activeItemRef = useRef(null);
@@ -421,7 +421,7 @@ const SliderUsers = ({items}:SliderUsersProps) => {
             <div onClick={handleClickOn} className={styles.absolute_move_on}><AppColor.chevronRight fill='white'/></div>
             <div style={{transform: `translateX(${-offsetMove}px)`}} className={styles.overflow_slider_wrapper}>
                 {childrenNode.map((item,index) =>
-                    <div ref={index == activeIndex ? activeItemRef : null}>
+                    <div className={styles.user_wrapper} ref={index == activeIndex ? activeItemRef : null}>
                         {item}
                     </div>    
                 )}
@@ -435,7 +435,7 @@ type SelectBenefitItemProps = {
     daysDelta: string;
     title?: string;
 }
-const SelectBenefitItem = ({daysDelta,price,title}:SelectBenefitItemProps) => {
+export const SelectBenefitItem = ({daysDelta,price,title}:SelectBenefitItemProps) => {
     
     return (
         <div className={styles.select_benefit}>
@@ -452,25 +452,26 @@ const SelectBenefitItem = ({daysDelta,price,title}:SelectBenefitItemProps) => {
     )
 }
 type SelectItemProps ={
-    title?: string;
+    titleProps?: string;
     priceWithDiscount?: string;
     price: string;
     lvl?: number;
     selectedPrice: string;
     callback: (item:string) => void;
+    fontWeight?: fontWeight;
 }
 
-const Selectbox = ({selectedPrice,price,callback}:SelectItemProps) => {
-    const title = 'Custom Requirements'
+export const Selectbox = ({fontWeight,selectedPrice,titleProps,price,callback}:SelectItemProps) => {
+    const title = titleProps ?? 'Custom Requirements'
     const isSelected = selectedPrice == price;
     return (
         <div onClick={() => {callback(price)}} style={{cursor: 'pointer'}} className={`gap_10 ${styles.only_select_box}`}>
             <div className={`${styles.select_box} ${isSelected ? styles.select_box_active : styles.select_box_disabled}`}></div>
-            <Typography variant='body3'>{title}</Typography>
+            <Typography variant='body3' fontWeight={fontWeight ?? '500'}>{title}</Typography>
         </div>
     )
 }
-const SelectItem = ({price,priceWithDiscount,title,lvl,selectedPrice,callback}:SelectItemProps) => {  
+export const SelectItem = ({price,priceWithDiscount,titleProps,lvl,selectedPrice,callback}:SelectItemProps) => {  
     const [count,setCount] = useState(1);
     const isSelected = selectedPrice == price;
     
@@ -484,7 +485,7 @@ const SelectItem = ({price,priceWithDiscount,title,lvl,selectedPrice,callback}:S
            <div className={styles.price_plan_description}>
                 <div className='gap_10'>
                     <div className={`${styles.select_box} ${isSelected ? styles.select_box_active : styles.select_box_disabled}`}></div>
-                    <Typography variant='body3'>{title}</Typography>
+                    <Typography variant='body3'>{titleProps}</Typography>
                 </div>
                 <div className='gap_10'>
                     {lvl == 3 ? <AppColor.threeOfFive /> : lvl == 4 ? <AppColor.fourOfFive /> : <AppColor.fiveOfFive/>}

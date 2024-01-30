@@ -1,5 +1,5 @@
 
-import { userModel } from '@common/models/user';
+import { fakeUserConstant, userModel } from '@common/models/user';
 import styles from './style.module.scss';
 import { useScreenSize } from '@common/helpers/useScreenSize';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
@@ -14,7 +14,7 @@ import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButto
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 
 
-const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,answeredUserComment,depth}:comment) => {
+const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,answeredUserComment,depth,money}:comment) => {
     const {width,height} = useScreenSize()
     const leftMargin = width <= 768 ? 10 : 30
     const [showReplies,setShowReplies] = useState(false);
@@ -31,6 +31,7 @@ const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,ans
                     active={user.isActive}
                     name={user.name}
                     activeAgo={user.activeAgo}
+                    url={fakeUserConstant.image}
                     flag={<AppColor.UkraineFlag/>}
                 />
                 <div className={styles.flex_center_10}>
@@ -38,6 +39,10 @@ const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,ans
                     {isSolution && 
                         <Solution />
                     }
+                    {money && <div className='gap_10'>
+                        <Typography variant='subtitle' fontWeight='500'>${money}</Typography>
+                        <AppColor.gift width={'22px'} height={'22px'} />
+                        </div>}
                 </div>
                 <div className={styles.mobile}><AppColor.lightning/></div>
             </div>

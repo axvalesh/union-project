@@ -19,6 +19,7 @@ export type comment = {
     isBestReplay: boolean;
     answeredUserComment?: comment[];
     depth?: number;
+    money?: string;
 }
 const CommentsSection = ({comments}:CommentsSectionProps) => {
     const {width,height} = useScreenSize();
@@ -48,9 +49,10 @@ const CommentsSection = ({comments}:CommentsSectionProps) => {
             />
             <DynamicPadding mobile='20px' desktop='30px' />
             {
-                comments.map(item =>
+                comments.map((item,index) =>
                    <div>
                         <CommentComponent
+                            money={item.money}
                             comment={item.comment}
                             depth={0}
                             isBestReplay={item.isBestReplay}
