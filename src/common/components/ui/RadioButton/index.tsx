@@ -7,18 +7,26 @@ import AppColor from '@common/styles/variables-static';
 type RadioButtonProps = {
     text?: string;
     activeSelection?: boolean;
+    callback?: (item:number) => void;
+    indexItem?: number;
 }
-const RadioButton = ({text,activeSelection}:RadioButtonProps) => {
+const RadioButton = ({text,activeSelection,indexItem,callback}:RadioButtonProps) => {
     const [isSelected,setIsSelected] = useState(false);
 
+    const handleSwitch = () => {
+        setIsSelected(prev => !prev);
+        if(callback) {
+            callback(indexItem);
+        }
+    }
     useEffect(() => {
         setIsSelected(activeSelection);
     }, [activeSelection])
     return (
-      <div onClick={() => {setIsSelected(prev => !prev)}} style={{cursor: 'pointer'}} className='gap_10'>
+      <div onClick={() => {handleSwitch()}} style={{cursor: 'pointer'}} className={styles.flex_item}>
             <div className={`${styles.select_box} ${isSelected ? styles.select_box_active : styles.select_box_disabled}`}></div>
             {text &&
-            <Typography color={isSelected ? AppColor.orange : AppColor.text} fontWeight={isSelected ? '500' : '400'} variant='body4'>{text}</Typography>
+            <div className={styles.text_item}><Typography color={isSelected ? AppColor.orange : AppColor.text} fontWeight={isSelected ? '500' : '400'} variant='body4'>{text}</Typography></div>
             }
       </div>
     );

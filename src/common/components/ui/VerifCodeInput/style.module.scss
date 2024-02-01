@@ -1,0 +1,24 @@
+.boxes_grid {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+}
+
+.input_box {
+    max-width: 60px;
+    text-align: center;
+    height: 50px;
+    border-radius: 20px;
+    @include weakShadow;
+    outline: none;
+}

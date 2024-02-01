@@ -38,11 +38,8 @@
 }
 
 .center {
-    margin-top: 25px;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    gap: 15px;
 }
 
 .border_input {
@@ -70,7 +67,7 @@
     color: #EB5757;
 }
 .title {
-    margin-bottom: 60px;
+    text-align: center;
 }
 .or_block {
     width: 100%;
@@ -97,6 +94,11 @@
         flex: 0 0 30%;
         height: 100vh;
     }
+
+    .title {
+        min-width: 470px;
+        text-align: start;
+    }
     .content_part {
         flex: 0 0 70%;
         display: flex;
@@ -110,8 +112,7 @@
         }
 
         .center {
-            margin-top: 95px;
-            gap: 20px;
+
         }
     }
     .wrapper {

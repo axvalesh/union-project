@@ -11,8 +11,12 @@ import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOran
 import SizeBox from '@common/components/ui/SizeBox/index';
 import googleLogo from '@assets/svg/google-logo.svg';
 import facebookLogo from '@assets/svg/facebook-logo.svg';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const SingUp = () => {
+    const [userName,setUserName] = useState('');
+    const [email,setEmail] = useState('');
 
     return (
       <div className={styles.wrapper}>
@@ -21,7 +25,7 @@ const SingUp = () => {
                     <Logo color='white'/>
                 </div>
                 <div className={styles.image}>
-                    <img src={registrationImage} alt="" />
+                    <img style={{maxHeight: '270px'}} src={registrationImage} alt="" />
                 </div>
            </div>
            <div className={styles.content_part}>
@@ -30,11 +34,13 @@ const SingUp = () => {
                         Already have an account?
                     </Typography>
                     <SizeBox width='19px'/>
-                    <MyButtonTransparentOrange
-                    onClick={() => {}}
-                    >
-                        Sign in
-                    </MyButtonTransparentOrange>
+                    <Link to={'/sign-in'}>
+                        <MyButtonTransparentOrange
+                        onClick={() => {}}
+                        >
+                            Sign in
+                        </MyButtonTransparentOrange>
+                    </Link>
                 </div>
                 <div className={styles.center}>
                     <div className={styles.title}>
@@ -44,20 +50,27 @@ const SingUp = () => {
                     </div>
 
                     <InputBorderText 
+                    emptyChangeColor={true}
                     borderText='Username'
                     placeholderText=''
+                    callback={(item) => {setUserName(item)}}
+                    isRequired={true}
                     labelIcon={<AppColor.displayIcon />}
                     />
 
                     <InputBorderText 
+                    emptyChangeColor={true}
                     borderText='Email'
                     placeholderText=''
+                    callback={(item) => {setEmail(item)}}
+                    isRequired={true}
                     labelIcon={<AppColor.atSing />}
                     />
 
                     <MyButtonOrange
                     width='100%'
                     padding='15px 0px'
+                    disabled={(!email.includes('@gmail.com') || userName == '')}
                     onClick={() => {}}
                     >
                         Sign up
@@ -69,7 +82,7 @@ const SingUp = () => {
                     </Typography>
                     <div className={styles.grey_line}></div>
                 </div>
-                <Typography variant='body5'>
+                <Typography variant='body5' fontWeight='500'>
                 Sign up with Social
                 </Typography>
                 <div className={styles.links}>
@@ -79,6 +92,17 @@ const SingUp = () => {
                 <Typography variant='body5'>
                     By clicking button above, you agree to our <a className={styles.orange} href='#'>terms and conditions</a> and <a className={styles.orange}>privacy policies</a>
                 </Typography>
+                </div>
+                <div style={{opacity: '0'}} className={styles.first_flex}>
+                    <Typography variant='body4'>
+                        Already have an account?
+                    </Typography>
+                    <SizeBox width='19px'/>
+                    <MyButtonTransparentOrange
+                    onClick={() => {}}
+                    >
+                        Sign in
+                    </MyButtonTransparentOrange>
                 </div>
             </div>
       </div>

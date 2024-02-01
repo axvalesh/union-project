@@ -22,7 +22,9 @@ const MyCheckbox = ({
 
     useEffect(() => {
         setIsTrue(basicValue)
-        callback(basicValue);
+        if(callback != null) {
+            callback(basicValue);
+        }
     },[basicValue])
     function handleChange(item:boolean) {
         if(callback != null) {

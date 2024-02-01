@@ -252,7 +252,26 @@ import { ReactComponent as playTriangle} from '@assets/svg/play-triangle.svg';
 import { ReactComponent as timelapse} from '@assets/svg/timelapse.svg';
 import { ReactComponent as orderPlace} from '@assets/svg/order-place.svg';
 
+import { ReactComponent as authenticationSignIn} from '@assets/svg/sing-in-image.svg';
+import { ReactComponent as authenticationRecovery} from '@assets/svg/recovery-image.svg';
+import { ReactComponent as authenticationPhoneCode} from '@assets/svg/auth-enter-code.svg';
+import { ReactComponent as authenticationGmailCode} from '@assets/svg/auth-enter-code-gmail.svg';
+import { ReactComponent as authenticationPin} from '@assets/svg/auth-enter-pin.svg';
+import { ReactComponent as authentication} from '@assets/svg/authentication.svg';
+
+import { ReactComponent as security} from '@assets/svg/security.svg';
+import { ReactComponent as pinCode} from '@assets/svg/pin-code.svg';
+
 class AppColor {
+    static security = security;
+    static pinCode = pinCode;
+    static authenticationSignIn = authenticationSignIn;
+    static authenticationRecovery = authenticationRecovery;
+    static authenticationPhoneCode = authenticationPhoneCode;
+    static authenticationGmailCode = authenticationGmailCode;
+    static authenticationPin = authenticationPin;
+    static authentication = authentication;
+
     static playTriangle = playTriangle;
     static timelapse = timelapse;
     static orderPlace = orderPlace;  

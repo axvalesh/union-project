@@ -48,7 +48,8 @@ const MyButton = ({
         '--hoverTextColor': textColor ?? AppColor.orange,
         '--width': width ?? 'auto',
         '--textTransform': textTransform,
-        'opacity': !disabled ? '1' : '0.3'
+        'opacity': !disabled ? '1' : '0.3',
+        cursor: 'auto'
     }
     return (
         <button

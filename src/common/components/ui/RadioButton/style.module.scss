@@ -3,8 +3,22 @@
     height: 14px;
     border: 2px solid $text;
     border-radius: 50%;
+    aspect-ratio: 1;
     transition: all 0.3s ease;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex_item {
+    display: flex;
+    align-items: first baseline;
+    gap: 10px;
+}
+
+.text_item {
+    align-items: flex-start;
 }
 .select_box_active {
     position: relative;

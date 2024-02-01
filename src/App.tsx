@@ -1,4 +1,4 @@
-import { Route, HashRouter as Router, Routes }  from 'react-router-dom'
+import { Navigate, Route, HashRouter as Router, Routes }  from 'react-router-dom'
 import './App.scss'
 import HomeNotAuth from '@pages/Home-not-auth/HomeNotAuth'
 import Error from './pages/Error'
@@ -64,6 +64,9 @@ import CreateSponsorshipDetails from './pages/CreateSponsorship/CreateSponsorshi
 import CreateSponsorshipNegotiation from './pages/CreateSponsorship/CreateSponsorshipNegotiation'
 import CreateSponsorshipPosting from './pages/CreateSponsorship/CreateSponsorshipPosting'
 import CreateServiceNegotiation from './pages/CreateService/CreateServiceNegotiation'
+import SingIn from './pages/Authentication/SingIn'
+import Recovery from './pages/Authentication/Recovery'
+import Authentication from './pages/Authentication/Authentication'
 
 function App() {
    
@@ -75,7 +78,13 @@ function App() {
             <Route path="/error" element={<Error />} />
   
           
-            <Route path="/sing-up" element={<SingUp />} />
+            <Route path="/sign-up" element={<SingUp />} />
+            <Route path="/sign-in" element={<SingIn />} />
+
+            <Route path="/recovery" element={<Recovery />} />
+            <Route path="/authentication" element={<Authentication />} />
+
+
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/start-guide" element={<StartGuide />} />
   
@@ -153,6 +162,8 @@ function App() {
             <Route path="/create-sponsorship/posting" element={<CreateSponsorshipPosting />} /> 
 
             <Route path="/create-service/negotiation" element={<CreateServiceNegotiation />} /> 
+
+            <Route path="*" element={<Navigate to="/error" />} />
          </Routes>
       </Router>
    </div>

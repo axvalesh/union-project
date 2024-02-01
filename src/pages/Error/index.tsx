@@ -14,9 +14,10 @@ import { ReactComponent as GeneralHelpImage} from '@assets/svg/general-help.svg'
 import { ReactComponent as ContactUs} from '@assets/svg/contact-us.svg';
 import Footer from "@common/components/Footer/Footer";
 import AskedQuestion from "@common/components/AskedQuestions/index";
+import { useNavigate } from "react-router-dom";
 
 const Error = () => {
-    const screenWidth = window.innerWidth;
+    const navigate = useNavigate();
 
     return (
       <div>
@@ -38,7 +39,7 @@ const Error = () => {
               </Typography>
            </div>
             <div style={{display: 'flex'}}>
-              <MyButtonBlack onClick={() => {}} padding="14px 26px">
+              <MyButtonBlack onClick={() => navigate(-1)} padding="14px 26px">
                 Back
               </MyButtonBlack>
               <SizeBox width="20px"/>
