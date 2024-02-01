@@ -23,7 +23,7 @@ type DropdownNodeRoadmapProps = {
       <DropdownNode
         countNotifications={countNotification}
         filters={filters}
-        noneIcon={<AppColor.news />}
+        noneIcon={<AppColor.news fill={AppColor.text} />}
         noneText='Find suitable missions and guides for you'
         noneTitle='No Roadmap Yet'
         noneButton={<MyButtonOrange onClick={() => {}}>Missions</MyButtonOrange>}

@@ -241,8 +241,27 @@ import { ReactComponent as noteCompleted} from '@assets/svg/note-completed.svg';
 import { ReactComponent as caseWhiteOrange} from '@assets/svg/case-small-whiteorange.svg';
 import { ReactComponent as rewardBox} from '@assets/svg/rewardBox.svg';
 import { ReactComponent as filePdf} from '@assets/svg/file-pdf.svg';
+import { ReactComponent as reachingFlag} from '@assets/svg/reaching-flag.svg';
+import { ReactComponent as preview} from '@assets/svg/preview.svg';
+import { ReactComponent as workClub} from '@assets/svg/workclub.svg';
+import { ReactComponent as starColored} from '@assets/svg/starColored.svg';
+import { ReactComponent as interview} from '@assets/svg/interview.svg';
+import { ReactComponent as arrowFour} from '@assets/svg/arrow-four.svg';
+
+import { ReactComponent as playTriangle} from '@assets/svg/play-triangle.svg';
+import { ReactComponent as timelapse} from '@assets/svg/timelapse.svg';
+import { ReactComponent as orderPlace} from '@assets/svg/order-place.svg';
 
 class AppColor {
+    static playTriangle = playTriangle;
+    static timelapse = timelapse;
+    static orderPlace = orderPlace;  
+    static arrowFour = arrowFour;
+    static interview = interview;
+    static starColored = starColored;
+    static workClub = workClub;
+    static preview = preview;
+    static reachingFlag = reachingFlag;
     static filePdf = filePdf;
     static rewardBox = rewardBox;
     static caseWhiteOrange = caseWhiteOrange;

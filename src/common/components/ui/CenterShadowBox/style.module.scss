@@ -5,9 +5,10 @@
     position: relative;
     display: flex;
     align-items: var(--align);
-    flex-direction: column;
+    flex-direction: var(--direction);
     gap: var(--gap);
     padding: var(--paddingMobile);
+    flex-wrap: wrap;
 }
 .absolute_node {
     position: absolute;

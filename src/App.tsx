@@ -51,6 +51,19 @@ import CrowdfreelanceCustomer from './pages/Crowdfreelance/CrowdfreelanceCustome
 import CrowdfreelanceProgress from './pages/Crowdfreelance/CrowdfreelanceProgress'
 import CrowdfreelanceCompleted from './pages/Crowdfreelance/CrowdfreelanceCompleted'
 import UsersAll from './pages/Users/UsersAll'
+import UsersMy from './pages/Users/UsersMy'
+import SearchMasterCategory from './pages/SearchMaster/SearchMasterCategory'
+import SearchMasterRequirements from './pages/SearchMaster/SearchMasterRequirements'
+import SearchMasterSkills from './pages/SearchMaster/SearchMasterSkills'
+import SearchMasterBudgetAndDelivery from './pages/SearchMaster/SearchMasterBudgetAndDelivery'
+import SearchMasterResults from './pages/SearchMaster/SearchMasterResults'
+import CreateOrderDetails from './pages/CreateOrder/CreateOrderDetails'
+import CreateOrderNegotiation from './pages/CreateOrder/CreateOrderNegotiation'
+import CreateOrderPosting from './pages/CreateOrder/CreateOrderPosting'
+import CreateSponsorshipDetails from './pages/CreateSponsorship/CreateSponsorshipDetails'
+import CreateSponsorshipNegotiation from './pages/CreateSponsorship/CreateSponsorshipNegotiation'
+import CreateSponsorshipPosting from './pages/CreateSponsorship/CreateSponsorshipPosting'
+import CreateServiceNegotiation from './pages/CreateService/CreateServiceNegotiation'
 
 function App() {
    
@@ -123,6 +136,23 @@ function App() {
             <Route path="/crowdfreelance/completed" element={<CrowdfreelanceCompleted />} />
 
             <Route path="/users/all" element={<UsersAll />} />
+            <Route path="/users/my" element={<UsersMy />} />
+
+            <Route path="/search-master/category" element={<SearchMasterCategory />} />
+            <Route path="/search-master/requirements" element={<SearchMasterRequirements />} />
+            <Route path="/search-master/skills" element={<SearchMasterSkills />} />
+            <Route path="/search-master/budget-and-delivery" element={<SearchMasterBudgetAndDelivery />} />
+            <Route path="/search-master/results" element={<SearchMasterResults />} /> {/* is in process */}
+
+            <Route path="/create-order/details" element={<CreateOrderDetails />} /> 
+            <Route path="/create-order/negotiation" element={<CreateOrderNegotiation />} /> 
+            <Route path="/create-order/posting" element={<CreateOrderPosting />} /> 
+
+            <Route path="/create-sponsorship/details" element={<CreateSponsorshipDetails />} /> 
+            <Route path="/create-sponsorship/negotiation" element={<CreateSponsorshipNegotiation />} /> 
+            <Route path="/create-sponsorship/posting" element={<CreateSponsorshipPosting />} /> 
+
+            <Route path="/create-service/negotiation" element={<CreateServiceNegotiation />} /> 
          </Routes>
       </Router>
    </div>

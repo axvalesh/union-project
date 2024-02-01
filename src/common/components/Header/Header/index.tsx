@@ -108,7 +108,7 @@ const Header = () => {
                     </div>
                     <div className={styles.header_third_part}>
                         <AppColor.search />
-                        <AppColor.news />
+                        <AppColor.news fill={AppColor.text} />
                         <AppColor.sound />
 
                         <UserAvatar

@@ -7,21 +7,22 @@ type ChevronMoveToProps = {
     variant: 'right' | 'left';
     cancel?: boolean;
     title: string;
+    preview?: boolean
     text: string;
     onClick: () => void;
     disabled?: boolean;
 }
-const ChevronMoveTo = ({variant,onClick,text,title,disabled,cancel=false}:ChevronMoveToProps) => {
+const ChevronMoveTo = ({preview,variant,onClick,text,title,disabled,cancel=false}:ChevronMoveToProps) => {
 
     switch(variant) {
         case 'right': 
-            return <ChevronMoveToRight cancel={cancel} disabled={disabled} onClick={onClick} text={text} title={title} variant='right'/>
+            return <ChevronMoveToRight preview={preview} cancel={cancel} disabled={disabled} onClick={onClick} text={text} title={title} variant='right'/>
         case 'left':
-            return <ChevronMoveToLeft cancel={cancel} disabled={disabled} onClick={onClick} text={text} title={title} variant='right'/>
+            return <ChevronMoveToLeft preview={preview} cancel={cancel} disabled={disabled} onClick={onClick} text={text} title={title} variant='right'/>
         }
 };
 
-const ChevronMoveToRight = ({variant,onClick,text,title,disabled,cancel}:ChevronMoveToProps) => {
+const ChevronMoveToRight = ({variant,onClick,text,title,disabled,cancel,preview}:ChevronMoveToProps) => {
     return (
         <div style={{opacity: disabled ? 0.5 : 1}} className={styles.wrapper}>
             <div className={styles.text + ' ' + styles.right_text}> 
@@ -31,6 +32,8 @@ const ChevronMoveToRight = ({variant,onClick,text,title,disabled,cancel}:Chevron
             <div style={disabled ? {backgroundColor: 'white'} : {}} onClick={!disabled ? onClick : () => {}} className={styles.chevron}>
                 {cancel
                 ? <AppColor.close fill={AppColor.text} width={'17px'} height={'17px'}/>
+                : preview 
+                ? <AppColor.preview width={'24px'} />
                 : <AppColor.longChevronRight width={'24px'} />}
             </div>
         </div>

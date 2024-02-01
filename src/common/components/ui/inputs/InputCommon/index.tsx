@@ -12,8 +12,9 @@ type InputCommonProps = {
     textColor?: string;
     type?: React.HTMLInputTypeAttribute;
     width?: string;
+    icon?: React.ReactNode;
 }
-const InputCommon = ({width, placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
+const InputCommon = ({width, icon,placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
     const [text,setText] = useState('');
 
     function handleChange(item:string) {
@@ -22,12 +23,14 @@ const InputCommon = ({width, placeholder,callback,padding,rightPadding,textAling
     } 
     return (
         <div className={styles.wrapper} style={{width: width}}>
+            {icon && <div className={styles.dynamic_icon}>{icon}</div>}
             <input
                 value={text}
                 onChange={(item) => {handleChange(item.target.value)}}
                 className={styles.input}
                 type={type ?? 'text'}
-                style={{color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+15}px`,textAlign: textAlingCenter ? 'center' : 'start',backgroundColor: backgroundColor ?? 'white'}}
+                style={{color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+20}px`,
+                paddingLeft: icon ? `${rightPadding+25}px` : '15px',textAlign: textAlingCenter ? 'center' : 'start',backgroundColor: backgroundColor ?? 'white'}}
                 placeholder={placeholder}
             />
             <div onClick={() => {setText('')}} style={{opacity: text != '' ? '1' : '0',right: `${rightPadding}px`}} className={styles.close_icon}><AppColor.close fill={AppColor.text} width={'12px'} height={'12px'} /></div>

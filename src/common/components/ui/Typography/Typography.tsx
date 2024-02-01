@@ -38,6 +38,7 @@ type TextTransform = 'none' | 'capitalize' | 'uppercase' | 'lowercase' | 'initia
 export type fontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 type TextDecoration = 'none' | 'underline' | 'overline' | 'line-through' | 'initial' | 'inherit';
 type TextDecorationStyle = 'dashed'
+type TextFontStyle = 'italic'
 
 interface TypographyProps {
   variant?: VariantListTypes;
@@ -51,6 +52,7 @@ interface TypographyProps {
   textDecoration?: TextDecoration;
   textDecorationStyle?: TextDecorationStyle
   fontSizeStatic?: string;
+  fontStyle?: TextFontStyle
 }
 
 const Typography = ({
@@ -65,6 +67,7 @@ const Typography = ({
     fontWeight,
     textDecoration,
     textDecorationStyle,
+    fontStyle,
     ...props
 }: TypographyProps) => {
     const Component = variant
@@ -77,6 +80,7 @@ const Typography = ({
             {...props}
             className={`${dynamicClassName}`}
             style={{
+                fontStyle: fontStyle,
                 fontSize: fontSizeStatic,
                 textDecorationStyle: textDecorationStyle,
                 textDecoration: textDecoration,

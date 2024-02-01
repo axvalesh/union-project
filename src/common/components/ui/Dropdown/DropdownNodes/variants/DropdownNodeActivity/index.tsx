@@ -23,7 +23,7 @@ type DropdownNodeActivityProps = {
     return (
       <DropdownNode
         countNotifications={countNotification}
-        noneIcon={<AppColor.news />}
+        noneIcon={<AppColor.news fill={AppColor.text}  />}
         noneText='Create something useful for the world'
         noneTitle='No Activity Yet'
         noneButton={<MyButtonOrange onClick={() => {}}>Create</MyButtonOrange>}

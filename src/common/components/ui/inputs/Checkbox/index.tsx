@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './style.module.scss'
 import AppColor from '@common/styles/variables-static'
 
@@ -20,6 +20,10 @@ const MyCheckbox = ({
 }: MyCheckboxProps) => {
     const [isTrue, setIsTrue] = useState(basicValue)
 
+    useEffect(() => {
+        setIsTrue(basicValue)
+        callback(basicValue);
+    },[basicValue])
     function handleChange(item:boolean) {
         if(callback != null) {
             callback(item)

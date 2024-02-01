@@ -101,7 +101,7 @@ const UsersAll = () => {
                                 fontWeight="500"
                                 textTransform="uppercase"
                                 onClick={() => {}}>
-                                All programs{' '}
+                                All customers{' '}
                                 <AppColor.chevronBottom
                                     fill={AppColor.orange}
                                 />
@@ -499,6 +499,13 @@ const UsersAll = () => {
                             {itemsToshow.map((item,index) => (
                                   <div className={'center_card'}>
                                  <CardStatisticPartnership
+                                 userDetails={[
+                                    {
+                                        text: '95%',
+                                        nodeImg: <AppColor.star />
+                                    }
+                                 ]}
+                                 lvl='53'
                                  links={['aCCOUNT', 'Stats', 'Reviews']}
                                     typeColor='white'
                                     textTransform='uppercase'

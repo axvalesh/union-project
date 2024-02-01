@@ -6,15 +6,17 @@ type CenterShadowBoxProps = {
     gap: string;
     paddingBoxDesktop: string;
     paddingBoxMobile?: string;
+    direction?: 'column' | 'row';
     absoluteItem?: React.ReactNode;
     align?: 'center' | 'start' | 'end'
 }
-const CenterShadowBox = ({elements,gap,paddingBoxDesktop,absoluteItem,paddingBoxMobile,align}:CenterShadowBoxProps) => {
+const CenterShadowBox = ({direction,elements,gap,paddingBoxDesktop,absoluteItem,paddingBoxMobile,align}:CenterShadowBoxProps) => {
     const styleBox = {
         '--gap': gap,
         '--paddingMobile': paddingBoxMobile ?? paddingBoxDesktop,
         '--paddoingDesktop': paddingBoxDesktop,
         '--align': align as string ?? 'center',
+        '--direction': direction ?? 'column',
         border: 'none'
     }
     return (

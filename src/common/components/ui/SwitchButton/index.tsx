@@ -10,18 +10,21 @@ type SwitchButtonProps = {
     height?: string;
     bakcgroundColorActive?: string;
     activeIcon?: React.ReactNode;
+    disable?: boolean
 }
-const SwitchButton = ({activeIcon,bakcgroundColorActive,callback,startValue=false,height,width}:SwitchButtonProps) => {
+const SwitchButton = ({disable=false,activeIcon,bakcgroundColorActive,callback,startValue=false,height,width}:SwitchButtonProps) => {
     const buttonsVariables = {
         '--colorActive': bakcgroundColorActive ?? AppColor.orange
     }
     const [isActive,setIsActive] = useState(startValue);
 
     function handleSwitch(item:boolean) {
-        if(callback != null) {
-            callback(item);
+        if(!disable) {
+            if(callback != null) {
+                callback(item);
+            }
+            setIsActive(item);
         }
-        setIsActive(item);
     }
     return (
       <div>

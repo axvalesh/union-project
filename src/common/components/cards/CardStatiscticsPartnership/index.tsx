@@ -31,14 +31,18 @@ type CardStatisticPartnershipProps = {
     textTransform?: CSSProperties['textTransform'];
     typeColor?: string;
     links?: string[];
+    lvl?: string;
+    userDetails?: svgTextProps[];
 }
 const CardStatisticPartnership = ({
     title,
     user,
+    lvl,
     tags,
     links,
     rate,
     EPC,
+    userDetails,
     CR,
     CR48hours,
     details,
@@ -96,6 +100,11 @@ const CardStatisticPartnership = ({
                 <div className={styles.content_top_second}>
                    {dateAgo != null
                    ? <Typography variant='body5' color='white'>{dateAgo}</Typography>
+                    : 
+                    userDetails != null
+                    ? <>
+                        {userDetails.map(item => <SvgText nodeImg={item.nodeImg} text={item.text} />)}
+                    </>
                     : <>
                          <SvgText
                         nodeImg={<AppColor.handshake/>}
@@ -111,6 +120,11 @@ const CardStatisticPartnership = ({
                     />
                     </>}
                     {isUrgent && <Urgent />}
+                    {lvl && <div className='gap_5'>
+                            <AppColor.fiveOfFive />
+                            <Typography variant='body5' color='white'>{lvl} lvl</Typography>
+                            <Typography variant='body5' fontWeight='500' color={AppColor.red}>Lead</Typography>
+                        </div>}
                    
                 </div>
                 {links && <div className={styles.links_wrapper}>
