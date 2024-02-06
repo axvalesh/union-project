@@ -67,6 +67,7 @@ import CreateServiceNegotiation from './pages/CreateService/CreateServiceNegotia
 import SingIn from './pages/Authentication/SingIn'
 import Recovery from './pages/Authentication/Recovery'
 import Authentication from './pages/Authentication/Authentication'
+import AdminPannel from './pages/AdminPannel'
 
 function App() {
    
@@ -162,6 +163,8 @@ function App() {
             <Route path="/create-sponsorship/posting" element={<CreateSponsorshipPosting />} /> 
 
             <Route path="/create-service/negotiation" element={<CreateServiceNegotiation />} /> 
+
+            <Route path="/admin" element={<AdminPannel />} /> 
 
             <Route path="*" element={<Navigate to="/error" />} />
          </Routes>

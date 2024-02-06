@@ -7,8 +7,9 @@ import InputCommon from '../inputs/InputCommon';
 type SearchFilterBarProps = {
      recent?: boolean;
      date?: string;
+     exportIcon?: boolean;
 }
-const SearchFilterBar = ({recent,date}:SearchFilterBarProps) => {
+const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
 
     return (
       <div className={styles.wrapper}>
@@ -30,6 +31,11 @@ const SearchFilterBar = ({recent,date}:SearchFilterBarProps) => {
                && <div className={styles.flex_item}>
                          <AppColor.recent />
                          <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Most recent</Typography>
+                    </div>
+               }
+               {exportIcon
+               && <div className={styles.flex_item}>
+                         <AppColor.exportIcon />
                     </div>
                }
               

@@ -5,11 +5,12 @@ import styles from './Logo.module.scss'
 type LogoProps = {
   color?: string;
   text?: string;
+  alignItems?: string
 }
-const Logo = ({color,text}:LogoProps) => {
+const Logo = ({color,text,alignItems}:LogoProps) => {
 
     return (
-      <span className={styles.logo_wrapper}>
+      <span style={{alignItems: alignItems ?? 'center'}} className={styles.logo_wrapper}>
         <p style={{color: color,WebkitTextStrokeColor: color}} className={styles.p}>
           UNIANO
         </p>

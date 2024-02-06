@@ -54,14 +54,14 @@ $grey: #A8A8AD;
   scrollbar-color: $orange $white;  /* For Firefox */
 
   &::-webkit-scrollbar {
-      width: 6px;  /* Width of the scrollbar */
+      width: 5px;  /* Width of the scrollbar */
       background-color: $white;
       border-radius: 20px;
   }
 
   &::-webkit-scrollbar-thumb {
       background-color: $orange;  /* Color of the thumb */
-      border-radius: 6px;  /* Rounded corners of the thumb */
+      border-radius: 5px;  /* Rounded corners of the thumb */
       border-radius: 20px;
   }
 }
@@ -144,7 +144,14 @@ $grey: #A8A8AD;
   border-radius: 20px;
   padding: 8px 14px;
 }
+
+.center_mobile_text {
+  text-align: center;
+}
 @media (min-width:$tabletSize) {
+  .center_mobile_text {
+    text-align: start;
+  }
   .text_box {
     padding: 15px 20px;
   }

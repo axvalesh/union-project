@@ -7,6 +7,7 @@ import AppColor from '@common/styles/variables-static';
 import { useScreenSize } from '@common/helpers/useScreenSize';
 import SizeBox from '../SizeBox';
 import HorizontalLine from '../Lines/HorizontalLine';
+import MyCheckbox from '../inputs/Checkbox';
 
 
 type DetailsTableProps = {
@@ -21,23 +22,34 @@ type DetailsTableProps = {
   removeNavBar?: boolean;
   removeThreeLines?: boolean;
   projectsCount?: string;
-  titleEnd?: string
+  titleEnd?: string;
+  group?: string;
 }
 
 type DetailsTableItem = {
   title: string;
   child: React.ReactNode;
+  selecrable?: boolean;
   maxWidth?: string;
 }
-const DetailsTable = ({titleEnd,details,page,projectsCount,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
+const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
 
     const [currentFilter,setCurrentFilter] = useState('All');
     const {width,height} = useScreenSize();
     const [showDropdown,setShowDropdown] = useState(false);
 
+    const [selectAll,setSelectAll] = useState(false);
+
     return (
       <div>
             <div className={styles.filter_text_wrapper}>
+                  {group &&
+                  <div className='gap_10'>
+                    <Typography variant='body4' fontWeight='500'>{group}</Typography>
+                    <AppColor.chevronBottom fill={AppColor.text} />
+                    <div className={styles.vertical_line_item}></div>
+                  </div>
+                  }
                   {filters.map((item) => (
                       <div onClick={() => { setCurrentFilter(item)}} className={styles.filter_text}>
                           <Typography
@@ -70,9 +82,12 @@ const DetailsTable = ({titleEnd,details,page,projectsCount,filters,callbackNav,s
                      {details.map((item,index) => 
                         <div className={styles.mobile_wrapper}>
                           <div className={styles.mobile_text}>
-                            <Typography variant='body4' fontWeight='500'>
-                                {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
-                            </Typography>
+                         <div className='gap_5'>
+                            {item.selecrable && <MyCheckbox callback={(item) => [setSelectAll(item)]} width='20px' height='20px' />}
+                              <Typography textLineHeight='1' variant='body4' fontWeight='500'>
+                                  {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
+                              </Typography>
+                         </div>
                           </div>
                           <div className={styles.mobile_child}>
                           {
@@ -83,9 +98,13 @@ const DetailsTable = ({titleEnd,details,page,projectsCount,filters,callbackNav,s
                                     ? <AppColor.chevronTop width={'20px'} fill={AppColor.text}/>
                                     : <AppColor.chevronBottom width={'20px'} fill={AppColor.text}/>
                                   }
+                                   {item.selecrable && <MyCheckbox basicValue={selectAll} width='20px' height='20px' />}
                                   {item.child}
                                 </div>
-                                : item.child
+                                : <div className='gap_5'>
+                                {item.selecrable && <MyCheckbox basicValue={selectAll} width='20px' height='20px' />}
+                                 { item.child}
+                               </div>
                               }
                           </div>
                           {index == 0 && dropdownNode
@@ -105,9 +124,10 @@ const DetailsTable = ({titleEnd,details,page,projectsCount,filters,callbackNav,s
                         {details.map((item,index) =>
                           <div className={styles.dessktop_item_shell} style={{maxWidth: item.maxWidth != null ? item.maxWidth : maxWidth,}}>
                            <div className={styles.title_wrapper_desktop}>
-                             <div style={{display: 'flex'}}>
+                             <div style={{display: 'flex',gap: '5px',whiteSpace: 'nowrap'}}>
+                              {item.selecrable && <MyCheckbox width='20px' height='20px' callback={(item) => [setSelectAll(item)]} />}
                                 {dropdownNode && index == 0
-                                ? <SizeBox width='40px'/>
+                                ? <SizeBox width='35px'/>
                                 : <></>
                                 }
                                 <Typography variant='body4' fontWeight='500'>
@@ -124,9 +144,13 @@ const DetailsTable = ({titleEnd,details,page,projectsCount,filters,callbackNav,s
                                     ? <AppColor.chevronTop width={'20px'} fill={AppColor.text}/>
                                     : <AppColor.chevronBottom width={'20px'} fill={AppColor.text}/>
                                   }
+                                  {item.selecrable && <MyCheckbox basicValue={selectAll}  width='20px' height='20px' />}
                                   {item.child}
                                 </div>
-                                : item.child
+                                : <div className='gap_20'>
+                                 {item.selecrable && <MyCheckbox basicValue={selectAll}  width='20px' height='20px' />}
+                                  { item.child}
+                                </div>
                               }
                             </div>
                           </div>
@@ -175,7 +199,7 @@ const DetailsTable = ({titleEnd,details,page,projectsCount,filters,callbackNav,s
               {projectsCount && <DynamicPadding mobile='20px' desktop='20px' />}
               {projectsCount &&
                  <Typography variant='body4'>
-                 {projectsCount} {titleEnd != null ? titleEnd : parseInt(projectsCount) > 1 ?'projects' : 'project'}
+                 <span style={{fontWeight: '500'}}>{projectsCount}</span> {titleEnd != null ? titleEnd : parseInt(projectsCount) > 1 ?'projects' : 'project'}
                </Typography>
               }
       </div>

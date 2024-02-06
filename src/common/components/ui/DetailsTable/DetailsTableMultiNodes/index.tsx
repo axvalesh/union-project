@@ -4,18 +4,20 @@ import DynamicPadding from '../../DynamicPadding';
 import HorizontalLine from '../../Lines/HorizontalLine';
 import SizeBox from '../../SizeBox';
 import Typography from '../../Typography/Typography';
+import MyCheckbox from '../../inputs/Checkbox';
 import styles from './style.module.scss';
 
 type DetailsTableMultiNodesProps = {
     elements: DetailsTableMultiNodesItem[];
     titles: string[];
+    selectableColumn?: number;
 }
 
 type DetailsTableMultiNodesItem = {
     nodes: React.ReactNode[];
 
 }
-const DetailsTableMultiNodes = ({elements,titles}:DetailsTableMultiNodesProps) => {
+const DetailsTableMultiNodes = ({elements,titles,selectableColumn}:DetailsTableMultiNodesProps) => {
 
     return (
     <div>
@@ -26,6 +28,7 @@ const DetailsTableMultiNodes = ({elements,titles}:DetailsTableMultiNodesProps) =
                     <div className={styles.mobile_item}>
                         
                         <div className='text_box'>
+                            {selectableColumn != null && index == selectableColumn && <MyCheckbox height='20px' width='20px' />}
                             <Typography variant='body4' fontWeight='500'>{title}</Typography>
                         </div>
                         <SizeBox height='15px'/>
@@ -44,8 +47,9 @@ const DetailsTableMultiNodes = ({elements,titles}:DetailsTableMultiNodesProps) =
                         <thead>
                             <tr>
                                 {titles.map((item,index) => <th className={styles.column_title} scope="col">
-                                    <div style={{display: 'flex'}}>
-                                    {index == 0 && <SizeBox width='20px'/>}
+                                    <div style={{display: 'flex',gap: '10px'}}>
+                                    {index == 0 && <SizeBox width='10px'/>}
+                                    {selectableColumn != null && index == selectableColumn && <MyCheckbox height='20px' width='20px' />}
                                     <Typography variant='body4' fontWeight='500'>{item}</Typography>
                                     </div>
                                 </th>)}

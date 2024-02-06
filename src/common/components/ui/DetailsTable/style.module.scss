@@ -14,6 +14,12 @@
     border: 1px solid rgba($color: $text, $alpha: 0.1);
 }
 
+.vertical_line_item {
+    height: 15px;
+    width: 1px;
+    background-color: #A8A8AD;
+}
+
 .desktop_wrapper {
     position: relative;
 }

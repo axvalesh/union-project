@@ -261,8 +261,25 @@ import { ReactComponent as authentication} from '@assets/svg/authentication.svg'
 
 import { ReactComponent as security} from '@assets/svg/security.svg';
 import { ReactComponent as pinCode} from '@assets/svg/pin-code.svg';
+import { ReactComponent as moneyWithdraw} from '@assets/svg/money-withdraw.svg';
+import { ReactComponent as visa} from '@assets/svg/visa.svg';
+import { ReactComponent as exportIcon} from '@assets/svg/export.svg';
+
+import { ReactComponent as business} from '@assets/svg/business.svg';
+import { ReactComponent as creation} from '@assets/svg/creation.svg';
+import { ReactComponent as IT} from '@assets/svg/it.svg';
+import { ReactComponent as tech} from '@assets/svg/tech.svg';
+import { ReactComponent as publicIcon} from '@assets/svg/public.svg';
 
 class AppColor {
+    static business = business;
+    static creation = creation;
+    static IT = IT;
+    static tech = tech;
+    static publicIcon = publicIcon;   
+    static exportIcon = exportIcon;
+    static visa = visa;
+    static moneyWithdraw = moneyWithdraw;
     static security = security;
     static pinCode = pinCode;
     static authenticationSignIn = authenticationSignIn;

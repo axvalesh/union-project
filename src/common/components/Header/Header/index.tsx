@@ -24,7 +24,7 @@ const Header = () => {
                             className={styles.hamburger_line}></span>
                     </div>
                     <div className={styles.header_first_part}>
-                        <span className={styles.logo}>
+                       <span className={styles.logo}>
                             <Logo />
                         </span>
                        <div className={styles.button_wrapper}>

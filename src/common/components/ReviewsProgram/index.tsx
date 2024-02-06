@@ -21,7 +21,7 @@ const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,a
     return (
         <div className={styles.comment_wrapper}>
             <div className={styles.comment_user_info}>
-            <UserAvatar active={true} url={user.image} name={user.name} role='Manager' flag={<AppColor.UkraineFlag/>}/>
+            <UserAvatar preventMobileNone={true} active={true} url={user.image} name={user.name} role='Manager' flag={<AppColor.UkraineFlag/>}/>
                <div className={styles.recommended_comment}>
                     <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>
                         <AppColor.like />
@@ -30,7 +30,7 @@ const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,a
                     <Typography color={AppColor.transparentBlack} variant='body4'>{user.activeAgo}</Typography>
                </div>
                <div className={styles.sales_text} style={{marginLeft: 'auto',display: 'flex',alignItems:'center',gap: '10px'}}>
-                    <Typography variant='subtitle' fontWeight='500' textTransform='uppercase'>${money} </Typography>
+                    {money != '' && <Typography variant='subtitle' fontWeight='500' textTransform='uppercase'>${money} </Typography>}
                     {sales != null && <div style={{display: 'flex',alignItems:'center',gap: '5px'}}>
                         <AppColor.walletIcon />
                         <Typography variant='body4'>{sales} sales </Typography>
