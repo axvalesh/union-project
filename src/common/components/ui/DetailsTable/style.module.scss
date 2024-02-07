@@ -108,6 +108,16 @@
     gap: 20px;
     align-items: center;
 }
+
+.desktop_dropdown_item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    >div {
+        width: 100%;
+    }
+}
 @media (min-width:$tabletSize) {
     .dessktop_item_shell {
         display: flex;

@@ -270,8 +270,15 @@ import { ReactComponent as creation} from '@assets/svg/creation.svg';
 import { ReactComponent as IT} from '@assets/svg/it.svg';
 import { ReactComponent as tech} from '@assets/svg/tech.svg';
 import { ReactComponent as publicIcon} from '@assets/svg/public.svg';
+import { ReactComponent as hummer} from '@assets/svg/hummer.svg';
+
+import { ReactComponent as earn} from '@assets/svg/earn.svg';
+import { ReactComponent as discount} from '@assets/svg/discount.svg';
 
 class AppColor {
+    static earn = earn;
+    static discount = discount;   
+    static hummer = hummer;
     static business = business;
     static creation = creation;
     static IT = IT;

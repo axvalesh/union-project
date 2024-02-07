@@ -82,7 +82,7 @@ const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbac
                      {details.map((item,index) => 
                         <div className={styles.mobile_wrapper}>
                           <div className={styles.mobile_text}>
-                         <div className='gap_5'>
+                         <div className='gap_10'>
                             {item.selecrable && <MyCheckbox callback={(item) => [setSelectAll(item)]} width='20px' height='20px' />}
                               <Typography textLineHeight='1' variant='body4' fontWeight='500'>
                                   {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
@@ -101,7 +101,7 @@ const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbac
                                    {item.selecrable && <MyCheckbox basicValue={selectAll} width='20px' height='20px' />}
                                   {item.child}
                                 </div>
-                                : <div className='gap_5'>
+                                : <div className='gap_10'>
                                 {item.selecrable && <MyCheckbox basicValue={selectAll} width='20px' height='20px' />}
                                  { item.child}
                                </div>
@@ -112,7 +112,9 @@ const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbac
                               <SizeBox height='15px'/>
                               <HorizontalLine/>
                               <SizeBox height='15px'/>
-                              <div style={{display: showDropdown ? 'block' : 'none'}}>{dropdownNode}</div>
+                              <div style={{display: showDropdown ? 'block' : 'none'}}>
+                                {dropdownNode}
+                                </div>
                               </div>
                             : <></>}
                         </div>
@@ -124,12 +126,13 @@ const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbac
                         {details.map((item,index) =>
                           <div className={styles.dessktop_item_shell} style={{maxWidth: item.maxWidth != null ? item.maxWidth : maxWidth,}}>
                            <div className={styles.title_wrapper_desktop}>
-                             <div style={{display: 'flex',gap: '5px',whiteSpace: 'nowrap'}}>
-                              {item.selecrable && <MyCheckbox width='20px' height='20px' callback={(item) => [setSelectAll(item)]} />}
-                                {dropdownNode && index == 0
-                                ? <SizeBox width='35px'/>
+                             <div style={{display: 'flex',gap: '10px',whiteSpace: 'nowrap'}}>
+                             {dropdownNode && index == 0
+                                ? <SizeBox width='25px'/>
                                 : <></>
                                 }
+                              {item.selecrable && <MyCheckbox width='20px' height='20px' callback={(item) => [setSelectAll(item)]} />}
+                               
                                 <Typography variant='body4' fontWeight='500'>
                                 {item.title} <AppColor.trianleDown fill={item.title != ' ' ? AppColor.text : 'transparent'} />
                                 </Typography>
@@ -185,7 +188,9 @@ const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbac
               </>
               : <></>}
                {showDropdown && dropdownNode && width > 768
-              ? <div>{dropdownNode}</div>
+              ? <div className={styles.desktop_dropdown_item}>
+                {dropdownNode}
+                </div>
               : <></>}
               {!removeNavBar && <> <DynamicPadding mobile='20px' desktop='20px' />
               <div className={styles.flex_space}>

@@ -17,27 +17,28 @@ type UserAvatarProps = {
     height?: string;
     activeAgo?: string;
     nodeAfterText?: React.ReactNode;
-    noWrap?: boolean
+    noWrap?: boolean;
+    roleColor?: string;
 }
 
 type UserAvatarVariants = "row" | "column" | "money"
 
 
-const UserAvatar = ({noWrap,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatar = ({noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow noWrap={noWrap} nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
+            return <UserAvatarRow roleColor={roleColor} noWrap={noWrap} nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
-            return <UserAvatarColumn noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
+            return <UserAvatarColumn roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
-            return <UserAvatarMoney noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
+            return <UserAvatarMoney roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
         default:
             return null;
     }
 };
 
-const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText,roleColor}:UserAvatarProps) => {
     
     const currentWidth = width != null ? width : '38px';
     const currentHeight = height != null ? height : '38px';
@@ -57,7 +58,7 @@ const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,heigh
                     {activeAgo}
                 </Typography>
                 {role && <SizeBox height='5px'/>}
-                <Typography color={AppColor.orange} variant='body5' textLineHeight='1'>
+                <Typography color={roleColor ?? AppColor.orange} variant='body5' textLineHeight='1'>
                     {role}
                 </Typography>
            </div>

@@ -22,6 +22,15 @@ import AdminCrowdfreelance from '../../pages/AdminCrowdfreelance';
 import AdminSubscriptions from '../../pages/AdminSubscriptions';
 import AdminPartnerships from '../../pages/AdminPartnerships';
 import AdminForms from '../../pages/AdminForms';
+import AdminPosts from '../../pages/AdminPosts';
+import AdminFAQ from '../../pages/AdminFAQ';
+import AdminModeration from '../../pages/AdminModeration';
+import AdminArbitration from '../../pages/AdminArbitration';
+import AdminManagerСhats from '../../pages/AdminManagerСhats';
+import AdminModeratorsChats from '../../pages/AdminModeratorsChats';
+import AdminTickets from '../../pages/AdminTickets';
+import AdminMailing from '../../pages/AdminMailing';
+import AdminListPages from '../../pages/AdminListPages';
 
 const Layout = () => {
     const [activePage,setActivePage] = useState('Analytics');
@@ -55,32 +64,33 @@ type SwitchPageProps = {
     activePage: string;
 }
 const SwitchPage = ({activePage}:SwitchPageProps) => {
-    switch(activePage) {
-        case 'Analytics':
-            return <AdminAnalytics />
-        case 'Top up':
-            return <AdminTopUp />
-        case 'Withdraw':
-            return <AdminWithdraw />
-        case 'Tax form':
-            return <AdminTaxForm />
-        case 'List':
-            return <AdminList />
-        case 'Verification':
-            return <AdminVerification />
-        case 'Service':
-            return <AdminService />
-        case 'Order':
-            return <AdminOrder />
-        case 'Crowdfreelance':
-            return <AdminCrowdfreelance />
-        case 'Subscriptions':
-            return <AdminSubscriptions />
-        case 'Partnerships':
-            return <AdminPartnerships />
-        case 'Forms':
-            return <AdminForms/>
-    }
+    const pageComponents = {//Global mean that item is not child of dropdown
+        'Global.Analytics': <AdminAnalytics />,
+        'Finance.Operations.Top up': <AdminTopUp />,
+        'Finance.Operations.Withdraw': <AdminWithdraw />,
+        'Finance.Tax form': <AdminTaxForm />,
+        'Users.List': <AdminList />,
+        'Users.Verification': <AdminVerification />,
+        'Projects.Service': <AdminService />,
+        'Projects.Order': <AdminOrder />,
+        'Global.Crowdfreelance': <AdminCrowdfreelance />,
+        'Global.Subscriptions': <AdminSubscriptions />,
+        'Global.Partnerships': <AdminPartnerships />,
+        'Global.Forms': <AdminForms />,
+        'Community.Posts': <AdminPosts />,
+        'Community.FAQ': <AdminFAQ />,
+        'Global.Moderation': <AdminModeration />,
+        'Global.Arbitration': <AdminArbitration />,
+        'Care service.Manager chats': <AdminManagerСhats />,
+        'Care service.Moderators chats': <AdminModeratorsChats />,
+        'Care service.Tickets': <AdminTickets />,
+        'Care service.Mailing': <AdminMailing />,
+        'Pages.List': <AdminListPages />,
+        'Pages.Categories': <AdminMailing />,
+      };
+
+      const component = pageComponents[activePage];
+      return component || null;
 }
 type LeftBarProps = {
     callback: (item:string) => void;
@@ -89,6 +99,7 @@ type LeftBarProps = {
 
 const LeftBar = ({activePage,callback}:LeftBarProps) => {
     const [history,setHistory] = useState<string[]>([]);
+    
     return (
         <div>
                 <div className={styles.desktop_left_bar_wrapper}>
@@ -104,8 +115,8 @@ const LeftBar = ({activePage,callback}:LeftBarProps) => {
                             
                             if(item.dropdownTitles.length == 0) {
                                 return (
-                                    <div onClick={() => {callback(item.title);setHistory([])}} className={styles.page_link}>
-                                        <Typography textLineHeight='1' variant='body3' fontWeight='500' color={activePage == item.title ? 'white' : '#A8A8AD'}>{item.title}</Typography>
+                                    <div onClick={() => {callback(`Global.${item.title}`);setHistory([])}} className={styles.page_link}>
+                                        <Typography textLineHeight='1' variant='body3' fontWeight='500' color={activePage == `Global.${item.title}` ? 'white' : '#A8A8AD'}>{item.title}</Typography>
                                     </div>
                                 )
                             } else {
@@ -141,6 +152,21 @@ const DropdownLink = ({page,activePage,callback,depth,callbackHistory,callbackHi
     //     if(!showDropdown &&)
     // },[showDropdown])
 
+  
+
+    const getHistoryTitle = () => {//make unique path for SwitchPage component
+        let item = ''
+        if(localHistory.length > 0) {
+            for(let i = 0;i<localHistory.length;i++) {
+                item += `${localHistory[i]}.`
+            }
+        }
+
+        return item;
+    }
+
+    const historyTitle = getHistoryTitle();
+
     return (
       <div>
             <div onClick={() => {
@@ -148,14 +174,13 @@ const DropdownLink = ({page,activePage,callback,depth,callbackHistory,callbackHi
                     setShowDropdown(prev => !prev)
                 }
                 else {
-                    console.log(page.title);
-                    console.log(activePage);
+                    console.log(`${historyTitle}${page.title}`);
                     
-                    callback(page.title);
+                    callback(`${historyTitle}${page.title}`);
                     callbackHistory(localHistory);
                 }
             }} className={styles.page_link}>
-                <Typography textLineHeight='1' variant='body3' fontWeight={depth < 2 ? '500' : '400'} color={isInHistory ? 'white' :  activePage == page.title ? 'white' : showDropdown ? 'white' : activePage != page.title ? AppColor.transparentWhite : '#A8A8AD'}>{depth != 0 && '•'} {page.title}</Typography>
+                <Typography textLineHeight='1' variant='body3' fontWeight={depth < 2 ? '500' : '400'} color={isInHistory ? 'white' :  activePage == `${historyTitle}${page.title}` ? 'white' : showDropdown ? 'white' : activePage != page.title ? AppColor.transparentWhite : '#A8A8AD'}>{depth != 0 && '•'} {page.title}</Typography>
                 {
                     page.dropdownTitles.length != 0 
                     ? showDropdown

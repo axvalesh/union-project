@@ -1,5 +1,5 @@
 
-import DetailsPartnershipsAdmin from '@common/components/ui/DetailsTable/variants/DetailsPartnershipsAdmin/index';
+import DetailsTableFormsAdmin from '@common/components/ui/DetailsTable/variants/DetailsTableFormsAdmin/index';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import SearchFilterBar from '@common/components/ui/SearchFilterBar/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
@@ -9,9 +9,9 @@ import { fakeUserConstant } from '@common/models/user';
 import AppColor from '@common/styles/variables-static';
 import { useState } from 'react';
 import styles from './style.module.scss';
-import DetailsTableFormsAdmin from '@common/components/ui/DetailsTable/variants/DetailsTableFormsAdmin/index';
+import DetailsTablePostsAdmin from '@common/components/ui/DetailsTable/variants/DetailsTablePostsAdmin/index';
 
-const AdminForms = () => {
+const AdminPosts = () => {
     const [selectedCategory,setSelectedCategory] = useState('Development');
     return (    
       <div className={styles.wrapper}>
@@ -20,18 +20,12 @@ const AdminForms = () => {
                 <div className='mobile'>
                         <SizeBox height='5px' width='20px'/>
                     </div>
-                    <TopItem activeSelect={selectedCategory} callbackSelect={(item) => {setSelectedCategory(item)}}
-                        icon={<AppColor.development />} title='Development'/>
-                    <TopItem activeSelect={selectedCategory} callbackSelect={(item) => {setSelectedCategory(item)}}
-                        icon={<AppColor.desing />} title='Design'/>
-                    <TopItem activeSelect={selectedCategory} callbackSelect={(item) => {setSelectedCategory(item)}}
-                        icon={<AppColor.marketing />} title='Marketing'/>
-                    <TopItem activeSelect={selectedCategory} callbackSelect={(item) => {setSelectedCategory(item)}}
-                        icon={<AppColor.writing />} title='Writing'/>
-                    <TopItem activeSelect={selectedCategory} callbackSelect={(item) => {setSelectedCategory(item)}}
-                        icon={<AppColor.managment />} title='Management'/>
-                    <TopItem activeSelect={selectedCategory} callbackSelect={(item) => {setSelectedCategory(item)}}
-                        icon={<AppColor.consulting />} title='Consulting'/>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body4'>Getting Started</Typography>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body4'>Subscription</Typography>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body4'>Projects</Typography>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body4'>Crowdfreelance</Typography>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body4'>Partnership</Typography>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body4'>Gamification</Typography>
                         <div className='mobile'>
                         <SizeBox height='5px' width='20px'/>
                         </div>
@@ -42,8 +36,8 @@ const AdminForms = () => {
             <DynamicPadding />
     
                <div className='center_mobile_text'>
-                <div className='gap_10'>
-                    <div><Typography variant='titleBig' fontWeight='600' textTransform='uppercase'>Logo design specification forms</Typography></div>
+                <div className={styles.title_plus}>
+                    <div><Typography variant='titleBig' fontWeight='600' textTransform='uppercase'>Posts</Typography></div>
                     <div className={styles.orange}>
                         <AppColor.plus stroke='white' width={'fit-content'}/>
                     </div>
@@ -64,7 +58,7 @@ const AdminForms = () => {
                         </div>
                     </div>
     
-                    <Typography variant='body4' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>Form settings</Typography>
+                    <Typography variant='body4' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>post settings</Typography>
                </div>
     
                <DynamicPadding />
@@ -73,13 +67,15 @@ const AdminForms = () => {
     
                <DynamicPadding />
 
-               <DetailsTableFormsAdmin
+               <DetailsTablePostsAdmin
                     information={[
                         {
                             user: fakeUserConstant,
+                            post: 'New to Uniano, Need assistance ',
                             date: 'Feb 26, 2021 16:32 ',
-                            category: 'Logo design',
-                            creactor: fakeUserConstant,
+                            category: 'Registration',
+                            creator: fakeUserConstant,
+                            replies: '531',
                             status: 'Active'
                         }
                     ]}
@@ -106,4 +102,5 @@ const TopItem = ({icon,title,activeSelect,callbackSelect}:TopItemProps) => {
     )
 }
 
-export default AdminForms;
+
+export default AdminPosts;

@@ -47,9 +47,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translate(80%,-50%);
-  -ms-transform: translate(80%,-50%);
-  transform: translate(80%,-50%);
+  -webkit-transform: translate(90%,-50%);
+  -ms-transform: translate(90%,-50%);
+  transform: translate(90%,-50%);
 }
 
 /* Rounded sliders */

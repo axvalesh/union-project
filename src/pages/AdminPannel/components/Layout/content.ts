@@ -137,11 +137,21 @@ export const pagesAdmin:PageType[] = [
     },
     {
             title: 'Forms',
-            dropdownTitles: [],
+            dropdownTitles: [
+            ],
     },
     {
             title: 'Community',
-            dropdownTitles: [],
+            dropdownTitles: [
+                {
+                        title: 'Posts',
+                        dropdownTitles: [],
+                },
+                {
+                        title: 'FAQ',
+                        dropdownTitles: [],
+                },
+            ],
     },
     {
             title: 'Moderation',
@@ -153,11 +163,38 @@ export const pagesAdmin:PageType[] = [
     },
     {
             title: 'Care service',
-            dropdownTitles: [],
+            dropdownTitles: [
+                {
+                        title: 'Manager chats',
+                        dropdownTitles: [],
+                },
+                {
+                        title: 'Moderators chats',
+                        dropdownTitles: [],
+                },
+                {
+                        title: 'Tickets',
+                        dropdownTitles: [],
+                },
+                {
+                        title: 'Mailing',
+                        dropdownTitles: [],
+                },
+
+            ],
     },
     {
             title: 'Pages',
-            dropdownTitles: [],
+            dropdownTitles: [
+                {
+                        title: 'List',
+                        dropdownTitles: [],
+                },
+                {
+                        title: 'Categories',
+                        dropdownTitles: [],
+                },
+            ],
     },
     {
             title: 'Settings',

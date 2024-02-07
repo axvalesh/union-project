@@ -19,6 +19,7 @@
     padding: 8px 27px 8px 15px;
     color: $text;
     border-radius: 20px;
+    @include scrollStyles;
     
 }   
 

@@ -50,18 +50,18 @@ $grey: #A8A8AD;
 }
 
 @mixin scrollStyles {
-  scrollbar-width: thin;  /* For Firefox */
+  scrollbar-width: none;  /* For Firefox */
   scrollbar-color: $orange $white;  /* For Firefox */
 
   &::-webkit-scrollbar {
-      width: 5px;  /* Width of the scrollbar */
+      width: 1px;  /* Width of the scrollbar */
       background-color: $white;
       border-radius: 20px;
   }
 
   &::-webkit-scrollbar-thumb {
       background-color: $orange;  /* Color of the thumb */
-      border-radius: 5px;  /* Rounded corners of the thumb */
+      border-radius: 1px;  /* Rounded corners of the thumb */
       border-radius: 20px;
   }
 }
