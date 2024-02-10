@@ -5,8 +5,8 @@ import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
 import {useState} from 'react'
 import { Link as LinkRouter } from 'react-router-dom';
-const MenuLinks = ({hoveredLink}:{hoveredLink:number}) => {
-    const [activeTab,setActiveTab] = useState(hoveredLink);
+const MenuLinks = ({hoveredLink}:{hoveredLink?:number}) => {
+    const [activeTab,setActiveTab] = useState(hoveredLink ?? 0);
     const [activeCategory,setActiveCategory] = useState<categorysText>(categorysText.Development); 
     return (
       <div className={styles.wrapper}>

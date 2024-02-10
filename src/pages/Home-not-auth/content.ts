@@ -28,24 +28,28 @@ export const six_section_cards_content:sixSectionCardProps[] = [
     title: 'Subscriptions',
     description: 'Pick tailored plans for cost-effective project support',
     image: sixSectionImage1,
+    index: 0,
   },
 
   {
     title: 'Gamification',
     description: 'Enjoy engaging tasks and rewards for efficient collaboration',
     image: sixSectionImage2,
+    index: 1,
   },
 
   {
     title: 'Promo',
     description: 'Access special offers from freelancers to enhance project value',
     image: sixSectionImage3,
+    index: 2,
   },
 
   {
     title: 'Insurance',
     description: 'Choose freelancer-provided insurance for added project protection.',
     image: sixSectionImage4,
+    index: 3,
   },
 
 ];
