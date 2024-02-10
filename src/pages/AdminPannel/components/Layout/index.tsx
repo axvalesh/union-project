@@ -31,6 +31,8 @@ import AdminModeratorsChats from '../../pages/AdminModeratorsChats';
 import AdminTickets from '../../pages/AdminTickets';
 import AdminMailing from '../../pages/AdminMailing';
 import AdminListPages from '../../pages/AdminListPages';
+import AdminServicesCategories from '../../pages/AdminServicesCategories';
+import AdminSettings from '../../pages/AdminSettings';
 
 const Layout = () => {
     const [activePage,setActivePage] = useState('Analytics');
@@ -86,7 +88,8 @@ const SwitchPage = ({activePage}:SwitchPageProps) => {
         'Care service.Tickets': <AdminTickets />,
         'Care service.Mailing': <AdminMailing />,
         'Pages.List': <AdminListPages />,
-        'Pages.Categories': <AdminMailing />,
+        'Pages.Categories.Services': <AdminServicesCategories/>,
+        'Global.Settings': <AdminSettings/>,
       };
 
       const component = pageComponents[activePage];

@@ -13,7 +13,7 @@ import googleLogo from '@assets/svg/google-logo.svg';
 import facebookLogo from '@assets/svg/facebook-logo.svg';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import MyCheckbox from '@common/components/ui/inputs/Checkbox/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RadioButton from '@common/components/ui/RadioButton/index';
 import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
@@ -23,8 +23,18 @@ import VerificationCodeInput from '@common/components/ui/VerifCodeInput/index';
 
 const Authentication = () => {
 
+    const [visible, setVisible] = useState(false);
+
+     useEffect(() => {
+         setTimeout(() => {
+             setVisible(true);
+           }, 0);
+     }, []);
+
     return (
-        <VariantChoose />
+        <div style={{opacity: visible ? '1' : '0'}} className={styles.opacity_wrapper}>
+            <VariantChoose />
+        </div>
                    
     );
 };

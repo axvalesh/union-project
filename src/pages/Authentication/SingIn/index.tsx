@@ -13,14 +13,23 @@ import googleLogo from '@assets/svg/google-logo.svg';
 import facebookLogo from '@assets/svg/facebook-logo.svg';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import MyCheckbox from '@common/components/ui/inputs/Checkbox/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SingIn = () => {
      const [email,setEmail] = useState('');
      const [password,setPassword] = useState('');
+
+     const [visible, setVisible] = useState(false);
+     const history = useNavigate();
+     useEffect(() => {
+         setTimeout(() => {
+             setVisible(true);
+           }, 0);
+     }, []);
     return (
-      <div className={styles.wrapper}>
+      <div style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
            <div className={styles.image_part}>
                 <div className={styles.logo}>
                     <Logo color='white'/>
@@ -88,7 +97,11 @@ const SingIn = () => {
                      disabled={(email.length < 2 || password.length < 4)}
                     width='100%'
                     padding='15px 0px'
-                    onClick={() => {}}
+                    onClick={() => {
+                        
+                        history('/dashboard/home');
+                        console.log('/dashboard/home')
+                    }}
                     >
                         Login
                     </MyButtonOrange>
@@ -119,7 +132,15 @@ const SingIn = () => {
                 </Typography>
                 </div>
                 <div style={{opacity: '0'}} className={styles.first_flex}>
-                  
+                    <Typography variant='body4'>
+                        Already have an account?
+                    </Typography>
+                    <SizeBox width='19px'/>
+                    <MyButtonTransparentOrange
+                    onClick={() => {}}
+                    >
+                        Sign in
+                    </MyButtonTransparentOrange>
                 </div>
             </div>
       </div>

@@ -1,5 +1,8 @@
 
-
+.opacity_wrapper {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 .wrapper {
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {

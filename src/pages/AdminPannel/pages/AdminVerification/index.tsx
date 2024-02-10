@@ -10,7 +10,7 @@ import { fakeUserConstant } from '@common/models/user';
 const AdminVerification = () => {
 
     return (
-      <div>
+      <div className='admin_wrapper'>
            <DynamicPadding />
 
            <div className={styles.top_part}>

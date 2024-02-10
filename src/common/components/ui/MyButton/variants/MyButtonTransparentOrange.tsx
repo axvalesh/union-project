@@ -10,6 +10,7 @@ const MyButtonTransparentOrange = (props:MyButtonVariantProps) => {
             fontWeight={props.fontWeight}
             width={props.width}
             textTransform={props.textTransform}
+            disabled={props.disabled}
         />
     )
 }

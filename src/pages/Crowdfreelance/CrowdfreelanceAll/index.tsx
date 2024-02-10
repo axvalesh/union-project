@@ -245,7 +245,155 @@ const CrowdfreelanceAll = () => {
                         </div>
                     }
                     item1={
+                        <FilterBlock />
+                    }
+                    item2={
                         <div style={{width: '100%'}}>
+                             <div className={styles.justify_flex}>
+                                <div className='desktop'>
+                                <Typography variant="body4">
+                                    11 841 programs
+                                </Typography>
+                            </div>
+                            <div className={styles.flex_center}>
+                                <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
+                                        <AppColor.filter />
+                                        <Typography
+                                            variant="body4"
+                                            fontWeight="500"
+                                            color={
+                                                AppColor.transparentBlack
+                                            }
+                                            textTransform="uppercase">
+                                            Filters
+                                        </Typography>
+                                </div>
+                                    <div className={'gap_5'}>
+                                        <AppColor.relevant />
+                                        <Typography
+                                            variant="body4"
+                                            fontWeight="500"
+                                            color={
+                                                AppColor.transparentBlack
+                                            }
+                                            textTransform="uppercase">
+                                            Relevant
+                                        </Typography>
+                                </div>
+                                <div>
+                                    <AppColor.chevronBottom
+                                        fill={AppColor.text}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <DynamicPadding />
+
+                        <div className={styles.cards_wrapper}>
+                            {itemsToshow.map((item,index) => (
+                               <div className={styles.card_center}>
+                                    <CardTime 
+                                    topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]}
+                                        showBottomActions={true}
+                                        title='Logo by sample in vector in maximum quality' 
+                                        currentMoneyRange={500} totalMoneyRange={5000} 
+                                        date={new Date('2023-01-01T12:00:00')}
+                                        tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                                        user={fakeUserConstant}
+
+                                        />
+                               </div>
+                            ))}
+                        </div>
+                        <DynamicPadding
+                            desktop="40px"
+                            mobile="20px"
+                        />
+                        <div className={styles.justify_center}>
+                            <MyButtonTransparentBlack
+                                onClick={() => {
+                                    setItemsToShow((prev) => [
+                                        ...prev,
+                                        1,
+                                        2,
+                                        3,
+                                    ])
+                                }}>
+                                Show more +3
+                            </MyButtonTransparentBlack>
+                        </div>
+                        <DynamicPadding
+                            desktop="40px"
+                            mobile="20px"
+                        />
+                        <div className={styles.justify_center}>
+                            <NavBarLineBlack
+                                callback={() => {}}
+                                maxCountPage={100}
+                            />
+                        </div>
+                        <DynamicPadding />
+                        </div>
+                    }
+                />
+                
+            </div>
+            <CardsSliderRelated />
+            <div className={styles.wrapper}>
+                <AskedQuestion />
+            </div>
+            <Footer />
+        </div>
+    )
+};
+
+
+export const FilterBlock = () => {
+    const { width, height } = useScreenSize()
+    const [tags, setTags] = useState<string[]>([])
+    const [priceValue, setPriceValue] = useState<{
+        min: number
+        max: number
+    }>({ min: 0, max: 100 })
+    const [itemsToshow, setItemsToShow] = useState([])
+    const [skills, setSkills] = useState([
+        'Logos',
+        'Logo Design',
+        'Logo',
+        'Logo Maker',
+        'Modern Logo ',
+    ])
+    const minValueRef = useRef(null)
+    const maxValueRef = useRef(null)
+    const [removedTagFromSideBar,setRemovedTagFromSideBar] = useState('');
+
+    useEffect(() => {
+        const arrayLengthStart = width <= 768 ? 4 : 9
+
+        setItemsToShow(
+            Array.from(
+                { length: arrayLengthStart },
+                (a, index) => index
+            )
+        )
+    }, [width])
+
+    const handleAddTag = (item: string) => {
+        if (!tags.includes(item)) {
+            setTags((prev) => [...prev, item])
+        } else {
+            setTags(tags.filter((tag) => tag != item))
+        }
+    }
+
+    const handleAddTagFromSideBar = (passedText?:string) => {
+   
+        setTags(tags.filter((tag) => tag != passedText))
+        setRemovedTagFromSideBar(passedText);
+      
+    }
+    return (
+        <div style={{width: '100%'}}>
                            
                             <div className={styles.justify_flex}>
                                 <Typography
@@ -572,105 +720,7 @@ const CrowdfreelanceAll = () => {
                                 </div>
                             </div>
                         </div>
-                    }
-                    item2={
-                        <div style={{width: '100%'}}>
-                             <div className={styles.justify_flex}>
-                                <div className='desktop'>
-                                <Typography variant="body4">
-                                    11 841 programs
-                                </Typography>
-                            </div>
-                            <div className={styles.flex_center}>
-                                <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
-                                        <AppColor.filter />
-                                        <Typography
-                                            variant="body4"
-                                            fontWeight="500"
-                                            color={
-                                                AppColor.transparentBlack
-                                            }
-                                            textTransform="uppercase">
-                                            Filters
-                                        </Typography>
-                                </div>
-                                    <div className={'gap_5'}>
-                                        <AppColor.relevant />
-                                        <Typography
-                                            variant="body4"
-                                            fontWeight="500"
-                                            color={
-                                                AppColor.transparentBlack
-                                            }
-                                            textTransform="uppercase">
-                                            Relevant
-                                        </Typography>
-                                </div>
-                                <div>
-                                    <AppColor.chevronBottom
-                                        fill={AppColor.text}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <DynamicPadding />
-
-                        <div className={styles.cards_wrapper}>
-                            {itemsToshow.map((item,index) => (
-                               <div className={styles.card_center}>
-                                    <CardTime 
-                                    topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]}
-                                        showBottomActions={true}
-                                        title='Logo by sample in vector in maximum quality' 
-                                        currentMoneyRange={500} totalMoneyRange={5000} 
-                                        date={new Date('2023-01-01T12:00:00')}
-                                        tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
-                                        user={fakeUserConstant}
-
-                                        />
-                               </div>
-                            ))}
-                        </div>
-                        <DynamicPadding
-                            desktop="40px"
-                            mobile="20px"
-                        />
-                        <div className={styles.justify_center}>
-                            <MyButtonTransparentBlack
-                                onClick={() => {
-                                    setItemsToShow((prev) => [
-                                        ...prev,
-                                        1,
-                                        2,
-                                        3,
-                                    ])
-                                }}>
-                                Show more +3
-                            </MyButtonTransparentBlack>
-                        </div>
-                        <DynamicPadding
-                            desktop="40px"
-                            mobile="20px"
-                        />
-                        <div className={styles.justify_center}>
-                            <NavBarLineBlack
-                                callback={() => {}}
-                                maxCountPage={100}
-                            />
-                        </div>
-                        <DynamicPadding />
-                        </div>
-                    }
-                />
-                
-            </div>
-            <CardsSliderRelated />
-            <div className={styles.wrapper}>
-                <AskedQuestion />
-            </div>
-            <Footer />
-        </div>
     )
-};
+}
 
 export default CrowdfreelanceAll;

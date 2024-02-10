@@ -2,12 +2,14 @@ import Typography from '@common/components/ui/Typography/Typography'
 import styles from './style.module.scss'
 import AppColor from '@common/styles/variables-static'
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import imageBc from '@assets/images/start_guide-image.png'
+import imageBc from '@assets/svg/start-guide.svg'
 import DynamicPadding from '@common/components/ui/DynamicPadding/index'
 
 import {ReactComponent as PlayButton} from '@assets/svg/play-button.svg';
+import SizeBox from '@common/components/ui/SizeBox/index'
+import { Link } from 'react-router-dom'
 
 const goals: GoalProps[] = [
     {
@@ -49,13 +51,23 @@ const goals: GoalProps[] = [
     },
 ]
 const StartGuide = () => {
+
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setVisible(true);
+          }, 0);
+    }, []);
+    
     return (
-        <div className={styles.wrapper}>
+        <div style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
             <div className={styles.image_part}>
-                <img src={imageBc} alt="" />
+                <img src={imageBc} width={'100%'} style={{maxWidth: '320px'}} height={'auto'} alt="" />
             </div>
             <div className={styles.content_part}>
                 <div className={styles.content_wrapper}>
+                    <DynamicPadding desktop='100px' mobile='0px'/>
                     <div className={styles.center_text}>
                         <Typography
                             variant="titleSmall"
@@ -140,11 +152,13 @@ const StartGuide = () => {
                             </Typography>
                        </div>
 
-                        <MyButtonOrange
-                            onClick={() => {}}
-                            padding="8px 19px">
-                            Complete later
-                        </MyButtonOrange>
+                       <Link to={'/dashboard/home'}>
+                            <MyButtonOrange
+                                onClick={() => {}}
+                                padding="8px 19px">
+                                Complete later
+                            </MyButtonOrange>
+                       </Link>
                     </div>
                 </div>
             </div>

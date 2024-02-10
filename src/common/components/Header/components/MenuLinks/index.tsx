@@ -5,8 +5,8 @@ import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
 import {useState} from 'react'
 import { Link as LinkRouter } from 'react-router-dom';
-const MenuLinks = () => {
-    const [activeTab,setActiveTab] = useState(0);
+const MenuLinks = ({hoveredLink}:{hoveredLink:number}) => {
+    const [activeTab,setActiveTab] = useState(hoveredLink);
     const [activeCategory,setActiveCategory] = useState<categorysText>(categorysText.Development); 
     return (
       <div className={styles.wrapper}>
@@ -35,7 +35,7 @@ const MenuLinks = () => {
                   onClick={() => {setActiveTab(2)}}
                   activeIndex={activeTab}
                   ImageNode={<AppColor.caseIcon fill={AppColor.text} />}
-                  ImageNodeActive={<AppColor.caseWhite fill='white' />}
+                  ImageNodeActive={<AppColor.caseWhite fill='white' width={'35px'} height={'35px'} />}
                   text='Sponsorships'
                   index={2}
                 />

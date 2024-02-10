@@ -16,6 +16,7 @@ import DropdownNodeFilter from '@common/components/ui/Dropdown/DropdownNodesFilt
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index';
+import { fakeUserConstant } from '@common/models/user';
 
 const skillsContent:SkillsItemProps[] = [
     {
@@ -196,7 +197,7 @@ const Account = () => {
 
                 <div className={styles.main_section}>
                     <div className={styles.main_left}>
-                        <UserAvatar active={true} name='Adrew B.' variant='column' flag={<AppColor.UkraineFlag />}/>
+                        <UserAvatar url={fakeUserConstant.image} active={true} name='Adrew B.' variant='column' flag={<AppColor.UkraineFlag />}/>
                        <div className={styles.profile_level_wrapper}>
                             <div className={styles.profile_top_level}>
                                 <AppColor.twoOFFive />

@@ -13,8 +13,9 @@ type InputDropdownProps = {
     callback?: (item:string) => void;
     marginLeft?: boolean;
     iconHeight?: string;
+    padding?: string;
 }
-const InputDropdown = ({iconHeight,marginLeft,initText='',dropdownVariants,labelIcon,isRequired,callback}:InputDropdownProps) => {
+const InputDropdown = ({padding,iconHeight,marginLeft,initText='',dropdownVariants,labelIcon,isRequired,callback}:InputDropdownProps) => {
     const [currenText,setCurrentText] = useState(initText)
     const [showDropdown,setShowDropdown] = useState(false);
 
@@ -24,8 +25,17 @@ const InputDropdown = ({iconHeight,marginLeft,initText='',dropdownVariants,label
         }
         setCurrentText(item);
     }
+
+    const borderStyles = {
+        borderTopLeftRadius: showDropdown ? '20px' : '20px',
+        borderTopRightRadius: showDropdown ? '20px' : '20px',
+        borderBottomLeftRadius: showDropdown ? '0px' : '20px',
+        borderBottomRightRadius: showDropdown ? '0px' : '20px',
+    };
+
+
     return (
-        <div onClick={() => {setShowDropdown(prev => !prev)}} className={styles.border_input}>
+        <div style={{padding: padding,...borderStyles}} onClick={() => {setShowDropdown(prev => !prev)}} className={styles.border_input}>
             <div className={styles.flex}>
                 <Typography variant="body4">{currenText}</Typography>
                 <div style={{marginLeft: marginLeft ? 'auto' : '0px'}}>

@@ -11,15 +11,23 @@ import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOran
 import SizeBox from '@common/components/ui/SizeBox/index';
 import googleLogo from '@assets/svg/google-logo.svg';
 import facebookLogo from '@assets/svg/facebook-logo.svg';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const SingUp = () => {
     const [userName,setUserName] = useState('');
     const [email,setEmail] = useState('');
 
+    const [visible, setVisible] = useState(false);
+    const history = useNavigate();
+    useEffect(() => {
+        setTimeout(() => {
+            setVisible(true);
+          }, 0);
+    }, []);
+
     return (
-      <div className={styles.wrapper}>
+      <div style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
            <div className={styles.image_part}>
                 <div className={styles.logo}>
                     <Logo color='white'/>
@@ -71,7 +79,10 @@ const SingUp = () => {
                     width='100%'
                     padding='15px 0px'
                     disabled={(!email.includes('@gmail.com') || userName == '')}
-                    onClick={() => {}}
+                    onClick={() => {
+                        history('/onboarding');
+                        console.log('onboarding')
+                    }}
                     >
                         Sign up
                     </MyButtonOrange>
@@ -99,7 +110,9 @@ const SingUp = () => {
                     </Typography>
                     <SizeBox width='19px'/>
                     <MyButtonTransparentOrange
-                    onClick={() => {}}
+                    onClick={() => {
+                       
+                    }}
                     >
                         Sign in
                     </MyButtonTransparentOrange>

@@ -5,33 +5,40 @@ import { useHover } from '@common/helpers/useHover'
 import Typography from '../ui/Typography/Typography'
 import { nav_categorys, nav_var_categorys, nav_var_categorys_titles } from './components/PagesNav/content'
 import PagesNav from './components/PagesNav'
+import { useState, useEffect } from 'react'
 
 type NavigationBarProps = {
-    currentCategoryTitle: nav_var_categorys_titles
+    currentCategoryTitle?: nav_var_categorys_titles
     activePageIndex: number
+    newCategory?: nav_categorys;
 }
 const NavigationBar = ({
     currentCategoryTitle,
     activePageIndex,
+    newCategory
 }: NavigationBarProps) => {
 
-    const currentCategory: nav_categorys = nav_var_categorys.find(
+    const currentCategory: nav_categorys = newCategory ?? nav_var_categorys.find(
         (item) => item.title == currentCategoryTitle
-    ) ?? {
-        title: 'Dashboard',
-        text: 'Your account center you progress',
-        image: AppColor.dashboard,
-        index: 0,
-        links: [],
-    }
+    )
 
     const [hovered, eventHandlers] = useHover({delayInMilliseconds: 2000}); 
+
+    const [showDropdown,setShowDropdown] = useState(false);
+
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setVisible(true);
+          }, 0);
+    }, []);
     
     return (
-        <div className={styles.wrapper}>
+        <div onClick={() => [setShowDropdown(prev => !prev)]} style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
             <div className={styles.content}>
                 <div {...eventHandlers} className={styles.category_hover}>
-                    {<currentCategory.image fill='white'/>}
+                    {<currentCategory.activeImage fill='white'/>}
                     <span className={styles.currentTitle}>
                         <Typography textTransform='uppercase' variant='body4' color='white'>{currentCategory.title}</Typography>
                     </span>
@@ -41,6 +48,9 @@ const NavigationBar = ({
                     />
                 </div>
                 <div className={styles.vertical_line}></div>
+                <div className='mobile'>
+                <Typography color='white' fontWeight='500' variant='body4' textLineHeight='1'>{currentCategory.links[activePageIndex].title.toUpperCase()}</Typography>
+                </div>
                <div className={styles.links_wrapper}>
                 {currentCategory.links.map((item,index) => (
                         <NavBarLink 
@@ -52,9 +62,26 @@ const NavigationBar = ({
                     ))}
                </div>
                <div className={styles.chevron_down}>
-                    <AppColor.chevronBottom fill='white'/>
+                    
+                    {showDropdown
+                    ? <AppColor.chevronTop fill='white'/>
+                    : <AppColor.chevronBottom fill='white'/>}
                </div>
             </div>
+            {showDropdown && <div className='mobile'>
+                <div className={styles.absolute_dropdown}>
+                <div className={styles.dropdown_grid}>
+                    {currentCategory.links.map((item,index) => (
+                            <NavBarLink 
+                                parentRoute={currentCategory.title}
+                                index={index}
+                                activeIndex={activePageIndex}
+                                title={item.title}
+                            />
+                        ))}
+                </div>
+                </div>
+                </div>}
         </div>
     )
 }

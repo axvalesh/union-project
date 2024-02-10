@@ -18,7 +18,7 @@ const PagesNav = ({hovered}:PagesNavProps) => {
             <Link to={`/${item.title.toLowerCase()}/${item.links[0] != null ? item.links[0].title : ''}`}>
                 <div className={styles.hover_content}>
                     <div className={styles.category_image}>
-                        {<item.image width={'30px'} height={'30px'}/>}
+                        {<item.image fill={AppColor.text} width={'30px'} height={'30px'}/>}
                     </div>
                     <div className={styles.categoty_text}>
                         <Typography variant='body4' fontWeight='500'>

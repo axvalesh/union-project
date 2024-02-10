@@ -13,7 +13,7 @@ import SizeBox from '@common/components/ui/SizeBox/index';
 const AdminAnalytics = () => {
 
     return (
-      <div>
+      <div className='admin_wrapper'>
            <DynamicPadding />
            <div className='center_mobile_text'>
            <Typography textTransform='uppercase' variant='titleBig' fontWeight='600'>analytics</Typography>

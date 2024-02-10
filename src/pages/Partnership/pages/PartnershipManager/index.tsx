@@ -33,6 +33,9 @@ import mascot from '@assets/images/mascot.png';
 import freestyle from '@assets/images/freestyle.png';
 import threeD from '@assets/images/threeD.png';
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index'
+import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index'
+import InputCommon from '@common/components/ui/inputs/InputCommon/index'
+import { FilterBlock } from '@pages/Crowdfreelance/CrowdfreelanceAll/index'
 
 const PartnershipManager = () => {
     const { width, height } = useScreenSize()
@@ -42,6 +45,7 @@ const PartnershipManager = () => {
         max: number
     }>({ min: 0, max: 100 })
     const [itemsToshow, setItemsToShow] = useState([])
+    const [showModalSideBar,setShowModalSideBar] = useState(false);
     const [skills, setSkills] = useState([
         'Logos',
         'Logo Design',
@@ -148,339 +152,77 @@ const PartnershipManager = () => {
                     ]}
                 />
                 <DynamicPadding />
-                <div className={styles.main_part}>
-                    <div className={styles.left_part}>
-                        <div>
+                <ResponsiveLayoutTwo
+                    callbackModal={(item) => {setShowModalSideBar(item)}}
+                    item1ToAModalLeftMobile={true}
+                    showModal={showModalSideBar}
+                    gap='80px'
+                    item1MaxWidth='290px'
+                    item2MaxWidth='830px'
+                    item0MobileWhenModal={
+                        <div style={{width: '100%'}}>
+                           
                             <div className={styles.justify_flex}>
                                 <Typography
                                     variant="body4"
-                                    color={AppColor.transparentBlack}>
+                                    color={AppColor.transparentBlack}
+                                    textTransform='uppercase'
+                                    >
                                     My filter templates
                                 </Typography>
                                 <AppColor.template />
                             </div>
+
                             <DynamicPadding
                                 desktop="30px"
                                 mobile="15px"
                             />
-                            <HorizontalLine />
-                            <DynamicPadding
+                            <InputCommon 
+                                placeholder='Search'
+                                callback={() => {}}
+                            />
+                             <DynamicPadding
                                 desktop="30px"
                                 mobile="15px"
                             />
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body3"
-                                    fontWeight="500">
-                                    You chose
-                                </Typography>
-                               <div style={{cursor: 'pointer'}} onClick={() => {setTags([])}}>
-                                  <Typography
-                                      variant="body5"
-                                      color={AppColor.transparentBlack}>
-                                      Reset All
-                                  </Typography>
-                               </div>
-                            </div>
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <div className={styles.skill_wrapper}>
-                                {tags.map((item) => (
-                                    <MyButtonTransparentOrange
-                                        padding="5px 13px"
-                                        onClick={() => {
-                                          handleAddTagFromSideBar(item)
-                                        }}>
-                                        {item}{' '}
-                                        <AppColor.close
-                                            fill={AppColor.orange}
-                                        />
-                                    </MyButtonTransparentOrange>
-                                ))}
-                            </div>
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <HorizontalLine />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <SideBarCategory
-                                title="Logo Style"
-                                dropItems={[
-                                    {
-                                        count: 500,
-                                        icon: (
-                                          <img src={minimalist}  height={'20px'}/>
-                                        ),
-                                        text: 'Minimalist',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                          <img src={mascot}  height={'20px'}/>
-                                        ),
-                                        text: 'Mascot',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                          <img src={freestyle}  height={'20px'}/>
-                                        ),
-                                        text: 'Freestyle',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                          <img src={threeD}  height={'20px'}/>
-                                        ),
-                                        text: '3D',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                          <img src={minimalist}  height={'20px'}/>
-                                        ),
-                                        text: 'Minimalist',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                          <img src={mascot}  height={'20px'}/>
-                                        ),
-                                        text: 'Mascot',
-                                    },
-                                ]}
-                            />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <HorizontalLine />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <SideBarCategory
-                                title="File Format"
-                                dropItems={[
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.pngBox
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'PNG',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.jpgBox
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'JPG',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.gifBox
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'GIF',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.pdfBox
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'PDF',
-                                    },
-                                ]}
-                            />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <HorizontalLine />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <SideBarCategory
-                                title="Includes"
-                                dropItems={[
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.code
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'Source File',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.vectorFiles
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'Vector FIle',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.chessBoard
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'Logo Transparency',
-                                    },
-                                    {
-                                        count: 500,
-                                        icon: (
-                                            <AppColor.printer
-                                                width={'20px'}
-                                                height={'20px'}
-                                            />
-                                        ),
-                                        text: 'Printable FIle',
-                                    },
-                                ]}
-                            />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <HorizontalLine />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <Typography
-                                variant="body3"
-                                fontWeight="500">
-                                Price
-                            </Typography>
-                            <DynamicPadding
-                                desktop="40px"
-                                mobile="20px"
-                            />
-                            <DoubleRangeSlider
-                                min={0}
-                                max={10000}
-                                onChange={(item) => {}}
-                            />
-                            <DynamicPadding
-                                desktop="15px"
-                                mobile="0px"
-                            />
-                            <div className={styles.justify_flex}>
-                                <input
-                                    type="number"
-                                    ref={minValueRef}
-                                    onPaste={() => {
-                                        return false
-                                    }}
-                                    inputMode="numeric"
-                                    pattern="[0-9]*"
-                                    placeholder="min"
-                                    className={styles.price_input}
-                                />
-                                <input
-                                    type="number"
-                                    ref={maxValueRef}
-                                    onPaste={() => {
-                                        return false
-                                    }}
-                                    inputMode="numeric"
-                                    pattern="[0-9]*"
-                                    placeholder="max"
-                                    className={styles.price_input}
-                                />
-                                <MyButtonBlack
-                                    textTransform="uppercase"
-                                    onClick={() => {
-                                        setPriceValue({
-                                            min: minValueRef.current
-                                                .value,
-                                            max: maxValueRef.current
-                                                .value,
-                                        })
-                                    }}>
-                                    OK
-                                </MyButtonBlack>
-                            </div>
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <HorizontalLine />
-                            <DynamicPadding
-                                desktop="30px"
-                                mobile="15px"
-                            />
-                            <div>
-                                <Typography
-                                    variant="body3"
-                                    fontWeight="500">
-                                    Skills
-                                </Typography>
-                                <DynamicPadding
-                                    desktop="20px"
-                                    mobile="15px"
-                                />
-                                <div className={styles.skill_wrapper}>
-                                    {skills.map((skill) => (
-                                        <div
-                                            className={
-                                                styles.skill_item
-                                            }>
-                                            <Typography
-                                                variant="body4"
-                                                fontWeight="500"
-                                                color="white">
-                                                {skill}
-                                            </Typography>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div className={styles.right_part}>
-                        <div className={styles.justify_flex}>
-                            <Typography variant="body4">
-                                11 841 programs
-                            </Typography>
+                    }
+                    item1={
+                        <FilterBlock />
+                    }
+                    item2={
+                        <div style={{width: '100%'}}>
+                             
+                <div className={styles.justify_flex}>
+                        <div className='desktop'>
+                                <Typography variant="body4">
+                                    11 841 programs
+                                </Typography>
+                            </div>
                             <div className={styles.flex_center}>
-                                <div className={styles.gap_5}>
-                                    <AppColor.relevant />
-                                    <Typography
-                                        variant="body4"
-                                        fontWeight="500"
-                                        color={
-                                            AppColor.transparentBlack
-                                        }
-                                        textTransform="uppercase">
-                                        Relevant
-                                    </Typography>
+                            <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
+                                        <AppColor.filter />
+                                        <Typography
+                                            variant="body4"
+                                            fontWeight="500"
+                                            color={
+                                                AppColor.transparentBlack
+                                            }
+                                            textTransform="uppercase">
+                                            Filters
+                                        </Typography>
+                                </div>
+                                    <div className={'gap_5'}>
+                                        <AppColor.relevant />
+                                        <Typography
+                                            variant="body4"
+                                            fontWeight="500"
+                                            color={
+                                                AppColor.transparentBlack
+                                            }
+                                            textTransform="uppercase">
+                                            Relevant
+                                        </Typography>
                                 </div>
                                 <div>
                                     <AppColor.chevronBottom
@@ -524,8 +266,11 @@ const PartnershipManager = () => {
                             />
                         </div>
                         <DynamicPadding />
-                    </div>
-                </div>
+                        
+                        <DynamicPadding />
+                        </div>
+                    }
+                />
                 
             </div>
             <CardsSliderRelated />
@@ -536,5 +281,6 @@ const PartnershipManager = () => {
         </div>
     )
 }
+
 
 export default PartnershipManager

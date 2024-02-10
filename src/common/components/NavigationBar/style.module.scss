@@ -4,6 +4,9 @@
     display: flex;
     padding: 0px 12px;
     width: 100%;
+    opacity: 0;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .content {
@@ -14,6 +17,24 @@
     margin: 0 auto;
 }
 
+.absolute_dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: $text;
+    padding: 10px 10px;
+}
+.dropdown_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+
+    > a {
+        margin-left: auto;
+    }
+}
 .vertical_line {
     display: block;
     height: 42px;
@@ -92,7 +113,10 @@
         display: none;
     }
     .links_wrapper {
-        display: block;
+        display: flex;
+        align-items: center;
+        row-gap: 0px;
+        flex-wrap: wrap;
     }
     .currentTitle {
         display: inline-block;

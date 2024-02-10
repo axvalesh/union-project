@@ -24,6 +24,7 @@ type DetailsTableProps = {
   projectsCount?: string;
   titleEnd?: string;
   group?: string;
+  endIcon?: React.ReactNode;
 }
 
 type DetailsTableItem = {
@@ -32,7 +33,7 @@ type DetailsTableItem = {
   selecrable?: boolean;
   maxWidth?: string;
 }
-const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
+const DetailsTable = ({endIcon,titleEnd,group,details,page,projectsCount,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
 
     const [currentFilter,setCurrentFilter] = useState('All');
     const {width,height} = useScreenSize();
@@ -160,6 +161,14 @@ const DetailsTable = ({titleEnd,group,details,page,projectsCount,filters,callbac
                           
                         
                         )}
+                        {endIcon &&  <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
+                          <div className={styles.title_wrapper_desktop}>
+                            <Typography color='transparent'>a</Typography>
+                          </div>
+                          <div className={styles.child_wrapper_desktop}>
+                            {endIcon}
+                          </div>
+                        </div>}
                         {!removeThreeLines && <div className={styles.dessktop_item_shell} style={{maxWidth: maxWidth}}>
                           <div className={styles.title_wrapper_desktop}>
                             <Typography color='transparent'>a</Typography>

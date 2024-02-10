@@ -59,7 +59,7 @@ const MySubscription = () => {
         <div>
             <Header />
             <NavigationBar
-                activePageIndex={0}
+                activePageIndex={1}
                 currentCategoryTitle="Subscriptions"
             />
             <div className={styles.wrapper}>

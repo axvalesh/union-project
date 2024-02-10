@@ -68,6 +68,9 @@ import SingIn from './pages/Authentication/SingIn'
 import Recovery from './pages/Authentication/Recovery'
 import Authentication from './pages/Authentication/Authentication'
 import AdminPannel from './pages/AdminPannel'
+import MessengerPage from './pages/Messenger/pages/MessengerPage'
+import MessengerPageSolution from './pages/Messenger/pages/Solutions'
+import MessengerPageDirect from './pages/Messenger/pages/Direct'
 
 function App() {
    
@@ -88,7 +91,10 @@ function App() {
 
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/start-guide" element={<StartGuide />} />
-  
+
+            <Route path="/messenger/solutions" element={<MessengerPageSolution />} />
+            <Route path="/messenger/direct" element={<MessengerPageDirect />} />
+
             <Route path="/dashboard/home" element={<DashboardHome />} />
             <Route path="/dashboard/account" element={<Account />} />
             <Route path="/dashboard/missions" element={<Missions />} />
@@ -96,7 +102,7 @@ function App() {
             <Route path="/dashboard/upgrades" element={<Upgrades />} />
             <Route path="/dashboard/activity" element={<Activity />} />
 
-            <Route path="/subscriptions" element={<MySubscription />} />
+            <Route path="/subscriptions/mysubscriptions" element={<MySubscription />} />
 
             <Route path="/freelancers/subscriptions" element={<FreelancersSubscriptions />} />
             <Route path="/subscriptions/plans" element={<SubscriptionsPlans />} />

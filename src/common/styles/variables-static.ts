@@ -274,8 +274,30 @@ import { ReactComponent as hummer} from '@assets/svg/hummer.svg';
 
 import { ReactComponent as earn} from '@assets/svg/earn.svg';
 import { ReactComponent as discount} from '@assets/svg/discount.svg';
+import { ReactComponent as messageWhite} from '@assets/svg/message-white.svg';
+import { ReactComponent as searchIconBlack} from '@assets/svg/search-icon-black.svg';
+import { ReactComponent as sidebarExpand} from '@assets/svg/sidebar-expand.svg';
+import { ReactComponent as smile} from '@assets/svg/smile.svg';
+import { ReactComponent as pdfFile} from '@assets/svg/pdf-file.svg';
+import { ReactComponent as emptyFile} from '@assets/svg/empty-file.svg';
+import { ReactComponent as confirm} from '@assets/svg/confirm.svg';
+import { ReactComponent as messengerBlack} from '@assets/svg/messenger-black.svg';
+import { ReactComponent as teamsWhite} from '@assets/svg/teams-white.svg';
+import { ReactComponent as communityWhite} from '@assets/svg/community-white.svg';
+import { ReactComponent as settingsBlack} from '@assets/svg/settings-black.svg';
 
 class AppColor {
+    static settingsBlack = settingsBlack;
+    static communityWhite = communityWhite;
+    static teamsWhite = teamsWhite;
+    static messengerBlack = messengerBlack;
+    static confirm = confirm;
+    static emptyFile = emptyFile;
+    static pdfFile = pdfFile;
+    static smile = smile;
+    static sidebarExpand = sidebarExpand;
+    static searchIconBlack = searchIconBlack;
+    static messageWhite = messageWhite;
     static earn = earn;
     static discount = discount;   
     static hummer = hummer;
@@ -527,6 +549,12 @@ class AppColor {
     static weakShadow = `-webkit-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);
     -moz-box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);
     box-shadow: -1px 1px 6px 2px rgba(0,0,0,0.11);`;
+
+
+    static fullBorder = 'border-radius: 20px'
+    static topBorder = `
+    border-top-left-radius: 20px;border-top-right-radius: 20px;
+    `
 
     static colorWithOpacityRgb = (color: string, opacity: number): string => {
         const rgbaColor = color.replace('rgb', 'rgba').replace(')', `, ${opacity})`);

@@ -8,7 +8,7 @@ import Header from '@common/components/Header/Header/index'
 import DropdownNode from '@common/components/ui/Dropdown/DropdownNodes/index'
 import Slider from '@common/components/ui/Slider/Slider'
 import CardTime from '@common/components/cards/CardTime/CardTime'
-import { userModel } from 'common/models/user'
+import { fakeUserConstant, userModel } from '@common/models/user'
 import CardStatistics from '@common/components/cards/CardStatistics/index'
 import CardStatisticTest from '@common/components/cards/CardStatistics/variants/CardStatisticTest'
 import AskedQuestion from '@common/components/AskedQuestions/index'
@@ -17,6 +17,7 @@ import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOran
 import { useScreenSize } from '@common/helpers/useScreenSize'
 import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index'
 import DropdownNodeRoadmap from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownRoadmap/index'
+import UserAvatar from '@common/components/ui/UserAvatar/index'
 
 const fakeUser:userModel = {
     country: 'Ukraine',
@@ -101,7 +102,7 @@ const fakeUser:userModel = {
       icon: <AppColor.taskCheck />,
       title: 'Entrance challenge',
       text: 'Provide complete information about yourself',
-      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      user:<UserAvatar noWrap={true} url={fakeUserConstant.image}  preventMobileNone={true} active={true} name={fakeUserConstant.name} width='22px' height='22px' />,
       stepsCompleted: '1 of 12 completed',
       amount: '25',
       filter: 'Mission',
@@ -110,7 +111,7 @@ const fakeUser:userModel = {
       icon: <AppColor.taskCheck />,
       title: 'Entrance challenge',
       text: 'Provide complete information about yourself',
-      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      user: <UserAvatar noWrap={true} url={fakeUserConstant.image}  preventMobileNone={true} active={true} name={fakeUserConstant.name} width='22px' height='22px' />,
       stepsCompleted: '1 of 12 completed',
       amount: '25',
       filter: 'Mission',
@@ -119,7 +120,7 @@ const fakeUser:userModel = {
       icon: <AppColor.taskCheck />,
       title: 'Entrance challenge',
       text: 'Provide complete information about yourself',
-      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      user: <UserAvatar noWrap={true} url={fakeUserConstant.image}  preventMobileNone={true} active={true} name={fakeUserConstant.name} width='22px' height='22px' />,
       stepsCompleted: '1 of 12 completed',
       amount: '25',
       filter: 'Mission',
@@ -128,7 +129,7 @@ const fakeUser:userModel = {
       icon: <AppColor.taskCheck />,
       title: 'Entrance challenge',
       text: 'Provide complete information about yourself',
-      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      user: <UserAvatar noWrap={true} url={fakeUserConstant.image}  preventMobileNone={true} active={true} name={fakeUserConstant.name} width='22px' height='22px' />,
       stepsCompleted: '1 of 12 completed',
       amount: '25',
       filter: 'Mission',
@@ -137,7 +138,7 @@ const fakeUser:userModel = {
       icon: <AppColor.taskCheck />,
       title: 'Entrance challenge',
       text: 'Provide complete information about yourself',
-      user: <div><AppColor.freelancer /><Typography>Artem M.</Typography></div>,
+      user: <UserAvatar noWrap={true}  url={fakeUserConstant.image} preventMobileNone={true} active={true} name={fakeUserConstant.name} width='22px' height='22px' />,
       stepsCompleted: '1 of 12 completed',
       amount: '25',
       filter: 'Mission',
@@ -145,6 +146,7 @@ const fakeUser:userModel = {
   ]
 const DashboardHome = () => {
     const {width,height} = useScreenSize();
+    
     return (
         <div>
             <Header />

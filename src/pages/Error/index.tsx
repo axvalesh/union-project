@@ -14,15 +14,23 @@ import { ReactComponent as GeneralHelpImage} from '@assets/svg/general-help.svg'
 import { ReactComponent as ContactUs} from '@assets/svg/contact-us.svg';
 import Footer from "@common/components/Footer/Footer";
 import AskedQuestion from "@common/components/AskedQuestions/index";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Header from "@common/components/Header/Header/index";
+import { useState, useEffect } from "react";
 
 const Error = () => {
     const navigate = useNavigate();
+    const [errorVisible, setErrorVisible] = useState(false);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setErrorVisible(true);
+          }, 0);
+    }, []);
     return (
       <div>
-          <HeaderNothAuthorized/>
-          <div className={styles.wrapper}>
+          <Header />
+          <div style={{opacity: errorVisible ? '1' : '0'}} className={styles.wrapper}>
             <NavigationItem textList={[ 
               <p className={styles.error_title}>404 Not Found</p>
             ]} 
@@ -39,16 +47,18 @@ const Error = () => {
               </Typography>
            </div>
             <div style={{display: 'flex'}}>
-              <MyButtonBlack onClick={() => navigate(-1)} padding="14px 26px">
+              <MyButtonBlack onClick={() => window.history.go(-2)} padding="14px 26px">
                 Back
               </MyButtonBlack>
               <SizeBox width="20px"/>
-              <MyButtonOrange 
-              onClick={() => {}}
-              padding="14px 30px"
-              >
-                Go to Home
-              </MyButtonOrange>
+              <Link to={'/dashboard/home'}>
+                <MyButtonOrange 
+                onClick={() => {}}
+                padding="14px 30px"
+                >
+                  Go to Home
+                </MyButtonOrange>
+              </Link>
             </div>
             </div>
             <AskedQuestion />

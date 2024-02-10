@@ -7,7 +7,7 @@ import image1 from '@assets/images/onboarding-1.png'
 import image2 from '@assets/images/onboarding-2.png'
 import image3 from '@assets/images/onboarding-3.png'
 import image4 from '@assets/images/onboarding-4.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import DynamicPadding from '@common/components/ui/DynamicPadding/index'
 import { useNavigate } from 'react-router-dom'
 
@@ -45,8 +45,16 @@ const Onboarding = () => {
     const [currentIndex,setCurrentIndex] = useState<number | undefined>(undefined);
     const navigate = useNavigate();
 
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setVisible(true);
+          }, 0);
+    }, []);
+
     return (
-        <div className={styles.wrapper}>
+        <div style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
             <div className={styles.content}>
                 <Typography
                     variant="titleSmall"

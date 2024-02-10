@@ -19,14 +19,16 @@ const PageDetails = ({historyNode,pageTitle,endNode,pageTitleIcon}:PageDetailsPr
                         {historyNode}
                         <DynamicPadding desktop='20px' mobile='15px'/>
                         <div className={styles.flex_center}></div>
-                        <Typography
-                            variant="titleBig"
-                            textTransform="uppercase"
-                            fontWeight="600">
-                                {pageTitle}             
-                            
-                        </Typography>
-                        <div className={styles.title_icon}>{pageTitleIcon}</div>
+                        <div className='gap_5'>
+                            <Typography
+                                variant="titleBig"
+                                textTransform="uppercase"
+                                fontWeight="600">
+                                    {pageTitle}             
+                                
+                            </Typography>
+                            <div className={styles.title_icon}>{pageTitleIcon}</div>
+                        </div>
                         </div>
                     
                     {endNode}

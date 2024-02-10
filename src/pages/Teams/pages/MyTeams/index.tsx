@@ -60,7 +60,7 @@ const MyTeams = () => {
             <Header />
             <NavigationBar
                 activePageIndex={0}
-                currentCategoryTitle="Subscriptions"
+                currentCategoryTitle="Teams"
             />
             <div className={styles.wrapper}>
                 <PageDetails

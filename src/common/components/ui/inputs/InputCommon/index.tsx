@@ -24,7 +24,7 @@ const InputCommon = ({multiLine,initText='',width, icon,placeholder,callback,pad
         setText(item)
     } 
     return (
-        <div className={styles.wrapper} style={{width: width}}>
+        <div className={styles.wrapper} style={{width: width,height: multiLine ? '100%' : 'auto'}}>
             {icon && <div className={styles.dynamic_icon}>{icon}</div>}
           {multiLine
           ? <>
@@ -32,7 +32,7 @@ const InputCommon = ({multiLine,initText='',width, icon,placeholder,callback,pad
             value={text}
             onChange={(item) => {handleChange(item.target.value)}}
             className={styles.input}
-            style={{color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+20}px`,
+            style={{height: '100%',color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+20}px`,
             paddingLeft: icon ? `${rightPadding+25}px` : '15px',textAlign: textAlingCenter ? 'center' : 'start',backgroundColor: backgroundColor ?? 'white'}}
             placeholder={placeholder}
             ></textarea>

@@ -11,7 +11,7 @@ import styles from './style.module.scss';
 const AdminWithdraw = () => {
 
     return (
-      <div>
+      <div className='admin_wrapper'>
            <DynamicPadding />
 
            <div className={styles.top_part}>

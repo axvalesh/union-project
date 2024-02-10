@@ -14,6 +14,7 @@ export type sixSectionCardProps = {
   title: string;
   description: string;
   image: string;
+  index: number;
 }
 
 export type PopularCategorysCatalogCardProps = {

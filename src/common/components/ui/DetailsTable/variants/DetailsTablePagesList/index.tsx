@@ -32,6 +32,8 @@ const DetailsTablePagesList = ({information}:DetailsTablePagesListProps) => {
     return (
       <DetailsTable
         removeNavBar={true}
+        removeThreeLines={true}
+        endIcon={<AppColor.edit fill={AppColor.text} />}
         titleEnd='pages'
         projectsCount='3'
         callbackNav={(item) => { setCurrentPage(item)}}
@@ -43,36 +45,43 @@ const DetailsTablePagesList = ({information}:DetailsTablePagesListProps) => {
                 <DynamicPadding desktop='30px' mobile='20px' />
 
                 <div className={styles.fields_grid}>
-                    <InputField
-                        initText={currentItem.page}
-                        title='Title'
-                    />
-                    <InputField
-                        initText={'/'}
-                        title='Link'
-                    />
-                    <InputField
-                        initText={currentItem.page}
-                        title='Group'
-                    />
-                    <InputField
-                        initText={'/'}
-                        title='Redirect'
-                    />
-                    <InputField
-                        initText={'Freelance Services'}
-                        title='Meta-title'
-                    />
-                    <InputField
-                    multiLine={true}
-                        initText={`Uniano's mission is to change how the world works together. Uniano connects businesses with freelancers offering digital services in 500+ categories.`}
-                        title='Meta-description'
+                   <div style={{width: '100%'}}>
+                       <div className={styles.field_wrapper}>
+                            <InputField
+                                initText={currentItem.page}
+                                title='Title'
+                            />
+                          
+                            <GroupSelect/>
+                           
+                            <InputField
+                                initText={'Freelance Services'}
+                                title='Meta-title'
+                            />
+                            
+                            <InputField
+                                initText={'freelance, freelance service, freelance marketplace'}
+                                title='Meta-keywords'
+                            />
+                       </div>
+                   </div>
 
-                    />
-                    <InputField
-                        initText={'freelance, freelance service, freelance marketplace'}
-                        title='Meta-keywords'
-                    />
+                    <div className={styles.field_wrapper}>
+                        <InputField
+                            initText={'/'}
+                            title='Link'
+                        />
+                         <InputField
+                            initText={'/'}
+                            title='Redirect'
+                        />
+                        <InputField
+                        multiLine={true}
+                            initText={`Uniano's mission is to change how the world works together. Uniano connects businesses with freelancers offering digital services in 500+ categories.`}
+                            title='Meta-description'
+    
+                        />
+                    </div>
 
                 </div>
                 <DynamicPadding desktop='30px' mobile='20px' />
@@ -155,16 +164,66 @@ type InputFieldProps = {
     initText: string;
     multiLine?: boolean
 }
-const InputField = ({initText,title,multiLine}:InputFieldProps) => {
+
+type GroupSelectProps = {
+
+}
+
+const tmpCategorys = [
+    'no group',
+    'footer',
+]
+const GroupSelect = () => {
+
+    const [group,setGroup] = useState('no group');
+    const [showDropdown,setShowDropdown] = useState(false);
+
+    const borderStyles = {
+        borderTopLeftRadius: showDropdown ? '20px' : '20px',
+        borderTopRightRadius: showDropdown ? '20px' : '20px',
+        borderBottomLeftRadius: showDropdown ? '0px' : '20px',
+        borderBottomRightRadius: showDropdown ? '0px' : '20px',
+    };
+
+
     return (
         <div>
+            <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Group</Typography>
+            <SizeBox height='8px'/>
+            <div className={styles.dropdown_relative}>
+                <div onClick={() => {setShowDropdown(prev => !prev)}} style={{...borderStyles}} className={styles.select_field}>
+                    <div style={{width: 'fit-content',padding: '4px 14px',opacity: group.toLocaleLowerCase() == 'no group' ? '0.3' : '1'}} className={styles.category_wrapper}>
+                        <Typography textLineHeight='1' fontSizeStatic='13px' fontWeight='500' color={'white'}>{group.toUpperCase()}</Typography>
+                    </div>
+                    {showDropdown
+                    ? <AppColor.chevronTop className="icon"  fill={AppColor.text}/>
+                    : <AppColor.chevronBottom  className="icon" fill={AppColor.text}/>}
+                </div>
+
+                <div style={{display: showDropdown ? 'grid' : 'none'}} className={styles.absolute_dropdown_field}>
+                        {tmpCategorys.map(item =>
+                      <div onClick={() => {setGroup(item);setShowDropdown(false)}} className={styles.dropdown_child}>
+                            <div style={{width: 'fit-content',padding: '4px 14px',opacity: item.toLocaleLowerCase() == 'no group' ? '0.3' : '1'}} className={styles.category_wrapper}>
+                                 <Typography textLineHeight='1' fontSizeStatic='13px' fontWeight='500' color={'white'}>{item.toUpperCase()}</Typography>
+                             </div>
+                      </div>
+                        )}
+                </div>
+               
+            </div>
+        </div>
+    )
+}
+const InputField = ({initText,title,multiLine}:InputFieldProps) => {
+    return (
+        <div style={multiLine ? {height:'100%',maxHeight: '120px'} : {}}>
             <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>{title}</Typography>
             <SizeBox height='8px'/>
             <InputCommon
                 callback={() => {}}
                 initText={initText}
                 multiLine={multiLine}
-                padding={multiLine ? '6px 14px 50px 14px' :'6px 14px'}
+                padding={multiLine ? '9px 14px 50px 14px' :'9px 14px'}
                 rightPadding={14}
                 placeholder=''
             />

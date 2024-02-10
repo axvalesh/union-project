@@ -32,6 +32,8 @@ import { userModel } from 'common/models/user';
 import { useGetImage } from '@common/helpers/UseGetImage';
 import Footer from '@common/components/Footer/Footer';
 import { useScreenSize } from '@common/helpers/useScreenSize';
+import SizeBox from '@common/components/ui/SizeBox/index';
+import { Link } from 'react-router-dom';
 
 
 
@@ -67,6 +69,7 @@ const HomeNotAuth = () => {
         name: 'Artem M.',
         roles: 'Customer',
         activeAgo: '2 days',
+        lvl: '55',
         isActive: true,
         statistic: {
           comments_count: 55,
@@ -81,6 +84,7 @@ const HomeNotAuth = () => {
         name: 'Antonio L.',
         roles: 'Sponsor',
         activeAgo: '2 days',
+        lvl: '55',
         isActive: true,
         statistic: {
           comments_count: 55,
@@ -95,8 +99,8 @@ const HomeNotAuth = () => {
     return (
       <>
         <div style={divStyle} className={styles.welcome_screen_wrapper}>
+        <HeaderNothAuthorized />
             <div className={styles.wrapper}>
-           <HeaderNothAuthorized />
             <div className={styles.emptyLine}></div>
             <div className={styles.welcome_text}>
                 <Typography textTransform='uppercase' textAlign={width <= 768 ? 'center' : 'start'} variant='title' color={AppColor.text}>
@@ -111,11 +115,13 @@ const HomeNotAuth = () => {
             <span className={styles.input_wrapper_search}>
               <img width={20} height={20} src={searchIcon} alt="search" />
             </span>
-            <span className={styles.input_wrapper_search_button}>
-              <Typography style={{letterSpacing: '0.48px'}} variant='body1' color='white' textTransform='uppercase'>
-                Search
-              </Typography>
-            </span>
+           
+              <span className={styles.input_wrapper_search_button}>
+                <Typography style={{letterSpacing: '0.48px'}} variant='body1' color='white' textTransform='uppercase'>
+                  Search
+                </Typography>
+              </span>
+        
                 <input type="text" placeholder='I’m looking for'/>
                 <div className={styles.input_wrapper_absolute}>
                     <span></span>
@@ -128,17 +134,19 @@ const HomeNotAuth = () => {
                 </div>
            </div>
 
-            <span className={styles.welcome_button}>
-            <MyButton 
-            color={AppColor.orange}
-            textColor='white'
-            border='none'
-            borderHover='none'
-            width='296px'
-            onClick={() => {}}>
-                    Search
-            </MyButton>
-           </span>
+          
+              <span className={styles.welcome_button}>
+              <MyButton 
+              color={AppColor.orange}
+              textColor='white'
+              border='none'
+              borderHover='none'
+              width='296px'
+              onClick={() => {}}>
+                      Search
+              </MyButton>
+             </span>
+      
           <span className={styles.welcome_text_bottom}>
            <Typography variant='body1'>
            Explore a world of possibilities! Choose the perfect fit for your projects
@@ -201,7 +209,7 @@ const HomeNotAuth = () => {
                 />)}
             </div>
             }
-            <div className={styles.popular_categorys_slider}>
+            <div style={{padding: '0px 80px'}}  className={styles.popular_categorys_slider}>
             <Slider itemWidth={260} maxWidth={width <= AppColor.tabletSize ? 260 : 1100} elementsCount={popular_categorys_content_services.length} gap={21}>
               {popular_categorys_content_services.map(item => <PopularCategorysServiceCard img={item.img} svg={item.svg} title={item.title}/>)}
             </Slider>
@@ -229,7 +237,7 @@ const HomeNotAuth = () => {
                 </Typography>
               </div>
               <section className={styles.popular_categorys_skills_list}>
-                {popular_services.map(service => <div><Typography variant='body1'>{service}</Typography></div>)}
+                {popular_services.map(service => <div><Typography fontWeight='400' variant='body1'>{service}</Typography></div>)}
               </section>
               <div className={styles.popular_categorys_buttons_mobile}>
            
@@ -315,17 +323,19 @@ const HomeNotAuth = () => {
                 <div className={styles.fourth_screen_details_none_mobile}>
                   <ul className={styles.fourth_screen_list_ul}>
                     <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
-                      <Typography>
+                      <Typography variant='body4' fontWeight='400'>
                       <span className={styles.fourth_screen_list_bold_text}>Innovation:</span> Support groundbreaking projects and be part of their success story.
                       </Typography>
+                      <SizeBox height='5px'/>
                     </li>
                     <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
-                      <Typography>
+                      <Typography variant='body4' fontWeight='400'>
                       <span className={styles.fourth_screen_list_bold_text}>Engagement:</span> Connect with creators, exchange ideas, and collaborate on unique ventures.
                       </Typography>
+                      <SizeBox height='5px'/>
                     </li>
                     <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
-                      <Typography>
+                      <Typography variant='body4' fontWeight='400'>
                       <span className={styles.fourth_screen_list_bold_text}>Exclusive Rewards:</span> Enjoy special perks, from early access to products to recognition for your contribution.
                       </Typography>
                     </li>
@@ -374,17 +384,19 @@ const HomeNotAuth = () => {
               <div className={styles.fourth_screen_details_none_desktop}>
                   <ul className={styles.fourth_screen_list_ul}>
                     <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
-                      <Typography>
+                      <Typography variant='body4' fontWeight='400'>
                       <span className={styles.fourth_screen_list_bold_text}>Innovation:</span> Support groundbreaking projects and be part of their success story.
                       </Typography>
+                      <SizeBox height='5px'/>
                     </li>
                     <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
-                      <Typography>
+                      <Typography variant='body4' fontWeight='400'>
                       <span className={styles.fourth_screen_list_bold_text}>Engagement:</span> Connect with creators, exchange ideas, and collaborate on unique ventures.
                       </Typography>
+                      <SizeBox height='5px'/>
                     </li>
                     <li style={{listStyleImage: `url(${listCheckedSvg})`}}>
-                      <Typography>
+                      <Typography variant='body4' fontWeight='400'>
                       <span className={styles.fourth_screen_list_bold_text}>Exclusive Rewards:</span> Enjoy special perks, from early access to products to recognition for your contribution.
                       </Typography>
                     </li>
@@ -430,17 +442,19 @@ const HomeNotAuth = () => {
               <div className={styles.fourth_screen_details_none_mobile}>
                 <ul className={styles.fourth_screen_list_ul}>
                   <li style={{listStyleImage: `url(${pointIcon})`}}>
-                    <Typography>
+                    <Typography variant='body4' fontWeight='400'>
                     <span className={styles.fourth_screen_list_bold_text}>Strategic Alliances:</span> Establish lucrative partnerships with freelancers, earning a portion of project revenues for introducing clients or contributing to project success. 
                     </Typography>
+                    <SizeBox height='5px'/>
                   </li>
                   <li style={{listStyleImage: `url(${pointIcon})`}}>
-                    <Typography>
+                    <Typography variant='body4' fontWeight='400'>
                     <span className={styles.fourth_screen_list_bold_text}>Project Facilitation:</span> Guide clients through the project journey, ensuring a smooth experience and optimal utilization of our platform.
                     </Typography>
+                    <SizeBox height='5px'/>
                   </li>
                   <li style={{listStyleImage: `url(${pointIcon})`}}>
-                    <Typography>
+                    <Typography variant='body4' fontWeight='400'>
                     <span className={styles.fourth_screen_list_bold_text}>Expert Advisory:</span> Offer valuable advice to users, covering platform usage, project execution, and leveraging our services for maximum impact.
                     </Typography>
                   </li>
@@ -468,17 +482,19 @@ const HomeNotAuth = () => {
             <div className={styles.fourth_screen_details_none_desktop}>
                 <ul className={styles.fourth_screen_list_ul}>
                   <li style={{listStyleImage: `url(${pointIcon})`}}>
-                    <Typography>
+                    <Typography variant='body4' fontWeight='400'>
                     <span className={styles.fourth_screen_list_bold_text}>Strategic Alliances:</span> Establish lucrative partnerships with freelancers, earning a portion of project revenues for introducing clients or contributing to project success. 
                     </Typography>
+                    <SizeBox height='5px'/>
                   </li>
                   <li style={{listStyleImage: `url(${pointIcon})`}}>
-                    <Typography>
+                    <Typography variant='body4' fontWeight='400'>
                     <span className={styles.fourth_screen_list_bold_text}>Project Facilitation:</span> Guide clients through the project journey, ensuring a smooth experience and optimal utilization of our platform.
                     </Typography>
+                    <SizeBox height='5px'/>
                   </li>
                   <li style={{listStyleImage: `url(${pointIcon})`}}>
-                    <Typography>
+                    <Typography variant='body4' fontWeight='400'>
                     <span className={styles.fourth_screen_list_bold_text}>Expert Advisory:</span> Offer valuable advice to users, covering platform usage, project execution, and leveraging our services for maximum impact.
                     </Typography>
                   </li>
@@ -521,7 +537,7 @@ const HomeNotAuth = () => {
         <div className={styles.wrapper}>
             <section className={styles.six_section_wrapper}>
               <div className={styles.six_section_cards_wrapper}>
-                {six_section_cards_content.map(item => <SixSectionCard title={item.title} description={item.description} image={item.image}/>)}
+                {six_section_cards_content.map((item,index) => <SixSectionCard index={index} title={item.title} description={item.description} image={item.image}/>)}
               </div>
               <div className={styles.six_section_details}>
                 <Typography variant='titleSmall' textTransform='uppercase'>
@@ -552,7 +568,7 @@ const HomeNotAuth = () => {
 const AdvantangesSectionCard = ({img,title,description}:AdvantagesSectionCardProps) => {
   return (
     <div className={styles.advantanges_section_card_item}>
-      <img src={img} width={224} height={160} alt="image" />
+      <div style={{height: '160px'}}><img src={img} style={{maxWidth: '224px',width:'fit-content'}}  alt="image" /></div>
       <span className={styles.advantanges_section_card_title}>
         <Typography textAlign='center' variant='body2'>
           {title}
@@ -599,20 +615,23 @@ const PopularCategorysServiceCard = ({img,title,svg}:PopularCategorysServiceCard
 };
 
 
-const SixSectionCard = ({title,description,image}: sixSectionCardProps) => {
+const SixSectionCard = ({title,description,image,index}: sixSectionCardProps) => {
   return (
-    <div className={styles.six_section_card}>
-      <div className={styles.six_section_card_image}>
-        <img src={image} width={30} height={30} alt="icon" />
+   <div className={styles.six_section_card_wrapper}>
+    {index % 2 != 0 && <div className='desktop'><SizeBox height='50px'/></div>}
+      <div className={styles.six_section_card}>
+        <div className={styles.six_section_card_image}>
+          <img src={image} width={30} height={30} alt="icon" />
+        </div>
+        <Typography variant='body3'>
+          {title}
+        </Typography>
+        <span className={styles.orange_line}></span>
+        <Typography variant='body1' fontWeight='400' textAlign='center'>
+          {description}
+        </Typography>
       </div>
-      <Typography variant='body3'>
-        {title}
-      </Typography>
-      <span className={styles.orange_line}></span>
-      <Typography variant='body1' textAlign='center'>
-        {description}
-      </Typography>
-    </div>
+   </div>
   );
 };
 export default HomeNotAuth;

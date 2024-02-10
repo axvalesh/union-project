@@ -192,7 +192,28 @@ export const pagesAdmin:PageType[] = [
                 },
                 {
                         title: 'Categories',
-                        dropdownTitles: [],
+                        dropdownTitles: [
+                                {
+                                        title: 'Services',
+                                        dropdownTitles: [],
+                                },
+                                {
+                                        title: 'Orders',
+                                        dropdownTitles: [],
+                                },
+                                {
+                                        title: 'Partnerships',
+                                        dropdownTitles: [],
+                                },
+                                {
+                                        title: 'Sponsorships',
+                                        dropdownTitles: [],
+                                },
+                                {
+                                        title: 'Community',
+                                        dropdownTitles: [],
+                                },
+                        ],
                 },
             ],
     },

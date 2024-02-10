@@ -13,8 +13,9 @@ interface SliderProps {
     paddingTop?: string;
     paddingBottom?: string;
     swiper?: boolean;
+    showDots?: boolean
 }
-const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddingBottom,swiper}:SliderProps) => {
+const Slider = ({children,showDots,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddingBottom,swiper}:SliderProps) => {
     const [startX, setStartX] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
 
@@ -85,7 +86,7 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddin
                 onTouchMove={handleDragMove}
                 onMouseUp={handleDragEnd}
                 onTouchEnd={handleDragEnd}
-                style={{ paddingTop, paddingBottom }}
+                style={{ paddingTop, paddingBottom,maxWidth: maxWidth }}
                 className={styles.sliderOverflow}
             >
                 <div
@@ -105,7 +106,7 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddin
                     <AppColor.chevronRight fill="white" width={17} height={30} />
                 </span>
             </span>
-            <div className={`${styles.dots} ${styleDots}`}>
+            {showDots && <div className={`${styles.dots} ${styleDots}`}>
                 {dots.map((dotIndex) => (
                     <span
                         key={dotIndex}
@@ -113,7 +114,7 @@ const Slider = ({children,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddin
                         onClick={() => setCurrentIndex(dotIndex)}
                     ></span>
                 ))}
-            </div>
+            </div>}
         </div>
     );
 };

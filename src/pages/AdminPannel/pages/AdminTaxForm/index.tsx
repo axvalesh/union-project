@@ -14,7 +14,7 @@ import DetailsTaxForm from '@common/components/ui/DetailsTable/variants/DetailsT
 const AdminTaxForm = () => {
 
     return (
-      <div>
+      <div className='admin_wrapper'>
            <DynamicPadding />
 
            <div className={styles.top_part}>

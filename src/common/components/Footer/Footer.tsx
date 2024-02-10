@@ -16,10 +16,10 @@ export const levelMap = {
     4: <AppColor.fourOfFive />,
     5: <AppColor.fiveOfFive />
 }
-const Footer = () => {
+const Footer = ({removeMargin}: {removeMargin?: boolean}) => {
 
     return (
-      <footer className={styles.wrapper}>
+      <footer style={removeMargin ? {marginTop: '0px'} : {}} className={styles.wrapper}>
         <div className={styles.margin_wrapper}>
            <div className={styles.wrapper_content}>
             <div className={styles.first}>

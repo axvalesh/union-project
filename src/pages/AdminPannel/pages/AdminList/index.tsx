@@ -11,7 +11,7 @@ import { fakeUserConstant } from '@common/models/user';
 const AdminList = () => {
 
     return (
-      <div>
+      <div className='admin_wrapper'>
            <DynamicPadding />
            <div className='center_mobile_text'>
                 <Typography variant='titleBig' textTransform='uppercase' fontWeight='600'>Users list</Typography>

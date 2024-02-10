@@ -13,13 +13,21 @@ import googleLogo from '@assets/svg/google-logo.svg';
 import facebookLogo from '@assets/svg/facebook-logo.svg';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import MyCheckbox from '@common/components/ui/inputs/Checkbox/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Recovery = () => {
      const [email,setEmail] = useState('');
+
+     const [visible, setVisible] = useState(false);
+
+     useEffect(() => {
+         setTimeout(() => {
+             setVisible(true);
+           }, 0);
+     }, []);
     return (
-      <div className={styles.wrapper}>
+      <div style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
            <div className={styles.image_part}>
                 <div className={styles.logo}>
                     <Logo color='white'/>

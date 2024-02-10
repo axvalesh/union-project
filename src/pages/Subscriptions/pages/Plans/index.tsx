@@ -19,11 +19,11 @@ const SubscriptionsPlans = () => {
     return (
       <div>
           <Header /> 
-          <NavigationBar activePageIndex={1} currentCategoryTitle='Messenger' />
+          <NavigationBar activePageIndex={0} currentCategoryTitle='Subscriptions' />
 
           <div className={styles.wrapper}>
             <PageDetails
-                historyNode={<NavigationItem image={<AppColor.home/>} textList={['Users', 'Freelancers', 'Programmatis']} />}
+                historyNode={<NavigationItem image={<AppColor.home/>} textList={['Subscriptions',]} />}
                 pageTitle='plans'
                 pageTitleIcon={<AppColor.openEye />}
                 

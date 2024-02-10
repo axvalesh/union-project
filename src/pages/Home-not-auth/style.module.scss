@@ -10,7 +10,9 @@
 .welcome_text_orange_span {
     color: $orange;
 }
-
+.welcome_text {
+    background-color: rgba($color: white, $alpha: 0.8);
+}
 .wrapper {
     max-width: 1200px;
     padding: 0px 10px;
@@ -100,15 +102,17 @@
     }
 
     .advantanges_section_cards {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
         align-items: center;
+        justify-content: center;
         gap: 30px;
     }
     .advantanges_section_card_item {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 }
 .color_cube {
@@ -368,7 +372,6 @@
     margin-top: 30px;
 }
 .six_section_card {
-    flex: 0 0 270px;
     padding: 20px 24px;
     display: flex;
     flex-direction: column;
@@ -408,6 +411,21 @@
     margin-top: 25px;
     margin-bottom: 16px;
 }
+
+.six_section_card_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.six_section_card_image {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $white;
+}
 @media (min-width:$tabletSize) {
     .six_section_wrapper {
         justify-content: space-between;
@@ -417,17 +435,19 @@
     
     .six_section_cards_wrapper {
         flex: 0 0 737px;
-        justify-content: space-between;
-
-        &:nth-child(2n) .six_section_card{
-            margin-top: 40px;
-        }
+        display: grid;
+        align-items: start;
+        gap: 40px;
+        grid-template-columns: 1fr 1fr;
     }
     .six_section_details {
         flex: 0 0 383px;
     }
     .six_section_card {
-        flex: 0 0 347px;
+  
+        display: flex;
+        flex-direction: column;
+
     }
     .wrapper {
         overflow-x: visible;
@@ -518,6 +538,11 @@
             top: 0;
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
+            transition: all 0.15s ease;
+
+            &:hover {
+                opacity: 0.6;
+            }
         }
 
         .input_wrapper_absolute {
@@ -535,8 +560,9 @@
         align-items: center;
         margin-top: 170px;
         .advantanges_section_cards {
-            flex-direction: row;
-            margin-top: 90px;
+           grid-template-columns: 1fr 1fr 1fr 1fr;
+           gap: 30px;
+           
         }
     }
 

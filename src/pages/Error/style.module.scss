@@ -4,6 +4,8 @@
     align-items: center;
     padding: 0px 17px;
     margin-top: 30px;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Add transition property */
 }
 
 .error_title {

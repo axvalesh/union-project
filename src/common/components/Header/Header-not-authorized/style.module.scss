@@ -12,6 +12,8 @@
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 @mixin hamburger_wrapper_common() {
@@ -40,6 +42,7 @@
     border-radius: 1px;
     background-color: $orange;
 }
+
 
 .header_third_part,.header_second_part {
     display: none;
@@ -78,11 +81,15 @@
     left: 0;
     z-index: 5;
 }
+
 @media (min-width: $tabletSize) {
+    .header_third_part {
+        display: flex;
+    }
     .hamburger__wrapper, .hamburger__wrapper_user {
         display: none;
     }
-    .header_third_part,.header_second_part {
+    .header_second_part {
         display: inline-block;
     }
 }

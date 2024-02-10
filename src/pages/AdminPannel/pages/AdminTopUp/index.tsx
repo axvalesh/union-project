@@ -13,7 +13,7 @@ import { fakeUserConstant } from '@common/models/user';
 const AdminTopUp = () => {
 
     return (
-      <div>
+      <div className='admin_wrapper'>
            <DynamicPadding />
 
            <div className={styles.top_part}>

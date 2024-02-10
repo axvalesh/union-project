@@ -10,6 +10,13 @@
     input[type=number] {
       -moz-appearance: textfield;
     }
+
+    > textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        resize: none;
+    }
 }
 
 .input {
