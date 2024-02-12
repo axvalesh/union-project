@@ -4,6 +4,7 @@ import styles from './style.module.scss';
 import PercentBar from '@common/components/ui/PercentBar/PercentBar';
 import Typography from '@common/components/ui/Typography/Typography';
 import Logo from '@common/components/Logo/Logo';
+import { useState, useEffect } from 'react';
 
 type HeaderSearchProps = {
         allItemsProgress: string[];
@@ -12,8 +13,17 @@ type HeaderSearchProps = {
 const HeaderSearch = ({allItemsProgress,currentItemProgress}:HeaderSearchProps) => {
     const itemIndex = allItemsProgress.findIndex(item => item === currentItemProgress);
     const percent = currentItemProgress == allItemsProgress[allItemsProgress.length-1] ? 100 : 100/(allItemsProgress.length -1)/2*(itemIndex+1+(itemIndex))
+    
+    const [visible, setVisible] = useState(false);
+
+     useEffect(() => {
+         setTimeout(() => {
+             setVisible(true);
+           }, 0);
+     }, []);
+    
     return (
-        <div className={styles.wrapper}>
+        <div style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
                <div className={styles.title_content_wrapper}>
                     <Logo text='Search master' color='white'/>
                     <div className={styles.content}>

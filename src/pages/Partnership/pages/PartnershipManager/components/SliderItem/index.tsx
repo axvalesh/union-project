@@ -22,14 +22,16 @@ const SliderItem = ({icon,text,onClick,removedTag,tags}:SliderItemProps) => {
     }
 
     useEffect(() => {
-        console.log('update')
-        if(removedTag == text) {
+      console.log('updates');
+      console.log('useEffect -------------');
+      
+      if (removedTag === text) {
           setIsSelected(false);
-        }
-        if(tags.length == 0) {
+      }
+      if (tags.length === 0) {
           setIsSelected(false);
-        }
-    }, [removedTag,tags]);
+      }
+  }, [removedTag, tags, text]);
     console.log('update');
     
     return (

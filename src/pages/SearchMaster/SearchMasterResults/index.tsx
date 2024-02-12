@@ -4,12 +4,22 @@ import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
 import styles from './style.module.scss';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import CardStatisticTest from '@common/components/cards/CardStatistics/variants/CardStatisticTest';
+import SizeBox from '@common/components/ui/SizeBox/index';
+import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 
 const SearchMasterResults = () => {
     const [selectedFilter,setSelectedFilter] = useState('');
     const [cards,setCards] = useState([1,2,3,4]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({top: 0,behavior: 'smooth'});
+        },0)
+    },[]) 
+
+    
     const mobileFilterItems:SelectItemProps[] = [
         {
           title: 'Website Development',
@@ -130,12 +140,93 @@ const SearchMasterResults = () => {
                 </div>)}
         </div>
 
+        <DynamicPadding />
+
+        <div className='gap_10'>
+            <Typography variant='body3' textLineHeight='1' fontWeight='500'>Freelancers</Typography>
+            <div className={styles.black_box}>
+                <Typography fontWeight='500' color='white' textLineHeight='1' variant='body3'>5</Typography>
+            </div>
+
+            <div style={{marginLeft: 'auto'}}>
+                <Typography variant='body5' textLineHeight='1' color={AppColor.transparentBlack}>All Freelancers</Typography>
+            </div>
+        </div>
+        <DynamicPadding desktop='30px' mobile='20px'/>
+
+        <div className={styles.cards_wrapper}>
+                {cards.map(item => 
+                    <div className="center_card">
+                <CardStatisticTest />
+                </div>)}
+        </div>
+
+        <DynamicPadding />
+
+        <Typography variant='body3' fontWeight='500'>
+        If you need more solutions
+        </Typography>
+
+        <DynamicPadding desktop='30px' mobile='20px'/>
+        <div className={styles.bottom_grid}>
+                <SolutionCard 
+                    title='Order'
+                    text='Get matched with freelancers for your project'
+                    icon={<AppColor.orders  />}
+                />
+                <SolutionCard 
+                    title='Manager'
+                    text='Let managers find appropriate solutions for your project'
+                    icon={<AppColor.managers/>}
+                />
+                <SolutionCard 
+                    title='Sponsorship'
+                    text='To get sponsored create a campaign'
+                    icon={<AppColor.caseIcon/>}
+                />
+        </div>
+
+        <DynamicPadding />
+                    <div className='justify_center'>
+                        <ChevronMoveTo variant='left' onClick={() => {
+                                window.history.back();
+                        }} text='Step back' title='budget & Delivery' />
+                    </div>
+
+        <DynamicPadding />
+
+
         </div>
            
       </div>
     );
 };
 
+type SolutionCardProps = {
+    icon: React.ReactNode;
+    title: string;
+    text: string;
+
+}
+const SolutionCard = ({icon,text,title}:SolutionCardProps) => {
+    return (
+        <div className={styles.card_solution}>
+            <div className={styles.solution_image}>
+                {icon}
+            </div>
+            <SizeBox height='5px'/>
+            <Typography variant='body3' fontWeight='500'>
+            {title}
+            </Typography>
+            <SizeBox height='15px'/>
+            <div className={styles.horiz_orange_line}></div>
+            <SizeBox height='15px'/>
+            <Typography variant='body4'>
+                {text}
+            </Typography>
+        </div>
+    )
+}
 type SelectItemProps = {
     title: string;
     text: string;   

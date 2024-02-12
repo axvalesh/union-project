@@ -7,23 +7,31 @@ import Typography from '@common/components/ui/Typography/Typography';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 import { developmentDropdown } from '@common/models/constants';
 import AppColor from '@common/styles/variables-static';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import MyCheckbox from '@common/components/ui/inputs/Checkbox/index';
+import { Link } from 'react-router-dom';
 
 const SearchMasterRequirements = () => {
     const [activeTitle,setActiveTitle] = useState('');
+
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({top: 0,behavior: 'smooth'});
+        },0)
+    },[]) 
+    
     return (
       <div>
            <HeaderSearch 
             allItemsProgress={['Category', 'Requirements', 'Skills', 'Budget & Delivery ', 'Results']}
-            currentItemProgress='Category'
+            currentItemProgress='Requirements'
            />
 
           <div className={styles.wrapper}>
                <DynamicPadding />
                <div className={styles.text_flex}>
-                    <Typography variant='titleBig' textTransform='uppercase'>Category</Typography>
+                    <Typography variant='titleBig' textTransform='uppercase'>Requirements</Typography>
                     <div className={styles.template_icon}>
                     <AppColor.template />
                     </div>
@@ -31,7 +39,7 @@ const SearchMasterRequirements = () => {
     
                <DynamicPadding desktop='25px' mobile='20px'/>
                <div style={{textAlign: 'center'}} className='justify_center'>
-                <Typography variant='body4' color={AppColor.transparentBlack}>Describe your project, and we will help you find the best-suited solutions. Or pick it by yourself.</Typography></div>
+                <Typography variant='body4' color={AppColor.transparentBlack}>Choose the specific features and functionalities you want to implement.</Typography></div>
                 <DynamicPadding />
 
                 <div className={styles.switch_wrapper}>
@@ -130,8 +138,12 @@ const SearchMasterRequirements = () => {
 
                 <DynamicPadding />
                 <div style={{maxWidth: '530px',margin: '0 auto'}} className={'flex_space_between'}>
-                        <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='cancel' />
-                        <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Requirement' />
+                        <ChevronMoveTo variant='left' onClick={() => {
+                             window.history.back();
+                        }} text='Step back' title='category' />
+                       <Link to={'/search-master/skills'}>
+                       <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='skills' />
+                       </Link>
                 </div>
           </div>
 

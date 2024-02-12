@@ -34,7 +34,7 @@ const ServiceSelection = () => {
 
       <NavigationBarSelection
          allItemsProgress={['Program', 'Selection', 'Progress', 'Completed']}
-         currentItemProgress='Program'
+         currentItemProgress='Selection'
       />
 
       <div className={'wrapper_page'}>

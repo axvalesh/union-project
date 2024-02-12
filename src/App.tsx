@@ -71,6 +71,7 @@ import AdminPannel from './pages/AdminPannel'
 import MessengerPage from './pages/Messenger/pages/MessengerPage'
 import MessengerPageSolution from './pages/Messenger/pages/Solutions'
 import MessengerPageDirect from './pages/Messenger/pages/Direct'
+import PaymentsOperations from './pages/Payments/pages/Operations'
 
 function App() {
    
@@ -120,6 +121,8 @@ function App() {
             <Route path="/settings/verification" element={<Verification />} />
             <Route path="/settings/notifications" element={<SettingsNotifications />} />
 
+            <Route path="/payments/operations" element={<PaymentsOperations />} />
+
             <Route path="/partnership" element={<PartnershipManager />} />
             <Route path="/partnership/my-programs" element={<PartnershipMyPrograms />} />
             <Route path="/partnership/program" element={<Program />} />
@@ -133,7 +136,7 @@ function App() {
             <Route path="/service/" element={<Service />} />
             <Route path="/service/selection" element={<ServiceSelection />} />
             <Route path="/service/negotioation/freelancer" element={<ServiceNegotiationFreelancer />} />
-            <Route path="/service/negotioation/customer" element={<ServiceNegotiationCustomer />} /> {/*negotiation stage is in process */}
+            <Route path="/service/negotioation/customer" element={<ServiceNegotiationCustomer />} /> 
             <Route path="/service/progress/customer" element={<ServiceProgress />} />
             <Route path="/service/completed" element={<ServiceCompleted />} />
 

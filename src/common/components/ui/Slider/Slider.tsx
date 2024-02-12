@@ -78,44 +78,46 @@ const Slider = ({children,showDots,elementsCount,maxWidth,gap,itemWidth,paddingT
     const dots = Array.from({ length: elementsCount}, (_, index) => index);
 
     return (
-        <div className={styles.shell}>
-            <div
-                onMouseDown={handleDragStart}
-                onTouchStart={handleDragStart}
-                onMouseMove={handleDragMove}
-                onTouchMove={handleDragMove}
-                onMouseUp={handleDragEnd}
-                onTouchEnd={handleDragEnd}
-                style={{ paddingTop, paddingBottom,maxWidth: maxWidth }}
-                className={styles.sliderOverflow}
-            >
+       <div className={styles.overflow_shell}>
+            <div className={styles.shell}>
                 <div
-                    style={{ gap, transform: `translateX(-${currentIndex * (itemWidth) + currentIndex * gap}px)` }}
-                    className={styles.slider}
+                    onMouseDown={handleDragStart}
+                    onTouchStart={handleDragStart}
+                    onMouseMove={handleDragMove}
+                    onTouchMove={handleDragMove}
+                    onMouseUp={handleDragEnd}
+                    onTouchEnd={handleDragEnd}
+                    style={{ paddingTop, paddingBottom,maxWidth: maxWidth }}
+                    className={styles.sliderOverflow}
                 >
-                    {...showChildren}
+                    <div
+                        style={{ gap, transform: `translateX(-${currentIndex * (itemWidth) + currentIndex * gap}px)` }}
+                        className={styles.slider}
+                    >
+                        {...showChildren}
+                    </div>
                 </div>
+                <span className={styles.left + ' ' + style}>
+                    <span onClick={moveBack} className={styles.chevron}>
+                        <AppColor.chevronLeft fill="white" width={17} height={30} />
+                    </span>
+                </span>
+                <span className={styles.right + ' ' + style}>
+                    <span onClick={moveOn} className={styles.chevron}>
+                        <AppColor.chevronRight fill="white" width={17} height={30} />
+                    </span>
+                </span>
+                {showDots && <div className={`${styles.dots} ${styleDots}`}>
+                    {dots.map((dotIndex) => (
+                        <span
+                            key={dotIndex}
+                            className={dotIndex === currentIndex ? styles.activeDot : styles.dot}
+                            onClick={() => setCurrentIndex(dotIndex)}
+                        ></span>
+                    ))}
+                </div>}
             </div>
-            <span className={styles.left + ' ' + style}>
-                <span onClick={moveBack} className={styles.chevron}>
-                    <AppColor.chevronLeft fill="white" width={17} height={30} />
-                </span>
-            </span>
-            <span className={styles.right + ' ' + style}>
-                <span onClick={moveOn} className={styles.chevron}>
-                    <AppColor.chevronRight fill="white" width={17} height={30} />
-                </span>
-            </span>
-            {showDots && <div className={`${styles.dots} ${styleDots}`}>
-                {dots.map((dotIndex) => (
-                    <span
-                        key={dotIndex}
-                        className={dotIndex === currentIndex ? styles.activeDot : styles.dot}
-                        onClick={() => setCurrentIndex(dotIndex)}
-                    ></span>
-                ))}
-            </div>}
-        </div>
+       </div>
     );
 };
 export default Slider;

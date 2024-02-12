@@ -34,6 +34,7 @@ import CardsSliderRelated from '@common/components/CardsSliderRelated/index'
 import SideBarCategory from '@pages/Partnership/pages/PartnershipManager/components/SideBarCategory/index'
 import SliderItem from '@pages/Partnership/pages/PartnershipManager/components/SliderItem/index'
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index'
+import InputCommon from '@common/components/ui/inputs/InputCommon/index'
 
 const ServiceAll = () => {
     const { width, height } = useScreenSize()
@@ -64,21 +65,27 @@ const ServiceAll = () => {
             )
         )
     }, [width])
-
+    const [showModalSideBar,setShowModalSideBar] = useState(false);
     const handleAddTag = (item: string) => {
-        if (!tags.includes(item)) {
-            setTags((prev) => [...prev, item])
-        } else {
-            setTags(tags.filter((tag) => tag != item))
-        }
+        setTags((prevTags) => {
+            if (!prevTags.includes(item)) {
+                console.log('add if');
+                return [...prevTags, item];
+            } else {
+                console.log('remove ----');
+                return prevTags.filter((tag) => tag !== item);
+            }
+        });
     }
 
-    const handleAddTagFromSideBar = (passedText?:string) => {
-   
-        setTags(tags.filter((tag) => tag != passedText))
-        setRemovedTagFromSideBar(passedText);
-      
-    }
+    const handleAddTagFromSideBar = (passedText: string) => {
+        setTags((prevTags) => {
+            const updatedTags = prevTags.filter((tag) => tag !== passedText);
+            setRemovedTagFromSideBar(passedText);
+            console.log('remove sidebar', passedText);
+            return updatedTags;
+        });
+    };
     return (
         <div>
             <Header />
@@ -150,21 +157,65 @@ const ServiceAll = () => {
                 />
                 <DynamicPadding />
 
-                <ResponsiveLayoutTwo
+                 <ResponsiveLayoutTwo
+                    callbackModal={(item) => {setShowModalSideBar(item)}}
+                    item1ToAModalLeftMobile={true}
+                    showModal={showModalSideBar}
                     gap='80px'
                     item1MaxWidth='290px'
                     item2MaxWidth='830px'
-                    item1={
+                    item0MobileWhenModal={
                         <div style={{width: '100%'}}>
+                           
                             <div className={styles.justify_flex}>
                                 <Typography
                                     variant="body4"
-                                    color={AppColor.transparentBlack}>
+                                    color={AppColor.transparentBlack}
+                                    textTransform='uppercase'
+                                    >
                                     My filter templates
                                 </Typography>
                                 <AppColor.template />
                             </div>
+
                             <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <InputCommon 
+                                placeholder='Search'
+                                callback={() => {}}
+                            />
+                             <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                        </div>
+                    }
+                    item1={
+                        <div style={{width: '100%'}}>
+                           
+                            <div className={styles.justify_flex}>
+                                <Typography
+                                    variant="body4"
+                                    color={AppColor.transparentBlack}
+                                    textTransform='uppercase'
+                                    >
+                                    My filter templates
+                                </Typography>
+                                <AppColor.template />
+                            </div>
+                            
+
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <InputCommon 
+                                placeholder='Search'
+                                callback={() => {}}
+                            />
+                             <DynamicPadding
                                 desktop="30px"
                                 mobile="15px"
                             />
@@ -193,16 +244,18 @@ const ServiceAll = () => {
                             />
                             <div className={styles.skill_wrapper}>
                                 {tags.map((item) => (
-                                    <MyButtonTransparentOrange
-                                        padding="5px 13px"
-                                        onClick={() => {
-                                          handleAddTagFromSideBar(item)
-                                        }}>
-                                        {item}{' '}
-                                        <AppColor.close
-                                            fill={AppColor.orange}
-                                        />
-                                    </MyButtonTransparentOrange>
+                                    <div className={styles.hover_white}>
+                                        <MyButtonTransparentOrange
+                                            padding="5px 13px"
+                                            onClick={() => {
+                                              handleAddTagFromSideBar(item)
+                                            }}>
+                                            {item}{' '}
+                                            <AppColor.close
+                                                fill={AppColor.orange}
+                                            />
+                                        </MyButtonTransparentOrange>
+                                    </div>
                                 ))}
                             </div>
                             <DynamicPadding
@@ -331,6 +384,7 @@ const ServiceAll = () => {
                                         count: 500,
                                         icon: (
                                             <AppColor.code
+                                                fill={AppColor.text}
                                                 width={'20px'}
                                                 height={'20px'}
                                             />
@@ -470,69 +524,89 @@ const ServiceAll = () => {
                         </div>
                     }
                     item2={
-                        <div style={{width: '100%'}}>
-                             <div className={styles.justify_flex}>
-                            <Typography variant="body4">
-                                11 841 programs
-                            </Typography>
-                            <div className={styles.flex_center}>
-                                <div className={styles.gap_5}>
-                                    <AppColor.relevant />
-                                    <Typography
-                                        variant="body4"
-                                        fontWeight="500"
-                                        color={
-                                            AppColor.transparentBlack
-                                        }
-                                        textTransform="uppercase">
-                                        Relevant
+                       <div className='responsive_layout_child'>
+                            <div style={{width: '100%'}}>
+                                 
+                    <div className={styles.justify_flex}>
+                            <div className='desktop'>
+                                    <Typography variant="body4">
+                                        11 841 programs
                                     </Typography>
                                 </div>
-                                <div>
-                                    <AppColor.chevronBottom
-                                        fill={AppColor.text}
-                                    />
+                                <div className={styles.flex_center}>
+                                <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
+                                            <AppColor.filter />
+                                            <Typography
+                                                variant="body4"
+                                                fontWeight="500"
+                                                color={
+                                                    AppColor.transparentBlack
+                                                }
+                                                textTransform="uppercase">
+                                                Filters
+                                            </Typography>
+                                    </div>
+                                        <div className={'gap_5'}>
+                                            <AppColor.relevant />
+                                            <Typography
+                                                variant="body4"
+                                                fontWeight="500"
+                                                color={
+                                                    AppColor.transparentBlack
+                                                }
+                                                textTransform="uppercase">
+                                                Relevant
+                                            </Typography>
+                                    </div>
+                                    <div>
+                                        <AppColor.chevronBottom
+                                            fill={AppColor.text}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <DynamicPadding />
-
-                        <div className={styles.cards_wrapper}>
+                            <DynamicPadding />
+    
+                            <div className={styles.cards_wrapper}>
                             {itemsToshow.map((item) => (
-                                <CardStatisticsParthnershipConstant />
+                                <div className='center_card'><CardStatisticsParthnershipConstant /></div>
                             ))}
-                        </div>
-                        <DynamicPadding
-                            desktop="40px"
-                            mobile="20px"
-                        />
-                        <div className={styles.justify_center}>
-                            <MyButtonTransparentBlack
-                                onClick={() => {
-                                    setItemsToShow((prev) => [
-                                        ...prev,
-                                        1,
-                                        2,
-                                        3,
-                                    ])
-                                }}>
-                                Show more +3
-                            </MyButtonTransparentBlack>
-                        </div>
-                        <DynamicPadding
-                            desktop="40px"
-                            mobile="20px"
-                        />
-                        <div className={styles.justify_center}>
-                            <NavBarLineBlack
-                                callback={() => {}}
-                                maxCountPage={100}
+                            </div>
+                            <DynamicPadding
+                                desktop="40px"
+                                mobile="20px"
                             />
-                        </div>
-                        <DynamicPadding />
-                        </div>
+                            <div className={styles.justify_center}>
+                                <MyButtonTransparentBlack
+                                    onClick={() => {
+                                        setItemsToShow((prev) => [
+                                            ...prev,
+                                            1,
+                                            2,
+                                            3,
+                                        ])
+                                    }}>
+                                    Show more +3
+                                </MyButtonTransparentBlack>
+                            </div>
+                            <DynamicPadding
+                                desktop="40px"
+                                mobile="20px"
+                            />
+                            <div className={styles.justify_center}>
+                                <NavBarLineBlack
+                                    callback={() => {}}
+                                    maxCountPage={100}
+                                />
+                            </div>
+                            <DynamicPadding />
+                            
+                            <DynamicPadding />
+                            </div>
+                       </div>
                     }
                 />
+                  
                 
             </div>
             <CardsSliderRelated />

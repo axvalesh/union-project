@@ -69,19 +69,29 @@ const PartnershipManager = () => {
     }, [width])
 
     const handleAddTag = (item: string) => {
-        if (!tags.includes(item)) {
-            setTags((prev) => [...prev, item])
-        } else {
-            setTags(tags.filter((tag) => tag != item))
-        }
+        setTags((prevTags) => {
+            if (!prevTags.includes(item)) {
+                console.log('add if');
+                return [...prevTags, item];
+            } else {
+                console.log('remove ----');
+                return prevTags.filter((tag) => tag !== item);
+            }
+        });
     }
 
-    const handleAddTagFromSideBar = (passedText?:string) => {
-   
-        setTags(tags.filter((tag) => tag != passedText))
-        setRemovedTagFromSideBar(passedText);
-      
-    }
+    const handleAddTagFromSideBar = (passedText: string) => {
+        setTags((prevTags) => {
+            const updatedTags = prevTags.filter((tag) => tag !== passedText);
+            setRemovedTagFromSideBar(passedText);
+            console.log('remove sidebar', passedText);
+            return updatedTags;
+        });
+    };
+
+    useEffect(() => {
+        console.log("REMOVED SIDEBAR")
+    },[removedTagFromSideBar])
     return (
         <div>
             <Header />
@@ -123,28 +133,84 @@ const PartnershipManager = () => {
                         <SliderItem
                             icon={<img src={minimalist}  height={'30px'}/>}
                             text="Minimalist"
-                            onClick={handleAddTag}
+                            onClick={(item) => {handleAddTag(item)}}
                             removedTag={removedTagFromSideBar}
                             tags={tags}
                         />,
                         <SliderItem
                             icon={<img src={threeD}  height={'30px'}/>}
                             text="3D"
-                            onClick={handleAddTag}
+                            onClick={(item) => {handleAddTag(item)}}
                             removedTag={removedTagFromSideBar}
                             tags={tags}
                         />,
                         <SliderItem
                             icon={<img src={freestyle}  height={'30px'}/>}
                             text="Freestyle"
-                            onClick={handleAddTag}
+                            onClick={(item) => {handleAddTag(item)}}
                             removedTag={removedTagFromSideBar}
                             tags={tags}
                         />,
                         <SliderItem
                             icon={<img src={mascot}  height={'30px'}/>}
                             text="Mascot"
-                            onClick={handleAddTag}
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={minimalist}  height={'30px'}/>}
+                            text="Minimalist"
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={threeD}  height={'30px'}/>}
+                            text="3D"
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={freestyle}  height={'30px'}/>}
+                            text="Freestyle"
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={mascot}  height={'30px'}/>}
+                            text="Mascot"
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={minimalist}  height={'30px'}/>}
+                            text="Minimalist"
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={threeD}  height={'30px'}/>}
+                            text="3D"
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={freestyle}  height={'30px'}/>}
+                            text="Freestyle"
+                            onClick={(item) => {handleAddTag(item)}}
+                            removedTag={removedTagFromSideBar}
+                            tags={tags}
+                        />,
+                        <SliderItem
+                            icon={<img src={mascot}  height={'30px'}/>}
+                            text="Mascot"
+                            onClick={(item) => {handleAddTag(item)}}
                             removedTag={removedTagFromSideBar}
                             tags={tags}
                         />,
@@ -188,87 +254,419 @@ const PartnershipManager = () => {
                         </div>
                     }
                     item1={
-                        <FilterBlock />
+                        <div style={{width: '100%'}}>
+                           
+                            <div className={styles.justify_flex}>
+                                <Typography
+                                    variant="body4"
+                                    color={AppColor.transparentBlack}
+                                    textTransform='uppercase'
+                                    >
+                                    My filter templates
+                                </Typography>
+                                <AppColor.template />
+                            </div>
+                            
+
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <InputCommon 
+                                placeholder='Search'
+                                callback={() => {}}
+                            />
+                             <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <HorizontalLine />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <div className={styles.justify_flex}>
+                                <Typography
+                                    variant="body3"
+                                    fontWeight="500">
+                                    You chose
+                                </Typography>
+                               <div style={{cursor: 'pointer'}} onClick={() => {setTags([])}}>
+                                  <Typography
+                                      variant="body5"
+                                      color={AppColor.transparentBlack}>
+                                      Reset All
+                                  </Typography>
+                               </div>
+                            </div>
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <div className={styles.skill_wrapper}>
+                                {tags.map((item) => (
+                                    <div className={styles.hover_white}>
+                                        <MyButtonTransparentOrange
+                                            padding="5px 13px"
+                                            onClick={() => {
+                                              handleAddTagFromSideBar(item)
+                                            }}>
+                                            {item}{' '}
+                                            <AppColor.close
+                                                fill={AppColor.orange}
+                                            />
+                                        </MyButtonTransparentOrange>
+                                    </div>
+                                ))}
+                            </div>
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <HorizontalLine />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <SideBarCategory
+                                title="Logo Style"
+                                dropItems={[
+                                    {
+                                        count: 500,
+                                        icon: (
+                                          <img src={minimalist}  height={'20px'}/>
+                                        ),
+                                        text: 'Minimalist',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                          <img src={mascot}  height={'20px'}/>
+                                        ),
+                                        text: 'Mascot',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                          <img src={freestyle}  height={'20px'}/>
+                                        ),
+                                        text: 'Freestyle',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                          <img src={threeD}  height={'20px'}/>
+                                        ),
+                                        text: '3D',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                          <img src={minimalist}  height={'20px'}/>
+                                        ),
+                                        text: 'Minimalist',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                          <img src={mascot}  height={'20px'}/>
+                                        ),
+                                        text: 'Mascot',
+                                    },
+                                ]}
+                            />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <HorizontalLine />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <SideBarCategory
+                                title="File Format"
+                                dropItems={[
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.pngBox
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'PNG',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.jpgBox
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'JPG',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.gifBox
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'GIF',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.pdfBox
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'PDF',
+                                    },
+                                ]}
+                            />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <HorizontalLine />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <SideBarCategory
+                                title="Includes"
+                                dropItems={[
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.code
+                                                fill={AppColor.text}
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'Source File',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.vectorFiles
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'Vector FIle',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.chessBoard
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'Logo Transparency',
+                                    },
+                                    {
+                                        count: 500,
+                                        icon: (
+                                            <AppColor.printer
+                                                width={'20px'}
+                                                height={'20px'}
+                                            />
+                                        ),
+                                        text: 'Printable FIle',
+                                    },
+                                ]}
+                            />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <HorizontalLine />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <Typography
+                                variant="body3"
+                                fontWeight="500">
+                                Price
+                            </Typography>
+                            <DynamicPadding
+                                desktop="40px"
+                                mobile="20px"
+                            />
+                            <DoubleRangeSlider
+                                min={0}
+                                max={10000}
+                                onChange={(item) => {}}
+                            />
+                            <DynamicPadding
+                                desktop="15px"
+                                mobile="0px"
+                            />
+                            <div className={styles.justify_flex}>
+                                <input
+                                    type="number"
+                                    ref={minValueRef}
+                                    onPaste={() => {
+                                        return false
+                                    }}
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    placeholder="min"
+                                    className={styles.price_input}
+                                />
+                                <input
+                                    type="number"
+                                    ref={maxValueRef}
+                                    onPaste={() => {
+                                        return false
+                                    }}
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    placeholder="max"
+                                    className={styles.price_input}
+                                />
+                                <MyButtonBlack
+                                    textTransform="uppercase"
+                                    onClick={() => {
+                                        setPriceValue({
+                                            min: minValueRef.current
+                                                .value,
+                                            max: maxValueRef.current
+                                                .value,
+                                        })
+                                    }}>
+                                    OK
+                                </MyButtonBlack>
+                            </div>
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <HorizontalLine />
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <div>
+                                <Typography
+                                    variant="body3"
+                                    fontWeight="500">
+                                    Skills
+                                </Typography>
+                                <DynamicPadding
+                                    desktop="20px"
+                                    mobile="15px"
+                                />
+                                <div className={styles.skill_wrapper}>
+                                    {skills.map((skill) => (
+                                        <div
+                                            className={
+                                                styles.skill_item
+                                            }>
+                                            <Typography
+                                                variant="body4"
+                                                fontWeight="500"
+                                                color="white">
+                                                {skill}
+                                            </Typography>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     }
                     item2={
-                        <div style={{width: '100%'}}>
-                             
-                <div className={styles.justify_flex}>
-                        <div className='desktop'>
-                                <Typography variant="body4">
-                                    11 841 programs
-                                </Typography>
+                       <div className='responsive_layout_child'>
+                            <div style={{width: '100%'}}>
+                                 
+                    <div className={styles.justify_flex}>
+                            <div className='desktop'>
+                                    <Typography variant="body4">
+                                        11 841 programs
+                                    </Typography>
+                                </div>
+                                <div className={styles.flex_center}>
+                                <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
+                                            <AppColor.filter />
+                                            <Typography
+                                                variant="body4"
+                                                fontWeight="500"
+                                                color={
+                                                    AppColor.transparentBlack
+                                                }
+                                                textTransform="uppercase">
+                                                Filters
+                                            </Typography>
+                                    </div>
+                                        <div className={'gap_5'}>
+                                            <AppColor.relevant />
+                                            <Typography
+                                                variant="body4"
+                                                fontWeight="500"
+                                                color={
+                                                    AppColor.transparentBlack
+                                                }
+                                                textTransform="uppercase">
+                                                Relevant
+                                            </Typography>
+                                    </div>
+                                    <div>
+                                        <AppColor.chevronBottom
+                                            fill={AppColor.text}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                            <div className={styles.flex_center}>
-                            <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
-                                        <AppColor.filter />
-                                        <Typography
-                                            variant="body4"
-                                            fontWeight="500"
-                                            color={
-                                                AppColor.transparentBlack
-                                            }
-                                            textTransform="uppercase">
-                                            Filters
-                                        </Typography>
-                                </div>
-                                    <div className={'gap_5'}>
-                                        <AppColor.relevant />
-                                        <Typography
-                                            variant="body4"
-                                            fontWeight="500"
-                                            color={
-                                                AppColor.transparentBlack
-                                            }
-                                            textTransform="uppercase">
-                                            Relevant
-                                        </Typography>
-                                </div>
-                                <div>
-                                    <AppColor.chevronBottom
-                                        fill={AppColor.text}
-                                    />
-                                </div>
+                            <DynamicPadding />
+    
+                            <div className={styles.cards_wrapper}>
+                                {itemsToshow.map((item) => (
+                                    <div className='center_card'>
+                                        <CardStatisticsParthnershipConstant />
+                                    </div>
+                                ))}
                             </div>
-                        </div>
-                        <DynamicPadding />
-
-                        <div className={styles.cards_wrapper}>
-                            {itemsToshow.map((item) => (
-                                <CardStatisticsParthnershipConstant />
-                            ))}
-                        </div>
-                        <DynamicPadding
-                            desktop="40px"
-                            mobile="20px"
-                        />
-                        <div className={styles.justify_center}>
-                            <MyButtonTransparentBlack
-                                onClick={() => {
-                                    setItemsToShow((prev) => [
-                                        ...prev,
-                                        1,
-                                        2,
-                                        3,
-                                    ])
-                                }}>
-                                Show more +3
-                            </MyButtonTransparentBlack>
-                        </div>
-                        <DynamicPadding
-                            desktop="40px"
-                            mobile="20px"
-                        />
-                        <div className={styles.justify_center}>
-                            <NavBarLineBlack
-                                callback={() => {}}
-                                maxCountPage={100}
+                            <DynamicPadding
+                                desktop="40px"
+                                mobile="20px"
                             />
-                        </div>
-                        <DynamicPadding />
-                        
-                        <DynamicPadding />
-                        </div>
+                            <div className={styles.justify_center}>
+                                <MyButtonTransparentBlack
+                                    onClick={() => {
+                                        setItemsToShow((prev) => [
+                                            ...prev,
+                                            1,
+                                            2,
+                                            3,
+                                        ])
+                                    }}>
+                                    Show more +3
+                                </MyButtonTransparentBlack>
+                            </div>
+                            <DynamicPadding
+                                desktop="40px"
+                                mobile="20px"
+                            />
+                            <div className={styles.justify_center}>
+                                <NavBarLineBlack
+                                    callback={() => {}}
+                                    maxCountPage={100}
+                                />
+                            </div>
+                            <DynamicPadding />
+                            
+                            <DynamicPadding />
+                            </div>
+                       </div>
                     }
                 />
                 

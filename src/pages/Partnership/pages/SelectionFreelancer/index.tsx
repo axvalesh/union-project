@@ -44,7 +44,7 @@ const SelectionFreelancer = () => {
 
         <NavigationBarSelection
            allItemsProgress={['Program', 'Selection', 'Progress', 'Completed']}
-           currentItemProgress='Program'
+           currentItemProgress='Selection'
         />
 
         <div className={styles.wrapper}>

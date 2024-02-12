@@ -4,19 +4,27 @@ import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import ButtonChooseList from '@common/components/ButtonChooseList/index';
 import ButtonsSelectList from '@common/components/ButtonsSelectList/index';
+import { Link } from 'react-router-dom';
 
 const SearchMasterSkills = () => {
     const [activeTitle,setActiveTitle] = useState('');
     const [selectedSkills,setSelectedSkills] = useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({top: 0,behavior: 'smooth'});
+        },0)
+    },[]) 
+    
     return (
       <div>
            <HeaderSearch 
-            allItemsProgress={['Category', 'Requirements', 'Skills', 'Budget & Delivery ', 'Results']}
-            currentItemProgress='Category'
+            allItemsProgress={['Category', 'Requirements', 'Skills', 'Budget & Delivery', 'Results']}
+            currentItemProgress='Skills'
            />
 
           <div className={styles.wrapper}>
@@ -77,8 +85,12 @@ const SearchMasterSkills = () => {
                 </div>
                 <DynamicPadding desktop='30px' mobile='20px'/>
                 <div style={{maxWidth: '530px',margin: '0 auto'}} className={'flex_space_between'}>
-                        <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='requirement' />
+                <ChevronMoveTo variant='left' onClick={() => {
+                            window.history.back();
+                        }} text='Step back' title='requirement' />
+                        <Link to={'/search-master/budget-and-delivery'}>
                         <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='budget & Delivery' />
+                        </Link>
                 </div>
           </div>
 

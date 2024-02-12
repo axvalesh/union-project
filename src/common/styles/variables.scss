@@ -131,6 +131,15 @@ $grey: #A8A8AD;
   margin: 0 auto;
   padding: 0px 10px;
 }
+.center_card {
+  display: flex;
+  justify-content: center;
+}
+.responsive_layout_child {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .justify_center {
   display: flex;

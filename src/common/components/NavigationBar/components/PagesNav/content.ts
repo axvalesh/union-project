@@ -14,7 +14,7 @@ export type nav_categorys = {
     links:linkType[];
 };
 
-export type nav_var_categorys_titles = 'Dashboard' | 'Teams' | 'Subscriptions' | 'Messenger' | 'Community' | 'Team' | 'Settings';
+export type nav_var_categorys_titles = 'Dashboard' | 'Teams' | 'Subscriptions' | 'Messenger' | 'Community' | 'Team' | 'Settings' | 'Payments';
 
 export const nav_var_categorys:nav_categorys[] = [
     {
@@ -102,6 +102,19 @@ export const nav_var_categorys:nav_categorys[] = [
             {title: 'password & security'},
             {title: 'verification'},
             {title: 'notifications'}
+        ],
+    },
+    {
+        title: "Payments",
+        text: 'Customise your profile',
+        image: AppColor.paymentsWhite,
+        activeImage: AppColor.paymentsWhite,
+        index: 7,
+        links: [
+            {title: 'operations'},
+            {title: 'top up'},
+            {title: 'withdraw'},
+            {title: 'w-8BEN'}
         ],
     },
     

@@ -5,23 +5,32 @@ import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import RadioButton from '@common/components/ui/RadioButton/index';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import { levelMap } from '@common/components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const SearchMasterBudgetAndDelivery = () => {
     const [selectedSkillsLevel,setSelectedSkillsLevel] = useState<string[]>([])
     const [activePaymentMethod,setActivePaymentMethod] = useState('');
     const [activeDeliveryMethod,setActiveDeliveryMethod] = useState('');
+
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({top: 0,behavior: 'smooth'});
+        },0)
+    },[]) 
+
+    
     return (
       <div>
            <HeaderSearch 
-            allItemsProgress={['Category', 'Requirements', 'Skills', 'Budget & Delivery ', 'Results']}
-            currentItemProgress='Category'
+            allItemsProgress={['Category', 'Requirements', 'Skills', 'Budget & Delivery', 'Results']}
+            currentItemProgress='Budget & Delivery'
            />
 
           <div className={styles.wrapper}>
@@ -150,8 +159,12 @@ const SearchMasterBudgetAndDelivery = () => {
                 </div>
                 <DynamicPadding desktop='30px' mobile='20px'/>
                 <div style={{maxWidth: '570px',margin: '0 auto'}} className={'flex_space_between'}>
-                        <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='requirement' />
-                        <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='budget & Delivery' />
+                        <ChevronMoveTo variant='left' onClick={() => {
+                            window.history.back();
+                        }} text='Step back' title='skills' />
+                        <Link to={'/search-master/results'}>
+                        <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='results' />
+                        </Link>
                 </div>
           </div>
 

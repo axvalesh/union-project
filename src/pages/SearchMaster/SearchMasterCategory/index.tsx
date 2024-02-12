@@ -5,15 +5,22 @@ import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import { developmentDropdown } from '@common/models/constants';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
+import { Link } from 'react-router-dom';
 
 const SearchMasterCategory = () => {
     const [activeCategory,setActiveCategory] = useState('Development');
     const [selectedSubCategory,setSelectedSubCategory] = useState('');
     const currentList = developmentDropdown.find(item => item.title == activeCategory);
+    
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo({top: 0,behavior: 'smooth'});
+        },0)
+    },[]) 
     return (
       <div>
            <HeaderSearch 
@@ -104,8 +111,12 @@ const SearchMasterCategory = () => {
 
                 <DynamicPadding />
                 <div className={'flex_space_between'}>
-                        <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='cancel' />
-                        <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Requirement' />
+                        <ChevronMoveTo variant='left' onClick={() => {
+                            window.history.back();
+                        }} text='Step back' title='cancel' />
+                        <Link to={'/search-master/requirements'}>
+                            <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Requirement' />
+                        </Link>
                 </div>
           </div>
 

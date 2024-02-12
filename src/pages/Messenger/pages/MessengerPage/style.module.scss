@@ -150,6 +150,15 @@
   }
 }
 @media (min-width:$tabletSize) {
+  .pointer_desktop {
+    cursor: pointer;
+  }
+  .white_background {
+    min-width: 290px;
+  }
+  .white_background_right {
+    min-width: 320px;
+  }
   .comment_preview {
     cursor: pointer;
   }

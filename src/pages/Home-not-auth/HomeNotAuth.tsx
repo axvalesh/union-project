@@ -310,14 +310,16 @@ const HomeNotAuth = () => {
               </Slider>
               </div>
               <div className={styles.fourth_screen_text}>
-                <Typography variant='titleSmall' color={AppColor.orange} textTransform='uppercase'>
-                  Ignite <span className={styles.fourth_screen_text_grey}>Change Together</span>
-                </Typography>
-
-                <div className={styles.fourth_screen_text_margin_top}>
-                  <Typography variant='body1'>
-                  Explore featured campaigns and contribute to projects that resonate with you
+                <div className='center_mobile_text'>
+                  <Typography variant='titleSmall' color={AppColor.orange} textTransform='uppercase'>
+                    Ignite <span className={styles.fourth_screen_text_grey}>Change Together</span>
                   </Typography>
+  
+                  <div className={styles.fourth_screen_text_margin_top}>
+                    <Typography variant='body1'>
+                    Explore featured campaigns and contribute to projects that resonate with you
+                    </Typography>
+                  </div>
                 </div>
 
                 <div className={styles.fourth_screen_details_none_mobile}>
@@ -543,11 +545,13 @@ const HomeNotAuth = () => {
                 <Typography variant='titleSmall' textTransform='uppercase'>
                   <span style={{color: AppColor.orange}}>Unveiling</span> More Features
                 </Typography>
-                <span className={styles.six_section_details_span}>
-                <Typography variant='body4' color={AppColor.transparentBlack}>
-                Unlock your projects' complete potential. Explore the extra benefits we offer
-                </Typography>
-                </span>
+               <div className='center_mobile_text'>
+                  <span className={styles.six_section_details_span}>
+                  <Typography variant='body4' color={AppColor.transparentBlack}>
+                  Unlock your projects' complete potential. Explore the extra benefits we offer
+                  </Typography>
+                  </span>
+               </div>
                 <MyButton
                 color={AppColor.orange}
                 textColor='white'
@@ -568,7 +572,7 @@ const HomeNotAuth = () => {
 const AdvantangesSectionCard = ({img,title,description}:AdvantagesSectionCardProps) => {
   return (
     <div className={styles.advantanges_section_card_item}>
-      <div style={{height: '160px'}}><img src={img} style={{maxWidth: '224px',width:'fit-content'}}  alt="image" /></div>
+      <div ><img src={img} className={styles.image_auto}  alt="image" /></div>
       <span className={styles.advantanges_section_card_title}>
         <Typography textAlign='center' variant='body2'>
           {title}
@@ -618,7 +622,7 @@ const PopularCategorysServiceCard = ({img,title,svg}:PopularCategorysServiceCard
 const SixSectionCard = ({title,description,image,index}: sixSectionCardProps) => {
   return (
    <div className={styles.six_section_card_wrapper}>
-    {index % 2 != 0 && <div className='desktop'><SizeBox height='50px'/></div>}
+    {index % 2 != 0 && <div className='desktop'><SizeBox height='40px'/></div>}
       <div className={styles.six_section_card}>
         <div className={styles.six_section_card_image}>
           <img src={image} width={30} height={30} alt="icon" />

@@ -285,8 +285,15 @@ import { ReactComponent as messengerBlack} from '@assets/svg/messenger-black.svg
 import { ReactComponent as teamsWhite} from '@assets/svg/teams-white.svg';
 import { ReactComponent as communityWhite} from '@assets/svg/community-white.svg';
 import { ReactComponent as settingsBlack} from '@assets/svg/settings-black.svg';
+import { ReactComponent as paymentsWhite} from '@assets/svg/payments-white.svg';
+
+import { ReactComponent as lockIcon} from '@assets/svg/lock-icon.svg';
+import { ReactComponent as withdraw} from '@assets/svg/withdraw.svg';
 
 class AppColor {
+    static lockIcon = lockIcon;
+    static withdraw = withdraw;   
+    static paymentsWhite = paymentsWhite;
     static settingsBlack = settingsBlack;
     static communityWhite = communityWhite;
     static teamsWhite = teamsWhite;

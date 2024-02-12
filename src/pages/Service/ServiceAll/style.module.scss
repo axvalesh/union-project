@@ -22,7 +22,7 @@
 .justify_flex {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -80,7 +80,7 @@ input[type=number] {
     justify-content: center;
 }
 
-.skill_wrapper {
+.hover_white {
     transition: all 0.3s ease;
     &:hover {
         svg {
@@ -89,6 +89,30 @@ input[type=number] {
     }
 }
 @media (min-width:$tabletSize) {
+    .justify_flex {
+        justify-content: space-between;
+    }
+    .cards_wrapper {
+        grid-template-columns: 1fr;
+    }
+    .justify_flex {
+        justify-content: space-between;
+    }
+    .main_part {
+        grid-template-columns: 1fr 3fr;
+        gap: 80px;
+    }
+}
+@media (min-width:900px) {
+    .cards_wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+@media (min-width:1300px) {
+    .justify_flex {
+        justify-content: space-between;
+    }
     .cards_wrapper {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 40px;

@@ -59,10 +59,7 @@ const PartnershipMyPrograms = () => {
 
             <DynamicPadding />
 
-            <FilterList
-                category={['Projects']}
-                filters={['All', 'Pending', 'Progress', 'Completed', 'Cancelled']}
-            />
+          
 
             <DynamicPadding desktop='30px' mobile='20px'/>
             <DetailsTableMyPrograms

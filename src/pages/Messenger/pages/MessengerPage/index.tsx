@@ -42,6 +42,8 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
             }, 0);
       }, []);
 
+      
+
     return (
         <div>
         <Header position='static' />
