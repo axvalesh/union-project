@@ -22,7 +22,7 @@ const NavigationBar = ({
         (item) => item.title == currentCategoryTitle
     )
 
-    const [hovered, eventHandlers] = useHover({delayInMilliseconds: 2000}); 
+    const [hovered, eventHandlers] = useHover({delayInMilliseconds: 2000,hoverDelay: 200}); 
 
     const [showDropdown,setShowDropdown] = useState(false);
 
@@ -35,21 +35,26 @@ const NavigationBar = ({
     }, []);
     
     return (
-        <div onClick={() => [setShowDropdown(prev => !prev)]} style={{opacity: visible ? '1' : '0'}} className={styles.wrapper}>
+        <div style={{opacity: visible ? '1' : '0'}}  className={styles.wrapper}>
             <div className={styles.content}>
-                <div {...eventHandlers} className={styles.category_hover}>
-                    {<currentCategory.activeImage fill='white'/>}
-                    <span className={styles.currentTitle}>
-                        <Typography textTransform='uppercase' variant='body4' color='white'>{currentCategory.title}</Typography>
-                    </span>
-                    
-                    <PagesNav
-                        hovered={hovered}
-                    />
+                <div className='gap_15'>
+                    <div {...eventHandlers} className={styles.category_hover}>
+                        {<currentCategory.activeImage fill='white'/>}
+                        <span className={styles.currentTitle}>
+                            <Typography textTransform='uppercase' variant='body4' color='white'>{currentCategory.title}</Typography>
+                        </span>
+                        
+                        <PagesNav
+                            hovered={hovered}
+                        />
+                    </div>
+                    <div className={styles.vertical_line}></div>
+                    <div className='mobile'>
+                    <Typography color='white' fontWeight='500' variant='body4' textLineHeight='1'>{currentCategory.links[activePageIndex].title.toUpperCase()}</Typography>
+                    </div>
                 </div>
-                <div className={styles.vertical_line}></div>
-                <div className='mobile'>
-                <Typography color='white' fontWeight='500' variant='body4' textLineHeight='1'>{currentCategory.links[activePageIndex].title.toUpperCase()}</Typography>
+                <div onClick={() => [setShowDropdown(prev => !prev)]} className='mobile' style={{flexGrow:'1',height:'100%'}}>
+
                 </div>
                <div className={styles.links_wrapper}>
                 {currentCategory.links.map((item,index) => (
@@ -61,7 +66,7 @@ const NavigationBar = ({
                         />
                     ))}
                </div>
-               <div className={styles.chevron_down}>
+               <div onClick={() => [setShowDropdown(prev => !prev)]}  className={styles.chevron_down}>
                     
                     {showDropdown
                     ? <AppColor.chevronTop fill='white'/>

@@ -26,10 +26,15 @@ import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer
 import DetailsProgressOrders from '@common/components/ui/DetailsTable/variants/DetailsProgressOrders/index';
 import SwitchButton from '@common/components/ui/SwitchButton/index';
 import InfoBox from '@common/components/ui/InfoBox/index';
+import { useEffect } from 'react';
 
 const OrdersProgress = () => {
   const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
   const title = 'Logo by sample in vector in maximum quality';
+
+  useEffect(() => {
+    window.scrollTo({top: 0});
+},[])
 
 
   return (

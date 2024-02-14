@@ -32,12 +32,25 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
     return (
       <div className={styles.wrapper}>
            <div onClick={(event) => {changeState(event)}} className={styles.title_block}>
-                <div className={styles.title_shell}>
-                    <Typography variant="body3" color={isActive ? '#515151' : AppColor.colorWithOpacity('#515151', 0.5)}>
-                        {title}
-                    </Typography>
-                    {countNotifications > 0 ? <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span> : <></>}
-                    {textAfterCount}
+                <div className="gap_10">
+                    <div className={styles.title_shell}>
+                        <Typography variant="body3" color={isActive ? '#515151' : AppColor.colorWithOpacity('#515151', 0.5)}>
+                            {title}
+                        </Typography>
+                        {countNotifications > 0 ? <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span> : <></>}
+                        {textAfterCount}
+                    </div>
+                    <div className="mobile">
+                    {countNotifications > 0
+                    ? <div className={styles.close_chevron}>
+                    {isActive
+                    ? <AppColor.chevronTop fill={AppColor.text}/>
+                    : <AppColor.chevronBottom fill={AppColor.text} fillOpacity={0.5}/>
+                    }
+                </div>
+                : <></>
+                }
+                    </div>
                 </div>
 
                 <div className={styles.filter_all_wrapper}>
@@ -51,6 +64,7 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
                 )}
                 </div>
 
+                <div className="desktop">
                 {countNotifications > 0
                 ? <div className={styles.close_chevron}>
                 {isActive
@@ -60,6 +74,7 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
                 </div>
                 : <></>
                 }
+                </div>
            </div>
            <div className={`${isActive ? styles.description_block_active :styles.description_block}`}>
                 <div className={styles.horizontal_line}></div>

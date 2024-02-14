@@ -12,10 +12,16 @@ import DetailsMyService from '@common/components/ui/DetailsTable/variants/Detail
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import { useEffect } from 'react';
 
 const ServiceMy = () => {
-    const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
+    const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Artem Markevych WordPress Partnership';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+    
     return (
         <div>
         <Header />

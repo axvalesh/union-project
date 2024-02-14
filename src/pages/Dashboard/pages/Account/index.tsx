@@ -317,6 +317,7 @@ const Account = () => {
 
                     </div>
                     <div className={styles.main_right}>
+                        <DynamicPadding desktop='0px' mobile='20px'/>
                         <ContentShell 
                             title={
                                 <Typography variant='body2' fontWeight='500'>

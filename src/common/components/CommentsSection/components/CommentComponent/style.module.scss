@@ -5,6 +5,9 @@
     justify-content: space-between;
 }
 
+.margin_left {
+    margin-left: calc(var(--depth) * var(--marginSizeMobile));
+}
 .flex_center {
     display: flex;
     align-items: center;
@@ -45,6 +48,10 @@
     font-size: 0.875rem;
 }
 @media (min-width:$tabletSize) {
+    
+    .margin_left {
+        margin-left: calc(var(--depth) * var(--marginSizeDesktop));
+    }
     .wrapper_new_reply {
         padding: 15px 30px;
     }

@@ -20,12 +20,17 @@ import MyButtonBlack from '@common/components/ui/MyButton/variants/MyButtonBlack
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const ServiceSelection = () => {
-  const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
+  const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
   const title = 'Logo by sample in vector in maximum quality';
   const [activeCategory,setActiveCategory] = useState('Team');
   const [itemsToshow, setItemsToShow] = useState([1,2,3])
+
+  useEffect(() => {
+    window.scrollTo({top: 0});
+},[])
 
 
   return (
@@ -33,7 +38,7 @@ const ServiceSelection = () => {
       <Header />
 
       <NavigationBarSelection
-         allItemsProgress={['Program', 'Selection', 'Progress', 'Completed']}
+         allItemsProgress={['Service', 'Selection','Negotiation', 'Progress', 'Completed']}
          currentItemProgress='Selection'
       />
 
@@ -151,7 +156,7 @@ const ServiceSelection = () => {
 
                   <DynamicPadding desktop='40px' mobile='20px' />
 
-                  <div className={styles.cards_grid}>
+                  <div className={styles.cards_wrapper}>
                   {itemsToshow.map((item,index) => (
                                <div className={styles.center_card}>
                                     <CardManager
@@ -195,8 +200,12 @@ const ServiceSelection = () => {
                   <DynamicPadding />
 
                   <div className="flex_space_between">
+                    <Link to={'/service/'}>
                     <ChevronMoveTo onClick={() => {}} text='Step back' title='Service' variant='left' />
+                    </Link>
+                    <Link to={'/service/negotioation/freelancer'}>
                     <ChevronMoveTo onClick={() => {}} text='Next step' title='negotiation' variant='right' />
+                    </Link>
                   </div>
               </div>
             }

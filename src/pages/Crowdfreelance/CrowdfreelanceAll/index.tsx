@@ -34,6 +34,7 @@ import mascot from '@assets/images/mascot.png';
 import freestyle from '@assets/images/freestyle.png';
 import threeD from '@assets/images/threeD.png';
 import CardTime from '@common/components/cards/CardTime/CardTime';
+import { Link } from 'react-router-dom';
 
 const CrowdfreelanceAll = () => {
     const { width, height } = useScreenSize()
@@ -43,6 +44,11 @@ const CrowdfreelanceAll = () => {
         max: number
     }>({ min: 0, max: 100 })
     const [itemsToshow, setItemsToShow] = useState([])
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+    
     const [skills, setSkills] = useState([
         'Logos',
         'Logo Design',
@@ -291,6 +297,7 @@ const CrowdfreelanceAll = () => {
 
                         <div className={styles.cards_wrapper}>
                             {itemsToshow.map((item,index) => (
+                              <Link to={'/crowdfreelance/campaign'}>
                                <div className={styles.card_center}>
                                     <CardTime 
                                     topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]}
@@ -303,6 +310,7 @@ const CrowdfreelanceAll = () => {
 
                                         />
                                </div>
+                              </Link>
                             ))}
                         </div>
                         <DynamicPadding

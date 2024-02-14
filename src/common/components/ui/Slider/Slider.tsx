@@ -7,37 +7,37 @@ import AppColor from '@common/styles/variables-static';
 interface SliderProps {
     children: React.ReactNode;
     elementsCount: number;
-    maxWidth: number;
+    maxWidth?: number;
     gap: number;
     itemWidth: number;
     paddingTop?: string;
     paddingBottom?: string;
     swiper?: boolean;
-    showDots?: boolean
+    showDots?: boolean;
+    maxShowCount?: number
+    padding?: string;
+    detlaPosition?: string;
+    buttonSize?: string;
 }
-const Slider = ({children,showDots,elementsCount,maxWidth,gap,itemWidth,paddingTop,paddingBottom,swiper}:SliderProps) => {
+const Slider = ({children,buttonSize,detlaPosition,padding,maxShowCount,showDots,elementsCount,gap,itemWidth,paddingTop,paddingBottom,swiper}:SliderProps) => {
     const [startX, setStartX] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
 
     const [currentIndex, setCurrentIndex] = useState(0);
-    const elementsToShow = Math.round(maxWidth / itemWidth);
 
-    const [showChildren,setShowChildren] = useState<React.ReactNode[]>([children]);
     function moveOn() {
-        if (currentIndex < elementsCount - elementsToShow) {
+        if (currentIndex < elementsCount-1) {
             setCurrentIndex((prev) => prev + 1);
         } else {
-            showChildren.push(children);
-            setCurrentIndex((prev) => prev + 1);
+            setCurrentIndex(0);
         }
     }
 
     function moveBack() {
-        if (currentIndex < elementsCount - elementsToShow) {
-            showChildren.unshift(children);
+        if (currentIndex > 0) {
             setCurrentIndex((prev) => prev - 1);
         } else {
-            setCurrentIndex((prev) => prev - 1);
+            setCurrentIndex(elementsCount-1);
         }
     }
 
@@ -76,9 +76,11 @@ const Slider = ({children,showDots,elementsCount,maxWidth,gap,itemWidth,paddingT
 
 
     const dots = Array.from({ length: elementsCount}, (_, index) => index);
+    const gapsDisplay = maxShowCount - 1;
 
+    console.log(maxShowCount*itemWidth+gap*gapsDisplay,'is max')
     return (
-       <div className={styles.overflow_shell}>
+       <div style={maxShowCount ? {maxWidth: `${maxShowCount*itemWidth+gap*gapsDisplay+100}px`,width: '100%',padding: padding} : {padding: padding}} className={styles.overflow_shell}>
             <div className={styles.shell}>
                 <div
                     onMouseDown={handleDragStart}
@@ -87,24 +89,24 @@ const Slider = ({children,showDots,elementsCount,maxWidth,gap,itemWidth,paddingT
                     onTouchMove={handleDragMove}
                     onMouseUp={handleDragEnd}
                     onTouchEnd={handleDragEnd}
-                    style={{ paddingTop, paddingBottom,maxWidth: maxWidth }}
+                    style={{ paddingTop, paddingBottom }}
                     className={styles.sliderOverflow}
                 >
                     <div
                         style={{ gap, transform: `translateX(-${currentIndex * (itemWidth) + currentIndex * gap}px)` }}
                         className={styles.slider}
                     >
-                        {...showChildren}
+                        {children}
                     </div>
                 </div>
-                <span className={styles.left + ' ' + style}>
-                    <span onClick={moveBack} className={styles.chevron}>
-                        <AppColor.chevronLeft fill="white" width={17} height={30} />
+                <span style={{width: buttonSize,height: buttonSize}} className={styles.left + ' ' + style}>
+                    <span style={{width: buttonSize,height: buttonSize}} onClick={moveBack} className={styles.chevron}>
+                        <AppColor.chevronLeft fill="white" width={'fit-content'} />
                     </span>
                 </span>
-                <span className={styles.right + ' ' + style}>
-                    <span onClick={moveOn} className={styles.chevron}>
-                        <AppColor.chevronRight fill="white" width={17} height={30} />
+                <span style={{width: buttonSize,height: buttonSize}} className={styles.right + ' ' + style}>
+                    <span style={{width: buttonSize,height: buttonSize}} onClick={moveOn} className={styles.chevron}>
+                        <AppColor.chevronRight fill="white" width={'fit-content'} />
                     </span>
                 </span>
                 {showDots && <div className={`${styles.dots} ${styleDots}`}>

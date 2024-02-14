@@ -28,7 +28,7 @@ import UserTopPageInfo from '@common/components/ui/UserTopPageInfo/index';
 import { fakeUserConstant } from '@common/models/user';
 import AppColor from '@common/styles/variables-static';
 import { FreelancerCard } from '@pages/Partnership/pages/Program/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 
 import advertismentImage from '@assets/images/advertisment.png'
@@ -49,6 +49,10 @@ const CrowdfreelanceCustomer = () => {
     const title = 'Logo by sample in vector in maximum quality';
     const [activeBuyPlan,setActiveBuyPlan] = useState('Fixed');
     const [selectedPricePlan,setSelectedPricePlan] = useState('');
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
 
     const fakeComment: comment = {
         user: fakeUserConstant,

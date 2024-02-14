@@ -31,12 +31,10 @@
     display: none;
 }
 
-.cards_grid {
+.cards_wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 .center_card {
@@ -71,5 +69,19 @@
         padding: 16px 0px;
         padding-left: 15px;
         margin-left: 40px;
+    }
+}
+
+@media (min-width:900px) {
+    .cards_wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+@media (min-width:1300px) {
+  
+    .cards_wrapper {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
     }
 }

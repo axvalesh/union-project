@@ -1,5 +1,4 @@
 
-import { useScreenSize } from '@common/helpers/useScreenSize';
 import FilterList, { FilterListBig } from '../FilterList';
 import CardStatisticTest from '../cards/CardStatistics/variants/CardStatisticTest';
 import Slider from '../ui/Slider/Slider';
@@ -11,22 +10,27 @@ import Typography from '../ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
 import { levelMap } from '../Footer/Footer';
 import test1 from '@assets/images/test1.png'
+import SizeBox from '../ui/SizeBox';
 const CardsSliderRelated = ({secondSlider=false}: {secondSlider?:boolean}) => {
-    const {width,height} = useScreenSize();
 
     return (
     <div>
       <DynamicPadding />
         <div className={styles.wrapper}>
              <div className={styles.content}>
-                 <div>
-                    <FilterListBig
-                      activeStartItem='Related'
-                      orangeText='History'
-                      filters={['Related', 'Partnership', 'Projects', 'History']}
-                    />
+                 <div style={{display: 'flex'}}>
+                  <SizeBox width='50px'/>
+                   <div style={{flexGrow: '1'}}>
+                      <FilterListBig
+                        activeStartItem='Related'
+                        orangeText='History'
+                        filters={['Related', 'Partnership', 'Projects', 'History']}
+                      />
+                   </div>
+                   <SizeBox width='50px'/>
                  </div>
-                   <Slider swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width > 768 ? 1120 : 250} gap={40}>
+                 <DynamicPadding desktop='30px' mobile='20px'/>
+                   <Slider showDots={true} padding='0px 40px' maxShowCount={4} swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={10} itemWidth={250} gap={40}>
                       <CardStatisticTest />
                       <CardStatisticTest />
                       <CardStatisticTest />
@@ -49,7 +53,7 @@ const CardsSliderRelated = ({secondSlider=false}: {secondSlider?:boolean}) => {
                   <DynamicPadding desktop='30px' mobile='20px'/>
                   <ButtonChooseList buttons={['Web Development', 'Web Design', 'IT Support']} buttonPadding='5px 13px' callback={() => {}}
                     gap='0px' initValue='Web Development'/>
-                    <Slider swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width > 768 ? 1120 : 250} gap={20}>
+                    <Slider swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250}  gap={20}>
                       <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
                       <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
                       <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />

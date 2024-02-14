@@ -82,9 +82,9 @@ const UsersAll = () => {
             <Header />
 
             <NavigationBarDropdowns
-                title="partnership"
+                title="Freelancers"
                 navItems={developmentDropdown}
-                titleIcon={<AppColor.partnership />}
+                titleIcon={<AppColor.freelancerWhite />}
             />
 
             <div className={styles.wrapper}>

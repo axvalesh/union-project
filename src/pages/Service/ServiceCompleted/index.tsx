@@ -25,10 +25,15 @@ import SwitchButton from '@common/components/ui/SwitchButton/index';
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import { useEffect } from 'react';
 
 const ServiceCompleted = () => {
-    const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
+    const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
   
   
     return (

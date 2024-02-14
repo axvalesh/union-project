@@ -20,7 +20,7 @@ import SwitchButton from '@common/components/ui/SwitchButton/index';
 import TextDotted from '@common/components/ui/TextDotted/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import ReviewsProgramCard from '@common/components/ReviewsProgram/index';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
@@ -30,13 +30,19 @@ import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/M
 const PartnershipCompleted = () => {
     const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Artem Markevych WordPress Partnership';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+
+    
     return (
         <div>
         <Header />
 
         <NavigationBarSelection
            allItemsProgress={['Program', 'Selection', 'Progress', 'Completed']}
-           currentItemProgress='Program'
+           currentItemProgress='Completed'
         />
 
         <div className={'wrapper_page'}>

@@ -22,11 +22,12 @@ import Typography from '@common/components/ui/Typography/Typography';
 import UserTopPageInfo from '@common/components/ui/UserTopPageInfo/index';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 import { fakeUserConstant } from '@common/models/user';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CategorySelect } from '@pages/Service/ServiceSelection/index';
 import { SelectionItem } from '@pages/Partnership/pages/SelectionFreelancer/index';
 import InfoBox from '@common/components/ui/InfoBox/index';
 import { useScreenSize } from '@common/helpers/useScreenSize';
+import { Link } from 'react-router-dom';
 
 const OrdersSelection = () => {
     const arrayHistory = ['Order', 'Development ', 'Web Development', 'WordPress'] 
@@ -34,13 +35,17 @@ const OrdersSelection = () => {
     const [activeSelection,setActiveSelection] = useState('New');
   const [itemsToshow, setItemsToShow] = useState([1,2,3])
   const {width,height} = useScreenSize();
+
+  useEffect(() => {
+    window.scrollTo({top: 0});
+},[])
     return (
         <div>
         <Header />
 
         <NavigationBarSelection
          allItemsProgress={['Order', 'Selection', 'Negotiation', 'Progress', 'Completed']}
-         currentItemProgress='Order'
+         currentItemProgress='Selection'
       />
 
         <div className={'wrapper_page'}>
@@ -130,7 +135,7 @@ const OrdersSelection = () => {
                  </div>
                   <DynamicPadding desktop='40px' mobile='20px' />
 
-                  <div className={styles.cards_grid}>
+                  <div className={styles.cards_wrapper}>
                   {itemsToshow.map((item,index) => (
                                <div className={'center_card'}>
                                     <CardManager
@@ -199,8 +204,12 @@ const OrdersSelection = () => {
                   <DynamicPadding />
 
                   <div className="flex_space_between">
+                    <Link to={'/service/'}>
                     <ChevronMoveTo onClick={() => {}} text='Step back' title='Service' variant='left' />
+                    </Link>
+                    <Link to={'/service/negotioation/freelancer'}>
                     <ChevronMoveTo onClick={() => {}} text='Next step' title='negotiation' variant='right' />
+                    </Link>
                   </div>
               </div>
             }

@@ -1,7 +1,7 @@
 
 import { fakeUserConstant, userModel } from '@common/models/user';
 import styles from './style.module.scss';
-import { useScreenSize } from '@common/helpers/useScreenSize';
+
 import UserAvatar from '@common/components/ui/UserAvatar/index';
 import AppColor from '@common/styles/variables-static';
 import Typography from '@common/components/ui/Typography/Typography';
@@ -15,8 +15,8 @@ import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOran
 
 
 const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,answeredUserComment,depth,money}:comment) => {
-    const {width,height} = useScreenSize()
-    const leftMargin = width <= 768 ? 10 : 30
+
+
     const [showReplies,setShowReplies] = useState(false);
     const [addReply,setAddReply] = useState(false);
     useEffect(() => {
@@ -24,8 +24,15 @@ const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,ans
             setShowReplies(true);
         }
     },[])
+
+    const styleMargin = {
+        '--marginSizeDesktop': '30px',
+        '--marginSizeMobile': '10px',
+        '--depth': depth,
+        marginRight: 0,
+    }
     return (
-        <div style={{marginLeft: `${depth*leftMargin}px`}}>
+        <div style={styleMargin} className={styles.margin_left}>
             <div className={styles.top_wrapper}>
                 <UserAvatar preventMobileNone={true}
                     active={user.isActive}
@@ -80,7 +87,7 @@ const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,ans
                     }
                 </div>
                 {showReplies && <SizeBox height='20px'/>}
-                {addReply && <div style={{marginLeft: `${depth+1*leftMargin}px`}}>
+                {addReply && <div style={styleMargin} className={styles.margin_left}>
                     <AddReplyItem
                         callbackCancel={ () => {setAddReply(false)}}
                         replyTo={user}/><SizeBox height='20px'/></div>}

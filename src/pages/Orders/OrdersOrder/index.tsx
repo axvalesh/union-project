@@ -26,10 +26,19 @@ import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer
 import CenterShadowBox from '@common/components/ui/CenterShadowBox/index';
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange';
+import AskedQuestion from '@common/components/AskedQuestions/index';
+import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
+import Footer from '@common/components/Footer/Footer';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const OrdersOrder = () => {
     const arrayHistory = ['Order', 'Development ', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
     return (
         <div>
         <Header />
@@ -93,7 +102,7 @@ const OrdersOrder = () => {
                 orderItem2Mobile={0}
                 item1={
                     <div style={{width: '100%'}}>
-                         {/* <LastSponsors/> */}
+                         <LastSponsors/>
                          <DynamicPadding />
 
                          <Typography variant='body3' fontWeight='500'>Description</Typography>
@@ -150,8 +159,12 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
 
                     <DynamicPadding />
                    <div className={'flex_space_between'}>
+                        <Link to={'/orders/all'}>
                         <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='catalog' />
+                        </Link>
+                        <Link to={'/orders/selection'}>
                         <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Selection' />
+                        </Link>
                    </div>
                     </div>
                 }
@@ -263,8 +276,15 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                     </div>
                 }
             />
+             
+            
 
         </div>
+        <CardsSliderRelated />
+        <div className={'wrapper_page'}>
+                <AskedQuestion />
+            </div>
+            <Footer />
            
       </div>
     );

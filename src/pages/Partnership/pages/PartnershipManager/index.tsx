@@ -36,6 +36,7 @@ import CardsSliderRelated from '@common/components/CardsSliderRelated/index'
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index'
 import InputCommon from '@common/components/ui/inputs/InputCommon/index'
 import { FilterBlock } from '@pages/Crowdfreelance/CrowdfreelanceAll/index'
+import { Link } from 'react-router-dom'
 
 const PartnershipManager = () => {
     const { width, height } = useScreenSize()
@@ -79,6 +80,10 @@ const PartnershipManager = () => {
             }
         });
     }
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
 
     const handleAddTagFromSideBar = (passedText: string) => {
         setTags((prevTags) => {
@@ -631,7 +636,9 @@ const PartnershipManager = () => {
                             <div className={styles.cards_wrapper}>
                                 {itemsToshow.map((item) => (
                                     <div className='center_card'>
+                                        <Link to={'/partnership/program'}>
                                         <CardStatisticsParthnershipConstant />
+                                        </Link>
                                     </div>
                                 ))}
                             </div>

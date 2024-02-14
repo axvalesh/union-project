@@ -7,7 +7,7 @@ import UserTopPageInfo from '@common/components/ui/UserTopPageInfo/index'
 import { useScreenSize } from '@common/helpers/useScreenSize'
 import { fakeUserConstant } from '@common/models/user'
 import AppColor from '@common/styles/variables-static'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './style.module.scss'
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index'
 import StepsOfPreparing from '@common/components/StepsOfPreparing/index'
@@ -32,6 +32,11 @@ const OrdersNegotiation = () => {
         'Web Development',
         'WordPress',
     ]
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+    
     const title = 'Logo by sample in vector in maximum quality'
 
     return (

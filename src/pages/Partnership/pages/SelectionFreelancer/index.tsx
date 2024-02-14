@@ -38,6 +38,10 @@ const SelectionFreelancer = () => {
             )
         )
     }, [width])
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
     return (
         <div>
         <Header />

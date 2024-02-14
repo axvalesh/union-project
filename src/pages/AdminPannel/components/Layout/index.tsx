@@ -33,6 +33,10 @@ import AdminMailing from '../../pages/AdminMailing';
 import AdminListPages from '../../pages/AdminListPages';
 import AdminServicesCategories from '../../pages/AdminServicesCategories';
 import AdminSettings from '../../pages/AdminSettings';
+import AdminServicesOrders from '../../pages/AdminServicesOrders';
+import AdminServicesPartnership from '../../pages/AdminServicesPartnership';
+import AdminServicesSponsorship from '../../pages/AdminServicesSponsorship';
+import AdminServicesCommunity from '../../pages/AdminServicesCommunity';
 
 const Layout = () => {
     const [activePage,setActivePage] = useState('Analytics');
@@ -89,6 +93,10 @@ const SwitchPage = ({activePage}:SwitchPageProps) => {
         'Care service.Mailing': <AdminMailing />,
         'Pages.List': <AdminListPages />,
         'Pages.Categories.Services': <AdminServicesCategories/>,
+        'Pages.Categories.Orders': <AdminServicesOrders/>,
+        'Pages.Categories.Partnerships': <AdminServicesPartnership/>,
+        'Pages.Categories.Sponsorships': <AdminServicesSponsorship/>,
+        'Pages.Categories.Community': <AdminServicesCommunity/>,
         'Global.Settings': <AdminSettings/>,
       };
 

@@ -12,19 +12,20 @@ type DropdownTextProps = {
 }
 const DropdownText = ({callback,dropTitles,title}:DropdownTextProps) => {
     const [activeItem,setActiveItem] = useState<string>(title);
-    const [hovered, eventHandlers] = useHover({delayInMilliseconds: 1000});
+    const [active,setActive] = useState(false);
     function handleClick(item:string) {
       callback(item);
       setActiveItem(item);
+
     }
     const handleScroll = (e) => {
       e.preventDefault();   
   };
     return (
-      <div onScroll={handleScroll} {...eventHandlers} className={styles.wrapper}>
+      <div onScroll={handleScroll} onClick={() => {setActive(prev => !prev)}} className={styles.wrapper}>
            <Typography variant='body4'>{activeItem}</Typography>
            <AppColor.trianleDown fill={AppColor.text} />
-           <div style={{display: hovered ? 'block' : 'none'}} className={styles.padding}>
+           <div style={{display: active ? 'block' : 'none'}} className={styles.padding}>
              <div className={styles.dropdown_titles}>
                 {dropTitles.map(item =>
                   <div className={styles.dropdown_child} onClick={() => {handleClick(item)}}>

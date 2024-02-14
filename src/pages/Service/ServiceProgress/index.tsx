@@ -24,10 +24,15 @@ import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import { useEffect } from 'react';
 
 const ServiceProgress = () => {
-    const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
+    const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
   
   
     return (
@@ -35,7 +40,7 @@ const ServiceProgress = () => {
         <Header />
   
         <NavigationBarSelection
-           allItemsProgress={['Service', 'Negotiation', 'Progress', 'Completed']}
+           allItemsProgress={['Service', 'Selection','Negotiation', 'Progress', 'Completed']}
            currentItemProgress='Progress'
         />
   

@@ -35,6 +35,7 @@ import SideBarCategory from '@pages/Partnership/pages/PartnershipManager/compone
 import SliderItem from '@pages/Partnership/pages/PartnershipManager/components/SliderItem/index'
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index'
 import InputCommon from '@common/components/ui/inputs/InputCommon/index'
+import { Link } from 'react-router-dom'
 
 const ServiceAll = () => {
     const { width, height } = useScreenSize()
@@ -65,6 +66,11 @@ const ServiceAll = () => {
             )
         )
     }, [width])
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+    
     const [showModalSideBar,setShowModalSideBar] = useState(false);
     const handleAddTag = (item: string) => {
         setTags((prevTags) => {
@@ -91,9 +97,9 @@ const ServiceAll = () => {
             <Header />
 
             <NavigationBarDropdowns
-                title="partnership"
+                title="Service"
                 navItems={developmentDropdown}
-                titleIcon={<AppColor.partnership />}
+                titleIcon={<AppColor.cart fill='white' />}
             />
 
             <div className={styles.wrapper}>
@@ -101,7 +107,7 @@ const ServiceAll = () => {
                     historyNode={
                         <NavigationItem
                             image={<AppColor.home />}
-                            textList={['Partnership']}
+                            textList={['Service']}
                         />
                     }
                     endNode={
@@ -569,7 +575,9 @@ const ServiceAll = () => {
     
                             <div className={styles.cards_wrapper}>
                             {itemsToshow.map((item) => (
+                                <Link to={'/service/'}>
                                 <div className='center_card'><CardStatisticsParthnershipConstant /></div>
+                                </Link>
                             ))}
                             </div>
                             <DynamicPadding

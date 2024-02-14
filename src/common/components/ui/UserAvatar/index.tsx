@@ -25,7 +25,7 @@ type UserAvatarProps = {
 type UserAvatarVariants = "row" | "column" | "money"
 
 
-const UserAvatar = ({activeAgoRole,noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatar = ({activeAgoRole='',noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
@@ -43,6 +43,7 @@ const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,heigh
     
     const currentWidth = width != null ? width : '38px';
     const currentHeight = height != null ? height : '38px';
+    console.log(activeAgoRole,activeAgoRole == '','aaa');
     return (
         <div style={{maxWidth: '240px'}} className={styles.wrapper}>
            <div className={styles.position_relative}>
@@ -60,7 +61,7 @@ const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,heigh
                 </Typography>
                 {role && <SizeBox height='5px'/>}
                 <Typography color={roleColor ?? AppColor.orange} variant='body5' textLineHeight='1'>
-                    {role} {activeAgoRole && <span style={{color: AppColor.text}}>•</span>} <span style={{color: AppColor.transparentBlack}}>{activeAgoRole}</span>
+                    {role}{activeAgoRole != '' && <span><span style={{color: AppColor.text}}>•</span> <span style={{color: AppColor.transparentBlack}}>{activeAgoRole}</span></span>}
                 </Typography>
            </div>
       </div>

@@ -131,6 +131,8 @@ function App() {
             <Route path="/partnership/freelancer/progress" element={<ProgressFreelancer />} />
             <Route path="/partnership/freelancer/completed" element={<PartnershipCompleted />} />
 
+            
+            
             <Route path="/service/all" element={<ServiceAll />} />
             <Route path="/service/my" element={<ServiceMy />} />
             <Route path="/service/" element={<Service />} />
@@ -150,7 +152,7 @@ function App() {
 
             <Route path="/crowdfreelance/all" element={<CrowdfreelanceAll />} />
             <Route path="/crowdfreelance/my" element={<CrowdfreelanceMy />} />
-            <Route path="/crowdfreelance/customer" element={<CrowdfreelanceCustomer />} />
+            <Route path="/crowdfreelance/campaign" element={<CrowdfreelanceCustomer />} />
             <Route path="/crowdfreelance/progress" element={<CrowdfreelanceProgress />} /> {/* is in process */}
             <Route path="/crowdfreelance/completed" element={<CrowdfreelanceCompleted />} />
 

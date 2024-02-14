@@ -14,10 +14,14 @@
     background-color: rgba($color: white, $alpha: 0.8);
 }
 .wrapper {
-    max-width: 1200px;
+    max-width: 1220px;
     padding: 0px 10px;
     margin: 0 auto;
     overflow-x: hidden;
+}
+
+.popular_categorys_wawe {
+    margin-top: 20px;
 }
 .welcome_text_line {
     width: 250px;
@@ -123,7 +127,6 @@
 }
 .popular_categorys_wawe {
     position: relative;
-    margin-top: 88px;
     background-color: $white;
     overflow: hidden;
     .wawe {
@@ -165,6 +168,7 @@
         }
 
         .popular_categorys_slider {
+            max-width: 100%;
             margin-top: 80px;
         }
 
@@ -359,6 +363,10 @@
     gap: 16.5px;
 }
 
+.fourth_screen_slider {
+    max-width: 100%;
+}
+
 .fifth_sectin_wrapper_flex {
     display: flex;
     justify-content: space-between;
@@ -445,6 +453,9 @@
     margin-bottom: 20px;
 }
 @media (min-width:$tabletSize) {
+    .popular_categorys_wawe {
+        margin-top: 80px;
+    }
     .six_section_wrapper {
         display: flex;
         align-items: center;

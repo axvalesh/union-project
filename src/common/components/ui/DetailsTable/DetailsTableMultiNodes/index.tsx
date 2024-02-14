@@ -11,13 +11,14 @@ type DetailsTableMultiNodesProps = {
     elements: DetailsTableMultiNodesItem[];
     titles: string[];
     selectableColumn?: number;
+    removeNavBar?: boolean
 }
 
 type DetailsTableMultiNodesItem = {
     nodes: React.ReactNode[];
 
 }
-const DetailsTableMultiNodes = ({elements,titles,selectableColumn}:DetailsTableMultiNodesProps) => {
+const DetailsTableMultiNodes = ({elements,removeNavBar,titles,selectableColumn}:DetailsTableMultiNodesProps) => {
 
     return (
     <div>
@@ -81,10 +82,10 @@ const DetailsTableMultiNodes = ({elements,titles,selectableColumn}:DetailsTableM
                    </table>
         
                    <DynamicPadding desktop='20px' mobile='15px'/>
-                   <div className='flex_space_between'>
+                   {!removeNavBar && <div className='flex_space_between'>
                        <Typography variant='body4'><span style={{fontWeight: '500'}}>11 841</span> Complaints</Typography>
                        <NavBarLine callback={() => {}} maxCountPage={100}   />
-                   </div>
+                   </div>}
               </div>
          </div>
     </div>

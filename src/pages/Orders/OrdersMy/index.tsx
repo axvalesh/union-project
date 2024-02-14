@@ -4,7 +4,7 @@ import NavigationBarSelection from '@common/components/NavigationBarSelection/in
 import NavigationItem from '@common/components/navigation_history/NavigationItem/index';
 import PageDetails from '@common/components/ui/PageDetails/index';
 import AppColor from '@common/styles/variables-static';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import NavigationBarDropdowns from '@common/components/NavigationBarDropdowns/index';
 import { developmentDropdown } from '@common/models/constants';
@@ -18,6 +18,9 @@ import Footer from '@common/components/Footer/Footer';
 const OrdersMy = () => {
     const arrayHistory = ['Order'] 
     const title = 'My Orders';
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
     return (
         <div>
         <Header />

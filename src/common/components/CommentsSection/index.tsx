@@ -2,7 +2,6 @@
 import { userModel } from '@common/models/user';
 import styles from './style.module.scss';
 import Typography from '../ui/Typography/Typography';
-import { useScreenSize } from '@common/helpers/useScreenSize';
 import InputCommon from '../ui/inputs/InputCommon';
 import DynamicPadding from '../ui/DynamicPadding';
 import CommentComponent from './components/CommentComponent';
@@ -22,8 +21,7 @@ export type comment = {
     money?: string;
 }
 const CommentsSection = ({comments}:CommentsSectionProps) => {
-    const {width,height} = useScreenSize();
-    const isMobile = width <= 768;
+
     return (
         <div>
             <div className={styles.flex_center}>
@@ -32,9 +30,7 @@ const CommentsSection = ({comments}:CommentsSectionProps) => {
                 </Typography>
                 <div className={styles.dark_wrapper}>
                     <Typography
-                        fontSizeStatic={
-                            isMobile ? '0.75rem' : '1.125rem'
-                        }
+                        variant='body9'
                         color="white">{comments.length}</Typography>
                 </div>
             </div>

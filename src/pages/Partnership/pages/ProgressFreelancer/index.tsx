@@ -22,6 +22,7 @@ import SwitchButton from '@common/components/ui/SwitchButton/index';
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const ProgressFreelancer = () => {
     const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
@@ -32,7 +33,7 @@ const ProgressFreelancer = () => {
 
         <NavigationBarSelection
            allItemsProgress={['Program', 'Selection', 'Progress', 'Completed']}
-           currentItemProgress='Program'
+           currentItemProgress='Progress'
         />
 
         <div className={'wrapper_page'}>
@@ -100,8 +101,13 @@ const ProgressFreelancer = () => {
                     <DynamicPadding />
 
                     <div className="flex_space_between">
+                        
+                        <Link to={'/partnership/freelancer/selection'}>
                         <ChevronMoveTo onClick={() => {}} text='Step back' title='Selection' variant='left' />
+                        </Link>
+                        <Link to={'/partnership/freelancer/completed'}>
                         <ChevronMoveTo onClick={() => {}} text='Final step' title='complete' variant='right' />
+                        </Link>
                     </div>
                     </div>
                 }

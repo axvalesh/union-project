@@ -1,16 +1,16 @@
-import { useState, useMemo,useRef } from 'react';
-
+import { useState, useMemo, useRef } from 'react';
 
 interface HoverHandlers {
   onMouseOver(): void;
   onMouseOut(): void;
 }
 
-
 type useHoverProps = {
-    delayInMilliseconds?: number;
-}
-export const useHover = ({ delayInMilliseconds }: useHoverProps): [boolean, HoverHandlers,any] => {
+  delayInMilliseconds?: number;
+  hoverDelay?: number; // New optional prop for hover duration
+};
+
+export const useHover = ({ delayInMilliseconds, hoverDelay=200 }: useHoverProps): [boolean, HoverHandlers, any] => {
   const [hovered, setHovered] = useState(false);
   const isHoveredRef = useRef(false);
 
@@ -18,11 +18,19 @@ export const useHover = ({ delayInMilliseconds }: useHoverProps): [boolean, Hove
     () => ({
       onMouseOver() {
         isHoveredRef.current = true;
-        setHovered(true);
+        if (hoverDelay !== undefined) {
+          setTimeout(() => {
+            if (isHoveredRef.current) {
+              setHovered(true);
+            }
+          }, hoverDelay);
+        } else {
+          setHovered(true);
+        }
       },
       onMouseOut() {
         isHoveredRef.current = false;
-        if (delayInMilliseconds != undefined) {
+        if (delayInMilliseconds !== undefined) {
           setTimeout(() => {
             if (!isHoveredRef.current) {
               setHovered(false);
@@ -33,8 +41,8 @@ export const useHover = ({ delayInMilliseconds }: useHoverProps): [boolean, Hove
         }
       },
     }),
-    [delayInMilliseconds]
+    [delayInMilliseconds, hoverDelay]
   );
 
-  return [hovered, eventHandlers,setHovered];
+  return [hovered, eventHandlers, setHovered];
 };

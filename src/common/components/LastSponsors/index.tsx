@@ -19,7 +19,7 @@ const LastSponsors = () => {
                <InfoBox />
            </div>
            <div >
-               <Slider elementsCount={6} gap={10} itemWidth={130} maxWidth={600} swiper={true}>
+               <Slider buttonSize='29px' maxShowCount={4} elementsCount={6} gap={10} itemWidth={130} maxWidth={600} swiper={true}>
                     {SliderItemCurrent}
                     {SliderItemCurrent}
                     {SliderItemCurrent}

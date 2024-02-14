@@ -79,58 +79,60 @@ const HeaderAdmin = ({modalMobile}:HeaderAdminProps) => {
                         url={fakeUserConstant.image}
                       />
                     </div>
-                    <div className={styles.header_second_part}>
-                        <li>
-                            <ul {...eventHandlers}>
-                                Service{' '}
-                                <AppColor.chevronBottom
-                                    width={10}
-                                    height={6}
-                                    fill={AppColor.text}
-                                />{' '}
-                            </ul>
-                            <ul>
-                                Order{' '}
-                                <AppColor.chevronBottom
-                                    width={10}
-                                    height={6}
-                                    fill={AppColor.text}
-                                />{' '}
-                            </ul>
-                            <ul>
-                                Partnership{' '}
-                                <AppColor.chevronBottom
-                                    width={10}
-                                    height={6}
-                                    fill={AppColor.text}
-                                />{' '}
-                            </ul>
-                            <ul>
-                                Crowdfreelance{' '}
-                                <AppColor.chevronBottom
-                                    width={10}
-                                    height={6}
-                                    fill={AppColor.text}
-                                />{' '}
-                            </ul>
-                            <ul>
-                                Users{' '}
-                                <AppColor.chevronBottom
-                                    width={10}
-                                    height={6}
-                                    fill={AppColor.text}
-                                />{' '}
-                            </ul>
-                            
-                        </li>
-                        <div
-                            {...eventHandlers}
-                            className={`${styles.hover_wrapper} ${
-                                hovered
-                                    ? styles.active
-                                    : styles.disabled
-                            }`}>
-                            <MenuLinks />
+                    <div className={styles.remove_items_small_screen}>
+                        <div className={styles.header_second_part}>
+                            <li>
+                                <ul {...eventHandlers}>
+                                    Service{' '}
+                                    <AppColor.chevronBottom
+                                        width={10}
+                                        height={6}
+                                        fill={AppColor.text}
+                                    />{' '}
+                                </ul>
+                                <ul>
+                                    Order{' '}
+                                    <AppColor.chevronBottom
+                                        width={10}
+                                        height={6}
+                                        fill={AppColor.text}
+                                    />{' '}
+                                </ul>
+                                <ul>
+                                    Partnership{' '}
+                                    <AppColor.chevronBottom
+                                        width={10}
+                                        height={6}
+                                        fill={AppColor.text}
+                                    />{' '}
+                                </ul>
+                                <ul>
+                                    Crowdfreelance{' '}
+                                    <AppColor.chevronBottom
+                                        width={10}
+                                        height={6}
+                                        fill={AppColor.text}
+                                    />{' '}
+                                </ul>
+                                <ul>
+                                    Users{' '}
+                                    <AppColor.chevronBottom
+                                        width={10}
+                                        height={6}
+                                        fill={AppColor.text}
+                                    />{' '}
+                                </ul>
+                                
+                            </li>
+                            <div
+                                {...eventHandlers}
+                                className={`${styles.hover_wrapper} ${
+                                    hovered
+                                        ? styles.active
+                                        : styles.disabled
+                                }`}>
+                                <MenuLinks />
+                            </div>
                         </div>
                     </div>
                     <div className={styles.header_third_part}>

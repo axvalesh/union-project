@@ -35,6 +35,7 @@ import CardManager from '@common/components/cards/CardStatiscticsPartnership/var
 import { fakeUserConstant } from '@common/models/user';
 import CardStatisticPartnership from '@common/components/cards/CardStatiscticsPartnership/index';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
+import { Link } from 'react-router-dom';
 const OrdersAll = () => {
     const { width, height } = useScreenSize()
     const [tags, setTags] = useState<string[]>([])
@@ -53,6 +54,10 @@ const OrdersAll = () => {
     const minValueRef = useRef(null)
     const maxValueRef = useRef(null)
     const [removedTagFromSideBar,setRemovedTagFromSideBar] = useState('');
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
 
     useEffect(() => {
         const arrayLengthStart = width <= 768 ? 4 : 9
@@ -87,9 +92,9 @@ const OrdersAll = () => {
             <Header />
 
             <NavigationBarDropdowns
-                title="partnership"
+                title="order"
                 navItems={developmentDropdown}
-                titleIcon={<AppColor.partnership />}
+                titleIcon={<AppColor.ordersWhite />}
             />
 
             <div className={styles.wrapper}>
@@ -645,44 +650,46 @@ const OrdersAll = () => {
 
                         <div className={styles.cards_wrapper}>
                             {itemsToshow.map((item,index) => (
-                               <div className={styles.card_center}>
-                                    <CardStatisticPartnership
-                                    typeColor='white'
-                                    textTransform='uppercase'
-                                    iconsAbsolute={<AppColor.noteCard fill='white'/>}
-                                    cardType='Logo design'
-                                    isUrgent={index % 2 == 0}
-                                    dateAgo='2 days 35 min'
-                                    details={[
-                                        {
-                                            title: 'Price',
-                                            node: <div className='gap_5'><AppColor.fourOfFive />
-                                                <Typography textLineHeight='1' variant='body5' fontWeight='500'>
-                                                    $5K-6K
-                                                </Typography>
-                                                <AppColor.puzle />
-                                            </div>
-                                        },
-                                        {
-                                            title: 'Delivery',
-                                            node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>need offer</Typography>
-                                        },
-                                        {
-                                            title: 'Delivery',
-                                            node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>1 of 2</Typography>
-                                        },
-                                        {
-                                            title: 'Bids',
-                                            node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>35</Typography>
-                                        }
-                                    ]}
-                                    tags={['Logo', 'Logo Design', 'Logo Maker']}
-                                    title='Logo by sample in vector in maximum quality'
-                                    user={fakeUserConstant}
-    
-                                    
-                                    />
-                               </div>
+                              <Link to={'/orders/order'}>
+                                   <div className={styles.card_center}>
+                                        <CardStatisticPartnership
+                                        typeColor='white'
+                                        textTransform='uppercase'
+                                        iconsAbsolute={<AppColor.noteCard fill='white'/>}
+                                        cardType='Logo design'
+                                        isUrgent={index % 2 == 0}
+                                        dateAgo='2 days 35 min'
+                                        details={[
+                                            {
+                                                title: 'Price',
+                                                node: <div className='gap_5'><AppColor.fourOfFive />
+                                                    <Typography textLineHeight='1' variant='body5' fontWeight='500'>
+                                                        $5K-6K
+                                                    </Typography>
+                                                    <AppColor.puzle />
+                                                </div>
+                                            },
+                                            {
+                                                title: 'Delivery',
+                                                node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>need offer</Typography>
+                                            },
+                                            {
+                                                title: 'Delivery',
+                                                node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>1 of 2</Typography>
+                                            },
+                                            {
+                                                title: 'Bids',
+                                                node: <Typography textLineHeight='1' variant='body5' fontWeight='500'>35</Typography>
+                                            }
+                                        ]}
+                                        tags={['Logo', 'Logo Design', 'Logo Maker']}
+                                        title='Logo by sample in vector in maximum quality'
+                                        user={fakeUserConstant}
+        
+                                        
+                                        />
+                                   </div>
+                              </Link>
                             ))}
                         </div>
                         <DynamicPadding

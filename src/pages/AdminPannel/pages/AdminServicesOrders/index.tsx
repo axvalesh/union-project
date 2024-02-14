@@ -8,7 +8,7 @@ import AppColor from '@common/styles/variables-static';
 import styles from './style.module.scss';
 import DetailsTableAdminCategoriesServices from '@common/components/ui/DetailsTable/variants/DetailsTableAdminCategoriesServices/index';
 
-const AdminServicesCategories = () => {
+const AdminServicesOrders = () => {
 
     return (    
         <div className={styles.wrapper}>
@@ -18,7 +18,7 @@ const AdminServicesCategories = () => {
   
                  <div className={styles.top_part_flex}>
                       <div className={styles.title_plus}>
-                          <div><Typography variant='titleBig' fontWeight='600' textTransform='uppercase'>Services categories       </Typography></div>
+                          <div><Typography variant='titleBig' fontWeight='600' textTransform='uppercase'>Orders categories       </Typography></div>
                           <div className={styles.orange}>
                               <AppColor.plus stroke='white' width={'fit-content'}/>
                           </div>
@@ -49,4 +49,4 @@ const AdminServicesCategories = () => {
       );
 };
 
-export default AdminServicesCategories;
+export default AdminServicesOrders;

@@ -3,7 +3,7 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.cards_grid {
+.cards_wrapper {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -34,5 +34,20 @@
     }
     .selection_item_wrapper {
         grid-template-columns: 1fr;
+    }
+}
+
+
+@media (min-width:900px) {
+    .cards_wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+@media (min-width:1300px) {
+  
+    .cards_wrapper {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
     }
 }

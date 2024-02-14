@@ -71,7 +71,7 @@ input[type=number] {
 .cards_wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 30px;
 }
 
 .justify_center {
@@ -93,14 +93,32 @@ input[type=number] {
     justify-content: center;
 }
 
+
 @media (min-width:$tabletSize) {
     .justify_flex {
         justify-content: space-between;
     }
-    .flex_center {
-        justify-content: end;
+    .cards_wrapper {
+        grid-template-columns: 1fr;
     }
-    
+    .justify_flex {
+        justify-content: space-between;
+    }
+    .main_part {
+        grid-template-columns: 1fr 3fr;
+        gap: 80px;
+    }
+}
+@media (min-width:900px) {
+    .cards_wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+@media (min-width:1300px) {
+    .justify_flex {
+        justify-content: space-between;
+    }
     .cards_wrapper {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 40px;

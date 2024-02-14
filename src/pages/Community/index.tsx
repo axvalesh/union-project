@@ -311,7 +311,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                     </div>
 
                     <div style={{display: isActive ? 'flex' : 'none'}} className={styles.dropdown_wrapper_filter}>
-                    <div onClick={() => {setCurrentActiveCategory('Getting Started');callback('')}}>
+                    <div onClick={() => {setCurrentActiveCategory('Getting Started');}}>
                         <DropdownList 
                             title='Getting Started'
                             callback={(item) => callback(item)}
@@ -319,7 +319,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                         />
                         </div>
 
-                        <div onClick={() => {setCurrentActiveCategory('Subscription');callback('')}}>
+                        <div onClick={() => {setCurrentActiveCategory('Subscription');}}>
                         <DropdownList 
                             title='Subscription'
                             callback={(item) => callback(item)}
@@ -327,7 +327,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                         />
                         </div>
 
-                        <div onClick={() => {setCurrentActiveCategory('Services');callback('')}}>
+                        <div onClick={() => {setCurrentActiveCategory('Services');}}>
                         <DropdownList 
                             title='Services'
                             callback={(item) => callback(item)}
@@ -335,7 +335,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                         />
                         </div>
 
-                        <div onClick={() => {setCurrentActiveCategory('Orders');callback('')}}>
+                        <div onClick={() => {setCurrentActiveCategory('Orders');}}>
                         <DropdownList 
                             title='Orders'
                             callback={(item) => callback(item)}
@@ -343,7 +343,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                         />
                         </div>
 
-                        <div onClick={() => {setCurrentActiveCategory('Crowdfreelance');callback('')}}>
+                        <div onClick={() => {setCurrentActiveCategory('Crowdfreelance');}}>
                         <DropdownList 
                             title='Crowdfreelance'
                             callback={(item) => callback(item)}
@@ -351,7 +351,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                         />
                         </div>
 
-                        <div onClick={() => {setCurrentActiveCategory('Partnership');callback('')}}>
+                        <div onClick={() => {setCurrentActiveCategory('Partnership');}}>
                         <DropdownList 
                             title='Partnership'
                             callback={(item) => callback(item)}
@@ -359,7 +359,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                         />
                         </div>
 
-                        <div onClick={() => {setCurrentActiveCategory('Missions');callback('')}}>
+                        <div onClick={() => {setCurrentActiveCategory('Missions');}}>
                         <DropdownList 
                             title='Missions'
                             callback={(item) => callback(item)}
@@ -367,7 +367,7 @@ const SearchFilterBar = ({recent,currentActiveTitle,callback}:SearchFilterBarPro
                         />
                         </div>
 
-                        <div onClick={() => {setCurrentActiveCategory('Payments');callback('')}}>
+                        <div onClick={() => {setCurrentActiveCategory('Payments');}}>
                         <DropdownList 
                             title='Payments'
                             callback={(item) => callback(item)}

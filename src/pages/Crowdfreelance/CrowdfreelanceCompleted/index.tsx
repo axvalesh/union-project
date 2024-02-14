@@ -25,10 +25,15 @@ import AppColor from '@common/styles/variables-static';
 import { TipsItem } from '@pages/Partnership/pages/PartnershipCompleted/index';
 import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer/index';
 import styles from './style.module.scss';
+import { useEffect } from 'react';
 
 const CrowdfreelanceCompleted = () => {
     const arrayHistory = ['Crowdfreelance', 'All Campaigns', 'Tech', 'Web Service'] 
     const title = 'MONITREE - Vines that grow along the monitor';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
   
   
     return (

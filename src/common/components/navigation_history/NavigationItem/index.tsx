@@ -22,7 +22,7 @@ const NavigationItem = ({image,textList}:NavigationItemProps) => {
             <SizeBox width='15px' />
             <AppColor.chevronRight height={'12px'} fill={AppColor.transparentBlack}  />
             <SizeBox width='15px' />
-            {textList.map((item,index) => <div className={styles.wrapper + ' ' + `${index+2 >= textList.length ? styles.mobile_items : styles.empty}`}>
+            {textList.map((item,index) => <div style={{whiteSpace: 'nowrap'}} className={styles.wrapper + ' ' + `${index+2 >= textList.length ? styles.mobile_items : styles.empty}`}>
               {item}
               {index == textList.length-1
               ? <></>

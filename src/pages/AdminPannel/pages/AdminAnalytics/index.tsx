@@ -197,7 +197,7 @@ export const DetailsTable = ({details,title,filters}:DetailsTableProps) => {
                 <div className={styles.top_part_dropdown}>
                     <Typography variant='body3' fontWeight='500'>{title}</Typography>
                     <div className='desktop'>
-                        <div className='gap_15'>
+                        <div style={{flexWrap: 'wrap'}} className='gap_15'>
                         {filters.length > 0 && <ButtonChooseList initValue={filters[0]} buttonPadding='3px 14px' buttons={filters} callback={() => {}} gap='0px' />}
                         <div className={styles.dark_box}>
                             <Typography fontSizeStatic='13px' color='white' textTransform='uppercase' fontWeight='500'>all categories</Typography>

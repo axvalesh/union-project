@@ -6,6 +6,7 @@
     flex-wrap: wrap;
     row-gap: 20px;
     position: relative;
+    justify-content: center;
 }
 
 .left_item_modal {
@@ -21,6 +22,7 @@
     justify-content: center;
     flex: 0 0 100%;
     order: var(--order1M);
+    min-width: 290px;
 }   
 .right_part {
 
@@ -28,6 +30,7 @@
     justify-content: center;
     flex: 0 0 100%;
     order: var(--order2M);
+    min-width: 290px;
 }
 
 .modal {
@@ -65,6 +68,11 @@
 .show_modal {
     right: 20%;
     overflow: hidden;
+}
+.center_item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 @media (min-width:$tabletSize) {
     .modal {

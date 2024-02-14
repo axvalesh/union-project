@@ -7,7 +7,7 @@ import PageDetails from '@common/components/ui/PageDetails/index';
 import UserTopPageInfo from '@common/components/ui/UserTopPageInfo/index';
 import { fakeUserConstant } from '@common/models/user';
 import AppColor from '@common/styles/variables-static';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 import Typography from '@common/components/ui/Typography/Typography';
@@ -21,19 +21,23 @@ import SwitchButton from '@common/components/ui/SwitchButton/index';
 import TextDotted from '@common/components/ui/TextDotted/index';
 import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
+import { Link } from 'react-router-dom';
 
 const ServiceNegotiationFreelancer = () => {
-    const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
+    const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
   
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
   
     return (
         <div>
         <Header />
   
         <NavigationBarSelection
-           allItemsProgress={['Program', 'Selection', 'Progress', 'Completed']}
-           currentItemProgress='Program'
+           allItemsProgress={['Service', 'Selection','Negotiation', 'Progress', 'Completed']}
+           currentItemProgress='Negotiation'
         />
   
         <div className={'wrapper_page'}>
@@ -94,7 +98,9 @@ const ServiceNegotiationFreelancer = () => {
                         <DynamicPadding />
 
                         <div className="flex_space_between">
+                            <Link to={'/service/selection'}>
                             <ChevronMoveTo onClick={() => {}} text='Step back' title='Selection' variant='left'/>
+                            </Link>
                             <ChevronMoveTo onClick={() => {}} text='New negotiation' title='cancel' variant='right' cancel={true}/>
                         </div>
                     </div>

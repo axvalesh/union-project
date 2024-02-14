@@ -25,12 +25,15 @@ import AppColor from '@common/styles/variables-static';
 import { TipsItem } from '@pages/Partnership/pages/PartnershipCompleted/index';
 import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer/index';
 import styles from './style.module.scss';
+import { useEffect } from 'react';
 
 const OrdersCompleted = () => {
     const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
   
-  
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
     return (
         <div>
         <Header />

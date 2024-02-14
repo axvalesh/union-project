@@ -14,7 +14,7 @@ import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import PercentBar from '@common/components/ui/PercentBar/PercentBar';
 import DaysLeftTimer from '@common/components/ui/DaysLeftTimer/DaysLeftTimer';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import ButtonChooseList from '@common/components/ButtonChooseList/index';
 import TextDotted from '@common/components/ui/TextDotted/index';
@@ -36,20 +36,28 @@ import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Dropdown from '@common/components/ui/Dropdown/index';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
+import { Link } from 'react-router-dom';
+import { developmentDropdown } from '@common/models/constants';
+import NavigationBarDropdowns from '@common/components/NavigationBarDropdowns/index';
 
 const Service = () => {
-    const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
+    const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
     const [activeBuyPlan,setActiveBuyPlan] = useState('Fixed');
     const [selectedPricePlan,setSelectedPricePlan] = useState('');
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+    
     return (
         <div>
         <Header />
 
         <NavigationBarSelection
-           allItemsProgress={['Program', 'Selection', 'Progress', 'Completed']}
-           currentItemProgress='Program'
-        />
+         allItemsProgress={['Service', 'Selection','Negotiation', 'Progress', 'Completed']}
+         currentItemProgress='Service'
+      />
 
         <div className={'wrapper_page'}>
             <PageDetails
@@ -199,12 +207,16 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                         />
                         <DynamicPadding />
                         <div className="flex_space_between">
+                            <Link to={'/service/all'}>
                             <ChevronMoveTo onClick={() => {}}
                                 text='Step back' title='catalog' variant='left'
                             />
-                            <ChevronMoveTo onClick={() => {}}
-                                text='Next step' title='Start' variant='right'
-                            />
+                            </Link>
+                            <Link to={'/service/selection'}>
+                                <ChevronMoveTo onClick={() => {}}
+                                    text='Next step' title='selection' variant='right'
+                                />
+                            </Link>
                         </div>
             </div>}         
                 item2={

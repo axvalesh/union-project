@@ -18,6 +18,7 @@ import { useScreenSize } from '@common/helpers/useScreenSize'
 import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index'
 import DropdownNodeRoadmap from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownRoadmap/index'
 import UserAvatar from '@common/components/ui/UserAvatar/index'
+import CardsSliderRelated from '@common/components/CardsSliderRelated/index'
 
 const fakeUser:userModel = {
     country: 'Ukraine',
@@ -269,23 +270,7 @@ const DashboardHome = () => {
                 />
                 
             </div>
-            <section className={styles.third_section}>
-                    <div className={styles.wrapper}>
-                        <Typography variant='subtitle' fontWeight='500' textTransform='uppercase'>
-                        related 
-                        </Typography>
-
-                        <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width > 768 ? 1120 : 250} gap={40}>
-                           <CardStatisticTest />
-                           <CardStatisticTest />
-                           <CardStatisticTest />
-                           <CardStatisticTest />
-                           <CardStatisticTest />
-                           <CardStatisticTest />
-                        </Slider>
-                    </div>
-
-                </section>
+            <CardsSliderRelated />
 
                 <section className={styles.wrapper}><AskedQuestion /></section>
 

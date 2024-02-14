@@ -14,10 +14,17 @@ import AppColor from '@common/styles/variables-static';
 import styles from './style.module.scss';
 import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange';
 import DetailCrowdfreelanceMy from '@common/components/ui/DetailsTable/variants/DetailsCrowdfreelancerMy/index';
+import { useEffect } from 'react';
 
 const CrowdfreelanceMy = () => {
     const arrayHistory = ['Crowdfreelance'] 
     const title = 'My Campaigns';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+
+    
     return (
         <div>
         <Header />

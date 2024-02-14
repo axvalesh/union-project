@@ -34,6 +34,7 @@ import Footer from '@common/components/Footer/Footer';
 import { useScreenSize } from '@common/helpers/useScreenSize';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import { Link } from 'react-router-dom';
+import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 
 
 
@@ -209,8 +210,8 @@ const HomeNotAuth = () => {
                 />)}
             </div>
             }
-            <div style={{padding: '0px 80px'}}  className={styles.popular_categorys_slider}>
-            <Slider itemWidth={260} maxWidth={width <= AppColor.tabletSize ? 260 : 1100} elementsCount={popular_categorys_content_services.length} gap={21}>
+            <div  className={styles.popular_categorys_slider}>
+            <Slider maxShowCount={4} itemWidth={260} maxWidth={width <= AppColor.tabletSize ? 260 : 1100} elementsCount={popular_categorys_content_services.length} gap={20}>
               {popular_categorys_content_services.map(item => <PopularCategorysServiceCard img={item.img} svg={item.svg} title={item.title}/>)}
             </Slider>
             </div>
@@ -264,7 +265,7 @@ const HomeNotAuth = () => {
             <div className={styles.fourth_screen_shell}>
               <div className={styles.fourth_screen_slider}>
                 <img className={styles.fourth_screen_bc_image} src={fourthBcSvg} alt="" />
-              <Slider paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width <= AppColor.tabletSize ? 250 : 540} gap={40}>
+              <Slider maxShowCount={2} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width <= AppColor.tabletSize ? 250 : 540} gap={40}>
                 <CardTime 
                 title='Logo by sample in vector in maximum quality' 
                 currentMoneyRange={500} totalMoneyRange={5000} 
@@ -537,31 +538,46 @@ const HomeNotAuth = () => {
           </div>
         </div>
         <div className={styles.wrapper}>
-            <section className={styles.six_section_wrapper}>
-              <div className={styles.six_section_cards_wrapper}>
-                {six_section_cards_content.map((item,index) => <SixSectionCard index={index} title={item.title} description={item.description} image={item.image}/>)}
-              </div>
-              <div className={styles.six_section_details}>
-                <Typography variant='titleSmall' textTransform='uppercase'>
-                  <span style={{color: AppColor.orange}}>Unveiling</span> More Features
-                </Typography>
-               <div className='center_mobile_text'>
-                  <span className={styles.six_section_details_span}>
-                  <Typography variant='body4' color={AppColor.transparentBlack}>
-                  Unlock your projects' complete potential. Explore the extra benefits we offer
-                  </Typography>
-                  </span>
-               </div>
-                <MyButton
-                color={AppColor.orange}
-                textColor='white'
-                hoverColor='transparent'
-                hoverTextColor={AppColor.orange}
-                onClick={() => {}} textTransform='uppercase'>
-                  join us now
-                </MyButton>
-              </div>
-            </section>
+   
+              <ResponsiveLayoutTwo
+                gap='80px'
+                item1MaxWidth='730px'
+                item2MaxWidth='380px'
+                orderItem1Desktop={0}
+                orderItem1Mobile={1}
+                orderItem2Desktop={1}
+                orderItem2Mobile={0}
+                item1={
+                  <div className={styles.six_section_cards_wrapper}>
+                  {six_section_cards_content.map((item,index) => <SixSectionCard index={index} title={item.title} description={item.description} image={item.image}/>)}
+                </div>
+                }
+                item2={
+                 <div className='responsive_layout_child'>
+                    <div className={styles.six_section_details}>
+                      <Typography variant='titleSmall' textTransform='uppercase'>
+                        <span style={{color: AppColor.orange}}>Unveiling</span> More Features
+                      </Typography>
+                    <div className='center_mobile_text'>
+                        <span className={styles.six_section_details_span}>
+                        <Typography variant='body4' color={AppColor.transparentBlack}>
+                        Unlock your projects' complete potential. Explore the extra benefits we offer
+                        </Typography>
+                        </span>
+                    </div>
+                      <MyButton
+                      color={AppColor.orange}
+                      textColor='white'
+                      hoverColor='transparent'
+                      hoverTextColor={AppColor.orange}
+                      onClick={() => {}} textTransform='uppercase'>
+                        join us now
+                      </MyButton>
+                </div>
+                 </div>
+                }
+              />
+             
         </div>
         <Footer />
       </>
