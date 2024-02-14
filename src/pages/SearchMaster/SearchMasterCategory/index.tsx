@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import { developmentDropdown } from '@common/models/constants';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchMasterCategory = () => {
     const [activeCategory,setActiveCategory] = useState('Development');
@@ -21,6 +21,7 @@ const SearchMasterCategory = () => {
             window.scrollTo({top: 0,behavior: 'smooth'});
         },0)
     },[]) 
+    const navigate = useNavigate();
     return (
       <div>
            <HeaderSearch 
@@ -112,7 +113,7 @@ const SearchMasterCategory = () => {
                 <DynamicPadding />
                 <div className={'flex_space_between'}>
                         <ChevronMoveTo variant='left' onClick={() => {
-                            window.history.back();
+                            navigate(-1);
                         }} text='Step back' title='cancel' />
                         <Link to={'/search-master/requirements'}>
                             <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Requirement' />

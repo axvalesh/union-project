@@ -289,8 +289,10 @@ import { ReactComponent as paymentsWhite} from '@assets/svg/payments-white.svg';
 
 import { ReactComponent as lockIcon} from '@assets/svg/lock-icon.svg';
 import { ReactComponent as withdraw} from '@assets/svg/withdraw.svg';
+import { ReactComponent as searchOrange} from '@assets/svg/search-orange.svg';
 
 class AppColor {
+    static searchOrange = searchOrange;
     static lockIcon = lockIcon;
     static withdraw = withdraw;   
     static paymentsWhite = paymentsWhite;

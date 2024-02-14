@@ -190,6 +190,14 @@ $grey: #A8A8AD;
 .admin_wrapper {
   padding: 0px 10px;
 }
+
+.modal_wrapper_item {
+  background-color: white;
+  @include weakShadow;
+  border-radius: 20px;
+  max-width: 690px;
+  flex: 0 1 690px;
+}
 @media (min-width:$tabletSize) {
   .admin_wrapper {
     padding: 0px 50px;
@@ -218,5 +226,49 @@ $grey: #A8A8AD;
     display: none;
   }
 }
+.cursor {
+  cursor: auto;
+}
+@media (pointer: fine) {
+  .cursor {
+      cursor: pointer;
+  }
+}
 
+/*==================================================Animations-similliar==================================================*/
+
+.underline_appearance {
+  display: inline-block;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    width: 0px;
+    height: 1px;
+    display: block;
+    background: black;
+    transition: 0.15s;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.fade-enter{
+  opacity: 0;
+}
+.fade-exit{
+  opacity: 1;
+}
+.fade-enter-active{
+  opacity: 1;
+}
+.fade-exit-active{
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-exit-active{
+  transition: opacity 500ms;
+}
 //@media (min-width:$tabletSize) {

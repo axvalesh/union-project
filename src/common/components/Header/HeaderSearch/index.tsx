@@ -5,6 +5,7 @@ import PercentBar from '@common/components/ui/PercentBar/PercentBar';
 import Typography from '@common/components/ui/Typography/Typography';
 import Logo from '@common/components/Logo/Logo';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type HeaderSearchProps = {
         allItemsProgress: string[];
@@ -15,7 +16,7 @@ const HeaderSearch = ({allItemsProgress,currentItemProgress}:HeaderSearchProps) 
     const percent = currentItemProgress == allItemsProgress[allItemsProgress.length-1] ? 100 : 100/(allItemsProgress.length -1)/2*(itemIndex+1+(itemIndex))
     
     const [visible, setVisible] = useState(false);
-
+    const navigate = useNavigate();
      useEffect(() => {
          setTimeout(() => {
              setVisible(true);
@@ -33,7 +34,7 @@ const HeaderSearch = ({allItemsProgress,currentItemProgress}:HeaderSearchProps) 
                                 height='15px'
                                 backgroundColor={'white'}
                             />
-                          <div className={`${styles.close_box} ${styles.mobile}`}>
+                          <div onClick={() => {navigate(-1)}} className={`${styles.close_box} ${styles.mobile}`}>
                                 <AppColor.close fill='white' width={'16px'} height={'16px'}/>
                             </div>
                         <div className={styles.titles_wrapper + " " + styles.desktop}>
@@ -44,7 +45,7 @@ const HeaderSearch = ({allItemsProgress,currentItemProgress}:HeaderSearchProps) 
                             )}
                         </div>
                     </div>   
-                    <div className={`${styles.close_box} ${styles.desktop}`}>
+                    <div onClick={() => {navigate(-1)}} className={`${styles.close_box} ${styles.desktop}`}>
                         <AppColor.close fill='white' width={'16px'} height={'16px'}/>
                     </div>
 

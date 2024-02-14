@@ -8,6 +8,7 @@ import { useEffect, useId, useState } from 'react';
 import CardStatisticTest from '@common/components/cards/CardStatistics/variants/CardStatisticTest';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
+import { useNavigate } from 'react-router-dom';
 
 const SearchMasterResults = () => {
     const [selectedFilter,setSelectedFilter] = useState('');
@@ -18,6 +19,8 @@ const SearchMasterResults = () => {
             window.scrollTo({top: 0,behavior: 'smooth'});
         },0)
     },[]) 
+
+    const navigate = useNavigate();
 
     
     const mobileFilterItems:SelectItemProps[] = [
@@ -189,7 +192,7 @@ const SearchMasterResults = () => {
         <DynamicPadding />
                     <div className='justify_center'>
                         <ChevronMoveTo variant='left' onClick={() => {
-                                window.history.back();
+                                navigate(-1);
                         }} text='Step back' title='budget & Delivery' />
                     </div>
 

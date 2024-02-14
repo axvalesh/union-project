@@ -39,7 +39,7 @@
     justify-content: space-between;
 };
 
-.button_wrapper {
+.button_content {
     display: none;
 }
 
@@ -125,7 +125,7 @@
     top: calc(100% + 14px);
     right: 0;
     left: 0;
-    z-index: 5;
+    z-index: 3;
 }
 
 .header_third_part {
@@ -139,12 +139,12 @@
         align-items: center;
         justify-content: space-between;
     }
-    .button_wrapper {
-        display: flex;
-        transition: all 0.3s ease;
+
+    .transition_item {
+        transition: all 0.15s ease;
         &:hover {
     
-            * {
+            .plus_box svg {
                 stroke: white;
             }
     
@@ -152,6 +152,11 @@
                 border: 1px solid white;
             }
         }
+    }
+    .button_content {
+        display: flex;
+        gap: 5px;
+        
     }
     .header_third_part {
         display: flex;

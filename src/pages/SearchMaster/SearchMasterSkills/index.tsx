@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import ButtonChooseList from '@common/components/ButtonChooseList/index';
 import ButtonsSelectList from '@common/components/ButtonsSelectList/index';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchMasterSkills = () => {
     const [activeTitle,setActiveTitle] = useState('');
@@ -19,6 +19,7 @@ const SearchMasterSkills = () => {
             window.scrollTo({top: 0,behavior: 'smooth'});
         },0)
     },[]) 
+    const navigate = useNavigate();
     
     return (
       <div>
@@ -86,7 +87,7 @@ const SearchMasterSkills = () => {
                 <DynamicPadding desktop='30px' mobile='20px'/>
                 <div style={{maxWidth: '530px',margin: '0 auto'}} className={'flex_space_between'}>
                 <ChevronMoveTo variant='left' onClick={() => {
-                            window.history.back();
+                            navigate(-1);
                         }} text='Step back' title='requirement' />
                         <Link to={'/search-master/budget-and-delivery'}>
                         <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='budget & Delivery' />

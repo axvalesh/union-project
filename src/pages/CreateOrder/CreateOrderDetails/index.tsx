@@ -10,9 +10,10 @@ import { fakeUserConstant } from '@common/models/user';
 import AppColor from '@common/styles/variables-static';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CreateOrderDetails = () => {
-
+    const navigate = useNavigate();
     return (
       <div>
            <HeaderSearch 
@@ -69,8 +70,10 @@ const CreateOrderDetails = () => {
                                 <DynamicPadding />
     
                                 <div className={'flex_space_between'}>
-                                        <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='cancel' />
+                                        <ChevronMoveTo variant='left' onClick={() => {navigate(-1)}} text='Step back' title='cancel' />
+                                        <Link to={'/create-order/negotiation'}>
                                         <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Negotiation' />
+                                        </Link>
                                 </div>
                             </div>
                        </div>

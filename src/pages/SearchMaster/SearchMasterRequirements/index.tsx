@@ -10,7 +10,7 @@ import AppColor from '@common/styles/variables-static';
 import { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import MyCheckbox from '@common/components/ui/inputs/Checkbox/index';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchMasterRequirements = () => {
     const [activeTitle,setActiveTitle] = useState('');
@@ -20,7 +20,7 @@ const SearchMasterRequirements = () => {
             window.scrollTo({top: 0,behavior: 'smooth'});
         },0)
     },[]) 
-    
+    const navigate = useNavigate();
     return (
       <div>
            <HeaderSearch 
@@ -139,7 +139,7 @@ const SearchMasterRequirements = () => {
                 <DynamicPadding />
                 <div style={{maxWidth: '530px',margin: '0 auto'}} className={'flex_space_between'}>
                         <ChevronMoveTo variant='left' onClick={() => {
-                             window.history.back();
+                             navigate(-1);
                         }} text='Step back' title='category' />
                        <Link to={'/search-master/skills'}>
                        <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='skills' />

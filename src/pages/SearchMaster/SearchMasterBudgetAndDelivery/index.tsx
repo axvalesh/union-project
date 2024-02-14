@@ -12,7 +12,7 @@ import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import { levelMap } from '@common/components/Footer/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchMasterBudgetAndDelivery = () => {
     const [selectedSkillsLevel,setSelectedSkillsLevel] = useState<string[]>([])
@@ -24,6 +24,8 @@ const SearchMasterBudgetAndDelivery = () => {
             window.scrollTo({top: 0,behavior: 'smooth'});
         },0)
     },[]) 
+
+    const navigate = useNavigate();
 
     
     return (
@@ -160,7 +162,7 @@ const SearchMasterBudgetAndDelivery = () => {
                 <DynamicPadding desktop='30px' mobile='20px'/>
                 <div style={{maxWidth: '570px',margin: '0 auto'}} className={'flex_space_between'}>
                         <ChevronMoveTo variant='left' onClick={() => {
-                            window.history.back();
+                            navigate(-1);
                         }} text='Step back' title='skills' />
                         <Link to={'/search-master/results'}>
                         <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='results' />

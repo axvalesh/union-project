@@ -8,10 +8,6 @@ import MyButtonOrange from "@common/components/ui/MyButton/variants/MyButtonOran
 import SizeBox from "@common/components/ui/SizeBox/index";
 import Dropdown from "@common/components/ui/Dropdown/index";
 
-import { ReactComponent as CommunityImage} from '@assets/svg/community.svg';
-import { ReactComponent as ManagersImage} from '@assets/svg/managers.svg';
-import { ReactComponent as GeneralHelpImage} from '@assets/svg/general-help.svg';
-import { ReactComponent as ContactUs} from '@assets/svg/contact-us.svg';
 import Footer from "@common/components/Footer/Footer";
 import AskedQuestion from "@common/components/AskedQuestions/index";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,8 +15,8 @@ import Header from "@common/components/Header/Header/index";
 import { useState, useEffect } from "react";
 
 const Error = () => {
-    const navigate = useNavigate();
     const [errorVisible, setErrorVisible] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTimeout(() => {
@@ -47,7 +43,7 @@ const Error = () => {
               </Typography>
            </div>
             <div style={{display: 'flex'}}>
-              <MyButtonBlack onClick={() => window.history.go(-2)} padding="14px 26px">
+              <MyButtonBlack onClick={() => navigate(-2)} padding="14px 26px">
                 Back
               </MyButtonBlack>
               <SizeBox width="20px"/>

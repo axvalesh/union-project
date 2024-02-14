@@ -35,6 +35,7 @@ import { useScreenSize } from '@common/helpers/useScreenSize';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import { Link } from 'react-router-dom';
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
+import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 
 
 
@@ -373,9 +374,11 @@ const HomeNotAuth = () => {
                   <img width={16} height={13} src={flagImage} alt="" />
                   <span className={styles.fourth_screen_inline_text}>
                     <Typography variant='body4'>
-                      <span className={styles.fourth_screen_sponsor_bold_text}>{fakeUser2.name}</span>
+                      <span style={{fontWeight: '500'}} className='underline_appearance'>{fakeUser2.name}</span>
+                      <span style={{color:'transparent'}}>a</span>
                       sponsored $2 500 in 
-                      <span className={styles.fourth_screen_sponsor_bold_text}>GameWithMe launch</span>
+                      <span style={{color:'transparent'}}>a</span>
+                      <span style={{fontWeight: '500'}} className='underline_appearance'>GameWithMe launch </span>
                     </Typography>
                   </span>
                   </div>
@@ -537,7 +540,10 @@ const HomeNotAuth = () => {
           </section>
           </div>
         </div>
+        <DynamicPadding desktop='80px' mobile='30px'/>
         <div className={styles.wrapper}>
+
+          
    
               <ResponsiveLayoutTwo
                 gap='80px'

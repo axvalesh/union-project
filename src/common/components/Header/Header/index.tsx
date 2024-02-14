@@ -10,6 +10,9 @@ import HorizontalLine from '../../ui/Lines/HorizontalLine'
 import DynamicPadding from '../../ui/DynamicPadding'
 import { fakeUserConstant } from '@common/models/user'
 import { useEffect, useState } from 'react'
+import PopUpBottom from '../../ModalPopUps/PopUpBottom'
+import SearchPopUp from './components/SearchPopUp'
+import CreatePopUp from './components/CreatePopUp'
 
 const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
     const [hovered, eventHandlers] = useHover({
@@ -44,22 +47,32 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                     <Logo />
                                 </span>
                                <div className={styles.button_wrapper}>
-                                  <MyButtonTransparentOrange
-                                      fontWeight="500"
-                                      padding='10px 14px'
-                                      onClick={() => {}}>
-                                      <div className={styles.button_content}>
-                                          <div className={styles.plus_box}>
-                                              
-                                              <AppColor.plus
-                                                  width={'9px'}
-                                                  height={'9px'}
-                                                  stroke={AppColor.orange}
-                                              />
+                               <PopUpBottom
+                                   
+                                    showNode={
+                                        <div className={styles.transition_item}>
+                                            <MyButtonTransparentOrange
+                                          fontWeight="500"
+                                          padding='10px 14px'
+                                          onClick={() => {}}>
+                                          <div className={styles.button_content}>
+                                              <div className={styles.plus_box}>
+                                                  
+                                                  <AppColor.plus
+                                                      width={'9px'}
+                                                      height={'9px'}
+                                                      stroke={AppColor.orange}
+                                                  />
+                                              </div>
+                                              CREATE
                                           </div>
-                                          CREATE
-                                      </div>
-                                  </MyButtonTransparentOrange>
+                                      </MyButtonTransparentOrange>
+                                        </div>
+                                    }
+                                    popUpNode={<CreatePopUp />}
+                                    topPaddingFromNode='27px'
+                                />
+                                  
                                </div>
                             </div>
                             <div className={styles.hamburger__wrapper_user}>
@@ -126,7 +139,15 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                 </div>
                             </div>
                             <div className={styles.header_third_part}>
-                                <AppColor.search />
+                                <PopUpBottom
+                                    showNodeHover={<AppColor.searchOrange height={'20px'} />}
+                                    showNode={
+                                        <AppColor.search height={'20px'} />
+                                    }
+                                    popUpNode={<SearchPopUp />}
+                                    topPaddingFromNode='35px'
+                                />
+                                
                                 <AppColor.news fill={AppColor.text} />
                                 <AppColor.sound />
         
@@ -145,5 +166,8 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
        </div>
     )
 }
+
+
+
 
 export default Header
