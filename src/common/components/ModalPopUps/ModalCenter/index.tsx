@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import styles from './style.module.scss';
 import {createPortal} from 'react-dom';
 
@@ -8,8 +9,18 @@ type ModalCenterProps = {
 }
 const ModalCenter = ({children,onClickHandler}:ModalCenterProps) => {
 
+    useEffect(() => {
+
+      document.body.style.overflow = "hidden"
+      
+      return () => {
+        document.body.style.overflow = "auto"
+      };  
+
+  },[])
+
     return createPortal(
-        <div className={styles.overaly} onClick={onClickHandler}>
+        <div id='overlay_prevent_close' className={`${styles.overaly} overlay_prevent_close`} onClick={onClickHandler}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             {children}
           </div>

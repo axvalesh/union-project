@@ -1,8 +1,8 @@
 import { useState, useMemo, useRef } from 'react';
 
 interface HoverHandlers {
-  onMouseOver(): void;
-  onMouseOut(): void;
+  onMouseEnter(event:React.MouseEvent<HTMLUListElement, MouseEvent> | React.MouseEvent<HTMLDivElement, MouseEvent>): void;
+  onMouseLeave(event:React.MouseEvent<HTMLUListElement, MouseEvent> | React.MouseEvent<HTMLDivElement, MouseEvent>): void;
 }
 
 type useHoverProps = {
@@ -16,7 +16,9 @@ export const useHover = ({ delayInMilliseconds, hoverDelay=200 }: useHoverProps)
 
   const eventHandlers: HoverHandlers = useMemo(
     () => ({
-      onMouseOver() {
+      onMouseEnter(event) {
+        event.stopPropagation();
+        console.log('enter')
         isHoveredRef.current = true;
         if (hoverDelay !== undefined) {
           setTimeout(() => {
@@ -28,7 +30,9 @@ export const useHover = ({ delayInMilliseconds, hoverDelay=200 }: useHoverProps)
           setHovered(true);
         }
       },
-      onMouseOut() {
+      onMouseLeave(event) {
+        event.stopPropagation();
+        console.log('leave')
         isHoveredRef.current = false;
         if (delayInMilliseconds !== undefined) {
           setTimeout(() => {

@@ -33,7 +33,6 @@ const MyButton = ({
         '--hoverTextColor': hoverTextColor ?? 'white',
         '--width': width ?? 'auto',
         '--textTransform': textTransform,
-        'opacity': !disabled ? '1' : '0.3'
     } : {
         '--backgroundColor': color ?? 'transparent',
         '--padding': padding ?? '10px 12px',

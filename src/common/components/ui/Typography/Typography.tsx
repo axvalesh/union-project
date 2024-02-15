@@ -52,7 +52,8 @@ interface TypographyProps {
   textDecoration?: TextDecoration;
   textDecorationStyle?: TextDecorationStyle
   fontSizeStatic?: string;
-  fontStyle?: TextFontStyle
+  fontStyle?: TextFontStyle;
+  className?: string;
 }
 
 const Typography = ({
@@ -66,6 +67,7 @@ const Typography = ({
     textLineHeight,
     fontWeight,
     textDecoration,
+    className,
     textDecorationStyle,
     fontStyle,
     ...props
@@ -78,7 +80,7 @@ const Typography = ({
     return (
         <Component
             {...props}
-            className={`${dynamicClassName}`}
+            className={`${dynamicClassName} ${className ? className : ''}`}
             style={{
                 fontStyle: fontStyle,
                 fontSize: fontSizeStatic,

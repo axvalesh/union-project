@@ -246,8 +246,14 @@ $grey: #A8A8AD;
     width: 0px;
     height: 1px;
     display: block;
-    background: black;
+    background: $text;
     transition: 0.15s;
+  }
+
+  &.orange {
+    &::after {
+      background: $orange; // Change this to the desired color
+    }
   }
 
   &:hover::after {

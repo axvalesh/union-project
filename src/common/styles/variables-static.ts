@@ -290,8 +290,32 @@ import { ReactComponent as paymentsWhite} from '@assets/svg/payments-white.svg';
 import { ReactComponent as lockIcon} from '@assets/svg/lock-icon.svg';
 import { ReactComponent as withdraw} from '@assets/svg/withdraw.svg';
 import { ReactComponent as searchOrange} from '@assets/svg/search-orange.svg';
+import { ReactComponent as newsOrange} from '@assets/svg/news-orange.svg';
+
+import { ReactComponent as attach} from '@assets/svg/attach.svg';
+import { ReactComponent as sendEmail} from '@assets/svg/send-email.svg';
+import { ReactComponent as soundOrange} from '@assets/svg/sound-orange.svg';
+
+import { ReactComponent as CbutLikeJava} from '@assets/svg/CbutLikeJava.svg';
+
+import { ReactComponent as doubleTrue} from '@assets/svg/double-true.svg';
+import { ReactComponent as payments} from '@assets/svg/payments.svg';
+
+import { ReactComponent as logOut} from '@assets/svg/log-out.svg';
+import { ReactComponent as controll} from '@assets/svg/controll.svg';
+import { ReactComponent as setStatus} from '@assets/svg/set-status.svg';
 
 class AppColor {
+    static setStatus = setStatus;
+    static logOut = logOut;
+    static controll = controll; 
+    static payments = payments;
+    static doubleTrue = doubleTrue;
+    static CbutLikeJava = CbutLikeJava;
+    static soundOrange = soundOrange;
+    static attach = attach;
+    static sendEmail = sendEmail;  
+    static newsOrange = newsOrange;
     static searchOrange = searchOrange;
     static lockIcon = lockIcon;
     static withdraw = withdraw;   

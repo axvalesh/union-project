@@ -22,7 +22,7 @@ type UserAvatarProps = {
     activeAgoRole?: string;
 }
 
-type UserAvatarVariants = "row" | "column" | "money"
+type UserAvatarVariants = "row" | "column" | "money" | 'image'
 
 
 const UserAvatar = ({activeAgoRole='',noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
@@ -34,10 +34,21 @@ const UserAvatar = ({activeAgoRole='',noWrap,roleColor,active,name,role,url,vari
             return <UserAvatarColumn activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
             return <UserAvatarMoney activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
+       case "image":
+            return <UserAvatarImage active={active} name={name} url={url} />
         default:
             return null;
     }
 };
+
+const UserAvatarImage = ({url}:UserAvatarProps) => {
+    return (
+        <div style={{position: 'relative',display: 'flex'}}>
+            <img src={url} width={'38px'} height={'38px'} alt="" />
+            <div className={styles.active_status}></div>
+        </div>
+    )
+}
 
 const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText,roleColor,activeAgoRole}:UserAvatarProps) => {
     
@@ -61,7 +72,7 @@ const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,heigh
                 </Typography>
                 {role && <SizeBox height='5px'/>}
                 <Typography color={roleColor ?? AppColor.orange} variant='body5' textLineHeight='1'>
-                    {role}{activeAgoRole != '' && <span><span style={{color: AppColor.text}}>•</span> <span style={{color: AppColor.transparentBlack}}>{activeAgoRole}</span></span>}
+                    {role}{activeAgoRole != '' && <span>{role && <span style={{color: AppColor.text}}>• </span>}<span style={{color: AppColor.transparentBlack}}>{activeAgoRole}</span></span>}
                 </Typography>
            </div>
       </div>

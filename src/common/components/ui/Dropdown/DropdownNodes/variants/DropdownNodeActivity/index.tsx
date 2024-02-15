@@ -66,13 +66,13 @@ type ActivityItemProps = {
     present: string;
 
 }
-const ActivityItem = ({image,percent,price,tag,title,iconNode,filter,present}:ActivityItemProps) => {
+export const ActivityItem = ({image,percent,price,tag,title,iconNode,filter,present}:ActivityItemProps) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.top_part}>
                 {image}
                 <div>
-                    <Typography variant='body4' fontWeight='500'>
+                    <Typography className='underline_appearance' variant='body4' fontWeight='500'>
                         {title}
                     </Typography>
                     <DynamicPadding desktop='10px' mobile='10px' />

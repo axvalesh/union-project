@@ -1,9 +1,10 @@
-import React, { MouseEventHandler } from 'react'
-import MyButton from '../MyButton'
-import AppColor from '@common/styles/variables-static'
-import { MyButtonVariantProps } from '../models'
 
-const MyButtonTransparent = (
+import AppColor from '@common/styles/variables-static';
+import { MyButtonVariantProps } from '../models';
+import MyButton from '../MyButton';
+import styles from './style.module.scss';
+
+const MyButtonTransparentGrey = (
     props:MyButtonVariantProps
 ) => {
     return (
@@ -14,12 +15,12 @@ const MyButtonTransparent = (
             border="1px solid transparent"
             color="transparent"
             textColor={AppColor.text}
-            hoverColor="transparent"
-            hoverTextColor={AppColor.orange}
+            hoverColor={AppColor.white}
+            hoverTextColor={AppColor.text}
             textTransform={props.textTransform}
             fontWeight={props.fontWeight}
         />
     )
 }
 
-export default MyButtonTransparent
+export default MyButtonTransparentGrey;

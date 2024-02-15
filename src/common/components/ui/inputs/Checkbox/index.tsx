@@ -9,12 +9,14 @@ type MyCheckboxProps = {
     basicValue?: boolean
     checkWidth?: string;
     checkHeight?: string;
+    borderRadius?: string;
 }
 const MyCheckbox = ({
     width,
     height,
     callback,
     checkHeight='12px',
+    borderRadius='5px',
     checkWidth='12px',
     basicValue = false,
 }: MyCheckboxProps) => {
@@ -41,10 +43,10 @@ const MyCheckbox = ({
                           backgroundColor: 'white',
                           boxShadow:
                               '-1px 1px 6px 2px rgba(0,0,0,0.11)',
-                              minWidth:width,minHeight:height
+                              minWidth:width,minHeight:height,borderRadius: borderRadius
                       }
                     : {
-                        minWidth:width,minHeight:height
+                        minWidth:width,minHeight:height,borderRadius: borderRadius
                     }
             }
             onClick={() => {

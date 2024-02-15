@@ -21,4 +21,10 @@
     align-items: center;
     justify-content: center;
     gap: 5px;
+
+    line-height: 1;
+}
+
+.button:active {
+    opacity: 0.6;
 }

@@ -97,6 +97,16 @@ const CreatePopUp = () => {
                         </div>
                     </div>
                     <HorizontalLine />
+
+                    <SizeBox height='30px' />
+                    <div style={{paddingLeft: '30px'}} className='gap_10'>
+                        <img src={fakeUserConstant.image} width={'38px'} height={'38px'} alt="" />
+                        <Typography variant='body4' fontWeight='500'>
+                        Logo Design
+                        </Typography>
+                        <AppColor.chevronBottom width={'12px'} height={'6px'} fill={AppColor.text}/>
+                    </div>
+             
                     <div style={{padding: '30px'}}>
                        <div style={{position: 'relative'}}>
                             <InputCommon
@@ -125,17 +135,17 @@ const CreatePopUp = () => {
                        <DynamicPadding desktop='30px' mobile='20px'/>
                        <div className='text_box'>
                         <Typography variant='body4'>
-                        After inviting the desired freelancers, you will be taken to the project details stage. Once the order is created, only the selected freelancers will receive notifications about the project invitation.
+                        After inviting the desired freelancers, the selected freelancers will receive project invitation notifications.
                         </Typography>
                        </div>
                        <DynamicPadding desktop='30px' mobile='20px'/>
 
                        <div style={{display: 'flex',justifyContent: 'end'}}>
-                            <MyButtonTransparent fontWeight='500' onClick={() => {setShowModalPersonalOrder(false)}}>
+                            <MyButtonTransparent textTransform='uppercase' fontWeight='500' onClick={() => {setShowModalPersonalOrder(false)}}>
                             Cancel
                             </MyButtonTransparent>
-                            <MyButtonOrange onClick={() => {}}>
-                            Create a personal order
+                            <MyButtonOrange textTransform='uppercase' onClick={() => {}} fontWeight='500'>
+                            Send invite
                             </MyButtonOrange>
                        </div>
                     </div>
