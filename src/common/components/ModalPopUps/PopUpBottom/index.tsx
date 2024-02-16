@@ -69,7 +69,7 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
      </div>}
                
            </div>
-           <div  style={{top: `calc(100% + ${topPaddingFromNode})`,opacity: show ? '1' : '0',pointerEvents: show ? 'all' : 'none'}} className={styles.popup_node}>
+           <div  style={{top: `calc(100% + ${topPaddingFromNode})`,opacity: show ? '1' : '0',pointerEvents: show ? 'all' : 'none',display: show ? 'block' : 'none'}} className={styles.popup_node}>
                 {popUpNode}
            </div>
       </div>

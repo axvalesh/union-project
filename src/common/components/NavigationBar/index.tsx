@@ -5,7 +5,7 @@ import { useHover } from '@common/helpers/useHover'
 import Typography from '../ui/Typography/Typography'
 import { nav_categorys, nav_var_categorys, nav_var_categorys_titles } from './components/PagesNav/content'
 import PagesNav from './components/PagesNav'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 type NavigationBarProps = {
     currentCategoryTitle?: nav_var_categorys_titles
@@ -22,11 +22,35 @@ const NavigationBar = ({
         (item) => item.title == currentCategoryTitle
     )
 
-    const [hovered, eventHandlers] = useHover({delayInMilliseconds: 2000,hoverDelay: 200}); 
+    const [hovered,setHovered] = useState(false);
 
     const [showDropdown,setShowDropdown] = useState(false);
 
     const [visible, setVisible] = useState(false);
+
+    const nodeRef = useRef(null);
+
+    useEffect(() => {
+        const handleOutsideClick = (event: MouseEvent) => {
+           const clickedElement = event.target as HTMLElement;
+           if (clickedElement.closest('.overlay_prevent_close')) return;  //ignore overlay modal and modals children
+   
+           
+            if (nodeRef.current && !nodeRef.current.contains(event.target as Node)) {
+                setHovered(false);
+                console.log('close');
+            } else {
+               console.log('not close');
+               
+            }
+        };
+   
+        document.addEventListener('mousedown', handleOutsideClick);
+   
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, []);
 
     useEffect(() => {
         setTimeout(() => {
@@ -35,14 +59,16 @@ const NavigationBar = ({
     }, []);
     
     return (
-        <div style={{opacity: visible ? '1' : '0'}}  className={styles.wrapper}>
+        <div ref={nodeRef} style={{opacity: visible ? '1' : '0'}}  className={styles.wrapper}>
             <div className={styles.content}>
                 <div className='gap_15'>
-                    <div {...eventHandlers} className={styles.category_hover}>
-                        {<currentCategory.activeImage fill='white'/>}
-                        <span className={styles.currentTitle}>
-                            <Typography textTransform='uppercase' variant='body4' color='white'>{currentCategory.title}</Typography>
-                        </span>
+                    <div  className={styles.category_hover}>
+                        <div className={styles.title_hover} onClick={() => {setHovered(prev => !prev)}}>
+                            {<currentCategory.activeImage fill='white'/>}
+                            <span className={styles.currentTitle}>
+                                <Typography textTransform='uppercase' variant='body4' color='white'>{currentCategory.title}</Typography>
+                            </span>
+                        </div>
                         
                         <PagesNav
                             hovered={hovered}

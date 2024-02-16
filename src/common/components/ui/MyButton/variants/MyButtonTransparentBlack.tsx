@@ -9,11 +9,11 @@ const MyButtonTransparentBlack = (props:MyButtonVariantProps) => {
             onClick={props.onClick}
             children={props.children}
             border="1px solid #515151"
-            borderHover='1px solid transparent'
+            borderHover={`1px solid ${AppColor.orange}`}
             color='transparent'
             textColor={AppColor.text}
-            hoverColor={AppColor.text}
-            hoverTextColor='white'
+            hoverColor='transparent'
+            hoverTextColor={AppColor.orange}
             textTransform={props.textTransform}
             fontWeight={props.fontWeight}
         />

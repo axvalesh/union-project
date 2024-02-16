@@ -26,7 +26,7 @@ const MyButton = ({
         '--border': border ?? `1px solid ${AppColor.orange}`,
         '--hoverBorder': borderHover ?? `1px solid ${AppColor.orange}`,
         '--borderRadius': borderRadius ?? '20px',
-        'border': border,
+        'pointer-events': 'all',
         '--textSize': textSize ?? '1rem',
         '--textColor': textColor ?? AppColor.orange,
         '--fontWeight': fontWeight ?? '400',

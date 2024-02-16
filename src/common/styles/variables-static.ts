@@ -304,8 +304,10 @@ import { ReactComponent as payments} from '@assets/svg/payments.svg';
 import { ReactComponent as logOut} from '@assets/svg/log-out.svg';
 import { ReactComponent as controll} from '@assets/svg/controll.svg';
 import { ReactComponent as setStatus} from '@assets/svg/set-status.svg';
+import { ReactComponent as moderator} from '@assets/svg/moderator.svg';
 
 class AppColor {
+    static moderator = moderator;
     static setStatus = setStatus;
     static logOut = logOut;
     static controll = controll; 
@@ -576,6 +578,7 @@ class AppColor {
     static whiteGreen = '#B6DE59';
     static transparentBlack = 'rgba(0, 0, 0, 0.5)';
     static transparentWhite = 'rgba(255, 255, 255, 0.5)';
+    static transparentTextColor = `rgba(${AppColor.text}, 0.1)`
     static transparent = 'transparent';
     static tabletSize = 768;
 

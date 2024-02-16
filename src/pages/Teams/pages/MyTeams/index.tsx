@@ -11,6 +11,7 @@ import DetailsTableActivity from '@common/components/ui/DetailsTable/variants/De
 import DetailsTableMyTeams, { DetailsTableMyTeamsPropsItem } from '@common/components/ui/DetailsTable/variants/DetailsTableMyTeams/index'
 import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
+import AddMissionButton from '@common/components/ui/AddMisionButton/index'
 
 
 const teamsContent:DetailsTableMyTeamsPropsItem[] = [
@@ -73,9 +74,7 @@ const MyTeams = () => {
                     }
                     endNode={
                         <div className={styles.flex_center}>
-                            <div className={styles.orange_plus}>
-                                <AppColor.plus width={20} height={20} stroke='white' />
-                            </div>
+                            <AddMissionButton />
                             <Typography
                                 variant="body3"
                                 fontWeight="500">

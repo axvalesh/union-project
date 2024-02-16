@@ -80,42 +80,5 @@ export const nav_var_categorys:nav_categorys[] = [
             {title: 'faq'}
         ],
     },
-    {
-        title: "Team",
-        text: 'Share yourself ',
-        image: AppColor.teams,
-        activeImage: AppColor.teamsWhite,
-        index: 5,
-        links: [
-            {title: 'members'},
-            {title: 'squads'}
-        ],
-    },
-    {
-        title: "Settings",
-        text: 'Customise your profile',
-        image: AppColor.settingsBlack,
-        activeImage: AppColor.settings,
-        index: 6,
-        links: [
-            {title: 'profile'},
-            {title: 'password & security'},
-            {title: 'verification'},
-            {title: 'notifications'}
-        ],
-    },
-    {
-        title: "Payments",
-        text: 'Customise your profile',
-        image: AppColor.paymentsWhite,
-        activeImage: AppColor.paymentsWhite,
-        index: 7,
-        links: [
-            {title: 'operations'},
-            {title: 'top up'},
-            {title: 'withdraw'},
-            {title: 'w-8BEN'}
-        ],
-    },
     
 ];

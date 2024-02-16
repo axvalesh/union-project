@@ -41,11 +41,11 @@ const UserAvatar = ({activeAgoRole='',noWrap,roleColor,active,name,role,url,vari
     }
 };
 
-const UserAvatarImage = ({url}:UserAvatarProps) => {
+const UserAvatarImage = ({url,active}:UserAvatarProps) => {
     return (
         <div style={{position: 'relative',display: 'flex'}}>
             <img src={url} width={'38px'} height={'38px'} alt="" />
-            <div className={styles.active_status}></div>
+            <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
         </div>
     )
 }

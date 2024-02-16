@@ -198,6 +198,19 @@ $grey: #A8A8AD;
   max-width: 690px;
   flex: 0 1 690px;
 }
+
+.popup_wrapper {
+  padding: 15px 20px;
+  background-color: white;
+  @include weakShadow;
+  border-radius: 20px;
+}
+
+.grid_15 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
 @media (min-width:$tabletSize) {
   .admin_wrapper {
     padding: 0px 50px;
