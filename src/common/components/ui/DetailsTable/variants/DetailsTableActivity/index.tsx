@@ -33,7 +33,7 @@ const DetailsTableActivity = ({information}:DetailsTableActivityProps) => {
 
     const {width,height} = useScreenSize();
     
-    console.log(currentPage);
+    
     return (
         <DetailsTable
             maxWidth="346px"

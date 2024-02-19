@@ -51,7 +51,7 @@ const Upgrades = () => {
 
     const {width,height} = useScreenSize();
     const [activeUpgradeSection,setActiveUpgradeSection] = useState('Opened Projects')
-    console.log(width);
+    
     return (
       <div>
             <Header />

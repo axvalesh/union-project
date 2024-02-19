@@ -4,6 +4,16 @@ import AppColor from '@common/styles/variables-static';
 import Typography from '../ui/Typography/Typography';
 import UserAvatar from '../ui/UserAvatar';
 import styles from './style.module.scss';
+import { useState } from 'react';
+import ModalCenter from '../ModalPopUps/ModalCenter';
+import ImageCardsShow from '../ImageCardsShow';
+
+import test1 from '@assets/images/test1.png';
+import test2 from '@assets/images/test2.png';
+import test3 from '@assets/images/test3.png';
+import test4 from '@assets/images/test4.png';
+import DynamicPadding from '../ui/DynamicPadding';
+import PopUpBottom from '../ModalPopUps/PopUpBottom';
 
 type ReviewsProgramCardProps = {
     user: userModel;
@@ -18,6 +28,10 @@ type ReviewsProgramCardProps = {
 const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,addInfo}:ReviewsProgramCardProps) => {
 
     const imagesArray = addInfo != null ? addInfo.users.map(item => item.image) : null;
+
+    const [imageModal,setImageModal] = useState(false);
+    const [shareModal,setShareModal] = useState(false);
+
     return (
         <div className={styles.comment_wrapper}>
             <div className={styles.comment_user_info}>
@@ -43,7 +57,7 @@ const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,a
                 {text}
             </Typography>
 
-            {images != null && <div className='gap_10'>{ images.map(item => <img style={{borderRadius: '20px'}} src={item} height={'33px'} />)}</div>}
+            {images != null && <div className='gap_10'>{ images.map(item => <img className='cursor' onClick={() => {setImageModal(true)}} style={{borderRadius: '20px'}} src={item} height={'33px'} />)}</div>}
             {addInfo != null && 
                 <div className='gap_10'>
                     {addInfo.icon}
@@ -56,6 +70,94 @@ const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,a
                 <AppColor.dislike/>
             </div>
             <div className={styles.absolute_bottom}><AppColor.threeLines/></div>
+            
+            {imageModal && <ModalCenter onClickHandler={() => {setImageModal(false)}}>
+                    <div className={styles.image_modal}>
+                        <AppColor.close className={`${styles.close_icon} cursor`} onClick={() => {setImageModal(false)}} width={'17px'} height={'17px'} fill={AppColor.text} />
+                   <div className={styles.image_modal_wrapper}>
+                   <ImageCardsShow
+                        widthTotalDesktop='50vw'
+                        images={[test1,test2,test3]}
+                    />
+                    <DynamicPadding desktop='30px' mobile='20px'/>
+                    <div className={styles.fake_grid}>
+                        <div className='flex_space_between'>
+                            <div className='gap_5 cursor' onClick={() => {setShareModal(true)}}>
+                                <AppColor.share />
+                                <Typography variant='body4' fontWeight='500' textTransform='uppercase'>Share</Typography>
+                            </div>
+                            <div className='gap_5 cursor'>
+                                <AppColor.report />
+                                <Typography variant='body4' fontWeight='500' textTransform='uppercase'>Report</Typography>
+                            </div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                   </div>
+                    </div>
+                </ModalCenter>}
+                {shareModal && <ModalCenter onClickHandler={() => {setShareModal(false)}}>
+                    <div className={styles.share_modal}>
+                        <AppColor.close className={`${styles.close_icon} cursor`} onClick={() => {setShareModal(false)}} width={'17px'} height={'17px'} fill={AppColor.text} />
+                        <div className={styles.share_wrapper}>
+                            <div className={styles.grey_background}>
+                                <img src={test1} width={'300px'} height={'175px'} style={{borderRadius: '20px'}} alt="" />
+                            </div>
+                            <div className={styles.flex_center}>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+                                <Typography variant='body3' fontWeight='500' textAlign='center'>
+                                Share this with your social Community
+                                </Typography>
+                                <DynamicPadding desktop='15px' mobile='10px'/>
+
+                                <div className={styles.links_grid}>
+                                    <div style={{backgroundColor: '#2F80ED'}} className={styles.link_box}>
+                                        <AppColor.facebook />
+                                    </div>
+                                    <div style={{backgroundColor: '#C637B4'}} className={styles.link_box}>
+                                        <AppColor.instagram />
+                                    </div>
+                                    <div style={{backgroundColor: '#2D9CDB'}}  className={styles.link_box}>
+                                        <AppColor.twitter />
+                                    </div>
+                                </div>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                                <PopUpBottom
+                                   
+                                    showNode={
+                                        <div className={`${styles.link_box_grey} cursor`}>
+                                            <Typography variant='body4' color={AppColor.transparentBlack}>
+                                                https://uniano.com/users/harso01/
+                                            </Typography>
+                                            <AppColor.copyLink />
+                                        </div>
+                                    }
+                                    popUpNode={<div className={styles.copyboard}>
+                                        <div style={{width: '100%'}} className='gap_10'>
+                                            <AppColor.inputChecked />
+                                            <Typography variant='body3' fontWeight='500' color='white'>
+                                            Link Copied
+                                            </Typography>
+                                            <AppColor.close
+                                            className='cursor'
+                                            onClick={() => {setShareModal(false)}} fill='white' width={'12px'} height={'12px'} style={{marginLeft: 'auto'}}/>
+                                        </div>
+                                        <DynamicPadding desktop='20px' mobile='15px'/>
+                                        <Typography style={{width: '330px'}} variant='body4' color='white'>
+                                        A link to this page has been copied to your clipboard!
+                                        </Typography>
+                                    </div>}
+                                    topPaddingFromNode='-100px'
+                                />
+                                
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+                            </div>
+                        </div>
+                    </div>
+                </ModalCenter>}
         </div>
     )
 }

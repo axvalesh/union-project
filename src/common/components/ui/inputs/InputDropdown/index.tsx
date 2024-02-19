@@ -14,8 +14,9 @@ type InputDropdownProps = {
     marginLeft?: boolean;
     iconHeight?: string;
     padding?: string;
+    iconBeforeVariant?: React.ReactNode;
 }
-const InputDropdown = ({padding,iconHeight,marginLeft,initText='',dropdownVariants,labelIcon,isRequired,callback}:InputDropdownProps) => {
+const InputDropdown = ({padding,iconHeight,iconBeforeVariant,marginLeft,initText='',dropdownVariants,labelIcon,isRequired,callback}:InputDropdownProps) => {
     const [currenText,setCurrentText] = useState(initText)
     const [showDropdown,setShowDropdown] = useState(false);
 
@@ -59,6 +60,7 @@ const InputDropdown = ({padding,iconHeight,marginLeft,initText='',dropdownVarian
                 )}
             </div>
             <div className={styles.label_icon}>{labelIcon}</div>
+            <div className={styles.icon_before}>{iconBeforeVariant}</div>
         </div>
     )
 };

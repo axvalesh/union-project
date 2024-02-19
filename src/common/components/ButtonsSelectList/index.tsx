@@ -14,7 +14,7 @@ const ButtonsSelectList = ({callback,text,gap}:ButtonsSelectListProps) => {
 
     useEffect(() => {
         callback(activeButton);
-        console.log('update')
+        
     },[activeButton])
     const handleClick = (item:string) => {
         if(activeButton.includes(item)) {

@@ -19,4 +19,17 @@
     border-radius: 20px;
     @include weakShadow;
     overflow: hidden;
+    min-width: var(--mobileMinWidth);
+    max-width: var(--mobileMaxWidth);
+}
+
+@media (min-width:$tabletSize) {
+    .bottom_part {
+        min-height: var(--desktopMinHeight);
+    }
+    .modal_center_basic {
+        max-width: var(--desktopMaxWidth);
+        min-width: var(--desktopWidthMin);
+        min-height: var(--desktopMinHeight);
+    }
 }

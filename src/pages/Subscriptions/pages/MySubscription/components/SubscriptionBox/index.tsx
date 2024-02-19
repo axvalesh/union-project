@@ -7,6 +7,7 @@ import { useHover } from '@common/helpers/useHover';
 import ModalTriangleTop from '@common/components/ui/modals/ModalTriangleTop/index';
 import SwitchButton from '@common/components/ui/SwitchButton/index';
 import { useState } from 'react';
+import PopUpBottom from '@common/components/ModalPopUps/PopUpBottom/index';
 
 export type SubscriptionBoxProps = {
     filter: string;
@@ -17,24 +18,32 @@ export type SubscriptionBoxProps = {
 }
 const SubscriptionBox = ({daysLeft,filter,price,userName,topLeftIcon}:SubscriptionBoxProps) => {
 
-    const [hovered, eventHandlers] = useHover({delayInMilliseconds: 1000});
+    const [showDropdown,setShowDropdown] = useState(false);
+
     const [showIcon,setShowIcon] = useState(topLeftIcon);
 
     return (
       <div className={styles.box_wrapper}>
-           <div className={styles.absolute_right} {...eventHandlers}>
-             <AppColor.threeLines /> 
-             <div className={styles.absolute_child}> 
-                <ModalTriangleTop
-                  contentNode={
-                  <div>
-                    <HoverItem icon={<AppColor.repeat />} text='Auto renewal' node={<SwitchButton startValue={topLeftIcon} callback={(show) => {setShowIcon(show) }} />} />
-                    <HoverItem icon={<AppColor.clockPlus />} text='Prolong plan' />
-                    <HoverItem icon={<AppColor.circleRepeat />} text='Change plan' />
-                  </div>} 
-                  isActive={hovered} 
-                /> 
-              </div>
+           <div className={styles.absolute_right} >
+                    <PopUpBottom
+                        showBackgroundHover={true}
+                        showNodeHover={
+                          <AppColor.threeLinesActive />
+                        }
+                      showNode={
+                      <AppColor.threeLines /> 
+                      }
+                      popUpNode={ 
+
+                        <div className={styles.background_white}>
+                          <HoverItem icon={<AppColor.repeat />} text='Auto renewal' node={<SwitchButton startValue={topLeftIcon} callback={(show) => {setShowIcon(show) }} />} />
+                          <HoverItem icon={<AppColor.clockPlus />} text='Prolong plan' />
+                          <HoverItem icon={<AppColor.circleRepeat />} text='Change plan' />
+                          <div className={styles.absolute_triangle}></div>
+                        </div>} 
+                  
+                      topPaddingFromNode='10px'
+                  />
              
              </div>
            <div className={styles.absolute_left}> 

@@ -75,10 +75,10 @@ const ServiceAll = () => {
     const handleAddTag = (item: string) => {
         setTags((prevTags) => {
             if (!prevTags.includes(item)) {
-                console.log('add if');
+                
                 return [...prevTags, item];
             } else {
-                console.log('remove ----');
+                
                 return prevTags.filter((tag) => tag !== item);
             }
         });
@@ -88,7 +88,7 @@ const ServiceAll = () => {
         setTags((prevTags) => {
             const updatedTags = prevTags.filter((tag) => tag !== passedText);
             setRemovedTagFromSideBar(passedText);
-            console.log('remove sidebar', passedText);
+            
             return updatedTags;
         });
     };

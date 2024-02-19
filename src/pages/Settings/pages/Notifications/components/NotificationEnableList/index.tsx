@@ -29,7 +29,7 @@ const NotificationEnableList = () => {
             subscriptions: false,
         })
 
-    console.log(notificationData)
+
     const handleCheckboxChange = (
         item: boolean,
         type: keyof NotificationData

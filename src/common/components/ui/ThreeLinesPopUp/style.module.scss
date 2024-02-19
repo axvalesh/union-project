@@ -1,0 +1,32 @@
+.item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.15s;
+    padding: 5px 10px;
+    border-radius: 20px;
+    &:hover {
+        background-color: $white;
+    }
+}
+
+.triangle {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+.items_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px;
+    @include weakShadow;
+    border-radius: 20px;
+    background-color: white;
+}

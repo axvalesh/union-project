@@ -21,7 +21,7 @@ type dataType = {
 const FirstStep = ({callback,formData1,updateFormData1}: {callback:() => void,formData1: dataType,updateFormData1:any}) => {
     const [formData, setFormData] = useState<dataType>(structuredClone(formData1));
 
-    console.log(formData1);
+
     const isCanMoveOn = () => {
         return Object.values(formData).every(value => value.trim() !== '');
     }; 

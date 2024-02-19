@@ -17,34 +17,22 @@ import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index';
 import { fakeUserConstant } from '@common/models/user';
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
+import CategoryRemoveItem from './components/CategoryRemoveItem';
+import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import InputCommon from '@common/components/ui/inputs/InputCommon/index';
+import CategorySelect from './components/CategorySelect';
+import { developmentDropdown } from '@common/models/constants';
+import MyCheckbox from '@common/components/ui/inputs/Checkbox/index';
+import {SelectFilterItem} from '@common/components/ui/SearchFilterBar/index'
+import { BigInputNoBorder, BigInputOutside } from '@common/components/ui/BigInput/index';
+import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
+import DarkBox from '@common/components/ui/DarkBox/index';
+import InputDropdown from '@common/components/ui/inputs/InputDropdown/index';
+import SizeBox from '@common/components/ui/SizeBox/index';
+import DropdownPortfolio from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownPortfolio/index';
 
-const skillsContent:SkillsItemProps[] = [
-    {
-        icon: <AppColor.development />,
-        title: 'Website Development1',
-        skills: ['Wordpress', 'Wix']
-    },
-    {
-        icon: <AppColor.development />,
-        title: 'Website Development2',
-        skills: ['Wordpress', 'Wix']
-    },
-    {
-        icon: <AppColor.development />,
-        title: 'Website Development3',
-        skills: ['Wordpress', 'Wix']
-    },
-    {
-        icon: <AppColor.development />,
-        title: 'Website Development4',
-        skills: ['Wordpress', 'Wix']
-    },
-    {
-        icon: <AppColor.development />,
-        title: 'Website Development5',
-        skills: ['Wordpress', 'Wix']
-    },
-]
 const activityItems = [
     {
       filter: 'Service',
@@ -153,12 +141,420 @@ const statistic:StatisticTextProps[] = [
         text: '352'
     },
 ]
+
+type SkillType = {
+    icon: React.ReactNode;
+    title: string;
+    skills: string[];
+}
+
+type LanguageType = {
+    language: string;
+    level: string;
+    flag: React.ReactNode;
+}
+
+
+const allCountries:LanguageType[] = [
+    {
+        flag: <AppColor.usaFlag />,
+        language: 'English (USA)',
+        level: 'Fluent',
+    },
+    {
+        flag: <AppColor.ukFlag />,
+        language: 'English (United Kingdom)',
+        level: 'Fluent',
+    },
+    {
+        flag: <AppColor.ukraineFlag />,
+        language: 'Ukrainian',
+        level: 'Fluent',
+    },
+    {
+        flag: <AppColor.franchFlag />,
+        language: 'French',
+        level: 'Fluent',
+    },
+    {
+        flag: <AppColor.spanishFlag />,
+        language: 'Spanish',
+        level: 'Fluent',
+    },
+];
+
+const skills = [
+    "WordPress",
+    "NFT Development",
+    "Chatbots",
+    "Website Builders & CMS",
+    "Crypto Wallet Development",
+    "Databases",
+    "Crypto Coins & Tokens",
+    "Trading Apps",
+    "Blockchain Development",
+    "Databases",
+    "Windows",
+    "Android",
+    "E-Commerce Development",
+    "Linux/Unix",
+    "iOS",
+    "Web Programming",
+    "3D",
+    "OSX",
+    "Other",
+    "Mobile Web",
+    "2D",
+    "Other"
+  ]
+  
 const Account = () => {
 
+    const [skillsContent,setSkillsContent] = useState<SkillType[]>([
+        {
+            icon: <AppColor.development />,
+            title: 'Web Development',
+            skills: ['WordPress']
+        },
+    ])
+
     const {width,height} = useScreenSize();
-    console.log(width);
+
+    const [editModal,setEditModal] = useState(false);
+    const [editModalCategory,setEditModalCategory] = useState('Development');
+
+    const currentDropdonw = developmentDropdown.find(item => item.title == editModalCategory);
+
+    const activeSkills = skillsContent.map(item => item.skills).flat();
+    const skillsTitles = skillsContent.map(item => item.title);
+
+    const [descriptionModal,setDescriptionModal] = useState(false);
+
+    const [descriptionText,setDescriptionText] = useState('');
+
+    const [languageModal,setLanguageModal] = useState(false);
+
+    const [languages,setLanguages] = useState<LanguageType[]>([
+        {
+            language: 'English (USA)',
+            level: 'Fluent',
+            flag: <AppColor.usaFlag />  ,
+        },
+    ])
+
+    const [educationModal,setEducationModal] = useState(false);
+
+    const [educationPlaces,setEducationPlaces] = useState([]);
+
+    const [addEducationModal,setAddEducationModal] = useState(false);
+
+
+    const [editLanguageModal,setEditLanguageModal] = useState('');
+    const [processEditLanguage,setProcessEditLangauge] = useState<LanguageType>({flag: <></>,language: '',level: ''});
+    const editableLanguage = languages.find(item => item.language == editLanguageModal);
+
+    const [skillsModal,setSkillsModal] = useState(false);
+
     return (
       <div>
+         {skillsModal && <ModalCenterBasic desktopMinWidth='360px'
+            bottomPartPadding='30px' nodeAfterTitle={<div className='gap_10'>
+                <DarkBox text={`${languages.length}`} />
+                <InputCommon callback={() => {}} placeholder='Search' />
+                <div className='gap_5'>
+                    <Typography variant='body4'>
+                    1 of 3 skills selected
+                    </Typography>
+                    <AppColor.upCirlcle />
+                </div>
+            </div>}
+
+            topPartPadding='20px 30p' callbackClose={() => {setSkillsModal(false)}} title='Skills'>
+                <div className={styles.skills_grid}>
+                {skills.map(item => <SkillCheckBox text={item} />)}
+                </div>
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <div className='gap_10' style={{justifyContent: 'end'}}>
+                    <MyButtonTransparent onClick={() => {
+                        setSkillsModal(false)
+                    }} fontWeight='500' textTransform='uppercase'>
+                        Cancel
+                    </MyButtonTransparent>
+                    <MyButtonOrange onClick={() => {
+                      
+
+                    }} fontWeight='500' textTransform='uppercase'>
+                    Save
+                    </MyButtonOrange>
+                </div>
+
+            </ModalCenterBasic>}
+        {educationModal && <ModalCenterBasic desktopMinHeight='80vh' desktopMinWidth='360px'
+            bottomPartPadding='0px' nodeAfterTitle={<DarkBox text={`${languages.length}`} />}
+            topPartPadding='20px 30p' callbackClose={() => {setEducationModal(false)}} title='Education'>
+                {languages.map(item =>
+                    <EducationModalItem college='Ukranian National Technical University' degree='M.A. Degree. Ecommerce'
+                        graduated='Graduated 2017'
+                    />    
+                )}
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <div className={styles.flex_end}>
+                    <MyButtonOrange textTransform='uppercase' fontWeight='500' onClick={() => {
+                        setAddEducationModal(true);
+                    }}>
+                       <div className={styles.white}>
+                            <AppColor.plus width={'10px'} height={'10px'} stroke={AppColor.orange} />
+                        </div> Add education
+                    </MyButtonOrange>
+                </div>
+
+            </ModalCenterBasic>}
+
+            {addEducationModal && <ModalCenterBasic desktopMinWidth='360px'
+            bottomPartPadding='25px 30px'
+            topPartPadding='20px 30p' callbackClose={() => {setAddEducationModal(false)}} prevClose={true} title='Add education'>
+                
+                <Typography variant='body3' fontWeight='500'>University/College</Typography>
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+               
+                <InputCommon callback={() => {}} placeholder='' padding='15px 30px'/>
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <Typography variant='body3' fontWeight='500'>Degree</Typography>
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <InputCommon callback={() => {}} placeholder='' padding='15px 30px'/>
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <Typography variant='body3' fontWeight='500'>Graduated</Typography>
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <InputDropdown
+                marginLeft={true}
+                initText='Select year' labelIcon={<></>}
+                dropdownVariants={Array.from({ length: 2025 }, (_, index) => index.toString())}
+                />
+                <DynamicPadding desktop='30px' mobile='20px'/>
+                <div className='gap_10' style={{justifyContent: 'end'}}>
+                    <MyButtonTransparent onClick={() => {}} fontWeight='500' textTransform='uppercase'>
+                        Cancel
+                    </MyButtonTransparent>
+                    <MyButtonOrange onClick={() => {
+                        let tmpCopy = [...languages];
+                        let neededIndex = tmpCopy.findIndex(item => item.language == editLanguageModal)
+
+                        tmpCopy[neededIndex] = processEditLanguage;
+                        setLanguages(tmpCopy);
+                        setEditLanguageModal('');
+
+                    }} fontWeight='500' textTransform='uppercase'>
+                    Add
+                    </MyButtonOrange>
+                </div>
+            </ModalCenterBasic>}
+
+        {editLanguageModal != '' && <ModalCenterBasic desktopMinHeight='80vh' desktopMinWidth='360px'
+            bottomPartPadding='25px 30px'
+            topPartPadding='20px 30p' callbackClose={() => {setEditLanguageModal('')}} prevClose={true} title='Edit'>
+                
+                <Typography variant='body3' fontWeight='500'>Language</Typography>
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+               
+                <DropdownLanguages callback={(item) => {setProcessEditLangauge(item)}} initLanguage={editableLanguage} />
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <Typography variant='body3' fontWeight='500'>Level</Typography>
+
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <InputDropdown callback={(item) => {
+                    setProcessEditLangauge({...processEditLanguage, level: item});
+                }} dropdownVariants={['Fluent','b1','b2','c1','c2']} initText='Fluent' labelIcon={<></>} 
+                    marginLeft={true} padding='15px 20px'
+                />
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <div className='gap_10' style={{justifyContent: 'end'}}>
+                    <MyButtonTransparent onClick={() => {}} fontWeight='500' textTransform='uppercase'>
+                        Cancel
+                    </MyButtonTransparent>
+                    <MyButtonOrange onClick={() => {
+                        let tmpCopy = [...languages];
+                        let neededIndex = tmpCopy.findIndex(item => item.language == editLanguageModal)
+
+                        tmpCopy[neededIndex] = processEditLanguage;
+                        setLanguages(tmpCopy);
+                        setEditLanguageModal('');
+
+                    }} fontWeight='500' textTransform='uppercase'>
+                    Save
+                    </MyButtonOrange>
+                </div>
+            </ModalCenterBasic>}
+        {languageModal && <ModalCenterBasic desktopMinHeight='80vh' desktopMinWidth='360px'
+            bottomPartPadding='0px' nodeAfterTitle={<DarkBox text={`${languages.length}`} />}
+            topPartPadding='20px 30p' callbackClose={() => {setLanguageModal(false)}} title='Languages'>
+                {languages.map(item =>
+                    <LanduageModalItem  level={item.level} text={item.language} callbackRemove={(passLanguage) => {
+                        setLanguages(prev => prev.filter(item => item.language !== passLanguage))
+                    }} openEditModal={(item) => {setEditLanguageModal(item)}} />    
+                )}
+                <DynamicPadding desktop='30px' mobile='20px'/>
+
+                <div className={styles.flex_end}>
+                    <MyButtonOrange textTransform='uppercase' fontWeight='500' onClick={() => {}}>
+                       <div className={styles.white}>
+                            <AppColor.plus width={'10px'} height={'10px'} stroke={AppColor.orange} />
+                        </div> Add language
+                    </MyButtonOrange>
+                </div>
+
+            </ModalCenterBasic>}
+        {descriptionModal && <ModalCenterBasic topPartPadding='20px 30p' callbackClose={() => {setDescriptionModal(false)}} title='Description'
+            bottomPartPadding='25px 30px' desktopMinWidth='880px'
+        >
+            <BigInputNoBorder callback={(item) => {
+                setDescriptionText(item);
+            }}
+                modalClose={() => {setDescriptionModal(false)}}
+            />
+            </ModalCenterBasic>}
+        {editModal && 
+            <ModalCenterBasic bottomPartPadding='0px' callbackClose={() => {setEditModal(false)}} title='Categories'
+            nodeAfterTitle={<div><Typography variant='body3' fontWeight='500' color='white'>{skillsContent.length}</Typography></div>}
+            topPartPadding='20px 30px'>
+            
+                <div className={styles.filters_remove_part}>
+                    <DynamicPadding desktop='30px' mobile='20px' />
+                   <div className={styles.filters_remove_wrapper}>
+                        {skillsContent.map((item,index) => 
+                            <>
+                                {item.skills.map(item => <CategoryRemoveItem
+                                key={item}
+                                callbackRemove={(item) => {
+                                   
+                                }}
+                                title={item}
+                            />)}
+                            </>
+                        )}
+                   </div>
+                    <DynamicPadding desktop='30px' mobile='20px' />
+                    <HorizontalLine />
+                </div>
+
+                <div className={styles.edit_grid}>
+                    <div className={styles.edit_grid_left}>
+                        <DynamicPadding desktop='30px' mobile='20px'/>
+                        <InputCommon
+                            callback={() => {}} placeholder='Search' padding='8px 15px'
+                            width='190px'
+                        />
+                        <DynamicPadding desktop='30px' mobile='20px'/>
+
+                        <CategorySelect activeSelect={editModalCategory} callback={(item) => {setEditModalCategory(item)}}
+                            icon={<AppColor.development />} title='Development'/>
+                        <CategorySelect activeSelect={editModalCategory} callback={(item) => {setEditModalCategory(item)}}
+                            icon={<AppColor.desing />} title='Design'/>
+                        <CategorySelect activeSelect={editModalCategory} callback={(item) => {setEditModalCategory(item)}}
+                            icon={<AppColor.marketing />} title='Marketing'/>
+                        <CategorySelect activeSelect={editModalCategory} callback={(item) => {setEditModalCategory(item)}}
+                            icon={<AppColor.writing />} title='Writing'/>
+                        <CategorySelect activeSelect={editModalCategory} callback={(item) => {setEditModalCategory(item)}}
+                            icon={<AppColor.managment />} title='Management'/>
+                        <CategorySelect activeSelect={editModalCategory} callback={(item) => {setEditModalCategory(item)}}
+                            icon={<AppColor.consulting />} title='Consulting'/>
+                        <DynamicPadding desktop='30px' mobile='20px'/>
+                    </div>
+                    <div className={styles.edit_grid_right}>
+                        {currentDropdonw.items.map(skillItem =>
+                            <div>
+                                <Typography variant='body4' fontWeight='500'>
+                                    {skillItem.title}
+                                </Typography>
+                                <DynamicPadding desktop='20px' mobile='15px' />
+
+                                <div className={styles.grid_10}>
+                                    {skillItem.links.map(item =>
+                                        {
+                
+                                            
+                                            
+                                            return (
+                                                <SelectFilterItem 
+                                            initState={activeSkills.includes(item)}
+                                            callback={(item) => {
+                                                console.log('top level');
+                                                
+                                                let newArray:SkillType[] = []
+                                                for(let i = 0;i< skillsContent.length;i++) {
+                                                    console.log('array iterration');
+                                                    if(skillsTitles.includes(skillItem.title)) {
+                                                        console.log('includes');
+                                                        
+                                                        if(skillsContent[i].title == skillItem.title) {
+                                                            newArray.push(
+                                                                {
+                                                                    icon: skillsContent[i].icon,
+                                                                    skills: [...skillsContent[i].skills,item],
+                                                                    title: skillsContent[i].title
+                                                                }
+                                                            )
+                                                        } else {
+                                                            newArray.push(skillsContent[i])
+                                                        }
+                                                        setSkillsContent(newArray);
+                                                    } else {
+                                                        console.log('new');
+                                                        
+                                                        setSkillsContent(prev => [...prev,{
+                                                            icon: <AppColor.development />,
+                                                            skills: [item],
+                                                            title: skillItem.title,
+                                                        }])
+                                                    }
+                                                }
+                                               
+                             
+                                                console.log('after map');
+                                                
+                                            
+                                            }}
+                                            callbackRemove={(item) => {
+                                                setSkillsContent(prev => prev.map(skill => {
+                                                    
+                                                    if(skill.title == currentDropdonw.title) {
+                                                        return {
+                                                            icon: skill.icon,
+                                                            skills: skill.skills.filter(skilltmp => skilltmp !== item),
+                                                            title: skill.title
+                                                        }
+                                                    }
+                                                    return skill;
+                                                }))
+                                            }}
+                                            text={item}
+                                        />
+                                            )
+                                        }
+                                    )}
+                                </div>
+                            </div>    
+                        )}
+                    </div>
+                </div>
+
+
+            </ModalCenterBasic>}
             <Header />
             <NavigationBar
                 currentCategoryTitle="Dashboard"
@@ -181,17 +577,20 @@ const Account = () => {
                     </MyButtonTransparentOrange>
                 </div>
                 <DynamicPadding />
-                <div className={styles.after_top_section}>
-                    {
-                    width > 769
-                    ? skillsContent.map(item =>
-                        <SkillsItem 
-                            icon={item.icon}
-                            skills={item.skills}
-                            title={item.title}
-                        />
-                    )
-                    : <DropdownSkills />}
+                <div className='gap_10'>
+                    <div className={styles.after_top_section}>
+                        {
+                        width > 769
+                        ? skillsContent.map(item =>
+                            <SkillsItem 
+                                icon={item.icon}
+                                skills={item.skills}
+                                title={item.title}
+                            />
+                        )
+                        : <DropdownSkills />}
+                    </div>
+                    <AppColor.edit onClick={() => {setEditModal(true)}} className='cursor' fill={AppColor.text} />
                 </div>
                 <DynamicPadding />
 
@@ -246,7 +645,7 @@ const Account = () => {
                        <DynamicPadding mobile='20px' desktop='30px' />
                        <div>
                         <Typography variant='body2' fontWeight='500'>
-                        <div className={styles.text_flex_gap}> Languages <AppColor.noteText /> </div>
+                        <div className={styles.text_flex_gap}> Languages <AppColor.noteText className='cursor' onClick={() => {setLanguageModal(true)}} /> </div>
                                 </Typography>
                                 <DynamicPadding mobile='30px' desktop='30px' />
                                 <div className={styles.user_details_wrapper}>
@@ -260,7 +659,7 @@ const Account = () => {
 
                        <div>
                                 <Typography variant='body2' fontWeight='500'>
-                                    <div className={styles.text_flex_gap}> Education <AppColor.noteText /> </div>
+                                    <div className={styles.text_flex_gap}> Education <AppColor.noteText onClick={() => {setEducationModal(true)}} className='cursor' /> </div>
                                 </Typography>
                                 <DynamicPadding mobile='30px' desktop='30px' />
                                 <div>
@@ -321,8 +720,11 @@ const Account = () => {
                         <ContentShell 
                             title={
                                 <Typography variant='body2' fontWeight='500'>
-                                    <div className={styles.text_flex_gap}> Description <div className={styles.info_box}><AppColor.noteText /></div> </div>
+                                    <div className={styles.text_flex_gap}> Description <div className={styles.info_box}><AppColor.noteText className='cursor' onClick={() => {setDescriptionModal(true)}} /></div> </div>
                                 </Typography>
+                            }
+                            node={
+                                <Typography variant='body4'>{descriptionText}</Typography>
                             }
                         />
                         <ContentShell 
@@ -339,13 +741,28 @@ const Account = () => {
                                 </div>
                             }
                         />
+                        <ContentShell 
+                            title={
+                                <Typography variant='body2' fontWeight='500'>
+                                    <div className={styles.text_flex_gap}> Skills <div className={styles.info_box}><AppColor.noteText className='cursor' onClick={() => {setSkillsModal(true)}} /></div> </div>
+                                </Typography>
+                            }
+                            node={
+                                <div className={styles.grid_skills}>
+                                    <SkillItemNode filter='Logos' fixed='$100' hourly='$10/hr' />
+                                    <SkillItemNode filter='Logos' fixed='$100' hourly='$10/hr' />
+                                    <SkillItemNode filter='Logos' fixed='$100' hourly='$10/hr' />
+                                </div>
+                            }
+                        />
                         <DropdownNodeFilter
                             countNotifications={5}
                             filters={[]}
                             title='Reviews'
                             textAfterCount={<Typography textLineHeight='80%' variant='body4' color={AppColor.green}>95% positive reviews </Typography>}
                         />
-                         <DropdownNodeActivity filters={['All', 'Service', 'Sponsorship']} countNotification={activityItems.length} activityItems={activityItems} />;
+                         <DropdownNodeActivity filters={['All', 'Service', 'Sponsorship']} countNotification={activityItems.length} activityItems={activityItems} />
+                         <DropdownPortfolio />;
                     </div>
                 </div>
 
@@ -357,6 +774,72 @@ const Account = () => {
     );
 };
 
+type SkillCheckBoxProps = {
+    text: string;
+    removeDropdown?: boolean;
+    callback?: (item: string,isTrue: boolean) => void;
+    initValue?: boolean;
+}
+export const SkillCheckBox = ({initValue,text,callback,removeDropdown=false}:SkillCheckBoxProps) => {
+    
+    const [selected,setSelected] = useState(initValue ?? false);
+    return (
+        <div>
+            <div className={`${styles.skills_box} cursor`}>
+                <MyCheckbox basicValue={initValue ?? false} width='20px' height='20px' callback={(item) => {
+                    setSelected(item)
+                    if(callback) {
+                        callback(text,item);
+                    }
+                }}/>
+                <Typography variant='body4' fontWeight={selected ? '500' : '400'}>
+                    {text}
+                </Typography>
+            </div>
+            {!removeDropdown && selected && <div style={{paddingLeft: '32px'}}>
+                <SizeBox height='10px'/>
+                <div className='gap_5'>
+                    <Typography variant='body4' color={AppColor.transparentBlack}>
+                    Fixed Budget
+                    </Typography>
+                    <InputCommon rightPadding={2} callback={() => {}} placeholder='$320' padding='4px 2px' textAlingCenter={true} width='55px' />
+                </div>
+                <SizeBox height='10px'/>
+                <div className='gap_5'>
+                    <Typography variant='body4' color={AppColor.transparentBlack}>
+                    Hourly Rate
+                    </Typography>
+                    <InputCommon rightPadding={2} callback={() => {}} placeholder='$32/hr' padding='4px 2px' textAlingCenter={true} width='75px' />
+                </div>
+                </div>}
+        </div>
+    )
+}
+
+type SkillItemNodeProps = {
+    filter: string;
+    fixed: string;
+    hourly: string;
+}
+const SkillItemNode = ({filter,fixed,hourly}:SkillItemNodeProps) => {
+    return (
+        <div>
+            <div className={styles.orange_box}>
+                <Typography variant='body4' fontWeight='500' textLineHeight='1' color='white'>
+                    {filter}
+                </Typography>
+            </div>
+            <SizeBox height='15px'/>
+            <Typography variant='body4'color={AppColor.transparentBlack}>
+            Fixed Budget <span style={{fontWeight: '500',color: AppColor.text}}>from {fixed}</span>
+            </Typography>
+            <SizeBox height='10px'/>
+            <Typography variant='body4'color={AppColor.transparentBlack}>
+            Hourly Rate <span style={{fontWeight: '500',color: AppColor.text}}>from {hourly}</span>
+            </Typography>
+        </div>
+    )
+}
 
 type StatisticTextProps = {
     title: string;
@@ -413,7 +896,104 @@ const DetailInfo = ({details,title}:DetailInfoProps) => {
         </div>
     )
 }
+
+type DropdownLanguagesProps = {
+    initLanguage: LanguageType;
+    callback: (item:LanguageType) => void;
+}
+const DropdownLanguages = ({initLanguage,callback}:DropdownLanguagesProps) => {
+    
+    const [currentLanguage,setCurrentlaguage] = useState<LanguageType>(initLanguage);
+    const [showDropdown,setShowDropdown] = useState(false);
+
+    const borderStyles = {
+        borderTopLeftRadius: showDropdown ? '20px' : '20px',
+        borderTopRightRadius: showDropdown ? '20px' : '20px',
+        borderBottomLeftRadius: showDropdown ? '0px' : '20px',
+        borderBottomRightRadius: showDropdown ? '0px' : '20px',
+    };
+
+    return (
+        <div style={{position: 'relative'}}>
+            <div onClick={(event) => {setShowDropdown(prev => !prev);event.stopPropagation();}} style={{...borderStyles}} className={`${styles.dropdown_languages} cursor`}>
+                {currentLanguage.flag && currentLanguage.flag}
+                <Typography variant='body4'>{currentLanguage.language}</Typography>
+
+                {showDropdown
+                ? <AppColor.chevronTop fill={AppColor.text} width={'12px'} height={'6px'} style={{marginLeft: 'auto'}} />
+                : <AppColor.chevronBottom fill={AppColor.text} width={'12px'} height={'6px'} style={{marginLeft: 'auto'}} />}
+            </div>
+            <div className={styles.absolute_language} style={{display: showDropdown ? 'grid' : 'none'}}>
+                <div className={styles.input_language}>
+                    <InputCommon callback={() => {}} placeholder='Search'
+                    padding='20px 15px'
+                    rightPadding={15}
+                    borderRadius='0px'
+                    boxShadowNone={true}
+                    icon={<AppColor.search height={'16px'} />} />
+                </div>
+
+                {
+                    allCountries.map(item =>
+                        <div className='cursor'>
+                             <CountrySelect activeCountry={currentLanguage.language} callback={(item) => {
+                            setCurrentlaguage(item);
+                            callback(item);
+                            setShowDropdown(false);
+                            }} country={item} />
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+    )
+}
+
+type CountrySelectProps = {
+    country: LanguageType;
+    activeCountry: string;
+    callback: (item:LanguageType) => void;
+}
+const CountrySelect = ({country,callback,activeCountry}:CountrySelectProps) => {
+    return (
+        <div className={styles.country_select} onClick={() => {callback(country)}}>
+            {country.flag && country.flag}
+            <Typography variant='body4' fontWeight={country.language == activeCountry ? '500' : '400'}>
+                {country.language}
+            </Typography>
+        </div>
+    )
+}
+
 const DropdownSkills = () => {
+    const [skillsContent,setSkillsContent] = useState([
+        {
+            icon: <AppColor.development />,
+            title: 'Website Development1',
+            skills: ['Wordpress', 'Wix']
+        },
+        {
+            icon: <AppColor.development />,
+            title: 'Website Development2',
+            skills: ['Wordpress', 'Wix']
+        },
+        {
+            icon: <AppColor.development />,
+            title: 'Website Development3',
+            skills: ['Wordpress', 'Wix']
+        },
+        {
+            icon: <AppColor.development />,
+            title: 'Website Development4',
+            skills: ['Wordpress', 'Wix']
+        },
+        {
+            icon: <AppColor.development />,
+            title: 'Website Development5',
+            skills: ['Wordpress', 'Wix']
+        },
+    ])
+
     const [activeIndex,setActiveIndex] = useState(0);
     const [showDropdown,setShowDropdown] = useState(false);
     const currentItem = skillsContent[activeIndex];
@@ -440,6 +1020,42 @@ const DropdownSkills = () => {
         </div>
     )
 }
+
+type EducationModalItemProps = {
+    college: string;
+    degree: string;
+    graduated: string;
+}
+const EducationModalItem = ({college,degree,graduated}:EducationModalItemProps) => {
+    return (
+        <div className={`${styles.education_item} cursor`}>
+            <div>
+                <Typography variant='body4' fontWeight='500'>{college}</Typography>
+                <Typography variant='body4'>{degree} </Typography>
+                <Typography variant='body4'>{graduated}</Typography>
+            </div>
+            <AppColor.close fill={AppColor.red} width={'15px'} height={'15px'} />
+        </div>
+    )
+} 
+type LanduageModalItemProps = {
+    text: string;
+    level: string;
+    callbackRemove: (item:string) => void;
+    openEditModal: (item:string) => void;
+}
+const LanduageModalItem = ({level,openEditModal,text,callbackRemove}:LanduageModalItemProps) => {
+    return (
+        <div onClick={() => {openEditModal(text)}} className={`${styles.language_select} cursor`}>
+            <Typography variant='body4'>{text}</Typography>
+
+            <div className='gap_20' style={{marginLeft: 'auto'}}>
+                <Typography variant='body4' fontWeight='500'>{level}</Typography>
+                <AppColor.close width={'15px'} fill={AppColor.red} height={'15px'} onClick={() => {callbackRemove(text)}}/>
+            </div>
+        </div>
+    )
+}
 type SkillsItemProps = {
     title: string;
     icon: any;
@@ -454,7 +1070,8 @@ const SkillsItem = ({icon,skills,title,showDropdown=false}:SkillsItemProps) => {
                 <Typography variant='body5' fontWeight='500'>{title}</Typography>
                 <Typography variant='body5'>
                     {skills.map((item,index) => {
-                        if(index != skills.length -1) {
+                        if(index >= 2) return ''
+                        if(index < 1) {
                             return `${item},`
                         } else {
                             return `${item}, other`

@@ -9,9 +9,10 @@ type PopUpBottomProps = {
         showNodeHover?: React.ReactNode;
         popUpNode: React.ReactNode;
         topPaddingFromNode?: string;
-        showBackgroundHover?: boolean
+        showBackgroundHover?: boolean;
+        positionRight?: string;
 }
-const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFromNode,showNodeHover}:PopUpBottomProps) => {
+const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFromNode,showNodeHover,positionRight=''}:PopUpBottomProps) => {
 
     const [show,setShow] = useState(false);
 
@@ -26,9 +27,9 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
         
          if (nodeRef.current && !nodeRef.current.contains(event.target as Node)) {
              setShow(false);
-             console.log('close');
+             
          } else {
-            console.log('not close');
+            
             
          }
      };
@@ -69,7 +70,20 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
      </div>}
                
            </div>
-           <div  style={{top: `calc(100% + ${topPaddingFromNode})`,opacity: show ? '1' : '0',pointerEvents: show ? 'all' : 'none',display: show ? 'block' : 'none'}} className={styles.popup_node}>
+           <div  style={positionRight != '' ? {
+            right: positionRight,
+            left: 'auto',
+            transform: 'translateX(0)',
+            top: `calc(100% + ${topPaddingFromNode})`,
+            opacity: show ? '1' : '0',
+            pointerEvents: show ? 'all' : 'none',
+            display: show ? 'block' : 'none'
+           } : {
+            top: `calc(100% + ${topPaddingFromNode})`,
+            opacity: show ? '1' : '0',
+            pointerEvents: show ? 'all' : 'none',
+            display: show ? 'block' : 'none'
+           }} className={styles.popup_node}>
                 {popUpNode}
            </div>
       </div>

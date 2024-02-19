@@ -12,12 +12,82 @@ import Footer from '@common/components/Footer/Footer';
 import { useState } from 'react';
 import SaleCard from './components/SaleCard';
 import DropdownText from '@common/components/ui/Dropdown/DropdownText/index';
+import Typography from '@common/components/ui/Typography/Typography';
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
+import InfoBox from '@common/components/ui/InfoBox/index';
+import InputCommon from '@common/components/ui/inputs/InputCommon/index';
+import SizeBox from '@common/components/ui/SizeBox/index';
+import { Selectbox } from '@pages/Service/Service/index';
+import RadioButton from '@common/components/ui/RadioButton/index';
+import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 
 const SubscriptionsPlans = () => {
 
     const [activePlan,setActivePlan] = useState('Start');
+
+    const [addModal,setAddModal] = useState(false);
+
+    const [radioSelection,setRadioSelection] = useState(1);
     return (
       <div>
+        {addModal && <ModalCenterBasic bottomPartPadding='30px' callbackClose={() => {setAddModal(false)}} title='Add own service' prevClose={true}
+        >
+            <div className='gap_5'>
+                <Typography variant='body3' fontWeight='500'>
+                Service name
+                </Typography>
+                <InfoBox />    
+            </div>    
+            <DynamicPadding desktop='30px' mobile='20px' />
+            <InputCommon callback={(item) => {}} placeholder='Write service name' />
+            <SizeBox height='5px'/>
+            <Typography variant='body4' color={AppColor.transparentBlack}></Typography>
+            <SizeBox height='5px'/>
+            <div className='gap_5'>
+                <Typography variant='body3' fontWeight='500'>
+                Service display type
+                </Typography>
+                <InfoBox />    
+            </div> 
+
+            <DynamicPadding desktop='30px' mobile='20px' />
+
+            <RadioButton 
+                text='Checkbox'
+                activeSelection={radioSelection == 1}
+                indexItem={1}
+                callback={(item) => {setRadioSelection(item)}}
+            />
+            <SizeBox height='10px'/>
+             <RadioButton 
+                text='Text'
+                activeSelection={radioSelection == 2}
+                indexItem={2}
+                callback={(item) => {setRadioSelection(item)}}
+            />
+
+            <DynamicPadding desktop='30px' mobile='20px' />
+            <div className='gap_5'>
+                <Typography variant='body3' fontWeight='500'>
+                Customer prompt
+                </Typography>
+                <InfoBox />    
+            </div> 
+            <InputCommon callback={(item) => {}} placeholder='Write customer promt' />
+            <Typography variant='body4' color={AppColor.transparentBlack}></Typography>
+
+            <DynamicPadding desktop='30px' mobile='20px' />
+            <div className={styles.flex_end}>
+                <MyButtonTransparent textTransform='uppercase' fontWeight='500' onClick={() => {setAddModal(false)}}>
+                Cancel
+                </MyButtonTransparent>
+                <MyButtonOrange textTransform='uppercase' fontWeight='500' onClick={() => {setAddModal(false)}}>
+                Add
+                </MyButtonOrange>
+            </div>
+
+            </ModalCenterBasic>}
           <Header /> 
           <NavigationBar activePageIndex={0} currentCategoryTitle='Subscriptions' />
 
@@ -133,6 +203,12 @@ const SubscriptionsPlans = () => {
                     }
                 ]}
             />
+            <DynamicPadding desktop='20px' mobile='10px' />
+           <div onClick={() => {setAddModal(true)}}>
+                <Typography style={{paddingLeft: '20px'}} className='cursor' variant='body4' color={AppColor.orange}>
+                Add own service
+                </Typography>
+           </div>
             <AskedQuestion />
           </div>
           <Footer/>

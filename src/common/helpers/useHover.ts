@@ -18,7 +18,7 @@ export const useHover = ({ delayInMilliseconds, hoverDelay=200 }: useHoverProps)
     () => ({
       onMouseEnter(event) {
         event.stopPropagation();
-        console.log('enter')
+        
         isHoveredRef.current = true;
         if (hoverDelay !== undefined) {
           setTimeout(() => {
@@ -32,7 +32,7 @@ export const useHover = ({ delayInMilliseconds, hoverDelay=200 }: useHoverProps)
       },
       onMouseLeave(event) {
         event.stopPropagation();
-        console.log('leave')
+        
         isHoveredRef.current = false;
         if (delayInMilliseconds !== undefined) {
           setTimeout(() => {

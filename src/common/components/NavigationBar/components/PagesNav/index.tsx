@@ -13,7 +13,7 @@ const PagesNav = ({hovered}:PagesNavProps) => {
     return (
     <div className={`${styles.hover_wrapper} ${hovered ? styles.active : styles.disabled}`}>
         {nav_var_categorys.map(item => {
-        console.log(item.title, 'is item');
+        
            return (
             <Link to={`/${item.title.toLowerCase()}/${item.links[0] != null ? item.links[0].title : ''}`}>
                 <div className={styles.hover_content}>

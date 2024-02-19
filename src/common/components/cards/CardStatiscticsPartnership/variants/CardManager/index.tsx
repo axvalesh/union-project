@@ -75,7 +75,7 @@ const CardManager = ({
         ? {left: '0'}
         : {left: '50%',transform: 'translateX(-50%)'}
 
-    console.log(position)
+    
     return (
         <div className={styles.shell}>
             {!disableAbsoluteItems &&  showCardManagerActions && <div style={{display: isSelected ? 'flex' : 'none',...positionStyle}} className={styles.absolute_select}>

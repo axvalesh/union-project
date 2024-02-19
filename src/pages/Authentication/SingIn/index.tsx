@@ -100,7 +100,7 @@ const SingIn = () => {
                     onClick={() => {
                         
                         history('/dashboard/home');
-                        console.log('/dashboard/home')
+                        
                     }}
                     >
                         Login

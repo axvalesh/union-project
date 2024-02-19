@@ -22,7 +22,7 @@ const InputBorderText = ({emptyChangeColor,borderText,placeholderText,labelIcon,
         setText(event.target.value)
     }
 
-    console.log(text)
+    
     return (
     <div className={styles.border_input}>
         <label htmlFor="example">{borderText} {isRequired && <span className={styles.red_text}>*</span>} </label>

@@ -86,7 +86,7 @@ const CrowdfreelanceAll = () => {
       
     }
 
-    console.log(removedTagFromSideBar,'is removed');
+    
     const [showModalSideBar,setShowModalSideBar] = useState(false);
     return (
         <div>

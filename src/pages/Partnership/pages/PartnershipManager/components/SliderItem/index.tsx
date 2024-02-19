@@ -22,8 +22,8 @@ const SliderItem = ({icon,text,onClick,removedTag,tags}:SliderItemProps) => {
     }
 
     useEffect(() => {
-      console.log('updates');
-      console.log('useEffect -------------');
+      
+      
       
       if (removedTag === text) {
           setIsSelected(false);
@@ -32,7 +32,7 @@ const SliderItem = ({icon,text,onClick,removedTag,tags}:SliderItemProps) => {
           setIsSelected(false);
       }
   }, [removedTag, tags, text]);
-    console.log('update');
+    
     
     return (
       <div onClick={(event) => {handleClickItem(event)}} style={{backgroundColor: isSelected ? AppColor.white : 'white'}} className={styles.slider_item}>

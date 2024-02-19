@@ -27,7 +27,7 @@ const DetailsMyFreelancers = ({informationTable,informationDropdown}:DetailsMyFr
     const currentDropdownItem = informationDropdown[currentPage-1];
     const {width,height} = useScreenSize();
     
-    console.log(currentPage);
+    
     return (
       <DetailsTable
         projectsCount='1'

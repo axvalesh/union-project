@@ -20,22 +20,23 @@ type UserAvatarProps = {
     noWrap?: boolean;
     roleColor?: string;
     activeAgoRole?: string;
+    title?: string;
 }
 
 type UserAvatarVariants = "row" | "column" | "money" | 'image'
 
 
-const UserAvatar = ({activeAgoRole='',noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatar = ({title,activeAgoRole='',noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
+            return <UserAvatarRow title={title} activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
-            return <UserAvatarColumn activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
+            return <UserAvatarColumn title={title} activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
-            return <UserAvatarMoney activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
+            return <UserAvatarMoney title={title} activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
        case "image":
-            return <UserAvatarImage active={active} name={name} url={url} />
+            return <UserAvatarImage title={title} active={active} name={name} url={url} />
         default:
             return null;
     }
@@ -50,13 +51,13 @@ const UserAvatarImage = ({url,active}:UserAvatarProps) => {
     )
 }
 
-const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText,roleColor,activeAgoRole}:UserAvatarProps) => {
+const UserAvatarRow = ({noWrap,active,title,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText,roleColor,activeAgoRole}:UserAvatarProps) => {
     
     const currentWidth = width != null ? width : '38px';
     const currentHeight = height != null ? height : '38px';
-    console.log(activeAgoRole,activeAgoRole == '','aaa');
+    
     return (
-        <div style={{maxWidth: '240px'}} className={styles.wrapper}>
+        <div style={!title ? {maxWidth: '240px'} : {}} className={styles.wrapper}>
            <div className={styles.position_relative}>
                {url != null
                ? <img width={width != null ? width : '38px'} height={height != null ? height : '38px'} src={url} alt="" />
@@ -64,6 +65,7 @@ const UserAvatarRow = ({noWrap,active,name,role,url,preventMobileNone,flag,heigh
                <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
            </div>
            <div style={preventMobileNone ? { display: 'block',whiteSpace: noWrap ? 'nowrap' : 'pre-wrap' } : {}} className={styles.flex_wrapper}>
+                {title && <Typography className='underline_appearance' style={{whiteSpace: 'nowrap'}} variant='body4' fontWeight='500'>{title}</Typography>}
                 <Typography  variant='body5' fontWeight='500'>
                   {flag}  {name} {nodeAfterText}
                 </Typography>

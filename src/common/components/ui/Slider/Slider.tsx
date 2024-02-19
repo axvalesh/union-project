@@ -78,7 +78,7 @@ const Slider = ({children,buttonSize,detlaPosition,padding,maxShowCount,showDots
     const dots = Array.from({ length: elementsCount}, (_, index) => index);
     const gapsDisplay = maxShowCount - 1;
 
-    console.log(maxShowCount*itemWidth+gap*gapsDisplay,'is max')
+    
     return (
        <div style={maxShowCount ? {maxWidth: `${maxShowCount*itemWidth+gap*gapsDisplay+100}px`,width: '100%',padding: padding} : {padding: padding}} className={styles.overflow_shell}>
             <div className={styles.shell}>

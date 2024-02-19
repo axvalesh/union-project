@@ -1,5 +1,23 @@
 
-
+.background_white {
+    background-color: white;
+    @include weakShadow;
+    border-radius: 20px;
+    padding: 10px;
+    transform: translateX(20%);
+    position: relative;
+}
+.absolute_triangle {
+    position: absolute;
+    bottom: 100%;
+    left: 30%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid white;
+}
 .box_wrapper {
     position: relative;
     display: flex;

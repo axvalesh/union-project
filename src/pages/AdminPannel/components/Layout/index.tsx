@@ -185,7 +185,7 @@ const DropdownLink = ({page,activePage,callback,depth,callbackHistory,callbackHi
                     setShowDropdown(prev => !prev)
                 }
                 else {
-                    console.log(`${historyTitle}${page.title}`);
+                    
                     
                     callback(`${historyTitle}${page.title}`);
                     callbackHistory(localHistory);

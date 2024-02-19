@@ -12,6 +12,7 @@ import DetailsTableMyTeams, { DetailsTableMyTeamsPropsItem } from '@common/compo
 import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
 import AddMissionButton from '@common/components/ui/AddMisionButton/index'
+import CreateTeamButton from '@common/components/ui/ButtonsPlus/CreateTeamButton/index'
 
 
 const teamsContent:DetailsTableMyTeamsPropsItem[] = [
@@ -74,7 +75,7 @@ const MyTeams = () => {
                     }
                     endNode={
                         <div className={styles.flex_center}>
-                            <AddMissionButton />
+                            <CreateTeamButton />
                             <Typography
                                 variant="body3"
                                 fontWeight="500">

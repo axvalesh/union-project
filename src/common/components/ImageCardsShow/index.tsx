@@ -4,11 +4,19 @@ import styles from './style.module.scss';
 
 type ImageCardsShowProps = {
     images: string[];
+    widthTotalMobile?: string;
+    widthTotalDesktop?: string;
 }
-const ImageCardsShow = ({images}:ImageCardsShowProps) => {
+const ImageCardsShow = ({images,widthTotalMobile,widthTotalDesktop}:ImageCardsShowProps) => {
+
+    const styleImage = {
+        '--mobileWidth': widthTotalMobile,
+        '--desktopWidt': widthTotalDesktop,
+        border: 'none'
+    }
     const [activeImage,setActiveImage] = useState(images[0]);
     return (
-      <div className={styles.wrapper}>
+      <div style={{...styleImage}} className={styles.wrapper}>
            <img className={styles.active_image} src={activeImage} alt="" />
            <div className={styles.small_images}>
                 {images.map(item =>

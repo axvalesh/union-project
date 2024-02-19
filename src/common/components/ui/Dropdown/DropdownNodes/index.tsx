@@ -2,6 +2,7 @@ import AppColor from "@common/styles/variables-static";
 import styles from './style.module.scss';
 import {useEffect, useState} from 'react';
 import Typography from "../../Typography/Typography";
+import DropdownNumber from "../../SearchFilterBar/components/DropdownNumber";
 
 type DropdownNodeProps = {
     title:string;
@@ -14,9 +15,10 @@ type DropdownNodeProps = {
     noneButton?: any;
     textAfterCount?: any;
     callback?: (item:string) => void;
+    nodeAfterTitle?: React.ReactNode;
 
 }
-const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneTitle,noneButton,noneIcon,textAfterCount,callback}:DropdownNodeProps) => {
+const DropdownNode = ({title,countNotifications,nodeAfterTitle,dropnodes,filters,noneText,noneTitle,noneButton,noneIcon,textAfterCount,callback}:DropdownNodeProps) => {
     const [isActive,setIsActive] = useState(false);
     useEffect(() => {
         if(countNotifications == 0) {
@@ -25,6 +27,7 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
     },[])
     const [categoryActiveIndex,setCategoryActiveIndex] = useState(0);
     function changeState(event: any) {
+        event.stopPropagation();
         if(countNotifications > 0) {
             setIsActive((prev) => !prev);
         }
@@ -39,14 +42,12 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
                         </Typography>
                         {countNotifications > 0 ? <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span> : <></>}
                         {textAfterCount}
+                        {nodeAfterTitle && nodeAfterTitle}
                     </div>
                     <div className="mobile">
                     {countNotifications > 0
                     ? <div className={styles.close_chevron}>
-                    {isActive
-                    ? <AppColor.chevronTop fill={AppColor.text}/>
-                    : <AppColor.chevronBottom fill={AppColor.text} fillOpacity={0.5}/>
-                    }
+                    <DropdownNumber />
                 </div>
                 : <></>
                 }
@@ -67,10 +68,7 @@ const DropdownNode = ({title,countNotifications,dropnodes,filters,noneText,noneT
                 <div className="desktop">
                 {countNotifications > 0
                 ? <div className={styles.close_chevron}>
-                {isActive
-                ? <AppColor.chevronTop fill={AppColor.text}/>
-                : <AppColor.chevronBottom fill={AppColor.text} fillOpacity={0.5}/>
-                }
+                <DropdownNumber />
                 </div>
                 : <></>
                 }

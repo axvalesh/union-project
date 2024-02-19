@@ -1,0 +1,30 @@
+.grid_3 {
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-between;
+    row-gap: 10px;
+    display: grid;
+}
+
+.select_six {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    @include weakShadow;
+    justify-content: center;
+}
+.border_item {
+    @include weakShadow;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    justify-content: space-between;
+}
+.faq_item {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    max-width: 700px;
+}

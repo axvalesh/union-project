@@ -81,7 +81,7 @@ const SingUp = () => {
                     disabled={(!email.includes('@gmail.com') || userName == '')}
                     onClick={() => {
                         history('/onboarding');
-                        console.log('onboarding')
+                        
                     }}
                     >
                         Sign up

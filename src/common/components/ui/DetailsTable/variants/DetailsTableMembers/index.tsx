@@ -34,7 +34,7 @@ const DetailsTableMembers = ({information}:DetailsTableMembersProps) => {
 
     const {width,height} = useScreenSize();
     
-    console.log(currentPage);
+    
     return (
       <DetailsTable
         callbackNav={(item) => { setCurrentPage(item)}}

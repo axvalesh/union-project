@@ -8,6 +8,7 @@ import { useScreenSize } from '@common/helpers/useScreenSize';
 import SizeBox from '../SizeBox';
 import HorizontalLine from '../Lines/HorizontalLine';
 import MyCheckbox from '../inputs/Checkbox';
+import PopUpBottom from '../../ModalPopUps/PopUpBottom';
 
 
 type DetailsTableProps = {
@@ -25,6 +26,7 @@ type DetailsTableProps = {
   titleEnd?: string;
   group?: string;
   endIcon?: React.ReactNode;
+  modalDropdown?: React.ReactNode;
 }
 
 type DetailsTableItem = {
@@ -33,7 +35,7 @@ type DetailsTableItem = {
   selecrable?: boolean;
   maxWidth?: string;
 }
-const DetailsTable = ({endIcon,titleEnd,group,details,page,projectsCount,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
+const DetailsTable = ({endIcon,titleEnd,modalDropdown,group,details,page,projectsCount,filters,callbackNav,showUsers,users,maxWidth,dropdownNode,removeNavBar=false,removeThreeLines=false}:DetailsTableProps) => {
 
     const [currentFilter,setCurrentFilter] = useState('All');
     const {width,height} = useScreenSize();
@@ -174,7 +176,18 @@ const DetailsTable = ({endIcon,titleEnd,group,details,page,projectsCount,filters
                             <Typography color='transparent'>a</Typography>
                           </div>
                           <div className={styles.child_wrapper_desktop}>
-                            <AppColor.threeLines />
+                          <PopUpBottom
+                            positionRight='-10px'
+                                    showBackgroundHover={true}
+                                    showNodeHover={
+                                     <div className='cursor'> <AppColor.threeLinesActive /></div>
+                                    }
+                                   showNode={
+                                    <div className='cursor'><AppColor.threeLines /></div>
+                                   }
+                                   popUpNode={modalDropdown}
+                                   topPaddingFromNode='27px'
+                               />
                           </div>
                         </div>}
                       </div>

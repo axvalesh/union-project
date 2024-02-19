@@ -29,12 +29,12 @@ const VerificationCodeInput = ({ length,callback }:VerificationCodeInputProps) =
   };
   useEffect(() => {
     if(code.length === length) {
-        console.log('callback',code);
+        
         callback(code);
     }
   },[code])
 
-  console.log(code);
+  
 
   return (
     <div className={styles.boxes_grid}>

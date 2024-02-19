@@ -40,7 +40,7 @@ const DetailsTableMissions = ({information}:DetailsTableMissionsProps) => {
 
     const {width,height} = useScreenSize();
     
-    console.log(currentPage);
+    
     return (
       <DetailsTable
         showUsers={showUsers}

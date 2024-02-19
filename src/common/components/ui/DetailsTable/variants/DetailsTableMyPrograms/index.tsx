@@ -32,7 +32,7 @@ const DetailsTableMyPrograms = ({informationTable,informationDropdown}:DetailsTa
     const currentDropdownItem = informationDropdown[currentPage-1];
     const {width,height} = useScreenSize();
     
-    console.log(currentPage);
+    
     return (
       <DetailsTable
         callbackNav={(item) => { setCurrentPage(item)}}

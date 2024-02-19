@@ -36,7 +36,7 @@ const DetailsProgressOrders = ({
     const [dropdownShowItemsCount,setDropdownShowItemCount] = useState(1);
 
     const dropdownElements = Array.from({ length: dropdownShowItemsCount}, (_, index) => index);
-    console.log(currentPage)
+    
     return (
         <DetailsTable
             removeThreeLines={true}

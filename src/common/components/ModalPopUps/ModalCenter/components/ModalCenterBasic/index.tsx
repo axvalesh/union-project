@@ -16,12 +16,27 @@ type ModalCenterBasicProps = {
     prevClose?: boolean;
     nodeAfterTitle?: React.ReactNode;
     callbackPrev?: () => void;
-}
-const ModalCenterBasic = ({prevClose,nodeAfterTitle,callbackClose,topPartPadding,bottomPartPadding,children,title,nodesBeforeClose,callbackPrev}:ModalCenterBasicProps) => {
 
+    desktopMinWidth?: string;
+    mobileMinWidth?: string;
+    desktopMinHeight?: string;
+
+    desktopMaxWidth?: string;
+    mobileMaxWidth?: string;
+}
+const ModalCenterBasic = ({prevClose,desktopMinHeight,nodeAfterTitle,desktopMinWidth,desktopMaxWidth,mobileMaxWidth,mobileMinWidth,callbackClose,topPartPadding,bottomPartPadding,children,title,nodesBeforeClose,callbackPrev}:ModalCenterBasicProps) => {
+
+    const stylePass = {
+        '--desktopWidthMin': desktopMinWidth,
+        '--mobileMinWidth': mobileMinWidth,
+        '--desktopMinHeight': desktopMinHeight,
+        '--desktopMaxWidth':desktopMaxWidth,
+        '--mobileMaxWidth':mobileMaxWidth,
+        borderRadius: '20px',
+    }
     return (
       <ModalCenter onClickHandler={callbackClose}>
-        <div className={styles.modal_center_basic}>
+        <div style={{...stylePass}} className={styles.modal_center_basic}>
             <div className={styles.top_part} style={{padding: topPartPadding}}>
                 {prevClose && <div style={{display: 'flex',alignItems: 'center'}}>
                     <AppColor.longChevronLeft className='cursor' fill={AppColor.text} onClick={() => {

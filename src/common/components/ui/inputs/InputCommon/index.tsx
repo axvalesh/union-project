@@ -17,8 +17,11 @@ type InputCommonProps = {
     initText?: string;
     multiLine?: boolean;
     disableClose?: boolean
+    borderRadius?: string;
+    boxShadowNone?: boolean;
+    maxSymbolCount?: number;
 }
-const InputCommon = ({multiLine,disableClose=false,initText='',width, icon,placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
+const InputCommon = ({boxShadowNone,borderRadius,maxSymbolCount,multiLine,disableClose=false,initText='',width, icon,placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
     const [text,setText] = useState(initText);
 
     function handleChange(item:string) {
@@ -33,21 +36,23 @@ const InputCommon = ({multiLine,disableClose=false,initText='',width, icon,place
           {multiLine
           ? <>
             <textarea 
+            maxLength={maxSymbolCount}
             value={text}
             onChange={(item) => {handleChange(item.target.value)}}
             className={styles.input}
-            style={{height: '100%',color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+20}px`,
+            style={{boxShadow: boxShadowNone && 'none',borderRadius: borderRadius ?? '20px',height: '100%',color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+20}px`,
             paddingLeft: icon ? `${rightPadding+25}px` : '15px',textAlign: textAlingCenter ? 'center' : 'start',backgroundColor: backgroundColor ?? 'white'}}
             placeholder={placeholder}
             ></textarea>
           </>
         :<>
               <input
+                maxLength={maxSymbolCount}
                 value={text}
                 onChange={(item) => {handleChange(item.target.value)}}
                 className={styles.input}
                 type={type ?? 'text'}
-                style={{color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+20}px`,
+                style={{boxShadow: boxShadowNone && 'none',borderRadius: borderRadius ?? '20px',color: textColor ?? AppColor.text,padding:padding,paddingRight: `${rightPadding+20}px`,
                 paddingLeft: icon ? `${rightPadding+25}px` : '15px',textAlign: textAlingCenter ? 'center' : 'start',backgroundColor: backgroundColor ?? 'white'}}
                 placeholder={placeholder}
             />

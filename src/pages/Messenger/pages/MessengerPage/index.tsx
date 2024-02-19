@@ -422,12 +422,12 @@ const CommentPreview = () => {
     const handleCloseClick = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log("Closing modal");
+        
         setShowModal(false);
     }
 
     return (
-        <div onClick={() => {setShowModal(true);console.log('open');}} className={styles.comment_preview}>
+        <div onClick={() => {setShowModal(true);}} className={styles.comment_preview}>
             <div className='flex_space_between'>
                 <UserAvatar preventMobileNone={true} flag={<AppColor.UkraineFlag/>} activeAgoRole='1 min ago' active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Customer'/>
                 <div className={styles.orange_box}>

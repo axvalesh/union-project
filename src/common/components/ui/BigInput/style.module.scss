@@ -3,7 +3,7 @@
     @include weakShadow;
     border-radius: 20px;
     position: relative;
-    height: 270px;
+    max-height: 270px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -27,6 +27,38 @@
         @include scrollStyles;
     }
 }
+
+.flex_start {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.wrapper_input_field_no_border {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    svg {
+        max-height: 15px;
+    }
+    
+    > textarea {
+        max-width: 100%;
+        width: 100%;
+        height: 60vh;
+        min-height: 200px;
+        max-height: 60vh;
+        outline: none;
+        padding: 15px;
+        resize: none;
+        font-size: 1rem;
+        color: $text;
+        @include scrollStyles;
+    }
+}
 .bottom_part_wrapper {
     width: 100%;
     display: flex;
@@ -38,7 +70,8 @@
 .absolute_select {
     position: absolute;
     bottom: 15px;
-    left: 30px;
+    left: 10px;
+    right: 10px;
     padding: 15px 20px;
     background-color: $text;
     border-radius: 20px;
@@ -60,6 +93,12 @@
     height: 20px;
     background-color: black;
     border-radius: 5px;
+}
+
+.flex_end {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }
 @media (min-width:$tabletSize) {
     .bottom_part_wrapper {

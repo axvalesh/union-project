@@ -92,7 +92,7 @@ const Missions = () => {
                 </div>
 
                 <DynamicPadding />
-                <SearchFilterBar date='10/29/22 - 11/29/22'/>
+                <SearchFilterBar recent={true} date='10/29/22 - 11/29/22'/>
 
                 <DynamicPadding />
 

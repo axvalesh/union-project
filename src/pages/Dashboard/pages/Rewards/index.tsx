@@ -11,6 +11,15 @@ import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import headphones from '@assets/images/rewards-1.png';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
+import { fakeUserConstant } from '@common/models/user';
+import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import DarkBox from '@common/components/ui/DarkBox/index';
+import SizeBox from '@common/components/ui/SizeBox/index';
+import { useState } from 'react';
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
+import PopUpBottom from '@common/components/ModalPopUps/PopUpBottom/index';
+import { ThreeLinesPopUpCustom } from '@common/components/ui/ThreeLinesPopUp/index';
+import AddRewardButton from '@common/components/ui/ButtonsPlus/AddRewardButton/index';
 
 const rewards:RewardItemProps[] = [
     {
@@ -57,16 +66,19 @@ const Rewards = () => {
                             </div>
                         </Typography>
                     </div>
-                    <MyButtonTransparentOrange
-                        onClick={() => {}}
-                        fontWeight="500">
-                        CUSTOMER{' '}
-                        <AppColor.chevronBottom
-                            fill={AppColor.orange}
-                            width={14}
-                            height={10}
-                        />
-                    </MyButtonTransparentOrange>
+                   <div className='gap_10'>
+                        <MyButtonTransparentOrange
+                            onClick={() => {}}
+                            fontWeight="500">
+                            CUSTOMER{' '}
+                            <AppColor.chevronBottom
+                                fill={AppColor.orange}
+                                width={14}
+                                height={10}
+                            />
+                        </MyButtonTransparentOrange>
+                        <AddRewardButton />
+                   </div>
                 </div>
 
                 <DynamicPadding />
@@ -121,17 +133,117 @@ type RewardItemProps = {
     count?: number;
 }
 const RewardItem = ({count,image,title,user,}:RewardItemProps) => {
+
+    const [showDatails, setShowDatails] = useState(false);
+
     return (
-        <div className={styles.reward_wrapper}>
-            {count != null && (
-                <div className={styles.reward_absolute_item_left}><Typography variant='body5' color={'white'}>{count}</Typography></div>
-            )}
-            <div className={styles.reward_absolute_item_right}><AppColor.threeLines /></div>
-            {image}
-            <Typography variant='body4' fontWeight='500'>
-                {title}
-            </Typography>
-            {user}
+        <>
+            {showDatails && <ModalCenterBasic
+            desktopMinWidth='40vw'
+                bottomPartPadding='30px' callbackClose={() => setShowDatails(false)} title='Reward’s details' 
+            >
+                <RewardDetails item={
+                    {
+                        image,
+                        title,
+                        user
+                    }
+                } challenge='Entrance challenge' date='Feb 26, 2021 ' />
+                </ModalCenterBasic>}
+            <div className={styles.reward_wrapper}>
+                {count != null && (
+                    <div className={styles.reward_absolute_item_left}><Typography variant='body5' color={'white'}>{count}</Typography></div>
+                )}
+                
+                <div className={styles.reward_absolute_item_right}>
+                            <PopUpBottom
+                                showBackgroundHover={true}
+                                showNodeHover={
+                                    <div className='cursor'><AppColor.threeLinesActive /></div>
+                                }
+                                   showNode={
+                                    <div className='cursor'><AppColor.threeLines /></div>
+                                   }
+                                   popUpNode={<ThreeLinesPopUpCustom
+                                        items={[
+                                            {
+                                                icon: <AppColor.share />,
+                                                title: 'Share'
+                                            },
+                                            {
+                                                icon: <AppColor.report />,
+                                                title: 'Report'
+                                            }
+                                        ]}
+                                    />}
+                                   topPaddingFromNode='10px'
+                               />
+                </div>
+                {image}
+                <div onClick={() => {setShowDatails(true)}}>
+                    <Typography className='underline_appearance' variant='body4' fontWeight='500'>
+                        {title}
+                    </Typography>
+                </div>
+                {user}
+            </div>
+        </>
+    )
+}
+
+type RewardDetailsProps = {
+    item: RewardItemProps;
+    challenge: string;
+    date: string;
+}
+const RewardDetails = ({challenge,date,item}:RewardDetailsProps) => {
+    return (
+        <div>
+            <div className='gap_10'>
+                {item.image}
+                <div>
+                    <Typography variant='body4' fontWeight='500'>{item.title}</Typography>
+                    <SizeBox height='8px'/>
+                    <Typography variant='body5' color={AppColor.transparentBlack}>{fakeUserConstant.name}</Typography>
+                </div>
+            </div>
+            <DynamicPadding desktop='30px' mobile='10px' />
+            <div style={{position: 'relative'}}>
+                <HorizontalLine />
+                <div className={styles.absolute_box}>
+                   <div style={{width: 'fit-content'}}> <DarkBox fonstSize='13px' text='MISSION' /></div>
+                </div>
+            </div>
+            <DynamicPadding desktop='30px' mobile='10px' />
+            <div className='flex_space_between'>
+                <div className='gap_10'>
+                    <AppColor.taskCheck />
+                    <div className='gap_5'>
+                    <Typography variant='body4' fontWeight='500'>{challenge}</Typography>
+                    <AppColor.subscriptions />
+                    </div>
+                    <SizeBox height='8px'/>
+                    <Typography variant='body4' fontWeight='500' color={AppColor.orange}>10 of 10 completed</Typography>
+                </div>
+                <Typography variant='body4'>{date}</Typography>
+            </div>
+            <DynamicPadding desktop='30px' mobile='10px' />
+            <div style={{position: 'relative'}}>
+                <HorizontalLine />
+                <div className={styles.absolute_box}>
+                    <div style={{width: 'fit-content'}}><DarkBox fonstSize='13px' text='CAN BE USED' /></div>
+                </div>
+            </div>
+
+            <DynamicPadding desktop='30px' mobile='10px' />
+            <div className='flex_space_between'>
+                <Typography variant='body4' fontWeight='500'>
+                You can ask the author about the delivery
+                </Typography>
+                <Typography className='underline_appearance orange' variant='body5' fontWeight='500' color={AppColor.orange}>
+                Go to author
+                </Typography>
+            </div>
         </div>
     )
 }

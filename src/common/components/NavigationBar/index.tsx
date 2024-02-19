@@ -38,9 +38,9 @@ const NavigationBar = ({
            
             if (nodeRef.current && !nodeRef.current.contains(event.target as Node)) {
                 setHovered(false);
-                console.log('close');
+                
             } else {
-               console.log('not close');
+               
                
             }
         };

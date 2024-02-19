@@ -20,10 +20,10 @@ const DoubleRangeSlider = ({ min, max, onChange }:DoubleRangeSliderProps) => {
       setMinVal(min);
     },[min,max])
 
-    console.log(min);
-    console.log(max);
-    console.log(minVal);
-    console.log(maxVal);
+    
+    
+    
+    
     
     // Convert to percentage
     const getPercent = useCallback(

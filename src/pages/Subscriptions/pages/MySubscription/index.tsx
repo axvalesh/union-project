@@ -37,20 +37,6 @@ const box_content:SubscriptionBoxProps[] = [
     userName: 'Artem M.',
     topLeftIcon: false,
   },
-  {
-    daysLeft: 35,
-    filter: 'Ultimate',
-    price: 59,
-    userName: 'Helberd B.',
-    topLeftIcon: false,
-  },
-  {
-    daysLeft: 0,
-    filter: 'Start',
-    price: 0,
-    userName: 'Artem M.',
-    topLeftIcon: false,
-  }
 ]
 const MySubscription = () => {
 

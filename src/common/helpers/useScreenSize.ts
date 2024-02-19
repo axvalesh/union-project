@@ -16,7 +16,7 @@ export const useScreenSize = ():useScreenSizeType => {
 
         setWidth(window.innerWidth);
         setHeight(window.innerHeight);
-        console.log('use effect from screen size')
+        
       
           window.addEventListener('resize', handleResize);
       
