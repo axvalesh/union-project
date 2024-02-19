@@ -24,9 +24,9 @@
     background-color: white;
     @include weakShadow;
     border-radius: 50%;
-    cursor: pointer;
+    transition: 0.2s;
     &:hover {
-        background-color: $white;
+        background-color: $orange;
     }
 }
 .right_text {

@@ -13,6 +13,8 @@ type RadioButtonProps = {
 const RadioButton = ({text,activeSelection,indexItem,callback}:RadioButtonProps) => {
     const [isSelected,setIsSelected] = useState(false);
 
+    const [hovered,setHovered] = useState(false);
+
     const handleSwitch = () => {
         setIsSelected(prev => !prev);
         if(callback) {
@@ -23,10 +25,13 @@ const RadioButton = ({text,activeSelection,indexItem,callback}:RadioButtonProps)
         setIsSelected(activeSelection);
     }, [activeSelection])
     return (
-      <div onClick={() => {handleSwitch()}} style={{cursor: 'pointer'}} className={styles.flex_item}>
+      <div 
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => {handleSwitch()}} style={{cursor: 'pointer'}} className={styles.flex_item}>
             <div className={`${styles.select_box} ${isSelected ? styles.select_box_active : styles.select_box_disabled}`}></div>
             {text &&
-            <div className={styles.text_item}><Typography color={isSelected ? AppColor.orange : AppColor.text} fontWeight={isSelected ? '500' : '400'} variant='body4'>{text}</Typography></div>
+            <div className={styles.text_item}><Typography color={isSelected || hovered ? AppColor.orange : AppColor.text} fontWeight={isSelected ? '500' : '400'} variant='body4'>{text}</Typography></div>
             }
       </div>
     );

@@ -20,8 +20,9 @@ type InputCommonProps = {
     borderRadius?: string;
     boxShadowNone?: boolean;
     maxSymbolCount?: number;
+    endNode?: React.ReactNode;
 }
-const InputCommon = ({boxShadowNone,borderRadius,maxSymbolCount,multiLine,disableClose=false,initText='',width, icon,placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
+const InputCommon = ({boxShadowNone,endNode,borderRadius,maxSymbolCount,multiLine,disableClose=false,initText='',width, icon,placeholder,callback,padding,rightPadding,textAlingCenter=false,backgroundColor,textColor,type }: InputCommonProps) => {
     const [text,setText] = useState(initText);
 
     function handleChange(item:string) {
@@ -58,6 +59,7 @@ const InputCommon = ({boxShadowNone,borderRadius,maxSymbolCount,multiLine,disabl
             />
             <div onClick={() => {setText('')}} style={{opacity: text != '' && hovered && !disableClose ? '1' : '0',right: `${rightPadding}px`}} className={styles.close_icon}><AppColor.close fill={AppColor.text} width={'12px'} height={'12px'} /></div>
         </>}
+        {endNode && <div className={styles.dynamic_icon_end}>{endNode}</div>}
         </div>
     )
 }

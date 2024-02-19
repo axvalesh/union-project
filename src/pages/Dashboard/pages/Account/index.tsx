@@ -32,6 +32,7 @@ import DarkBox from '@common/components/ui/DarkBox/index';
 import InputDropdown from '@common/components/ui/inputs/InputDropdown/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import DropdownPortfolio from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownPortfolio/index';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
 
 const activityItems = [
     {
@@ -572,9 +573,7 @@ const Account = () => {
                             <div className={styles.flex_center}>Account <AppColor.openEye /></div>
                         </Typography>
                     </div>
-                    <MyButtonTransparentOrange onClick={() => {}} fontWeight='500'>
-                        PROJECTS <AppColor.chevronBottom fill={AppColor.orange} width={14} height={10} />
-                    </MyButtonTransparentOrange>
+                  <ButtonDropdownSelect text='PROJECTS' variants={['PROJECTS','2','3']} />
                 </div>
                 <DynamicPadding />
                 <div className='gap_10'>
@@ -901,7 +900,7 @@ type DropdownLanguagesProps = {
     initLanguage: LanguageType;
     callback: (item:LanguageType) => void;
 }
-const DropdownLanguages = ({initLanguage,callback}:DropdownLanguagesProps) => {
+export const DropdownLanguages = ({initLanguage,callback}:DropdownLanguagesProps) => {
     
     const [currentLanguage,setCurrentlaguage] = useState<LanguageType>(initLanguage);
     const [showDropdown,setShowDropdown] = useState(false);

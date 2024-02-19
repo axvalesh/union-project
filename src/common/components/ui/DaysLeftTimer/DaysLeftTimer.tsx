@@ -10,7 +10,7 @@ type DaysLeftTimerProps = {
     dotsHeight?: string;
     fontWeightTextTime?: fontWeight;
 }
-const DaysLeftTimer = ({time,borderRadius,height,width,dotsHeight,dotsWidth,fontWeightTextTime}: DaysLeftTimerProps) => {
+const DaysLeftTimer = ({time,borderRadius,height,width,dotsHeight,dotsWidth,fontWeightTextTime='500'}: DaysLeftTimerProps) => {
     const calculateTimeLeft = () => {
         const now = new Date();
         const difference = time.getTime() - now.getTime();

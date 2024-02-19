@@ -2,6 +2,7 @@
 import AppColor from '@common/styles/variables-static';
 import Typography from '../Typography/Typography';
 import styles from './style.module.scss';
+import { useState } from 'react';
 
 const ThreeLinesPopUp = () => {
 
@@ -47,6 +48,45 @@ export const ThreeLinesPopUpCustom = ({items,positionRight=''}:ThreeLinesPopUpPr
           <div
           style={positionRight != '' ? {transform: 'translateX(0)', right: positionRight,left: 'auto'} : {}}
           className={styles.triangle}></div>
+     </div>
+    );
+};
+
+type ButtonDropdownSelectProps = {
+    text: string;
+    variants: string[];
+}
+export const ButtonDropdownSelect = ({text,variants}:ButtonDropdownSelectProps) => {
+
+    const [openDropdown,setOpenDropdown] = useState(false);
+    const [activeSelection,setActiveSelection] = useState(variants[0]);
+
+    return (
+     <div style={{position: 'relative'}}>
+        <div onClick={() => {setOpenDropdown(prev => !prev)}} style={{backgroundColor: openDropdown ? AppColor.orange : 'white'}} className={`${styles.button_active} cursor`}>
+            <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={openDropdown ? 'white' : AppColor.orange}>{activeSelection}</Typography>
+            {
+                openDropdown
+                ? <AppColor.chevronTop fill={'white'} width={'16px'} height={'8px'} />
+                : <AppColor.chevronBottom fill={AppColor.orange} width={'16px'} height={'8px'} />
+            }
+        </div>
+    
+         <div style={{display: openDropdown ? 'block' : 'none'}} className={styles.absolute_item}>
+             <div style={{position: 'relative'}}>
+                  <div className={styles.items_grid}>
+                       {variants.map(item => 
+                       <div onClick={() => {setActiveSelection(item);setOpenDropdown(false)}} className={`${styles.dropdown_item} cursor`}>
+                           <Typography variant='body4' fontWeight='500' textTransform='uppercase'>
+                                {item}
+                           </Typography>
+                       </div>)
+                       }
+                  </div>
+                  <div
+                  className={styles.triangle}></div>
+             </div>
+         </div>
      </div>
     );
 };

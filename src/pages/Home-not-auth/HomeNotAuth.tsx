@@ -28,7 +28,7 @@ import { advantanges_section_card_content, popular_categorys_content, popular_ca
 import Slider from '@common/components/ui/Slider/Slider';
 import { popular_services } from '@common/content/services';
 import CardTime from '@common/components/cards/CardTime/CardTime';
-import { userModel } from 'common/models/user';
+import { fakeUserConstant, userModel } from '@common/models/user';
 import { useGetImage } from '@common/helpers/UseGetImage';
 import Footer from '@common/components/Footer/Footer';
 import { useScreenSize } from '@common/helpers/useScreenSize';
@@ -67,7 +67,7 @@ const HomeNotAuth = () => {
     
       const fakeUser:userModel = {
         country: 'Ukraine',
-        image: '',
+        image: fakeUserConstant.image,
         name: 'Artem M.',
         roles: 'Customer',
         activeAgo: '2 days',
@@ -82,7 +82,7 @@ const HomeNotAuth = () => {
       }
       const fakeUser2:userModel = {
         country: 'Ukraine',
-        image: '',
+        image: fakeUserConstant.image,
         name: 'Antonio L.',
         roles: 'Sponsor',
         activeAgo: '2 days',
@@ -266,8 +266,20 @@ const HomeNotAuth = () => {
             <div className={styles.fourth_screen_shell}>
               <div className={styles.fourth_screen_slider}>
                 <img className={styles.fourth_screen_bc_image} src={fourthBcSvg} alt="" />
-              <Slider maxShowCount={2} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width <= AppColor.tabletSize ? 250 : 540} gap={40}>
+              <Slider
+              buttonLeft='-60px'
+              buttonRight='-55px'
+              maxShowCount={2} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250} maxWidth={width <= AppColor.tabletSize ? 250 : 540} gap={40}>
                 <CardTime 
+                topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]}
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
+                <CardTime
+                topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]} 
                 title='Logo by sample in vector in maximum quality' 
                 currentMoneyRange={500} totalMoneyRange={5000} 
                 date={new Date('2023-01-01T12:00:00')}
@@ -275,6 +287,7 @@ const HomeNotAuth = () => {
                 user={fakeUser}
                 />
                 <CardTime 
+                topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]} 
                 title='Logo by sample in vector in maximum quality' 
                 currentMoneyRange={500} totalMoneyRange={5000} 
                 date={new Date('2023-01-01T12:00:00')}
@@ -282,6 +295,15 @@ const HomeNotAuth = () => {
                 user={fakeUser}
                 />
                 <CardTime 
+                topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]} 
+                title='Logo by sample in vector in maximum quality' 
+                currentMoneyRange={500} totalMoneyRange={5000} 
+                date={new Date('2023-01-01T12:00:00')}
+                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
+                user={fakeUser}
+                />
+                <CardTime
+                topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]} 
                 title='Logo by sample in vector in maximum quality' 
                 currentMoneyRange={500} totalMoneyRange={5000} 
                 date={new Date('2023-01-01T12:00:00')}
@@ -289,20 +311,7 @@ const HomeNotAuth = () => {
                 user={fakeUser}
                 />
                 <CardTime 
-                title='Logo by sample in vector in maximum quality' 
-                currentMoneyRange={500} totalMoneyRange={5000} 
-                date={new Date('2023-01-01T12:00:00')}
-                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
-                user={fakeUser}
-                />
-                <CardTime 
-                title='Logo by sample in vector in maximum quality' 
-                currentMoneyRange={500} totalMoneyRange={5000} 
-                date={new Date('2023-01-01T12:00:00')}
-                tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
-                user={fakeUser}
-                />
-                <CardTime 
+                topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]} 
                 title='Logo by sample in vector in maximum quality' 
                 currentMoneyRange={500} totalMoneyRange={5000} 
                 date={new Date('2023-01-01T12:00:00')}
@@ -369,11 +378,13 @@ const HomeNotAuth = () => {
               </div>  
               <div className={styles.fourth_screen_sponsor_wrapper}>
                 <img width={38} height={38} src={testUserImage2} alt="userImage" />
+              
                 <div className={styles.fourth_screen_details_wrapper}>
                   <div>
                   <img width={16} height={13} src={flagImage} alt="" />
                   <span className={styles.fourth_screen_inline_text}>
                     <Typography variant='body4'>
+                    <span style={{color:'transparent'}}>a</span>
                       <span style={{fontWeight: '500'}} className='underline_appearance'>{fakeUser2.name}</span>
                       <span style={{color:'transparent'}}>a</span>
                       sponsored $2 500 in 

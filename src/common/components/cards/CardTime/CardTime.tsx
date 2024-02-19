@@ -13,6 +13,7 @@ import PercentBar from "@common/components/ui/PercentBar/PercentBar";
 import { formatNumberWithSpaces } from "@common/helpers/stringFunctions";
 import DaysLeftTimer from "@common/components/ui/DaysLeftTimer/DaysLeftTimer";
 import CardTypeDisplay from "../CardTypeDisplay/CardTypeDisplay";
+import DynamicPadding from "../../ui/DynamicPadding";
 type CardTimeProps = {
     title: string;
     user: userModel;
@@ -100,6 +101,7 @@ const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMone
                         {moneyRangePercent}%
                 </Typography>
             </div>
+            <DynamicPadding desktop="20px" mobile="20px"/>
             <div>
                     <DaysLeftTimer time={futureDate}/>
             </div>

@@ -15,11 +15,18 @@ import SizeBox from '../../SizeBox';
 
 type CreateTeamButtonProps = {
     callbackOpen: () => void;
+    size?: string;
+    callbackClick?: () => void;
 }
 
-export const PlusButton = ({callbackOpen}:CreateTeamButtonProps) => {
+export const PlusButton = ({callbackOpen,callbackClick,size}:CreateTeamButtonProps) => {
     return (
-        <div onClick={() => {callbackOpen()}} className={styles.orange_plus}>
+        <div style={{width: size,height: size}} onClick={() => {
+            callbackOpen()
+            if(callbackClick) {
+                callbackClick();
+            }
+        }} className={styles.orange_plus}>
                 <AppColor.plus width={20} height={20} stroke='white' />
             </div>
     )

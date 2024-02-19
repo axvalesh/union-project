@@ -43,6 +43,13 @@
     }
 }
 
+.prev_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+}
+
 @media (min-width:$tabletSize) {
     .border_input {
         > input {

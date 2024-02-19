@@ -16,7 +16,7 @@ const CardTypeDisplay = ({text,backgroundColor,textColor,textTransform}:CardType
         <div style={{display: 'flex',backgroundColor: AppColor.text,borderTopLeftRadius: '5px'}}>
           <div className={styles.round_box}></div>
         <div className={styles.wrapper} style={{backgroundColor: backgroundColor}}>
-          <p style={{textTransform: textTransform,color: textColor}} className={styles.text}>{text}</p>
+          <p style={{textTransform: textTransform,color: textColor}} className={styles.text}>{text.toUpperCase()}</p>
         </div>
         </div>
       <div className={styles.wrapper_triangles}>

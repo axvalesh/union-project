@@ -28,6 +28,7 @@ const DropdownNode = ({title,countNotifications,nodeAfterTitle,dropnodes,filters
     const [categoryActiveIndex,setCategoryActiveIndex] = useState(0);
     function changeState(event: any) {
         event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
         if(countNotifications > 0) {
             setIsActive((prev) => !prev);
         }

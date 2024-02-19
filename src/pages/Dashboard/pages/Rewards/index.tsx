@@ -18,8 +18,9 @@ import SizeBox from '@common/components/ui/SizeBox/index';
 import { useState } from 'react';
 import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
 import PopUpBottom from '@common/components/ModalPopUps/PopUpBottom/index';
-import { ThreeLinesPopUpCustom } from '@common/components/ui/ThreeLinesPopUp/index';
+import { ButtonDropdownSelect, ThreeLinesPopUpCustom } from '@common/components/ui/ThreeLinesPopUp/index';
 import AddRewardButton from '@common/components/ui/ButtonsPlus/AddRewardButton/index';
+import SearchFilterBar from '@common/components/ui/SearchFilterBar/index';
 
 const rewards:RewardItemProps[] = [
     {
@@ -67,46 +68,13 @@ const Rewards = () => {
                         </Typography>
                     </div>
                    <div className='gap_10'>
-                        <MyButtonTransparentOrange
-                            onClick={() => {}}
-                            fontWeight="500">
-                            CUSTOMER{' '}
-                            <AppColor.chevronBottom
-                                fill={AppColor.orange}
-                                width={14}
-                                height={10}
-                            />
-                        </MyButtonTransparentOrange>
+                   <ButtonDropdownSelect text='Customer' variants={['Customer','2','3']} />
                         <AddRewardButton />
                    </div>
                 </div>
 
                 <DynamicPadding />
-                <div className={styles.search_wrapper}>
-                    <input type="text" placeholder="Search" />
-                    <div className={styles.flex_items_wrapper}>
-                        
-
-                        <div className={styles.search_item_flex}>
-                            <AppColor.filter />
-                            <Typography
-                                variant="body4"
-                                color={AppColor.transparentBlack}>
-                                Filters
-                            </Typography>
-                        </div>
-                        <div className={styles.search_item_flex}>
-                            <Typography
-                                variant="body4"
-                                color={AppColor.transparentBlack}>
-                                12
-                            </Typography>
-                            <AppColor.chevronBottom
-                                fill={AppColor.text}
-                            />
-                        </div>
-                    </div>
-                </div>
+                <SearchFilterBar />
                 <DynamicPadding />
                 <div className={styles.rewards_wrapper}>
                     {rewards.map(item =>

@@ -9,7 +9,7 @@ import UserAvatar from '../../ui/UserAvatar'
 import HorizontalLine from '../../ui/Lines/HorizontalLine'
 import DynamicPadding from '../../ui/DynamicPadding'
 import { fakeUserConstant } from '@common/models/user'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PopUpBottom from '../../ModalPopUps/PopUpBottom'
 import SearchPopUp from './components/SearchPopUp'
 import CreatePopUp from './components/CreatePopUp'
@@ -18,9 +18,8 @@ import SoundPopUp from './components/SoundPopUp'
 import ControllPannel from './components/ControllPannel'
 
 const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
-    const [hovered, eventHandlers] = useHover({
-        delayInMilliseconds: 2000,
-    })
+    const [hovered, setHovered] = useState(false);
+
     const [hoveredLink,setHoveredLink] = useState(0);
 
     const [headerVisible, setHeaderVisible] = useState(false);
@@ -30,10 +29,12 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
             setHeaderVisible(true);
           }, 0);
     }, []);
+
+    
     return (
        <div>
         {position == 'fixed' && <DynamicPadding desktop='92px' mobile='92px'/> }
-            <div style={{opacity: headerVisible ? '1' : '0',position: position}} className={styles.fixed_header}>
+            <div  style={{opacity: headerVisible ? '1' : '0',position: position}} className={styles.fixed_header}>
                 <div className={styles.wrapper}>
                     <header className={styles.header}>
                         <div className={styles.header__container}>
@@ -89,7 +90,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                             </div>
                             <div className={styles.header_second_part}>
                                 <li>
-                                    <ul {...eventHandlers}>
+                                    <ul onClick={() => {setHovered(prev => !prev)}}>
                                         Service{' '}
                                         <AppColor.chevronBottom
                                             width={10}
@@ -97,7 +98,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                             fill={AppColor.text}
                                         />{' '}
                                     </ul>
-                                    <ul {...eventHandlers}>
+                                    <ul onClick={() => {setHovered(prev => !prev)}}>
                                         Order{' '}
                                         <AppColor.chevronBottom
                                             width={10}
@@ -105,7 +106,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                             fill={AppColor.text}
                                         />{' '}
                                     </ul>
-                                    <ul {...eventHandlers}>
+                                    <ul onClick={() => {setHovered(prev => !prev)}}>
                                         Partnership{' '}
                                         <AppColor.chevronBottom
                                             width={10}
@@ -113,7 +114,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                             fill={AppColor.text}
                                         />{' '}
                                     </ul>
-                                    <ul {...eventHandlers}>
+                                    <ul onClick={() => {setHovered(prev => !prev)}}>
                                         Crowdfreelance{' '}
                                         <AppColor.chevronBottom
                                             width={10}
@@ -121,7 +122,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                             fill={AppColor.text}
                                         />{' '}
                                     </ul>
-                                    <ul {...eventHandlers}>
+                                    <ul onClick={() => {setHovered(prev => !prev)}}>
                                         Users{' '}
                                         <AppColor.chevronBottom
                                             width={10}
@@ -133,7 +134,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                 </li>
                                 <div
                                     onMouseDown={(event) => {}}
-                                    {...eventHandlers}
+                                    onClick={() => {setHovered(prev => !prev)}}
                                     className={`${styles.hover_wrapper} ${
                                         hovered
                                             ? styles.active

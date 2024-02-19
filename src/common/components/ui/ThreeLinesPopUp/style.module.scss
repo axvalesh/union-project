@@ -8,6 +8,39 @@
     &:hover {
         background-color: $white;
     }
+    user-select: none;
+}
+
+.button_active {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid $orange;
+    transition: 0.15s;
+    user-select: none;
+}
+.dropdown_item {
+    padding: 10px 15px;
+    border-radius: 20px;
+    transition: 0.15s;
+    &:hover {
+        background-color: $white;
+    }
+}
+.absolute_item {
+    z-index: 2;
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 20px;
+    white-space: nowrap;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .triangle {
@@ -29,4 +62,5 @@
     @include weakShadow;
     border-radius: 20px;
     background-color: white;
+    user-select: none;
 }

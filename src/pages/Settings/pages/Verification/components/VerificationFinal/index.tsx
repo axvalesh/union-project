@@ -18,7 +18,7 @@ const VerificationFinal = () => {
             <div className={styles.cards_wrapper}>
                 <VerificationCard
                     icon={<AppColor.personalInfo />}
-                    buttonText='personal information'
+                    buttonText='Change personal information'
                     onClick={() => {}}
                     text='Verified on 23 Feb 2022 13:35'
                     title='Personal Information'

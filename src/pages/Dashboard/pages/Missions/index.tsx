@@ -13,6 +13,7 @@ import DetailsTableMissions from '@common/components/ui/DetailsTable/variants/De
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import SearchFilterBar from '@common/components/ui/SearchFilterBar/index';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
 
 const missionContent = [
     {
@@ -79,16 +80,7 @@ const Missions = () => {
                             </div>
                         </Typography>
                     </div>
-                    <MyButtonTransparentOrange
-                        onClick={() => {}}
-                        fontWeight="500">
-                        CUSTOMER{' '}
-                        <AppColor.chevronBottom
-                            fill={AppColor.orange}
-                            width={14}
-                            height={10}
-                        />
-                    </MyButtonTransparentOrange>
+                    <ButtonDropdownSelect text='Customer' variants={['Customer','2','3']} />
                 </div>
 
                 <DynamicPadding />

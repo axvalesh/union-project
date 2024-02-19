@@ -17,6 +17,7 @@ import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import DropdownNodeActivity from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index';
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
 
 const skillsContent:SkillsItemProps[] = [
     {
@@ -71,9 +72,7 @@ const Upgrades = () => {
                            upgrades 
                         </Typography>
                     </div>
-                    <MyButtonTransparentOrange onClick={() => {}} fontWeight='500'>
-                        PROJECTS <AppColor.chevronBottom fill={AppColor.orange} width={14} height={10} />
-                    </MyButtonTransparentOrange>
+                    <ButtonDropdownSelect text='Projects' variants={['Projects','2','3']} />
                 </div>
                 <DynamicPadding />
                 <div className={styles.after_top_section}>

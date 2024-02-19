@@ -12,8 +12,10 @@ type InputBorderTextProps = {
     inputText?: string;
     emptyChangeColor?: boolean
     type?: string;
+    prevIcon?: React.ReactNode;
+    padding?: string;
 }
-const InputBorderText = ({emptyChangeColor,borderText,placeholderText,labelIcon,isRequired,callback,inputText='',type}:InputBorderTextProps) => {
+const InputBorderText = ({padding,prevIcon,emptyChangeColor,borderText,placeholderText,labelIcon,isRequired,callback,inputText='',type}:InputBorderTextProps) => {
     const [text,setText] = useState(inputText);
     function handleInput(event:React.ChangeEvent<HTMLInputElement>) {
         if(callback != null) {
@@ -24,12 +26,15 @@ const InputBorderText = ({emptyChangeColor,borderText,placeholderText,labelIcon,
 
     
     return (
-    <div className={styles.border_input}>
+    <div  className={styles.border_input}>
         <label htmlFor="example">{borderText} {isRequired && <span className={styles.red_text}>*</span>} </label>
-        <input style={{backgroundColor: emptyChangeColor && text == '' ? AppColor.ligthWhite : 'white'}} value={text} onChange={(event) => handleInput(event)} type={type ?? 'text'} id="example" name="example" placeholder={placeholderText}/>
+        <input  style={{backgroundColor: emptyChangeColor && text == '' ? AppColor.ligthWhite : 'white',padding: padding}} value={text} onChange={(event) => handleInput(event)} type={type ?? 'text'} id="example" name="example" placeholder={placeholderText}/>
         <div style={{opacity: emptyChangeColor && text == '' ? '0.5' : '1'}} className={styles.label_icon}>
             {labelIcon}
         </div>
+        {prevIcon && <div className={styles.prev_icon}>
+            {prevIcon}
+        </div>}
     </div>
     );
 };

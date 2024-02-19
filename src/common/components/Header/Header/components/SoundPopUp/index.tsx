@@ -6,6 +6,7 @@ import styles from './style.module.scss';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
 import { fakeUserConstant } from '@common/models/user';
 import SizeBox from '@common/components/ui/SizeBox/index';
+import DropdownNumber from '@common/components/ui/SearchFilterBar/components/DropdownNumber/index';
 
 const topFilters = [
     'Notifications','Messages', 'Required Actions'
@@ -47,10 +48,7 @@ const SoundPopUp = () => {
                         </div>  
                   </div>
     
-                  <div className='gap_5' style={{marginLeft: 'auto'}}>
-                        <Typography variant='body4' color={AppColor.transparentBlack} fontWeight='500'>3</Typography>
-                        <AppColor.chevronBottom fill={AppColor.transparentBlack} width={'16px'} height={'8px'}/>
-                </div>    
+                  <DropdownNumber />
               </div>
             </div>
       </div>

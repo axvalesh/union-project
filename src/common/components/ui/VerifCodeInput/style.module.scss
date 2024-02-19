@@ -1,5 +1,6 @@
 .boxes_grid {
     max-width: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(6,1fr);
     input::-webkit-outer-spin-button,

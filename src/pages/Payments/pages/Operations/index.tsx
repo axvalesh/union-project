@@ -7,7 +7,7 @@ import PageDetails from '@common/components/ui/PageDetails/index';
 import { developmentDropdown } from '@common/models/constants';
 import AppColor from '@common/styles/variables-static';
 import styles from './style.module.scss';
-import NavigationBar from '@common/components/NavigationBar/index';
+import NavigationBar, { NavigationBarCustom } from '@common/components/NavigationBar/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
@@ -23,10 +23,18 @@ const PaymentsOperations = () => {
         <div>
         <Header />
 
-        <NavigationBar
-                activePageIndex={0}
-                currentCategoryTitle="Payments"
-        />  
+        <NavigationBarCustom
+            icon={<AppColor.paymentsWhite />}
+            text="Payments"
+            parentRoute="payments"
+            activeIndex={0}
+            buttonsLink={[
+                {
+                    title: "operations",
+                    link: "/operations",
+                }
+            ]}
+        />
 
         <div className={styles.wrapper}>
             <PageDetails

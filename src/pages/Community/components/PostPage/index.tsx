@@ -18,6 +18,11 @@ import RelatedPosts from '@common/components/RelatedPosts/index';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import CommentsSection, { comment } from '@common/components/CommentsSection/index';
+import UserTopPageInfo from '@common/components/ui/UserTopPageInfo/index';
+import RadioButton from '@common/components/ui/RadioButton/index';
+import PercentBar from '@common/components/ui/PercentBar/PercentBar';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
+import AddPost from '@common/components/ui/ButtonsPlus/AddPost/index';
 
 const PostPageById = () => {
 
@@ -166,6 +171,10 @@ const PostPageById = () => {
     const [currentActiveTitle,setCurrentActiveTitle] = useState(fakePost.subCategory);
     const {width,height} = useScreenSize();
 
+    const [radioValue,setRadioValue] = useState(0);
+
+    const [showRateStatistics,setShowRateStatistics] = useState(false);
+
     return (
        <div>
         <Header />
@@ -185,21 +194,26 @@ const PostPageById = () => {
                     pageTitle={fakePost.title}
                     endNode={
                     <div className={styles.flex_center}>
-                            <MyButtonTransparentOrange fontWeight='500' onClick={() => {}}>
-                            ALL POSTS <AppColor.chevronBottom fill={AppColor.orange} />
-                            </MyButtonTransparentOrange>
-                            <div className={styles.orange_plus}>
-                                <AppColor.plus width={20} height={20} stroke='white' />
-                            </div>
+                           <ButtonDropdownSelect text='All posts' variants={['all posts']} />
+                            <AddPost />
                     </div>
                     }            
                 />
 
                 <DynamicPadding desktop='30px' mobile='20px'/>
                 <div className={styles.desktop}>
-                    <PostDetails
-                                user={fakeUserConstant}
-                                percentLike={55}
+                    <UserTopPageInfo
+                            user={fakeUserConstant}
+                            nodeAfter={
+                                <div className={styles.details_post_last}>
+            
+                                <AppColor.pause/>
+                                
+                                <Typography variant='body4' color={AppColor.orange}>15% users like this post </Typography>
+                                <AppColor.like/>
+                                <AppColor.dislike/>
+                            </div>
+                            }
                         />
                 </div>
                 <DynamicPadding/>
@@ -270,18 +284,44 @@ const PostPageById = () => {
                     <div>
                         <Typography variant='body4'>{fakePost.text}</Typography>
                         <DynamicPadding desktop='30px' mobile='20px'/>
-                        <div className={styles.radio_wrapper}>
+                        {!showRateStatistics &&  <div className={styles.radio_wrapper}>
                             <Typography variant='body4' fontWeight='500'>What type of project is best?</Typography>
-                            <div className={styles.flex_center}>
-                                <input type="radio" name="group1" />
+                            <RadioButton text='Share my profile in social media' activeSelection={radioValue == 0} callback={(item) => {setRadioValue(item)}}
+                                indexItem={0} 
+                            />
+                             <RadioButton text='Buy subscriptions' activeSelection={radioValue ==1} callback={(item) => {setRadioValue(item)}}
+                                indexItem={1} 
+                            />
+                            <MyButtonOrange width='70px' fontWeight='500' onClick={() => {
+                                setShowRateStatistics(true);
+                            }}>VOTE</MyButtonOrange>
+                        </div>}
+                        {showRateStatistics && <div style={{maxWidth: '600px'}}>
+                            <Typography variant='body4' fontWeight='500'>What type of project is best?</Typography>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <div className='flex_space_between'>
                                 <Typography variant='body4'>Share my profile in social media</Typography>
+                                <Typography variant='body4' fontWeight='500'>70% (35)</Typography>
                             </div>
-                            <div className={styles.flex_center}>
-                                <input type="radio" name="group1" />
-                                <Typography variant='body4'>Buy subscriptions</Typography>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <PercentBar height='5px' currentPercent={70}/>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <div className='flex_space_between'>
+                                <Typography variant='body4'>Share my profile in social media</Typography>
+                                <Typography variant='body4' fontWeight='500'>70% (35)</Typography>
                             </div>
-                            <MyButtonOrange width='70px' fontWeight='500' onClick={() => {}}>VOTE</MyButtonOrange>
-                        </div>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <PercentBar height='5px' currentPercent={70}/>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <div className='flex_space_between'>
+                                <Typography variant='body4'>Share my profile in social media</Typography>
+                                <Typography variant='body4' fontWeight='500'>70% (35)</Typography>
+                            </div>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <PercentBar height='5px' currentPercent={70}/>
+                            <DynamicPadding desktop='15px' mobile='10px' />
+                            <Typography variant='body4'><span style={{fontWeight: '500'}}>36</span> votes</Typography>
+                            </div>}
 
                         <DynamicPadding desktop='30px' mobile='30px'/>
 

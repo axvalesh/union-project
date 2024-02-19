@@ -325,8 +325,14 @@ import { ReactComponent as playGreen} from '@assets/svg/play-green.svg';
 import { ReactComponent as imageIcon} from '@assets/svg/image-icon.svg';
 import { ReactComponent as keyOrange} from '@assets/svg/key-orange.svg';
 import { ReactComponent as logOutRed} from '@assets/svg/log-out-red.svg';
+import { ReactComponent as threePointsActive} from '@assets/svg/three-points-active.svg';
+import { ReactComponent as longLeftWhite} from '@assets/svg/long-left-white.svg';
+import { ReactComponent as longRightWhite} from '@assets/svg/long-right-white.svg';
 
 class AppColor {
+    static longLeftWhite = longLeftWhite;
+    static longRightWhite = longRightWhite;   
+    static threePointsActive = threePointsActive;
     static logOutRed = logOutRed;
     static keyOrange = keyOrange;
     static imageIcon = imageIcon;

@@ -19,6 +19,8 @@ import Footer from '@common/components/Footer/Footer';
 import { useScreenSize } from '@common/helpers/useScreenSize';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import { Link } from 'react-router-dom';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
+import AddPost from '@common/components/ui/ButtonsPlus/AddPost/index';
 
 type postsContentType = {
     title: string;
@@ -176,12 +178,11 @@ const CommunityPosts = () => {
                 }
                 endNode={
                     <div className={styles.flex_center}>
-                        <MyButtonTransparentOrange fontWeight='500' onClick={() => {}}>
-                        ALL POSTS <AppColor.chevronBottom fill={AppColor.orange} />
-                        </MyButtonTransparentOrange>
-                        <div className={styles.orange_plus}>
-                            <AppColor.plus width={20} height={20} stroke='white' />
-                        </div>
+                        
+                        <ButtonDropdownSelect
+                            text='All posts' variants={['All posts', 'Save posts', 'my posts']}
+                        />
+                        <AddPost />
                     </div>
                 }
             />

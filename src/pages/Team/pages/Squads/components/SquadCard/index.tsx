@@ -5,6 +5,15 @@ import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/M
 import ModalTriangleTop from '@common/components/ui/modals/ModalTriangleTop/index'
 import ModalBottomCenter from '@common/components/ui/modals/ModalBottomCenter/index'
 import { useHover } from '@common/helpers/useHover'
+import { useState } from 'react'
+import PopUpBottom from '@common/components/ModalPopUps/PopUpBottom/index'
+import { ThreeLinesPopUpCustom } from '@common/components/ui/ThreeLinesPopUp/index'
+import InputCommon from '@common/components/ui/inputs/InputCommon/index'
+import DynamicPadding from '@common/components/ui/DynamicPadding/index'
+import UserAvatar from '@common/components/ui/UserAvatar/index'
+import { fakeUserConstant } from '@common/models/user'
+import { PlusButton } from '@common/components/ui/ButtonsPlus/CreateTeamButton/index'
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index'
 
 export type SquadCardProps = {
     title: string
@@ -16,16 +25,45 @@ type membersType = {
     isOnline: boolean
 }
 const SquadCard = ({ members, title }: SquadCardProps) => {
-    const [hovered, eventHandlers] = useHover({delayInMilliseconds: 1000});
+
+    const [webMembers, setWebMembers] = useState(false);
+
     return (
         <div className={styles.wrapper}>
-            <div {...eventHandlers} className={styles.modal_absolute_handler}>
-                {' '}
-                <AppColor.threeLines />
-                <ModalBottomCenter node={<div className={styles.modal_edit_wrapper}>
-                    <div><AppColor.edit fill={AppColor.text}/> <Typography variant='body5'>Edit</Typography></div>
-                    <div><AppColor.lightning/> <Typography variant='body5'>Report</Typography></div>
-                </div>} isActive={hovered} />
+            {
+                webMembers && <ModalCenterBasic 
+                topPartPadding='20px 30px'
+                desktopMinWidth='360px' bottomPartPadding='30px' callbackClose={() => { setWebMembers(false) }} title='Web squad members'
+                >
+                    <SqueadEdit members={members} />
+                </ModalCenterBasic>
+            }
+            <div className={styles.modal_absolute_handler}>
+                                <PopUpBottom
+                                   showBackgroundHover={true}
+                                   showNodeHover={
+                                    <AppColor.threeLinesActive />
+                                   }
+                                   showNode={
+                                    <AppColor.threeLines />
+                                   }
+                                   popUpNode={
+                                    <ThreeLinesPopUpCustom
+                                        items={[
+                                            {
+                                                icon: <AppColor.edit fill={AppColor.text}/>,
+                                                title: 'Edit',
+                                                onClick: () => {setWebMembers(true)},
+                                            },
+                                            {
+                                                icon: <AppColor.report fill={AppColor.text}/>,
+                                                title: 'Report',
+                                            },
+                                        ]}
+                                    />
+                                   }
+                                   topPaddingFromNode='20px'
+                               />
             </div>
             <div className={styles.main_wrapper}>
                 <Typography fontWeight='500' textTransform='uppercase' variant="body4">{title}</Typography>
@@ -59,7 +97,9 @@ const SquadCard = ({ members, title }: SquadCardProps) => {
                         })}
                     </div>
                 ) : (
-                    <MyButtonTransparentOrange onClick={() => {}}>
+                    <MyButtonTransparentOrange onClick={() => {
+                        setWebMembers(true);
+                    }}>
                         MEMBERS
                     </MyButtonTransparentOrange>
                 )}
@@ -71,4 +111,59 @@ const SquadCard = ({ members, title }: SquadCardProps) => {
     )
 }
 
+
+
+type SqueadEditProps = {
+    members: membersType[];
+}
+const SqueadEdit = ({members}:SqueadEditProps) => {
+    return (
+        <div>
+            <InputCommon callback={() => {}} placeholder='Search' />
+
+            <DynamicPadding desktop='30px' mobile='20px'/>
+
+            <div className={styles.grid_2}>
+                <div className={styles.item_grid_border}>
+                    <Typography variant='body3' fontWeight='500'>Available members</Typography>
+                    <DynamicPadding desktop='25px' mobile='15px'/>
+                    <div className={styles.grid_15}>
+                        <AvailableUsers />
+                        <AvailableUsers />
+                        <AvailableUsers />
+                    </div>
+                </div>
+                <div className={styles.item_grid_right}>
+                    <Typography variant='body3' fontWeight='500'>Squad members</Typography>
+                    <DynamicPadding desktop='25px' mobile='15px'/>
+                    <div className={styles.grid_15}>{members.map(item => <CurrentUsers />)}</div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const AvailableUsers = () => {
+    return (
+        <div style={{minWidth: '290px'}} className='flex_space_between'>
+            <UserAvatar active={true} name={fakeUserConstant.name} role='Senior UI Designer '
+
+            flag={<AppColor.UkraineFlag />} preventMobileNone={true} />
+
+            <PlusButton size='16px' callbackOpen={() => {}}/>
+        </div>
+    )
+}
+
+const CurrentUsers = () => {
+    return (
+        <div style={{minWidth: '290px'}} className='flex_space_between'>
+            <UserAvatar active={true} name={fakeUserConstant.name} role='Senior UI Designer '
+
+            flag={<AppColor.UkraineFlag />} preventMobileNone={true} />
+
+            <AppColor.close fill={AppColor.red} width={'16px'} height={'16px'} />
+        </div>
+    )
+}
 export default SquadCard

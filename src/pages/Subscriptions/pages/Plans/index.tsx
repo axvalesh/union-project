@@ -29,9 +29,15 @@ const SubscriptionsPlans = () => {
     const [addModal,setAddModal] = useState(false);
 
     const [radioSelection,setRadioSelection] = useState(1);
+
+    const [name,setName] = useState('');
+    const [promt,setPromt] = useState('');
+
     return (
       <div>
-        {addModal && <ModalCenterBasic bottomPartPadding='30px' callbackClose={() => {setAddModal(false)}} title='Add own service' prevClose={true}
+        {addModal && <ModalCenterBasic 
+        desktopMinWidth='360px'
+        bottomPartPadding='30px' callbackClose={() => {setAddModal(false)}} title='Add own service' prevClose={true}
         >
             <div className='gap_5'>
                 <Typography variant='body3' fontWeight='500'>
@@ -40,9 +46,9 @@ const SubscriptionsPlans = () => {
                 <InfoBox />    
             </div>    
             <DynamicPadding desktop='30px' mobile='20px' />
-            <InputCommon callback={(item) => {}} placeholder='Write service name' />
+            <InputCommon padding='15px 20px' maxSymbolCount={18} callback={(item) => {setName(item)}} placeholder='Write service name' />
             <SizeBox height='5px'/>
-            <Typography variant='body4' color={AppColor.transparentBlack}></Typography>
+            <div className={styles.flex_end}><Typography variant='body4' color={AppColor.transparentBlack}>{name.length} / 18</Typography></div>
             <SizeBox height='5px'/>
             <div className='gap_5'>
                 <Typography variant='body3' fontWeight='500'>
@@ -51,7 +57,7 @@ const SubscriptionsPlans = () => {
                 <InfoBox />    
             </div> 
 
-            <DynamicPadding desktop='30px' mobile='20px' />
+            <DynamicPadding desktop='25px' mobile='15px' />
 
             <RadioButton 
                 text='Checkbox'
@@ -74,8 +80,10 @@ const SubscriptionsPlans = () => {
                 </Typography>
                 <InfoBox />    
             </div> 
-            <InputCommon callback={(item) => {}} placeholder='Write customer promt' />
-            <Typography variant='body4' color={AppColor.transparentBlack}></Typography>
+            <DynamicPadding desktop='30px' mobile='20px' />
+            <InputCommon padding='15px 20px' callback={(item) => {setPromt(item)}} maxSymbolCount={100} placeholder='Write customer promt' />
+            <SizeBox height='5px'/>
+          <div className={styles.flex_end}>  <Typography variant='body4' color={AppColor.transparentBlack}>{promt.length} / 100</Typography></div>
 
             <DynamicPadding desktop='30px' mobile='20px' />
             <div className={styles.flex_end}>

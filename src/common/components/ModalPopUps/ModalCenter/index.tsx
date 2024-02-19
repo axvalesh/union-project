@@ -14,7 +14,10 @@ const ModalCenter = ({children,onClickHandler}:ModalCenterProps) => {
       document.body.style.overflow = "hidden"
       
       return () => {
-        document.body.style.overflow = "auto"
+        const openModals = document.querySelectorAll('.overlay_prevent_close');
+        console.log(openModals);
+        if(openModals.length > 0) return;
+        document.body.style.overflow = 'auto';
       };  
 
   },[])

@@ -1,6 +1,6 @@
 import Header from '@common/components/Header/Header/index'
 import styles from './style.module.scss'
-import NavigationBar from '@common/components/NavigationBar/index'
+import NavigationBar, { NavigationBarCustom } from '@common/components/NavigationBar/index'
 import PageDetails from '@common/components/ui/PageDetails/index'
 import NavigationItem from '@common/components/navigation_history/NavigationItem/index'
 import AppColor from '@common/styles/variables-static'
@@ -11,6 +11,7 @@ import DetailsTableActivity from '@common/components/ui/DetailsTable/variants/De
 import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
 import DetailsTableMembers, { DetailsTableMembersPropsItem } from '@common/components/ui/DetailsTable/variants/DetailsTableMembers/index'
+import CreateTeamButton from '@common/components/ui/ButtonsPlus/CreateTeamButton/index'
 
 
 const teamsContent:DetailsTableMembersPropsItem[] = [
@@ -45,10 +46,22 @@ const TeamMembers = () => {
     return (
         <div>
             <Header />
-            <NavigationBar
-                activePageIndex={0}
-                currentCategoryTitle="Team"
-            />
+            <NavigationBarCustom
+            icon={<AppColor.teamsWhite />}
+            text="Teams"
+            parentRoute="team"
+            activeIndex={0}
+            buttonsLink={[
+                {
+                    title: "members",
+                    link: "/members",
+                },
+                {
+                    title: "squads",
+                    link: "/squads",
+                }
+            ]}
+        />
             <div className={styles.wrapper}>
                 <PageDetails
                     pageTitle="my Teams"
@@ -60,9 +73,7 @@ const TeamMembers = () => {
                     }
                     endNode={
                         <div className={styles.flex_center}>
-                            <div className={styles.orange_plus}>
-                                <AppColor.plus width={20} height={20} stroke='white' />
-                            </div>
+                            <CreateTeamButton />
                             <Typography
                                 variant="body3"
                                 fontWeight="500">

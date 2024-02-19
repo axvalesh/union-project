@@ -5,6 +5,23 @@
     border-radius: 20px;
 }
 
+.grid_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.item_grid_border {
+    border-right: 1px solid rgba($color: $text, $alpha: 0.1);
+    padding-right: 30px;
+}
+.grid_15 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+.item_grid_right {
+    padding-left: 30px;
+}
 .main_wrapper {
     padding: 20px 50px;
     height: 100%;

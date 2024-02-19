@@ -18,8 +18,10 @@ interface SliderProps {
     padding?: string;
     detlaPosition?: string;
     buttonSize?: string;
+    buttonRight?: string;
+    buttonLeft?: string;
 }
-const Slider = ({children,buttonSize,detlaPosition,padding,maxShowCount,showDots,elementsCount,gap,itemWidth,paddingTop,paddingBottom,swiper}:SliderProps) => {
+const Slider = ({children,buttonSize,buttonLeft,buttonRight,detlaPosition,padding,maxShowCount,showDots,elementsCount,gap,itemWidth,paddingTop,paddingBottom,swiper}:SliderProps) => {
     const [startX, setStartX] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
 
@@ -99,12 +101,12 @@ const Slider = ({children,buttonSize,detlaPosition,padding,maxShowCount,showDots
                         {children}
                     </div>
                 </div>
-                <span style={{width: buttonSize,height: buttonSize}} className={styles.left + ' ' + style}>
+                <span style={{width: buttonSize,height: buttonSize,right: `calc(100% + ${buttonLeft})` ?? `calc(100% + 50px)`}} className={styles.left + ' ' + style}>
                     <span style={{width: buttonSize,height: buttonSize}} onClick={moveBack} className={styles.chevron}>
                         <AppColor.chevronLeft fill="white" width={'fit-content'} />
                     </span>
                 </span>
-                <span style={{width: buttonSize,height: buttonSize}} className={styles.right + ' ' + style}>
+                <span style={{width: buttonSize,height: buttonSize,left: `calc(100% + ${buttonRight})` ?? `calc(100% - 50px)`}} className={styles.right + ' ' + style}>
                     <span style={{width: buttonSize,height: buttonSize}} onClick={moveOn} className={styles.chevron}>
                         <AppColor.chevronRight fill="white" width={'fit-content'} />
                     </span>

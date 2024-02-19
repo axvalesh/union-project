@@ -1,6 +1,6 @@
 import Header from '@common/components/Header/Header/index'
 import styles from './style.module.scss'
-import NavigationBar from '@common/components/NavigationBar/index'
+import NavigationBar, { NavigationBarCustom } from '@common/components/NavigationBar/index'
 import PageDetails from '@common/components/ui/PageDetails/index'
 import NavigationItem from '@common/components/navigation_history/NavigationItem/index'
 import AppColor from '@common/styles/variables-static'
@@ -38,9 +38,29 @@ const Verification = () => {
     return (
         <div>
             <Header />
-            <NavigationBar
-                activePageIndex={2}
-                currentCategoryTitle="Settings"
+            <NavigationBarCustom
+            icon={<AppColor.settings />}
+            text="settings"
+            parentRoute="settings"
+            activeIndex={2}
+            buttonsLink={[
+                    {
+                        title: "profile",
+                        link: "/profile",
+                    },
+                    {
+                        title: "password-security",
+                        link: "/password-security",
+                    },
+                    {
+                        title: "verification",
+                        link: "/verification",
+                    },
+                    {
+                        title: "notifications",
+                        link: "/notifications",
+                    }
+                ]}
             />
             <div className={styles.wrapper}>
                 <PageDetails

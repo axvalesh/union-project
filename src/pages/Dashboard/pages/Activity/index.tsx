@@ -10,6 +10,8 @@ import DetailsTableMissions from '@common/components/ui/DetailsTable/variants/De
 import AskedQuestion from '@common/components/AskedQuestions/index'
 import Footer from '@common/components/Footer/Footer'
 import DetailsTableActivity, { DetailsTableActivityPropsItem } from '@common/components/ui/DetailsTable/variants/DetailsTableActivity/index'
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index'
+import SearchFilterBar from '@common/components/ui/SearchFilterBar/index'
 
 
 const missionContent:DetailsTableActivityPropsItem[] = [
@@ -48,50 +50,10 @@ const Activity = () => {
                             Activity
                         </Typography>
                     </div>
-                    <MyButtonTransparentOrange
-                        onClick={() => {}}
-                        fontWeight="500">
-                        Customer{' '}
-                        <AppColor.chevronBottom
-                            fill={AppColor.orange}
-                            width={14}
-                            height={10}
-                        />
-                    </MyButtonTransparentOrange>
+                    <ButtonDropdownSelect text='Customer' variants={['Customer','2','3']} />
                 </div>
                 <DynamicPadding />
-                <div className={styles.search_wrapper}>
-                    <input type="text" placeholder="Search" />
-                    <div className={styles.flex_items_wrapper}>
-                        <div className={styles.search_item_flex}>
-                            <AppColor.calendar />
-                            <Typography
-                                variant="body4"
-                                color={AppColor.transparentBlack}>
-                                10/29/22 - 11/29/22
-                            </Typography>
-                        </div>
-
-                        <div className={styles.search_item_flex}>
-                            <AppColor.filter />
-                            <Typography
-                                variant="body4"
-                                color={AppColor.transparentBlack}>
-                                Filters
-                            </Typography>
-                        </div>
-                        <div className={styles.search_item_flex}>
-                            <Typography
-                                variant="body4"
-                                color={AppColor.transparentBlack}>
-                                12
-                            </Typography>
-                            <AppColor.chevronBottom
-                                fill={AppColor.text}
-                            />
-                        </div>
-                    </div>
-                </div>
+               <SearchFilterBar />
 
                 <DynamicPadding />
 

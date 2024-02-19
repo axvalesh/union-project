@@ -3,6 +3,8 @@ import { fakeUserConstant, userModel } from '@common/models/user';
 import styles from './style.module.scss';
 import UserAvatar from '../UserAvatar';
 import AppColor from '@common/styles/variables-static';
+import PopUpBottom from '../../ModalPopUps/PopUpBottom';
+import { ThreeLinesPopUpCustom } from '../ThreeLinesPopUp';
 
 type UserTopPageInfoProps = {
     user: userModel;
@@ -26,9 +28,44 @@ const UserTopPageInfo = ({user,nodeAfter,settings}:UserTopPageInfoProps) => {
                     : <div className={styles.box}>
                         <AppColor.settings2 fill={AppColor.text} height={'22px'}/>
                     </div>}
-                <div className={styles.box}>
-                    <AppColor.threePoints fill={AppColor.text} height={'22px'}/>
-                </div>
+                    <PopUpBottom
+                        showBackgroundHover={false}
+                        showNodeHover={
+                             <div className={`${styles.box} cursor`}>
+                                <AppColor.threePointsActive fill={AppColor.orange} height={'22px'}/>
+                            </div>
+                        }           
+                        showNode={
+                            <div className={`${styles.box} cursor`}>
+                                <AppColor.threePoints fill={AppColor.text} height={'22px'}/>
+                            </div>
+                        }
+                        popUpNode={<ThreeLinesPopUpCustom
+                            items={[
+                                {
+                                    icon: <AppColor.share />,
+                                    title: 'Share',
+                                },
+                                {
+                                    icon: <AppColor.report />,
+                                    title: 'Report',
+                                },
+                                {
+                                    icon: <AppColor.edit fill={AppColor.text}/>,
+                                    title: 'Edit',
+                                },
+                                {
+                                    icon: <AppColor.pause />,
+                                    title: 'Pending',
+                                },
+                                {
+                                    icon: <AppColor.close width={'18px'} height={'18px'} fill={AppColor.red} />,
+                                    title: 'Delete',
+                                }
+                            ]}
+                        />}
+                        topPaddingFromNode='27px'
+                    />
            </div>
 
            {nodeAfter}
