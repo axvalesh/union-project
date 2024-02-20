@@ -63,7 +63,7 @@ import { ReactComponent as hideEye} from '@assets/svg/hide-eye.svg';
 
 import { ReactComponent as openEye} from '@assets/svg/open-eye.svg';
 
-import { ReactComponent as UkraineFlag} from '@assets/svg/flags/Ukraine.svg';
+import { ReactComponent as UkraineFlag} from '@assets/svg/flags/ukraine-flag-icon.svg';
 
 import { ReactComponent as noteText} from '@assets/svg/note-text.svg';
 
