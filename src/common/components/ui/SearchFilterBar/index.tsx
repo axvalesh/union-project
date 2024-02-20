@@ -71,7 +71,7 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
                     showNode={
                     <div className='gap_10 cursor'>
                          <AppColor.filter />
-                    <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Filters</Typography>
+                         <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Filters</Typography>
                     </div>
                     }
                     popUpNode={<div className='popup_wrapper'>
@@ -227,6 +227,169 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
       </div>
     );
 };
+
+
+export const FilterTags = () => {
+     const [selectedFilters,setSelectedFilters] = useState<string[]>([]);
+
+     const [startDate, setStartDate] = useState(new Date());
+
+     const [categoriesMore,setCategoriesMore] = useState(false);
+     return (
+          <div className={styles.flex_filters}>
+                    <Typography variant='body5' fontWeight='500' color={AppColor.transparentBlack}>
+                    Reset all 
+                    </Typography>
+                    <div className='gap_10'>
+                         <PopUpBottom
+                         showNode={
+                         <div className='gap_10 cursor'>
+                              <AppColor.filter />
+                              <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Filters</Typography>
+                         </div>
+                         }
+                         popUpNode={<div className='popup_wrapper'>
+                              <div className={styles.skill_wrapper}>
+                                     {selectedFilters.map((item) => (
+                                         <div className={styles.hover_white}>
+                                             <MyButtonTransparentOrange
+                                                 padding="5px 13px"
+                                                 onClick={() => {
+                                                  setSelectedFilters(prev => prev.filter(filter => filter !== item))
+                                                 }}>
+                                                 {item}{' '}
+                                                 <AppColor.close
+                                                     fill={AppColor.orange}
+                                                 />
+                                             </MyButtonTransparentOrange>
+                                         </div>
+                                     ))}
+                                 </div>
+                              <SizeBox height='15px'/>
+                              <Typography variant='body5' fontWeight='500' color={AppColor.transparentTextColor}>
+                              Categories
+                              </Typography>
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+     
+                              <InputCommon callback={() => {}}
+                                   placeholder='Search'/>
+     
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+     
+                              <div className='grid_15'>
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Web Programming' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Trading Apps' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Windows' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Mobile Web' />
+                                   {!categoriesMore && <div className='cursor' onClick={() => {setCategoriesMore(true)}}>
+                                  <Typography variant='body5' fontWeight='500' color={AppColor.orange}>+ Show 10 more</Typography>
+                                  </div>}
+                                   {categoriesMore && <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Web Programming' count='26' />}
+                              </div>
+                              <SizeBox height='15px'/>
+                              
+                              <Typography variant='body5' fontWeight='500' color={AppColor.transparentTextColor}>
+                              Subscriptions
+                              </Typography>
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+                              <div className='grid_15'>
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Start' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Pro' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Enterprise' count='26' />
+                                   
+                              </div>
+     
+                              <SizeBox height='15px'/>
+                              
+                              <Typography variant='body5' fontWeight='500' color={AppColor.transparentTextColor}>
+                              Repeatable
+                              </Typography>
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+                              <div className='grid_15'>
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Yes' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='No' count='26' />
+                              </div>
+     
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+     
+                              <Typography variant='body5' fontWeight='500' color={AppColor.transparentTextColor}>
+                              Limits
+                              </Typography>
+     
+                              <DynamicPadding desktop='40px' mobile='30px'/>
+     
+                              <RangeForm />
+     
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+     
+                              <Typography variant='body5' fontWeight='500' color={AppColor.transparentTextColor}>
+                              Deadline
+                              </Typography>
+     
+                              <DynamicPadding desktop='40px' mobile='30px'/>
+     
+                              <RangeForm />
+     
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+     
+                              <Typography variant='body5' fontWeight='500' color={AppColor.transparentTextColor}>
+                              Reward
+                              </Typography>
+                              <DynamicPadding desktop='20px' mobile='15px'/>
+     
+                              <div className='grid_15'>
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Bonuses' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Discounts' count='26' />
+                                   <SelectFilterItem
+                                   callback={(item) => {setSelectedFilters(prev => [...prev,item])}}
+                                   callbackRemove={(item) => {setSelectedFilters(prev => prev.filter(value => value !== item))}}
+                                   text='Gifts' count='26' />
+                                   
+                              </div>
+                         </div>}
+                         topPaddingFromNode='30px'
+                    />
+                    <DropdownRecent />
+                    </div>
+          </div>
+     )
+}
 
 type SelectFilterItemProps = {
      text: string;

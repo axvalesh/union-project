@@ -29,11 +29,28 @@ import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOran
 import { links } from 'common/components/Header/components/MenuLinks/content';
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 import { Link } from 'react-router-dom';
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
+import PartnershipModal from './modals/partnershipModal';
+import DarkBox from '@common/components/ui/DarkBox/index';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
+import DropdownNumber from '@common/components/ui/SearchFilterBar/components/DropdownNumber/index';
+import { ActivityItem } from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownNodeActivity/index';
+import MyButtonTransparentBlack from '@common/components/ui/MyButton/variants/MyButtonTransparentBlack';
+import ActivityModal from './modals/activityModal';
+import StatsModal from './modals/StatsModal';
+import ServiceModal from './modals/ServiceModal';
+import PorftolioModal from './modals/PorftolioModal';
+import ReviewsModal from './modals/reviewsModal';
+import SearchFilterBar, { FilterTags } from '@common/components/ui/SearchFilterBar/index';
+import SubscriptionsModal from './modals/subscriptionsModal';
+import DeeplinkModal from './modals/deeplinkModal';
 
 const Program = () => {
     const [showAllDetailsRight,setShowAllDetailsRight] = useState(false);
     const title = 'Artem Markevych WordPress Partnership'
     const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress']
+
+    const [deeplinkModal, setDeeplinkModal] = useState(false);
     return (
         <div>
         <Header />
@@ -107,57 +124,64 @@ const Program = () => {
                         <div style={{width: '100%'}}>
                             <Typography variant='body3'>Description</Typography>
 
-<DynamicPadding desktop='35px' mobile='15px'/>
-<Typography variant='body4'>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tristique enim, neque, mollis at. Quam scelerisque pulvinar pellentesque phasellus. Nisl id sit tincidunt ut. Egestas ullamcorper magna mi integer elementum dictum aenean in. Ultrices convallis in sit venenatis, ut nunc pellentesque. Eu lacus sapien et eu tortor cursus dolor.
-Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morbi nullam. Nunc sagittis tortor, dictum lorem quis faucibus elit. Pretium fames leo ut eget augue velit eros, pellentesque. Non quis imperdiet dui praesent at massa. Bibendum commodo eros bibendum sit cras sit venenatis, vulputate a. Et aliquet eu et tristique nibh ultrices vel amet amet. Sit facilisi pretium ut placerat sem. Sit nunc integer velit facilisi adipiscing lectus arcu. Pellentesque sapien, arcu, nulla quis magnis praesent.
-</Typography>
+                            <DynamicPadding desktop='35px' mobile='15px'/>
+                            <Typography variant='body4'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tristique enim, neque, mollis at. Quam scelerisque pulvinar pellentesque phasellus. Nisl id sit tincidunt ut. Egestas ullamcorper magna mi integer elementum dictum aenean in. Ultrices convallis in sit venenatis, ut nunc pellentesque. Eu lacus sapien et eu tortor cursus dolor.
+                            Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morbi nullam. Nunc sagittis tortor, dictum lorem quis faucibus elit. Pretium fames leo ut eget augue velit eros, pellentesque. Non quis imperdiet dui praesent at massa. Bibendum commodo eros bibendum sit cras sit venenatis, vulputate a. Et aliquet eu et tristique nibh ultrices vel amet amet. Sit facilisi pretium ut placerat sem. Sit nunc integer velit facilisi adipiscing lectus arcu. Pellentesque sapien, arcu, nulla quis magnis praesent.
+                            </Typography>
 
-<DynamicPadding desktop='20px' mobile='20px'/>
-<Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Tags</Typography>
-<SizeBox height='10px'/>
-<TagsDisplay
-    tags={['Logos', 'Logo Design', 'Logo']}
-/>
-<DynamicPadding />
-<ConditionSection />
-<DynamicPadding />
-<Typography variant='body3' fontWeight='500'>Tools</Typography>
+                            <DynamicPadding desktop='20px' mobile='20px'/>
+                            <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Tags</Typography>
+                            <SizeBox height='10px'/>
+                            <TagsDisplay
+                                tags={['Logos', 'Logo Design', 'Logo']}
+                            />
+                            <DynamicPadding />
+                            <ConditionSection />
+                            <DynamicPadding />
+                            <Typography variant='body3' fontWeight='500'>Tools</Typography>
 
-<DynamicPadding desktop='40px' mobile='30px'/>
-<div className={styles.tools_wrapper_section}>
-    <ToolsItem
-        icon={<AppColor.deeplink/>}
-        title='Deeplink'
-        text='Sale Links'
-    />
-      <ToolsItem
-        icon={<AppColor.banners/>}
-        title='Banners'
-        text='Advertising Images'
-    />
-</div>
+                            <DynamicPadding desktop='40px' mobile='30px'/>
+                            <div className={styles.tools_wrapper_section}>
+                                <ToolsItem
+                                    icon={<AppColor.deeplink/>}
+                                    title='Deeplink'
+                                    text='Sale Links'
+                                    onClick={() => {setDeeplinkModal(true)}}
+                                />
+                                <ToolsItem
+                                    icon={<AppColor.banners/>}
+                                    title='Banners'
+                                    text='Advertising Images'
+                                />
+                            </div>
+                            {deeplinkModal && <ModalCenterBasic desktopMaxWidth='830px' bottomPartPadding='30px' callbackClose={() => {setDeeplinkModal(false)}} 
+                                title='Deeplink'
+                            >
+                                <DeeplinkModal />
+                                </ModalCenterBasic>}
+                            
 
-<DynamicPadding />
-<Typography variant='body3' fontWeight='500'>Freelancer</Typography>
+                            <DynamicPadding />
+                            <Typography variant='body3' fontWeight='500'>Freelancer</Typography>
 
-<DynamicPadding desktop='40px' mobile='30px'/>
-<FreelancerCard user={fakeUserConstant} />
-<DynamicPadding />
-<div className={styles.review_wrapper}>
-    <div className={styles.gap_10}>
-        <Typography variant='body3' fontWeight='500'>Reviews</Typography>
-        <div className={styles.box_black}>
-            <Typography variant='body3' color='white' fontWeight='500'>1</Typography>
-        </div>
-        <div className={styles.margin_mobile}><Typography variant='body4' fontWeight='500' color={AppColor.green}>100% positive reviews </Typography></div>
-    </div>
-    <div className={styles.gap_30}>
-        <div className={styles.gap_5}>
-            <AppColor.filter />
-            <Typography variant='body4' textTransform='uppercase' fontWeight='500'>Filters</Typography>
-        </div>
-        <div className={styles.gap_5}>
+                            <DynamicPadding desktop='40px' mobile='30px'/>
+                            <FreelancerCard user={fakeUserConstant} />
+                            <DynamicPadding />
+                            <div className={styles.review_wrapper}>
+            <div className={styles.gap_10}>
+                <Typography variant='body3' fontWeight='500'>Reviews</Typography>
+                <div className={styles.box_black}>
+                    <Typography variant='body3' color='white' fontWeight='500'>1</Typography>
+                </div>
+                <div className={styles.margin_mobile}><Typography variant='body4' fontWeight='500' color={AppColor.green}>100% positive reviews </Typography></div>
+            </div>
+            <div className={styles.gap_30}>
+                <div className={styles.gap_5}>
+                    <AppColor.filter />
+                    <Typography variant='body4' textTransform='uppercase' fontWeight='500'>Filters</Typography>
+                </div>
+                <div className={styles.gap_5}>
             <AppColor.relevant />
             <Typography variant='body4' textTransform='uppercase' fontWeight='500'>Most recent</Typography>
         </div>
@@ -298,6 +322,7 @@ type ToolsItemProps = {
     icon: any;
     title: string;
     text: string;
+    onClick?: () => void;
 }
 type FreelancerCardProps = {
     user: userModel;
@@ -306,8 +331,97 @@ type FreelancerCardProps = {
     disableFirstTwo?: boolean
 }
 export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCardProps) => {
+    const [partnershipModal, setPartnershipModal] = useState(false);
+    const [subscriptionsModal, setSubscriptionsModal] = useState(false);
+    const [completedModal, setCompletedModal] = useState(false);
+    const [statsModal, setStatsModal] = useState(false);
+    const [servicesModal, setServicesModal] = useState(false);
+    const [portfolioModal, setPortfolioModal] = useState(false);
+    const [reviewsModal, setReviewsModal] = useState(false);
+
     return (
        <div style={{position: 'relative'}}>
+         {subscriptionsModal && <ModalCenterBasic
+      
+        desktopMaxWidth='1260px' bottomPartPadding='30px' callbackClose={() => {setSubscriptionsModal(false)}}
+            title='Subscriptions'
+        >
+                <SubscriptionsModal />
+            </ModalCenterBasic>}
+         {reviewsModal && <ModalCenterBasic
+        nodeAfterTitle={
+            <div className={styles.flex_node}>
+                <DarkBox text='3' />
+                <Typography variant='body4' color={AppColor.green}>95% positive reviews </Typography>
+                <div style={{flexGrow: '1'}}></div>
+                <ButtonDropdownSelect text='Projects' variants={['Projects' , 'Projects1']} />
+                <DropdownNumber />
+                <SizeBox width='30px'/>
+            </div>
+        }
+        desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setReviewsModal(false)}}
+            title='Reviews'
+        >
+                <ReviewsModal />
+            </ModalCenterBasic>}
+         {portfolioModal && <ModalCenterBasic
+        nodeAfterTitle={
+            <div className={styles.flex_node}>
+                <DarkBox text='3' />
+                <div style={{flexGrow: '1'}}></div>
+                <DropdownNumber />
+                <SizeBox width='30px'/>
+            </div>
+        }
+        desktopMaxWidth='880px' bottomPartPadding='30px' callbackClose={() => {setPortfolioModal(false)}}
+            title='Portfolio'
+        >
+                <PorftolioModal />
+            </ModalCenterBasic>}
+        {servicesModal && <ModalCenterBasic
+        nodeAfterTitle={<DarkBox text='3' />}
+        desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setServicesModal(false)}}
+            title='Services'
+        >
+                <ServiceModal />
+            </ModalCenterBasic>}
+        {statsModal && <ModalCenterBasic
+        nodeAfterTitle={<div className={styles.flex_node}>
+            <DarkBox text='3' />
+            <div style={{flexGrow: '1'}}></div>
+            <ButtonDropdownSelect text='Projects' variants={['Projects' , 'Projects1']} />
+            <SizeBox width='30px'/>
+            </div>}
+        desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setStatsModal(false)}}
+            title='Statistics'
+        >
+              <StatsModal />
+            </ModalCenterBasic>}
+        {partnershipModal && <ModalCenterBasic
+        nodeAfterTitle={<DarkBox text='3' />}
+        desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setPartnershipModal(false)}}
+            title='Parterships'
+        >
+                <PartnershipModal />
+            </ModalCenterBasic>}
+        {completedModal && <ModalCenterBasic
+        desktopMinWidth='650px'
+        nodeAfterTitle={
+            <div className={styles.flex_node}>
+                <DarkBox text='3' />
+                <div style={{flexGrow: '1'}}></div>
+                <div className='gap_10' style={{gap: '30px'}}>
+                    <ButtonDropdownSelect text='Projects' variants={['Projects' , 'Projects1']} />
+                    <DropdownNumber />
+                </div>
+                <SizeBox width='30px'/>
+            </div>
+        }
+        desktopMaxWidth='650px' bottomPartPadding='10px' callbackClose={() => {setCompletedModal(false)}}
+            title='Common activity'
+        >
+            <ActivityModal />
+            </ModalCenterBasic>}
          <span className={styles.shell_absolute}>
                     <CardTypeDisplay
                         textColor={AppColor.white}
@@ -318,14 +432,14 @@ export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCard
     
                 <div className={styles.shell_absolute_right}>
                    {!disableFirstTwo && <>
-                    <div className={styles.absolute_black}>
+                    <div onClick={() => {setPartnershipModal(true)}} className={`${styles.absolute_black} cursor`}>
                         <AppColor.checkedFile width={'13px'}/>
                     </div>
-                    <div className={styles.absolute_black}>
+                    <div onClick={() => {setSubscriptionsModal(true)}} className={`${styles.absolute_black} cursor`}>
                         <AppColor.subscriptionsWhite width={'13px'}/>
                     </div>
                    </>}
-                    <div className={styles.absolute_black}>
+                    <div onClick={() => {setCompletedModal(true)}} className={`${styles.absolute_black} cursor`}>
                         <AppColor.completed width={'13px'}/>
                     </div>
                 </div>
@@ -354,13 +468,31 @@ export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCard
                         <DynamicPadding desktop='20px' mobile='15px'/>
                         <div className={styles.freelancer_links}>
                             {links 
-                            ? links.map(item => <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>)
+                            ? links.map(item => {
+                                switch(item.toLowerCase()) {
+                                  case 'account':
+                                    return <Link key={item} to={'/dashboard/account'}>
+                                      <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>
+                                    </Link>;
+                                  case 'stats':
+                                    return <div key={item} className='cursor' onClick={() => {setStatsModal(true)}}>
+                                      <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>
+                                    </div>;
+                                  case 'services':
+                                    return <div key={item} className='cursor' onClick={() => {setServicesModal(true)}}>
+                                      <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>
+                                    </div>;
+                                  // Add more cases for other links/modal actions as needed
+                                  default:
+                                    return <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>; // Render nothing for unsupported links
+                                }
+                              })
                             : <>
-                                <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>ACCOUNT</Typography>
-                            <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>Stats</Typography>
-                            <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>services</Typography>
-                            <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>portfolio</Typography>
-                            <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>Reviews</Typography>
+                            <Link to={'/dashboard/account'}><Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>ACCOUNT</Typography></Link>
+                            <div className='cursor' onClick={() => {setStatsModal(true)}}><Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>Stats</Typography></div>
+                            <div className='cursor' onClick={() => {setServicesModal(true)}}><Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>services</Typography></div>
+                            <div className='cursor' onClick={() => {setPortfolioModal(true)}}><Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>portfolio</Typography></div>
+                            <div className='cursor' onClick={() => {setReviewsModal(true)}}><Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>Reviews</Typography></div>
                             </>}
                         </div>
                     </div>
@@ -369,9 +501,16 @@ export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCard
        </div>
     )
 }
-const ToolsItem = ({icon,text,title}:ToolsItemProps) => {
+const ToolsItem = ({icon,text,title,onClick}:ToolsItemProps) => {
     return (
-        <div className={styles.tools_wrapper}>
+        <div
+        onClick={() => {
+            if(onClick) {
+                onClick();
+            }
+        
+        }}
+        className={`${styles.tools_wrapper} cursor`}>
             {icon}
             <SizeBox height='15px'/>
             <Typography textLineHeight='1' variant='body3' fontWeight='500'>{title}</Typography>

@@ -844,7 +844,7 @@ type StatisticTextProps = {
     title: string;
     text: string;
 }
-const  StatisticText = ({text,title}:StatisticTextProps) => {
+export const  StatisticText = ({text,title}:StatisticTextProps) => {
     return ( 
         <div className={styles.statistic_text}>
             <Typography variant='body5' color={AppColor.transparentBlack}>

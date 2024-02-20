@@ -39,6 +39,9 @@ import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 import { Link } from 'react-router-dom';
 import { developmentDropdown } from '@common/models/constants';
 import NavigationBarDropdowns from '@common/components/NavigationBarDropdowns/index';
+import LastSponsors from '@common/components/LastSponsors/index';
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
+import ContactModal from '@pages/Partnership/pages/Program/modals/contactModal/index';
 
 const Service = () => {
     const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
@@ -49,6 +52,7 @@ const Service = () => {
     useEffect(() => {
         window.scrollTo({top: 0});
     },[])
+    const [contactModal,setContactModal] = useState(false);
     
     return (
         <div>
@@ -113,20 +117,7 @@ const Service = () => {
                     <DynamicPadding />
 
                     
-                    <div className="gap_5">
-                        <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Last sponsors</Typography>
-                        <div className={styles.info_box}><AppColor.info/></div>
-                        <SliderUsers
-                            items={[
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
-                            ]}
-                        />
-                    </div>
+                    <LastSponsors />
                     <DynamicPadding />
                         <Typography variant='body3' fontWeight='500'>Description</Typography>
                         <DynamicPadding desktop='30px' mobile='15px'/>
@@ -392,13 +383,20 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                             <DynamicPadding desktop='15px' mobile='10px'/>
                             <MyButtonOrange textTransform='uppercase' onClick={() => {}} width='100%'>Select pro $1500</MyButtonOrange>
                             <DynamicPadding desktop='15px' mobile='10px'/>
-                            <MyButtonTransparentOrange textTransform='uppercase' onClick={() => {}} width='100%'>Contact freelancer</MyButtonTransparentOrange>
+                            <MyButtonTransparentOrange textTransform='uppercase' onClick={() => {
+                                setContactModal(true);
+                            }} width='100%'>Contact freelancer</MyButtonTransparentOrange>
                             <DynamicPadding desktop='30px' mobile='15px' />
                             </div>
                         </div>
                     
                 </div>}
             />
+            {contactModal && <ModalCenterBasic desktopMaxWidth='880px' title='Join to Artem Markevych Wordpress Partnership' bottomPartPadding='30px'
+                callbackClose={() => {setContactModal(false)}} 
+            >
+                <ContactModal callbackClose={() => {setContactModal(false)}}/>
+                </ModalCenterBasic>}
         </div>
            <CardsSliderRelated />
 

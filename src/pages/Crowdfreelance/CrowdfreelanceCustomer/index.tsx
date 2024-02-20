@@ -43,6 +43,8 @@ import Slider from '@common/components/ui/Slider/Slider';
 import LastSponsors from '@common/components/LastSponsors/index';
 import CenterShadowBox from '@common/components/ui/CenterShadowBox/index';
 import CommentsSection, { comment } from '@common/components/CommentsSection/index';
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
+import ContactModal from '@pages/Partnership/pages/Program/modals/contactModal/index';
 
 const CrowdfreelanceCustomer = () => {
     const arrayHistory = ['Crowdfreelance', 'Tech', 'Web Service'] 
@@ -100,7 +102,7 @@ const CrowdfreelanceCustomer = () => {
     };
     
     const fakeComments: comment[] = Array.from({ length: 30 }, () => ({ ...fakeComment }));
-    
+    const [contactModal,setContactModal] = useState(false);
     return (
         <div>
         <Header />
@@ -369,13 +371,20 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                             ? `easy start ${selectedPricePlan}` : `pro ${selectedPricePlan}`
                             }</MyButtonOrange>
                             <DynamicPadding desktop='15px' mobile='10px'/>
-                            <MyButtonTransparentOrange textTransform='uppercase' onClick={() => {}} width='100%'>Contact freelancer</MyButtonTransparentOrange>
+                            <MyButtonTransparentOrange textTransform='uppercase' onClick={() => {
+                                 setContactModal(true);
+                            }} width='100%'>Contact freelancer</MyButtonTransparentOrange>
                             <DynamicPadding desktop='30px' mobile='15px' />
                             </div>
                         </div>
                     
                 </div>}
             />
+              {contactModal && <ModalCenterBasic desktopMaxWidth='880px' title='Join to Artem Markevych Wordpress Partnership' bottomPartPadding='30px'
+                callbackClose={() => {setContactModal(false)}} 
+            >
+                <ContactModal callbackClose={() => {setContactModal(false)}}/>
+                </ModalCenterBasic>}
         </div>
            <CardsSliderRelated />
 

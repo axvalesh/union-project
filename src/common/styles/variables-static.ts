@@ -333,8 +333,18 @@ import { ReactComponent as longRightWhite} from '@assets/svg/long-right-white.sv
 import { ReactComponent as heartOrange} from '@assets/svg/heart-orange.svg';
 import { ReactComponent as noteOrange} from '@assets/svg/note-orange.svg';
 import { ReactComponent as eyeOrange} from '@assets/svg/eye-orange.svg';
+import { ReactComponent as noteWhite} from '@assets/svg/note-white.svg';
+import { ReactComponent as messageChat} from '@assets/svg/messages-chat.svg';
+import { ReactComponent as messageChatOrange} from '@assets/svg/messages-chat-orange.svg';
+import { ReactComponent as volume} from '@assets/svg/volume.svg';
+import { ReactComponent as minimize} from '@assets/svg/minimize.svg';
 
 class AppColor {
+    static volume = volume;
+    static minimize = minimize;   
+    static messageChat = messageChat;
+    static messageChatOrange = messageChatOrange;  
+    static noteWhite = noteWhite;
     static heartOrange = heartOrange;
     static noteOrange = noteOrange;
     static eyeOrange = eyeOrange;   

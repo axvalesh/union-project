@@ -34,6 +34,7 @@ type CardStatisticPartnershipProps = {
     links?: string[];
     lvl?: string;
     userDetails?: svgTextProps[];
+    imageBorderLeft?: string;
 }
 const CardStatisticPartnership = ({
     title,
@@ -44,6 +45,7 @@ const CardStatisticPartnership = ({
     rate,
     EPC,
     userDetails,
+    imageBorderLeft,
     CR,
     CR48hours,
     details,
@@ -67,23 +69,23 @@ const CardStatisticPartnership = ({
     
     return (
         <div className={styles.shell}>
-            <span className={styles.shell_absolute}>
+            {cardType && <span className={styles.shell_absolute}>
                 <CardTypeDisplay
                     textTransform={textTransform}
                     textColor={typeColor??AppColor.white}
                     text={cardType ?? "Business"}
                     backgroundColor={AppColor.text}
                 />
-            </span>
+            </span>}
             <div className={styles.right_abolute}>{iconsAbsolute ?? <AppColor.refresh/>}</div>
             <div
-                style={topImageStyles}
+                style={{...topImageStyles,borderTopLeftRadius: imageBorderLeft,overflow: 'hidden'}}
                 className={styles.shell_top_image}>
                 <Typography variant="body5" color="white">
                     {title}
                 </Typography>
                 <div className={styles.content_top_first}>
-                    <img src={testUserImage} alt="userImage" />
+                    <img  src={testUserImage} alt="userImage" />
                     <div>
                         <img src={flagImage} alt="countryFlag" />
                         <span className={styles.name}>

@@ -17,6 +17,25 @@
     }
 }
 
+.flex_row_end {
+    display: flex;
+    align-items: end;
+    gap: 10px;
+}
+
+.helper {
+    position: fixed;
+    bottom: 120px;
+    right: 10px;
+    width: 400px;
+    @include weakShadow;
+    border-radius: 20px;
+    background-color: white;
+    transition: 0.2s;
+}
+.helper_padding {
+    padding: 20px 30px;
+}
 .wrapper_content {
     display: flex;
     flex-direction: column;
@@ -81,6 +100,9 @@
     }
 }
 @media (min-width: $tabletSize) {
+    .helper {
+        bottom: 170px;
+    }
     .fourth {
         display: flex;
         flex-direction: column;

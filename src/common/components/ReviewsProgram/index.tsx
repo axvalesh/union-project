@@ -24,13 +24,13 @@ type ReviewsProgramCardProps = {
     afterPriceNode?: React.ReactNode;
     images?: string[];
     addInfo?: {text:string,icon:React.ReactNode,users: userModel[]}
+    title?: string;
 }
 const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,addInfo}:ReviewsProgramCardProps) => {
 
     const imagesArray = addInfo != null ? addInfo.users.map(item => item.image) : null;
 
     const [imageModal,setImageModal] = useState(false);
-    const [shareModal,setShareModal] = useState(false);
 
     return (
         <div className={styles.comment_wrapper}>
@@ -72,33 +72,71 @@ const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,a
             <div className={styles.absolute_bottom}><AppColor.threeLines/></div>
             
             {imageModal && <ModalCenter onClickHandler={() => {setImageModal(false)}}>
-                    <div className={styles.image_modal}>
-                        <AppColor.close className={`${styles.close_icon} cursor`} onClick={() => {setImageModal(false)}} width={'17px'} height={'17px'} fill={AppColor.text} />
-                   <div className={styles.image_modal_wrapper}>
-                   <ImageCardsShow
-                        widthTotalDesktop='50vw'
-                        images={[test1,test2,test3]}
-                    />
-                    <DynamicPadding desktop='30px' mobile='20px'/>
-                    <div className={styles.fake_grid}>
-                        <div className='flex_space_between'>
-                            <div className='gap_5 cursor' onClick={() => {setShareModal(true)}}>
-                                <AppColor.share />
-                                <Typography variant='body4' fontWeight='500' textTransform='uppercase'>Share</Typography>
-                            </div>
-                            <div className='gap_5 cursor'>
-                                <AppColor.report />
-                                <Typography variant='body4' fontWeight='500' textTransform='uppercase'>Report</Typography>
-                            </div>
-                        </div>
-                        <div>
-
-                        </div>
-                    </div>
-                   </div>
-                    </div>
+                <ImageModal callback={setImageModal} />
                 </ModalCenter>}
-                {shareModal && <ModalCenter onClickHandler={() => {setShareModal(false)}}>
+        </div>
+    )
+}
+
+export const ReviewsNoBorder = ({text,user,likes,money,sales,afterPriceNode,images,addInfo,title}:ReviewsProgramCardProps) => {
+    const imagesArray = addInfo != null ? addInfo.users.map(item => item.image) : null;
+
+    const [imageModal,setImageModal] = useState(false);
+
+    return (
+        <div className={styles.comment_wrapper_no_shadow}>
+            <div className='flex_space_between'>
+                <Typography variant='body4' fontWeight='500'>Logo by sample in vector in maximum quality</Typography>
+                <div className={styles.sales_text} style={{marginLeft: 'auto',display: 'flex',alignItems:'center',gap: '10px'}}>
+                    {money != '' && <Typography variant='subtitle' fontWeight='500' textTransform='uppercase'>${money} </Typography>}
+                    {sales != null && <div style={{display: 'flex',alignItems:'center',gap: '5px'}}>
+                        <AppColor.walletIcon />
+                        <Typography variant='body4'>{sales} sales </Typography>
+                    </div>}
+                    {afterPriceNode}
+               </div>
+            </div>
+            <div className={styles.comment_user_info}>
+            <UserAvatar preventMobileNone={true} active={true} url={user.image} name={user.name} role='Manager' flag={<AppColor.UkraineFlagIcon/>}/>
+               <div className={styles.recommended_comment}>
+                    <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>
+                        <AppColor.like />
+                        <Typography variant='body4' fontWeight='500'>Recommended</Typography>
+                    </div>
+                    <Typography color={AppColor.transparentBlack} variant='body4'>{user.activeAgo}</Typography>
+               </div>
+               <div style={{marginLeft: 'auto'}}>{images != null && <div className='gap_10'>{ images.map(item => <img className='cursor' onClick={() => {setImageModal(true)}} style={{borderRadius: '20px'}} src={item} height={'33px'} />)}</div>}</div>
+              
+            </div>
+
+            <Typography variant='body4'>
+                {text}
+            </Typography>
+
+            {addInfo != null && 
+                <div className='gap_10'>
+                    {addInfo.icon}
+                    <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Musguard OMNI: Rollable Bicycle Mudguards</Typography>
+                    <ImagesArrayDisplay images={imagesArray} />
+                </div>}
+            <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>   
+                <Typography color={parseInt(likes) < 50 ? AppColor.red :parseInt(likes) < 90 ? AppColor.orange : AppColor.green} variant='body4'>{likes}% users like this review </Typography>
+                <AppColor.like/>
+                <AppColor.dislike/>
+            </div>
+            <div className={styles.absolute_bottom}><AppColor.threeLines/></div>
+            
+            {imageModal && <ModalCenter onClickHandler={() => {setImageModal(false)}}>
+                <ImageModal callback={setImageModal} />
+                </ModalCenter>}
+        </div>
+    )
+}
+export const ImageModal = ({callback}) => {
+    const [shareModal,setShareModal] = useState(false);
+    return (
+        <>
+        {shareModal && <ModalCenter onClickHandler={() => {setShareModal(false)}}>
                     <div className={styles.share_modal}>
                         <AppColor.close className={`${styles.close_icon} cursor`} onClick={() => {setShareModal(false)}} width={'17px'} height={'17px'} fill={AppColor.text} />
                         <div className={styles.share_wrapper}>
@@ -158,7 +196,32 @@ const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,a
                         </div>
                     </div>
                 </ModalCenter>}
-        </div>
+            <div className={styles.image_modal}>
+                            <AppColor.close className={`${styles.close_icon} cursor`} onClick={() => {callback(false)}} width={'17px'} height={'17px'} fill={AppColor.text} />
+                       <div className={styles.image_modal_wrapper}>
+                       <ImageCardsShow
+                            widthTotalDesktop='50vw'
+                            images={[test1,test2,test3]}
+                        />
+                        <DynamicPadding desktop='30px' mobile='20px'/>
+                        <div className={styles.fake_grid}>
+                            <div className='flex_space_between'>
+                                <div className='gap_5 cursor' onClick={() => {setShareModal(true)}}>
+                                    <AppColor.share />
+                                    <Typography variant='body4' fontWeight='500' textTransform='uppercase'>Share</Typography>
+                                </div>
+                                <div className='gap_5 cursor'>
+                                    <AppColor.report />
+                                    <Typography variant='body4' fontWeight='500' textTransform='uppercase'>Report</Typography>
+                                </div>
+                            </div>
+                            <div>
+    
+                            </div>
+                        </div>
+                       </div>
+                        </div>
+        </>
     )
 }
 

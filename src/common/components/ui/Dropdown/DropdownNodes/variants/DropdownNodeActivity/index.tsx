@@ -9,6 +9,8 @@ import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import { useState } from 'react';
 import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
 import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange';
+import UserAvatar from '@common/components/ui/UserAvatar/index';
+import { fakeUserConstant } from '@common/models/user';
 
 type DropdownNodeActivityProps = {
     activityItems: ActivityItemProps[];
@@ -70,7 +72,7 @@ export const ActivityItem = ({image,percent,price,tag,title,iconNode,filter,pres
     return (
         <div className={styles.wrapper}>
             <div className={styles.top_part}>
-                {image}
+                <UserAvatar variant='image' active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} />
                 <div>
                     <Typography className='underline_appearance' variant='body4' fontWeight='500'>
                         {title}

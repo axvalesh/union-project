@@ -56,6 +56,13 @@
     border-radius: 20px;
 }
 
+.flex_node {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 30px;
+}
+
 .shell_absolute {
     position: absolute;
     transform: translateY(-50%);
@@ -74,12 +81,18 @@
 
 .absolute_black {
     width: 27px;
-    padding: 4px 0px;
+    height: 27px;
+    padding: 5px;
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     background-color: $text;
+    transition: 0.15s;
+    &:hover {
+        opacity: 0.8;
+    }
 }
 .freelance_card_content {
     position: relative;

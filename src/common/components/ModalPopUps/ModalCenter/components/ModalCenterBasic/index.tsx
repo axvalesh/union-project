@@ -47,12 +47,12 @@ const ModalCenterBasic = ({prevClose,desktopMinHeight,nodeAfterTitle,desktopMinW
                         }
                     }} />
                     <SizeBox width='15px'/>
-                    <Typography variant='body3' fontWeight='500'>{title}</Typography>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body3' fontWeight='500'>{title}</Typography>
                     {nodeAfterTitle && <SizeBox width='15px'/>}
                     {nodeAfterTitle && nodeAfterTitle}
                     </div>}
-                {!prevClose &&  <div className='gap_15'>
-                    <Typography variant='body3' fontWeight='500'>{title}</Typography>
+                {!prevClose &&  <div className='gap_15' style={{width: '100%'}}>
+                    <Typography style={{whiteSpace: 'nowrap'}} variant='body3' fontWeight='500'>{title}</Typography>
                     {nodeAfterTitle && nodeAfterTitle}
                     </div>}
 
