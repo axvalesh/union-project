@@ -63,7 +63,8 @@ import { ReactComponent as hideEye} from '@assets/svg/hide-eye.svg';
 
 import { ReactComponent as openEye} from '@assets/svg/open-eye.svg';
 
-import { ReactComponent as UkraineFlagIcon} from '@assets/svg/flags/ukraine-flag-icon.svg';
+import { ReactComponent as newIconUkraineFlag} from '@assets/svg/flags/ukraine-flag-icon.svg';
+
 
 import { ReactComponent as noteText} from '@assets/svg/note-text.svg';
 
@@ -562,7 +563,7 @@ class AppColor {
     static filter = filter;
     static info = info;
     static noteText = noteText;
-    static UkraineFlagIcon = UkraineFlagIcon;
+    static UkraineFlagIcon = newIconUkraineFlag;
     static twoOFFive = twoOFFive;
     static openEye = openEye;
     static search = search;
