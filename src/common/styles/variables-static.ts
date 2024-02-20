@@ -329,7 +329,14 @@ import { ReactComponent as threePointsActive} from '@assets/svg/three-points-act
 import { ReactComponent as longLeftWhite} from '@assets/svg/long-left-white.svg';
 import { ReactComponent as longRightWhite} from '@assets/svg/long-right-white.svg';
 
+import { ReactComponent as heartOrange} from '@assets/svg/heart-orange.svg';
+import { ReactComponent as noteOrange} from '@assets/svg/note-orange.svg';
+import { ReactComponent as eyeOrange} from '@assets/svg/eye-orange.svg';
+
 class AppColor {
+    static heartOrange = heartOrange;
+    static noteOrange = noteOrange;
+    static eyeOrange = eyeOrange;   
     static longLeftWhite = longLeftWhite;
     static longRightWhite = longRightWhite;   
     static threePointsActive = threePointsActive;

@@ -35,4 +35,11 @@
 .filter_item {
     cursor: pointer;
     user-select: none;
+    transition: 0.15s;
+    padding-bottom: 20px;
+    &:hover {
+        * {
+            color: $orange;
+        }
+    }
 }

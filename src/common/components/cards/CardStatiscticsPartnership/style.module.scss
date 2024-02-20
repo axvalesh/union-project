@@ -26,13 +26,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 1;
 }
 
 .shell_absolute {
     position: absolute;
     overflow: visible;
-    z-index: 2;
+    z-index: 1;
     top: -10px;
     left: -5px;
 }

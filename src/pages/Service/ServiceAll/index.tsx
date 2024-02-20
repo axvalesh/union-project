@@ -36,6 +36,7 @@ import SliderItem from '@pages/Partnership/pages/PartnershipManager/components/S
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index'
 import InputCommon from '@common/components/ui/inputs/InputCommon/index'
 import { Link } from 'react-router-dom'
+import FiltersTemplate from '@common/components/ui/FiltersTemplate/index'
 
 const ServiceAll = () => {
     const { width, height } = useScreenSize()
@@ -173,16 +174,7 @@ const ServiceAll = () => {
                     item0MobileWhenModal={
                         <div style={{width: '100%'}}>
                            
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body4"
-                                    color={AppColor.transparentBlack}
-                                    textTransform='uppercase'
-                                    >
-                                    My filter templates
-                                </Typography>
-                                <AppColor.template />
-                            </div>
+                           <FiltersTemplate />
 
                             <DynamicPadding
                                 desktop="30px"
@@ -201,16 +193,7 @@ const ServiceAll = () => {
                     item1={
                         <div style={{width: '100%'}}>
                            
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body4"
-                                    color={AppColor.transparentBlack}
-                                    textTransform='uppercase'
-                                    >
-                                    My filter templates
-                                </Typography>
-                                <AppColor.template />
-                            </div>
+                           <FiltersTemplate />
                             
 
                             <DynamicPadding

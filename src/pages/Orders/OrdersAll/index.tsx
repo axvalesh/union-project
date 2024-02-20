@@ -36,6 +36,7 @@ import { fakeUserConstant } from '@common/models/user';
 import CardStatisticPartnership from '@common/components/cards/CardStatiscticsPartnership/index';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 import { Link } from 'react-router-dom';
+import FiltersTemplate from '@common/components/ui/FiltersTemplate/index';
 const OrdersAll = () => {
     const { width, height } = useScreenSize()
     const [tags, setTags] = useState<string[]>([])
@@ -238,16 +239,7 @@ const OrdersAll = () => {
                                <Typography variant='body4' fontWeight='500' color={AppColor.orange}>10/20</Typography>
                             </div>
                             <DynamicPadding desktop='30px' mobile='15px'/>
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body4"
-                                    color={AppColor.transparentBlack}
-                                    textTransform='uppercase'
-                                    >
-                                    My filter templates
-                                </Typography>
-                                <AppColor.template />
-                            </div>
+                            <FiltersTemplate />
 
                             <DynamicPadding
                                 desktop="30px"
@@ -280,16 +272,7 @@ const OrdersAll = () => {
                                <Typography variant='body4' fontWeight='500' color={AppColor.orange}>10/20</Typography>
                             </div>
                             <DynamicPadding desktop='30px' mobile='15px'/>
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body4"
-                                    color={AppColor.transparentBlack}
-                                    textTransform='uppercase'
-                                    >
-                                    My filter templates
-                                </Typography>
-                                <AppColor.template />
-                            </div>
+                            <FiltersTemplate />
                             
 
                             <DynamicPadding

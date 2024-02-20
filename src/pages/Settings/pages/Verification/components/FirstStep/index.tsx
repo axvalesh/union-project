@@ -68,15 +68,37 @@ const FirstStep = ({callback,formData1,updateFormData1}: {callback:() => void,fo
                                     callback={(item) => {handleCallback('lastName',item)}}
                                     inputText={formData.lastName}
                                 />  
-                                <InputBorderTextDropdown
-                                    initText={formData.country != '' ? formData.country : 'Select country'}
-                                    labelIcon={<AppColor.earth fill={formData.country != '' ? AppColor.text : AppColor.grey}
-                                    />}
-                                    borderText='Country'
-                                    dropdownVariants={['Ukraine','England','Turkey','Poland']}
-                                    callback={(item) => {handleCallback('country',item)}}
-                                    
-                                />  
+                               <InputBorderTextDropdown
+                                initText='Select country'
+                                labelIcon={<AppColor.earth fill={formData.country != '' ? AppColor.text : AppColor.grey}
+                                />}
+                                borderText='Country'
+                                searchField={true}
+                                dropdownVariantsNodes={[
+                                    {
+                                        icon: <AppColor.usaFlag />,
+                                        text: 'USA',
+                                    },
+                                    {
+                                        icon: <AppColor.ukFlag />,
+                                        text: 'United Kingdom',
+                                    },
+                                    {
+                                        icon: <AppColor.ukraineFlag />,
+                                        text: 'Ukrainian',
+                                    },
+                                    {
+                                        icon: <AppColor.franchFlag />,
+                                        text: 'French',
+                                    },
+                                    {
+                                        icon: <AppColor.spanishFlag />,
+                                        text: 'Spanish',
+                                    },
+                                ]}
+                                callback={(item) => {handleCallback('country',item)}}
+                                
+                            />  
                                 <InputBorderTextDropdown
                                     initText={formData.stateProvince != '' ? formData.stateProvince : 'Select State/Province'}
                                     labelIcon={<AppColor.terrainMap fill={formData.stateProvince != '' ? AppColor.text : AppColor.grey} />}

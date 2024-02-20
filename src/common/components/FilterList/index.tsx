@@ -101,6 +101,7 @@ export const FilterListBig = ({filters,callback,category=[],activeStartItem,oran
     
                     {filters.map((filter,index) => (
                         <div
+                            style={{borderBottom: `2px solid ${filter == activeFilter ? AppColor.orange : AppColor.transparent}`}}
                             className={styles.filter_item}
                             onClick={() => {
                                 setActive(filter)
@@ -111,7 +112,7 @@ export const FilterListBig = ({filters,callback,category=[],activeStartItem,oran
                                 }
                                 textTransform={activeFilter == filter ? 'uppercase' : 'none'}
                                 color={
-                                    filter == orangeText ? AppColor.orange : AppColor.text
+                                    filter == orangeText && AppColor.orange
                                 }
                                 variant={activeFilter == filter ? 'subtitle' : 'body4'}>
                                 {filter}
@@ -120,7 +121,6 @@ export const FilterListBig = ({filters,callback,category=[],activeStartItem,oran
                     ))}
                 </div>
              </div>
-            <DynamicPadding mobile="15px" desktop="15px" />
             <HorizontalLine />
         </div>
     )

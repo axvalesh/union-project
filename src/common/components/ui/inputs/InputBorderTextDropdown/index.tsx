@@ -99,8 +99,8 @@ const InputBorderTextDropdown = ({searchField,borderText,initText='',dropdownVar
                         )}
                     {dropdownVariants && dropdownVariants.map(item =>
                        <div
-                       onClick={() => {handleChange(item)}}
-                       className={styles.variant_item}> <Typography variant='body4'>{item}</Typography>    </div>
+                       onClick={() => {handleChange(item);setShowDropdown(false);}}
+                       className={`${styles.variant_item} cursor`}> <Typography variant='body4'>{item}</Typography>    </div>
                     )}
                 </AnimateHeight>
             </div>

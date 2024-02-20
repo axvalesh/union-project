@@ -134,7 +134,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'static'}) => {
                                 </li>
                                 <div
                                     onMouseDown={(event) => {}}
-                                    onClick={() => {setHovered(prev => !prev)}}
+                                    
                                     className={`${styles.hover_wrapper} ${
                                         hovered
                                             ? styles.active

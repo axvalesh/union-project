@@ -15,6 +15,7 @@ import DaysLeftTimer from '@common/components/ui/DaysLeftTimer/DaysLeftTimer'
 import CardTypeDisplay from '../CardTypeDisplay/CardTypeDisplay'
 import Urgent from '../../ui/Urgent'
 import { CSSProperties } from 'react';
+import AnimatedSvg from '../../AnimatedSvg'
 type CardStatisticPartnershipProps = {
     title: string
     user: userModel
@@ -180,9 +181,18 @@ const CardStatisticPartnership = ({
                 
             </div>
             <div className={styles.shell_bottom}>
-                <AppColor.hearPlus fill={AppColor.text} />
-                <AppColor.notes />
-                <AppColor.hideEye />
+                <AnimatedSvg
+                    node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}
+                    node2={<AppColor.heartOrange height={'18px'} fill={AppColor.text} />}
+                />
+                <AnimatedSvg
+                    node1={<AppColor.notes height={'18px'} fill={AppColor.text} />}
+                    node2={<AppColor.noteOrange height={'18px'} fill={AppColor.text} />}
+                />
+                <AnimatedSvg
+                    node1={<AppColor.eye height={'18px'} fill={AppColor.text} />}
+                    node2={<AppColor.eyeOrange height={'18px'} fill={AppColor.text} />}
+                />
             </div>
         </div>
     )

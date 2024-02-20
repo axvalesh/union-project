@@ -5,9 +5,20 @@ import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
 import {useState} from 'react'
 import { Link as LinkRouter } from 'react-router-dom';
+
+const mapRoutes = {
+      0: '/service/all',
+      1: '/orders/all',
+      2: '/crowdfreelance/all',
+      3: '/partnership',
+      4: '/search-master/categor',
+}
+
 const MenuLinks = ({hoveredLink}:{hoveredLink?:number}) => {
     const [activeTab,setActiveTab] = useState(hoveredLink ?? 0);
     const [activeCategory,setActiveCategory] = useState<categorysText>(categorysText.Development); 
+
+    
     return (
       <div className={styles.wrapper}>
            <div className={styles.links_wrapper}>
@@ -35,7 +46,7 @@ const MenuLinks = ({hoveredLink}:{hoveredLink?:number}) => {
                   onClick={() => {setActiveTab(2)}}
                   activeIndex={activeTab}
                   ImageNode={<AppColor.caseIcon fill={AppColor.text} />}
-                  ImageNodeActive={<AppColor.caseWhite fill='white' width={'35px'} height={'35px'} />}
+                  ImageNodeActive={<AppColor.caseWhite fill='white' width={'30px'} height={'30px'} />}
                   text='Sponsorships'
                   index={2}
                 />
@@ -125,7 +136,7 @@ const MenuLinks = ({hoveredLink}:{hoveredLink?:number}) => {
                  
                       <div className={styles.category_link_children}>
                         {item.content.map(item =>
-                          <LinkRouter to={item.link}>
+                          <LinkRouter to={mapRoutes[activeTab]}>
                             <Typography textLineHeight='100%' variant='body4' fontWeight='400' color={AppColor.text}>
                                 {item.text}
                             </Typography>

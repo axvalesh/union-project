@@ -14,6 +14,7 @@ import { formatNumberWithSpaces } from "@common/helpers/stringFunctions";
 import DaysLeftTimer from "@common/components/ui/DaysLeftTimer/DaysLeftTimer";
 import CardTypeDisplay from "../CardTypeDisplay/CardTypeDisplay";
 import DynamicPadding from "../../ui/DynamicPadding";
+import AnimatedSvg from "../../AnimatedSvg";
 type CardTimeProps = {
     title: string;
     user: userModel;
@@ -108,9 +109,18 @@ const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMone
            </div>
            {showBottomActions &&
                 <div className={`${styles.activity_items}`}>
-                <AppColor.hearPlus fill={AppColor.text} />
-                <AppColor.notes />
-                <AppColor.hideEye />
+               <AnimatedSvg
+                    node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}
+                    node2={<AppColor.heartOrange height={'18px'} fill={AppColor.text} />}
+                />
+                <AnimatedSvg
+                    node1={<AppColor.notes height={'18px'} fill={AppColor.text} />}
+                    node2={<AppColor.noteOrange height={'18px'} fill={AppColor.text} />}
+                />
+                <AnimatedSvg
+                    node1={<AppColor.eye height={'18px'} fill={AppColor.text} />}
+                    node2={<AppColor.eyeOrange height={'18px'} fill={AppColor.text} />}
+                />
              </div>}
       </div>
     );

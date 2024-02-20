@@ -35,6 +35,7 @@ import freestyle from '@assets/images/freestyle.png';
 import threeD from '@assets/images/threeD.png';
 import CardTime from '@common/components/cards/CardTime/CardTime';
 import { Link } from 'react-router-dom';
+import FiltersTemplate from '@common/components/ui/FiltersTemplate/index';
 
 const CrowdfreelanceAll = () => {
     const { width, height } = useScreenSize()
@@ -225,16 +226,7 @@ const CrowdfreelanceAll = () => {
                     item0MobileWhenModal={
                         <div style={{width: '100%'}}>
                            
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body4"
-                                    color={AppColor.transparentBlack}
-                                    textTransform='uppercase'
-                                    >
-                                    My filter templates
-                                </Typography>
-                                <AppColor.template />
-                            </div>
+                           <FiltersTemplate />
 
                             <DynamicPadding
                                 desktop="30px"
@@ -403,16 +395,7 @@ export const FilterBlock = () => {
     return (
         <div style={{width: '100%'}}>
                            
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body4"
-                                    color={AppColor.transparentBlack}
-                                    textTransform='uppercase'
-                                    >
-                                    My filter templates
-                                </Typography>
-                                <AppColor.template />
-                            </div>
+                           <FiltersTemplate />
                             
 
                             <DynamicPadding

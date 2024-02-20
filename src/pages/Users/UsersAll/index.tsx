@@ -32,6 +32,8 @@ import CardManager from '@common/components/cards/CardStatiscticsPartnership/var
 import { fakeUserConstant } from '@common/models/user';
 import InfoBox from '@common/components/ui/InfoBox/index';
 import CardStatisticPartnership from '@common/components/cards/CardStatiscticsPartnership/index';
+import FiltersTemplate from '@common/components/ui/FiltersTemplate/index';
+import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 
 const UsersAll = () => {
     const { width, height } = useScreenSize()
@@ -77,6 +79,7 @@ const UsersAll = () => {
         setRemovedTagFromSideBar(passedText);
       
     }
+    const [showModalSideBar,setShowModalSideBar] = useState(false);
     return (
         <div>
             <Header />
@@ -149,19 +152,34 @@ const UsersAll = () => {
                 <DynamicPadding />
 
                 <ResponsiveLayoutTwo
+                callbackModal={(item) => {setShowModalSideBar(item)}}
+                item1ToAModalLeftMobile={true}
+                showModal={showModalSideBar}
                     gap='80px'
                     item1MaxWidth='290px'
                     item2MaxWidth='830px'
+                    item0MobileWhenModal={
+                        <div style={{width: '100%'}}>
+                           
+                           <FiltersTemplate />
+
+                            <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                            <InputCommon 
+                                placeholder='Search'
+                                callback={() => {}}
+                            />
+                             <DynamicPadding
+                                desktop="30px"
+                                mobile="15px"
+                            />
+                        </div>
+                    }
                     item1={
                         <div style={{width: '100%'}}>
-                            <div className={styles.justify_flex}>
-                                <Typography
-                                    variant="body4"
-                                    color={AppColor.transparentBlack}>
-                                    My filter templates
-                                </Typography>
-                                <AppColor.template />
-                            </div>
+                            <FiltersTemplate />
                             <DynamicPadding
                                 desktop="30px"
                                 mobile="15px"
@@ -474,6 +492,18 @@ const UsersAll = () => {
                                 11 841 programs
                             </Typography>
                             <div className={styles.flex_center}>
+                            <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>
+                                            <AppColor.filter />
+                                            <Typography
+                                                variant="body4"
+                                                fontWeight="500"
+                                                color={
+                                                    AppColor.transparentBlack
+                                                }
+                                                textTransform="uppercase">
+                                                Filters
+                                            </Typography>
+                                    </div>
                                 <div className={styles.gap_5}>
                                     <AppColor.relevant />
                                     <Typography

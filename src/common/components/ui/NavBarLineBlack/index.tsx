@@ -16,9 +16,13 @@ const NavBarLineBlack = ({callback,maxCountPage}: {callback: (item:number) => vo
     }, [currentPage])
   
     for (let i = startIdx; i <= endIdx; i++) {
+      const [hovered, setHovered] = useState(false);
+
       numberBoxes.push(
           i < maxCountPage
           ? <div
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
           onClick={() => {
               if(i <= maxCountPage) {
                 setCurrentPage(i)
@@ -26,7 +30,7 @@ const NavBarLineBlack = ({callback,maxCountPage}: {callback: (item:number) => vo
           }}
           key={i}
           className={styles.box}
-          style={i == currentPage ? {opacity: 1} : {}}>
+          style={i == currentPage || hovered ? {opacity: 1} : {}}>
           <Typography
               variant="body4"
               >
