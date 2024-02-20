@@ -205,7 +205,7 @@ const CreatePopUp = () => {
 const UserItem = ({callback}: {callback: (item:string) => void}) => {
     return (
         <div className='gap_10'>
-            <UserAvatar active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Freelancer' flag={<AppColor.UkraineFlag/>}
+            <UserAvatar active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Freelancer' flag={<AppColor.UkraineFlagIcon/>}
              preventMobileNone={true}/>
            <div onClick={() => {callback(fakeUserConstant.name)}} className='cursor'>
            <AppColor.close width={'15px'} fill={AppColor.red} height={'15px'} />

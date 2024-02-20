@@ -171,7 +171,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                 item2={
                     <div style={{width: '100%'}}>
                         <div className={`flex_space_between box_shadow ${styles.user_wrappper}`}>
-                            <UserAvatar role='Freelancer' preventMobileNone={true} url={fakeUserConstant.image} name={fakeUserConstant.name} flag={<AppColor.UkraineFlag/>} active={true} />
+                            <UserAvatar role='Freelancer' preventMobileNone={true} url={fakeUserConstant.image} name={fakeUserConstant.name} flag={<AppColor.UkraineFlagIcon/>} active={true} />
 
                             <div className='gap_10'>
                                 <Typography variant='body5' color={AppColor.transparentBlack}>15 hr 59 min ago</Typography>

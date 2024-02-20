@@ -123,7 +123,7 @@ const CommentItem = ({text,user,likes}:CommentItemProps) => {
     return (
         <div className={styles.comment_wrapper}>
             <div className={styles.comment_user_info}>
-                <UserAvatar active={true} name={user.name} role='Manager' flag={<AppColor.UkraineFlag/>}/>
+                <UserAvatar active={true} name={user.name} role='Manager' flag={<AppColor.UkraineFlagIcon/>}/>
                <div className={styles.recommended_comment}>
                     <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>
                         <AppColor.like />
@@ -179,7 +179,7 @@ const DropdownMyProgramsItem = ({}:DropdownMyProgramsItemProps) => {
                    <div>
                         <SizeBox height='5px'/>
                         <div style={{alignItems: 'baseline'}} className='gap_5'>
-                            <AppColor.UkraineFlag width={'22px'} height={'16px'}/>
+                            <AppColor.UkraineFlagIcon width={'22px'} height={'16px'}/>
                             <Typography variant='body4' fontWeight='500' textLineHeight='1'>Ukraine</Typography>
                             <Typography variant='body5' color={AppColor.transparentBlack} fontWeight='500' textLineHeight='1'>(Full Adress)</Typography>
                         </div>

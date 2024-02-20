@@ -35,7 +35,7 @@ const ReviewsProgramCard = ({text,user,likes,money,sales,afterPriceNode,images,a
     return (
         <div className={styles.comment_wrapper}>
             <div className={styles.comment_user_info}>
-            <UserAvatar preventMobileNone={true} active={true} url={user.image} name={user.name} role='Manager' flag={<AppColor.UkraineFlag/>}/>
+            <UserAvatar preventMobileNone={true} active={true} url={user.image} name={user.name} role='Manager' flag={<AppColor.UkraineFlagIcon/>}/>
                <div className={styles.recommended_comment}>
                     <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>
                         <AppColor.like />
@@ -200,7 +200,7 @@ const ImagesArrayDisplay = ({images}: {images:string[]}) => {
 //     return (
 //         <div className={styles.comment_wrapper}>
 //             <div className={styles.comment_user_info}>
-//             <UserAvatar active={true} url={user.image} name={user.name} role='Manager' flag={<AppColor.UkraineFlag/>}/>
+//             <UserAvatar active={true} url={user.image} name={user.name} role='Manager' flag={<AppColor.UkraineFlagIcon/>}/>
 //                <div className={styles.recommended_comment}>
 //                     <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>
 //                         <AppColor.like />

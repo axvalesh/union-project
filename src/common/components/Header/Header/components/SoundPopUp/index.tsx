@@ -60,7 +60,7 @@ const NotifictaionUser = () => {
     return (
         <div className={styles.notification_user}>
             <div className='flex_space_between'>
-                <UserAvatar active={true} name={fakeUserConstant.name} activeAgoRole='1 min ago' url={fakeUserConstant.image} flag={<AppColor.UkraineFlag/>}
+                <UserAvatar active={true} name={fakeUserConstant.name} activeAgoRole='1 min ago' url={fakeUserConstant.image} flag={<AppColor.UkraineFlagIcon/>}
                     preventMobileNone={true}/>
                 <div className={styles.orage}>
                     <Typography variant='body5' fontWeight='500' color='white'>

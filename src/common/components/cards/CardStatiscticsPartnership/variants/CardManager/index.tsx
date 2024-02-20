@@ -82,7 +82,7 @@ const CardManager = ({
                 <div className={styles.gap_20}>
                     <Typography variant='body3' fontWeight='500'>Move</Typography>
                     <UserAvatar name={fakeUserConstant.name} active={true} 
-                        flag={<AppColor.UkraineFlag/>} role='Shortlisted' preventMobileNone={true}/>
+                        flag={<AppColor.UkraineFlagIcon/>} role='Shortlisted' preventMobileNone={true}/>
 
                 </div>
                 <div className={styles.gap_20}>

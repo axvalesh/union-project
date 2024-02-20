@@ -38,7 +38,7 @@ const DetailMyOrders = ({informationTable,informationDropdown}:DetailMyOrdersPro
                 ? <div>
                     <DynamicPadding desktop='30px' mobile='15px'/>
                     <div className={styles.user_box}>
-                        <UserAvatar url={fakeUserConstant.image} active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} role='Manager' preventMobileNone={true}/>
+                        <UserAvatar url={fakeUserConstant.image} active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} role='Manager' preventMobileNone={true}/>
                         <div className="gap_10">
                             <Typography variant='body5' color={AppColor.transparentBlack}>15 hr 59 min ago</Typography>
                             <AppColor.chevronBottom width={'16px'} height={'8px'} fill={AppColor.transparentBlack}/>
@@ -145,7 +145,7 @@ const CommentItem = ({text,user,likes}:CommentItemProps) => {
     return (
         <div className={styles.comment_wrapper}>
             <div className={styles.comment_user_info}>
-                <UserAvatar active={true} name={user.name} role='Manager' flag={<AppColor.UkraineFlag/>}/>
+                <UserAvatar active={true} name={user.name} role='Manager' flag={<AppColor.UkraineFlagIcon/>}/>
                <div className={styles.recommended_comment}>
                     <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>
                         <AppColor.like />

@@ -83,7 +83,7 @@ const DetailsTableVerification = ({information}:DetailsTableVerificationProps) =
                     title: 'Name',
                     selecrable: true,
         
-                    child:<UserAvatar flag={<AppColor.UkraineFlag />} activeAgo="1 min ago" width='38px' height='38px' active={true} url={fakeUserConstant.image} preventMobileNone={true} name={fakeUserConstant.name}/>
+                    child:<UserAvatar flag={<AppColor.UkraineFlagIcon />} activeAgo="1 min ago" width='38px' height='38px' active={true} url={fakeUserConstant.image} preventMobileNone={true} name={fakeUserConstant.name}/>
                 },
                 {
                     title: 'Date',

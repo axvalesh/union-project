@@ -92,7 +92,7 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
 
                     <div className={styles.top_details_wrapper}>
                         <div className='flex_space_between'>
-                            <UserAvatar url={fakeUserConstant.image} active={true} name={fakeUserConstant.name} flag={<AppColor.UkraineFlag/>} activeAgoRole='1 min ago' role='Searching' />
+                            <UserAvatar url={fakeUserConstant.image} active={true} name={fakeUserConstant.name} flag={<AppColor.UkraineFlagIcon/>} activeAgoRole='1 min ago' role='Searching' />
     
                             <div className='gap_20'>
                                 <AppColor.searchIconBlack />
@@ -147,7 +147,7 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
                             </div>
                             <SizeBox height='20px'/>
                             <div className='gap_5'>
-                                <AppColor.UkraineFlag />
+                                <AppColor.UkraineFlagIcon />
                                 <Typography textLineHeight='1' variant='body3' fontWeight='500'>Artem M.</Typography>
                             </div>
                             <SizeBox height='15px'/>
@@ -309,7 +309,7 @@ const NotificationItem = ({notText,fileTitle,offer,}:NotificationItemProps) => {
                 <div style={{position: 'relative'}}>
                     <div className='tail'>
                         
-                        <AppColor.UkraineFlag />
+                        <AppColor.UkraineFlagIcon />
                         
                     </div>
                     <Typography variant='body5' fontWeight='500'><span style={{color: 'transparent'}}>sda</span>{fakeUserConstant.name}
@@ -397,7 +397,7 @@ const CommentItem = () => {
 
             <div>
                 <div className='gap_5'>
-                    <AppColor.UkraineFlag />
+                    <AppColor.UkraineFlagIcon />
                     <Typography variant='body5' fontWeight='500'>Artem M.</Typography>
                     <Typography variant='body5' color={AppColor.transparentBlack}>08:21</Typography>
                 </div>
@@ -429,7 +429,7 @@ const CommentPreview = () => {
     return (
         <div onClick={() => {setShowModal(true);}} className={styles.comment_preview}>
             <div className='flex_space_between'>
-                <UserAvatar preventMobileNone={true} flag={<AppColor.UkraineFlag/>} activeAgoRole='1 min ago' active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Customer'/>
+                <UserAvatar preventMobileNone={true} flag={<AppColor.UkraineFlagIcon/>} activeAgoRole='1 min ago' active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Customer'/>
                 <div className={styles.orange_box}>
                     <Typography variant='body5' fontWeight='500' color='white'>3</Typography>
                 </div>
@@ -445,7 +445,7 @@ const CommentPreview = () => {
                        <div onClick={(event) => {handleCloseClick(event)}}>
                        <AppColor.longChevronLeft />
                        </div>
-                        <UserAvatar active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Freelancer' flag={<AppColor.UkraineFlag/>}
+                        <UserAvatar active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Freelancer' flag={<AppColor.UkraineFlagIcon/>}
                             preventMobileNone={true}
                         />
                         <div style={{marginLeft: 'auto'}}>

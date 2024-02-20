@@ -394,7 +394,7 @@ const PostDetails = ({user,percentLike}:PostDetailsProps) => {
                     activeAgo={user.activeAgo}
                     active={user.isActive} 
                     name={user.name}
-                    flag={<AppColor.UkraineFlag />}
+                    flag={<AppColor.UkraineFlagIcon />}
                 />
                 <div className={styles.details_post_boxes}>
                     <div className={styles.post_details_box}>

@@ -84,7 +84,7 @@ const ComparisionItem = ({customer,customerDetails,freelancer,freelancerDetails,
 
             <div className={styles.details_part}>
                 <div>
-                    <UserAvatar preventMobileNone={true} active={true} name={fakeUserConstant.name} flag={<AppColor.UkraineFlag />} role={requestFrom == 'Customer' ? 'Customer' : 'Freelancer'} url={fakeUserConstant.image} 
+                    <UserAvatar preventMobileNone={true} active={true} name={fakeUserConstant.name} flag={<AppColor.UkraineFlagIcon />} role={requestFrom == 'Customer' ? 'Customer' : 'Freelancer'} url={fakeUserConstant.image} 
                     width='38px' height='38px'
                     />
                     <DynamicPadding desktop='15px' mobile='10px'/>
@@ -116,7 +116,7 @@ const ComparisionItem = ({customer,customerDetails,freelancer,freelancerDetails,
 
                 <div className={styles.end_item}>
                     <div>
-                    <UserAvatar preventMobileNone={true} active={true} name={fakeUserConstant.name} flag={<AppColor.UkraineFlag />} role={requestFrom != 'Customer' ? 'Customer' : 'Freelancer'} url={fakeUserConstant.image} 
+                    <UserAvatar preventMobileNone={true} active={true} name={fakeUserConstant.name} flag={<AppColor.UkraineFlagIcon />} role={requestFrom != 'Customer' ? 'Customer' : 'Freelancer'} url={fakeUserConstant.image} 
                     width='38px' height='38px'
                     />
                     </div>

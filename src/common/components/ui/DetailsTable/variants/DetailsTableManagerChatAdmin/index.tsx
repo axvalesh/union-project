@@ -41,7 +41,7 @@ const DetailsTableManagerChatAdmin = ({information}:DetailsTableManagerChatAdmin
                 {
                     title: 'User',
                     selecrable: true,   
-                    child: <UserAvatar roleColor={AppColor.transparentBlack} preventMobileNone={true} width='38px' height='38px' url={fakeUserConstant.image} flag={<AppColor.UkraineFlag/>} name={fakeUserConstant.name} role='workspree@gmail.com' active={true} />
+                    child: <UserAvatar roleColor={AppColor.transparentBlack} preventMobileNone={true} width='38px' height='38px' url={fakeUserConstant.image} flag={<AppColor.UkraineFlagIcon/>} name={fakeUserConstant.name} role='workspree@gmail.com' active={true} />
                 },
                 {
                     title: 'ID',

@@ -338,7 +338,7 @@ export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCard
                     <div>
                         <div style={{display:'flex',alignItems:'center',gap:'10px',flexWrap: 'wrap'}}>
                             <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-                                <AppColor.UkraineFlag />
+                                <AppColor.UkraineFlagIcon />
                                 <Typography variant='body4'>{user.name}</Typography>
                             </div>
                             <div style={{display:'flex',alignItems:'center',gap:'5px'}}>

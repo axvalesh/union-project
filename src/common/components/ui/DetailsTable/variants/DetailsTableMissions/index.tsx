@@ -27,10 +27,10 @@ type DetailsTableMissionsPropsItem = {
 }
 
 const users= [
-    <UserAvatar flag={<AppColor.UkraineFlag />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
-    <UserAvatar flag={<AppColor.UkraineFlag />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
-    <UserAvatar flag={<AppColor.UkraineFlag />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
-    <UserAvatar flag={<AppColor.UkraineFlag />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
+    <UserAvatar flag={<AppColor.UkraineFlagIcon />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
+    <UserAvatar flag={<AppColor.UkraineFlagIcon />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
+    <UserAvatar flag={<AppColor.UkraineFlagIcon />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
+    <UserAvatar flag={<AppColor.UkraineFlagIcon />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={'Name A.'}/>,
 ]
 const DetailsTableMissions = ({information}:DetailsTableMissionsProps) => {
 
@@ -60,7 +60,7 @@ const DetailsTableMissions = ({information}:DetailsTableMissionsProps) => {
                 },
                 {
                     title: 'Creater',
-                    child: <UserAvatar flag={<AppColor.UkraineFlag />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={currentItem.userName}/>
+                    child: <UserAvatar flag={<AppColor.UkraineFlagIcon />} preventMobileNone={true} role='Freelancer' variant='row' active={true} name={currentItem.userName}/>
                 },
                 {
                     title: 'Limits',

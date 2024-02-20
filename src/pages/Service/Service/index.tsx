@@ -118,12 +118,12 @@ const Service = () => {
                         <div className={styles.info_box}><AppColor.info/></div>
                         <SliderUsers
                             items={[
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlag/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlag/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlag/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlag/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlag/>} role='$4 305'/>,
-                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlag/>} role='$4 305'/>,
+                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
+                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
+                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
+                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
+                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
+                                <UserAvatar name={fakeUserConstant.name} active={true} flag={<AppColor.UkraineFlagIcon/>} role='$4 305'/>,
                             ]}
                         />
                     </div>

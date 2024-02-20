@@ -189,7 +189,7 @@ const CommentItem = ({text,user,likes}:CommentItemProps) => {
     return (
         <div className={styles.comment_wrapper}>
             <div className={styles.comment_user_info}>
-                <UserAvatar active={true} name={user.name} role='Manager' flag={<AppColor.UkraineFlag/>}/>
+                <UserAvatar active={true} name={user.name} role='Manager' flag={<AppColor.UkraineFlagIcon/>}/>
                <div className={styles.recommended_comment}>
                     <div style={{display: 'flex',alignItems:'center',gap: '10px'}}>
                         <AppColor.like />

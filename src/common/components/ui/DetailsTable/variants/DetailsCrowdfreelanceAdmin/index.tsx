@@ -67,7 +67,7 @@ const DetailsCrowdfreelanceAdmin = ({information}:DetailsCrowdfreelanceAdminProp
                     }/>
                     <TextItem title='Shipping' node={
                         <div className='gap_5'>
-                            <AppColor.UkraineFlag width={'22px'} height={'18px'} />
+                            <AppColor.UkraineFlagIcon width={'22px'} height={'18px'} />
                             <Typography variant='body4' fontWeight='500'>Ukraine</Typography>
                             <Typography variant='body5' color={AppColor.transparentBlack} fontWeight='500'>(Full Adress)</Typography>
                         </div>

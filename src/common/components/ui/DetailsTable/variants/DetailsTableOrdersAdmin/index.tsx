@@ -43,7 +43,7 @@ const DetailsTableOrdersAdmin = ({information}:DetailsTableOrdersAdminProps) => 
             <div>
                 <DynamicPadding desktop='30px' mobile='20px' />
                 <div className={styles.user_card}>
-                    <UserAvatar preventMobileNone={true} flag={<AppColor.UkraineFlag/>} active={true} name={fakeUserConstant.name} url={fakeUserConstant.image}/>
+                    <UserAvatar preventMobileNone={true} flag={<AppColor.UkraineFlagIcon/>} active={true} name={fakeUserConstant.name} url={fakeUserConstant.image}/>
                     <div className='gap_10'>
                         <Typography variant='body5' color={AppColor.transparentBlack}>15 hr 59 min ago</Typography>
                         <AppColor.chevronBottom fill={AppColor.transparentBlack}/>

@@ -46,7 +46,7 @@ const PostCard = ({description,title,user,created,saved,comments,indexInParent,c
                     preventMobileNone={true} 
                     activeAgo={createdAgo} 
                     variant='row' name={user.name} 
-                    active={true} flag={<AppColor.UkraineFlag/>} url={user.image} 
+                    active={true} flag={<AppColor.UkraineFlagIcon/>} url={user.image} 
                 />
                 <div className={styles.atributes_flex}>
                 {isPined && !isDesktop ? <AppColor.heart fill={AppColor.orange}/> : <AppColor.heart width={'0px'} color='transparent'/>}

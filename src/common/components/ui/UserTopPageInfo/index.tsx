@@ -15,7 +15,7 @@ const UserTopPageInfo = ({user,nodeAfter,settings}:UserTopPageInfoProps) => {
 
     return (
       <div className={styles.wrapper}>
-           <UserAvatar url={fakeUserConstant.image} preventMobileNone={true} name={user.name} flag={<AppColor.UkraineFlag/>} role='Freelancer' active={true}/>
+           <UserAvatar url={fakeUserConstant.image} preventMobileNone={true} name={user.name} flag={<AppColor.UkraineFlagIcon/>} role='Freelancer' active={true}/>
 
            <div style={{display: 'flex',alignItems: 'center', gap:'10px'}}>
                 <div className={styles.box}>

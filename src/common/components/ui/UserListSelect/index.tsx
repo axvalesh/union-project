@@ -68,7 +68,7 @@ const UserListSelect = () => {
                 <UserAvatar variant='image' url={fakeUserConstant.image} active={true} name={fakeUserConstant.name}/>
                 <div className={styles.flex_column}>
                     <div className='gap_5'>
-                        <AppColor.UkraineFlag />
+                        <AppColor.UkraineFlagIcon />
                         <Typography variant='body4' fontWeight='500'>Artem M.</Typography>
                     </div>
                     <div onClick={(event) => {handleClose(event)}} className='gap_5 cursor' style={{position: 'relative'}}>

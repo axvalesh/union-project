@@ -117,7 +117,7 @@ const ServiceNegotiationFreelancer = () => {
                         
                         <DynamicPadding desktop='30px' mobile='15px'/>
                         <div className={`flex_space_between box_shadow ${styles.user_wrappper}`}>
-                            <UserAvatar role='Customer' preventMobileNone={true} url={fakeUserConstant.image} name={fakeUserConstant.name} flag={<AppColor.UkraineFlag/>} active={true} />
+                            <UserAvatar role='Customer' preventMobileNone={true} url={fakeUserConstant.image} name={fakeUserConstant.name} flag={<AppColor.UkraineFlagIcon/>} active={true} />
 
                             <div className='gap_10'>
                                 <Typography variant='body5' color={AppColor.transparentBlack}>15 hr 59 min ago</Typography>

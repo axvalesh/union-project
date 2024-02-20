@@ -429,7 +429,7 @@ const SelectionItem = ({icon,text,color}:SelectionItemProps) => {
 const SelectUser = ({activeSelected,callbackRemove}:SelectUserProps) => {
     return (
         <div className='gap_10'>
-            <UserAvatar active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} role='Freelancer' />
+            <UserAvatar active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} role='Freelancer' />
             <div style={{cursor: 'pointer'}} onClick={() => {callbackRemove(fakeUserConstant.name)}}>
             <AppColor.close width={'15px'} height={'15px'} fill={AppColor.red} />
             </div>

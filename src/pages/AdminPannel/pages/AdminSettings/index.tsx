@@ -361,37 +361,37 @@ const AdminSettings = () => {
                 ips={[
                     {
                         date: '(15 Oct 2023 23:52:11)',
-                        flag: <AppColor.UkraineFlag />,
+                        flag: <AppColor.UkraineFlagIcon />,
                         ip: '102.215.221.255',
                     },
                     {
                         date: '(15 Oct 2023 23:52:11)',
-                        flag: <AppColor.UkraineFlag />,
+                        flag: <AppColor.UkraineFlagIcon />,
                         ip: '102.215.221.255',
                     },
                     {
                         date: '(15 Oct 2023 23:52:11)',
-                        flag: <AppColor.UkraineFlag />,
+                        flag: <AppColor.UkraineFlagIcon />,
                         ip: '102.215.221.255',
                     },
                     {
                         date: '(15 Oct 2023 23:52:11)',
-                        flag: <AppColor.UkraineFlag />,
+                        flag: <AppColor.UkraineFlagIcon />,
                         ip: '102.215.221.255',
                     },
                     {
                         date: '(15 Oct 2023 23:52:11)',
-                        flag: <AppColor.UkraineFlag />,
+                        flag: <AppColor.UkraineFlagIcon />,
                         ip: '102.215.221.255',
                     },
                     {
                         date: '(15 Oct 2023 23:52:11)',
-                        flag: <AppColor.UkraineFlag />,
+                        flag: <AppColor.UkraineFlagIcon />,
                         ip: '102.215.221.255',
                     },
                     {
                         date: '(15 Oct 2023 23:52:11)',
-                        flag: <AppColor.UkraineFlag />,
+                        flag: <AppColor.UkraineFlagIcon />,
                         ip: '102.215.221.255',
                     }
                 ]}
@@ -488,7 +488,7 @@ const AdminSettings = () => {
                                 const originalDate = new Date();
                                 setArrayIp(prev => [...prev,{
                                     date: `(${originalDate.getDate()} ${originalDate.toLocaleString('en-US', { month: 'short' })} ${originalDate.getFullYear()} ${originalDate.getHours()}:${originalDate.getMinutes()}:${originalDate.getSeconds()})`,
-                                    flag: <AppColor.UkraineFlag/>,
+                                    flag: <AppColor.UkraineFlagIcon/>,
                                     ip: newIp,
                                 }])
                             }}>

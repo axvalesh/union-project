@@ -87,7 +87,7 @@ const PasswordAndSecurity = () => {
                                 {
                                     nodes: [
                                         <UserAvatar active={true} name={fakeUserConstant.name} url={fakeUserConstant.image}
-                                         role='Customer' flag={<AppColor.UkraineFlag/>}/>,
+                                         role='Customer' flag={<AppColor.UkraineFlagIcon/>}/>,
                                          <div style={{maxWidth: '95px'}}>  
 
                                         <Typography variant='body4'>
@@ -105,7 +105,7 @@ const PasswordAndSecurity = () => {
                                 {
                                     nodes: [
                                         <UserAvatar active={true} name={fakeUserConstant.name} url={fakeUserConstant.image}
-                                         role='Customer' flag={<AppColor.UkraineFlag/>}/>,
+                                         role='Customer' flag={<AppColor.UkraineFlagIcon/>}/>,
                                          <div style={{maxWidth: '95px'}}>  
 
                                         <Typography variant='body4'>

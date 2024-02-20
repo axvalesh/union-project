@@ -32,6 +32,6 @@ const LastSponsors = () => {
     );
 };
 
-const SliderItemCurrent =<div className={styles.user_wrapper_flex}> <UserAvatar noWrap={true} preventMobileNone={true} active={true} name='Artem M.' role='$4 305' flag={<AppColor.UkraineFlag/>} url={fakeUserConstant.image}/></div>
+const SliderItemCurrent =<div className={styles.user_wrapper_flex}> <UserAvatar noWrap={true} preventMobileNone={true} active={true} name='Artem M.' role='$4 305' flag={<AppColor.UkraineFlagIcon/>} url={fakeUserConstant.image}/></div>
 
 export default LastSponsors;

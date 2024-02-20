@@ -73,7 +73,7 @@ const DetailsTableActivity = ({information}:DetailsTableActivityProps) => {
                               title: 'User',
                               child: (
                                   <UserAvatar
-                                      flag={<AppColor.UkraineFlag />}
+                                      flag={<AppColor.UkraineFlagIcon />}
                                       preventMobileNone={true}
                                       variant="row"
                                       active={true}

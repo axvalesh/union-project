@@ -39,7 +39,7 @@ const CommentComponent = ({comment,isBestReplay,isSolution,likesPercent,user,ans
                     name={user.name}
                     activeAgo={user.activeAgo}
                     url={fakeUserConstant.image}
-                    flag={<AppColor.UkraineFlag/>}
+                    flag={<AppColor.UkraineFlagIcon/>}
                 />
                 <div className={styles.flex_center_10}>
                     {isBestReplay && <Typography variant='body3' fontWeight='500'>Best Reply</Typography>}

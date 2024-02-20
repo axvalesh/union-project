@@ -595,7 +595,7 @@ const Account = () => {
 
                 <div className={styles.main_section}>
                     <div className={styles.main_left}>
-                        <UserAvatar url={fakeUserConstant.image} active={true} name='Adrew B.' variant='column' flag={<AppColor.UkraineFlag />}/>
+                        <UserAvatar url={fakeUserConstant.image} active={true} name='Adrew B.' variant='column' flag={<AppColor.UkraineFlagIcon />}/>
                        <div className={styles.profile_level_wrapper}>
                             <div className={styles.profile_top_level}>
                                 <AppColor.twoOFFive />
@@ -704,12 +704,12 @@ const Account = () => {
                                 </Typography>
 
                                 <div className={styles.users_wrapper}>
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlag/>} money='4 305' />
+                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
                                 </div>
                         </div>
 

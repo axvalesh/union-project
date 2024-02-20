@@ -132,7 +132,7 @@ const OrdersNegotiation = () => {
                                     preventMobileNone={true}
                                     url={fakeUserConstant.image}
                                     name={fakeUserConstant.name}
-                                    flag={<AppColor.UkraineFlag />}
+                                    flag={<AppColor.UkraineFlagIcon />}
                                     active={true}
                                 />
 

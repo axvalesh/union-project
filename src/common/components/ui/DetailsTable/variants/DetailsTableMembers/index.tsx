@@ -44,7 +44,7 @@ const DetailsTableMembers = ({information}:DetailsTableMembersProps) => {
             currentItem != null ? [
                 {
                     title: 'Member',
-                    child: <UserAvatar width='30px' height='30px' variant='row'  active={true} name={currentItem.memberName} role='Senior UI Designer' flag={<AppColor.UkraineFlag />} />
+                    child: <UserAvatar width='30px' height='30px' variant='row'  active={true} name={currentItem.memberName} role='Senior UI Designer' flag={<AppColor.UkraineFlagIcon />} />
                 },
                 {
                     title: 'Date',

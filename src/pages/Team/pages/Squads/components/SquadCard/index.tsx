@@ -148,7 +148,7 @@ const AvailableUsers = () => {
         <div style={{minWidth: '290px'}} className='flex_space_between'>
             <UserAvatar active={true} name={fakeUserConstant.name} role='Senior UI Designer '
 
-            flag={<AppColor.UkraineFlag />} preventMobileNone={true} />
+            flag={<AppColor.UkraineFlagIcon />} preventMobileNone={true} />
 
             <PlusButton size='16px' callbackOpen={() => {}}/>
         </div>
@@ -160,7 +160,7 @@ const CurrentUsers = () => {
         <div style={{minWidth: '290px'}} className='flex_space_between'>
             <UserAvatar active={true} name={fakeUserConstant.name} role='Senior UI Designer '
 
-            flag={<AppColor.UkraineFlag />} preventMobileNone={true} />
+            flag={<AppColor.UkraineFlagIcon />} preventMobileNone={true} />
 
             <AppColor.close fill={AppColor.red} width={'16px'} height={'16px'} />
         </div>
