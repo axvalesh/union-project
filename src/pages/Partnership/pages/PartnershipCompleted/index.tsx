@@ -261,7 +261,7 @@ type SelectTipesProps = {
     callback: (item:string) => void;
     removeMobile?: boolean;
 }
-const SelectTips = ({price,activePrice,callback,removeMobile}:SelectTipesProps) => {
+export const SelectTips = ({price,activePrice,callback,removeMobile}:SelectTipesProps) => {
     return(
         <div onClick={() => {callback(price)}} className={`${styles.select_tips_button} ${removeMobile ? styles.desktop : ''}`} style={price == activePrice ? {border: `1px solid ${AppColor.orange}`} : {border: '1px solid transparent'}}>
             <Typography

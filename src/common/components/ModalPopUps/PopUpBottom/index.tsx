@@ -42,7 +42,7 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
  }, []);
     return (
       <div  ref={nodeRef}  style={{position:'relative'}}>
-           <div onClick={() => {setShow(prev => !prev)}} >
+           <div className='cursor' onClick={() => {setShow(prev => !prev)}} >
            {showNodeHover ?
            <SwitchTransition mode='out-in'>
                

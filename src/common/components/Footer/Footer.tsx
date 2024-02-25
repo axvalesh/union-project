@@ -12,6 +12,7 @@ import AnimatedSvg from '../AnimatedSvg'
 import { useState, useEffect, useCallback } from 'react'
 import HorizontalLine from '../ui/Lines/HorizontalLine'
 import AnimateHeight from '../AnimateHeight'
+import { CareComponent } from './components/CareService/SwitchCare'
 
 export const levelMap = {
     1: <AppColor.oneOfFive />,
@@ -21,59 +22,66 @@ export const levelMap = {
     5: <AppColor.fiveOfFive />,
 }
 const Footer = ({ removeMargin }: { removeMargin?: boolean }) => {
-    // const [y, setY] = useState(window.scrollY)
+    const [y, setY] = useState(window.scrollY)
 
-    // const [showHelper, setShowHelper] = useState(false);
+    const [showHelper, setShowHelper] = useState(false);
 
-    // const [scrollDirection, setScrollDirection] = useState<
-    //     'up' | 'down'
-    // >('down')
+    const [scrollDirection, setScrollDirection] = useState<
+        'up' | 'down'
+    >('down')
 
-    // const scrollToBottom = () => {
-    //     window.scrollTo({
-    //         top: document.documentElement.scrollHeight,
-    //         behavior: 'smooth',
-    //     })
-    // }
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth',
+        });
+        setTimeout(() => {
+            setScrollDirection('up');
+        },200)
+    }
 
-    // const scrollToTop = () => {
-    //     window.scrollTo({
-    //         top: 0,
-    //         behavior: 'smooth',
-    //     })
-    // }
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+        setTimeout(() => {
+            setScrollDirection('down');
+        },200)
+    }
 
-    // const handleNavigation = useCallback(
-    //     (e) => {
-    //         const window = e.currentTarget
-    //         if (y > window.scrollY) {
-    //             if (scrollDirection !== 'up') {
-    //                 setScrollDirection('up')
-    //             }
-    //         } else if (y < window.scrollY) {
-    //             if (scrollDirection !== 'down') {
-    //                 setScrollDirection('down')
-    //             }
-    //         }
-    //         setY(window.scrollY)
-    //     },
-    //     [y]
-    // )
+    const handleNavigation = useCallback(
+        (e) => {
+            const window = e.currentTarget
+            if (y > window.scrollY) {
+                if (scrollDirection !== 'up') {
+                    setScrollDirection('up')
+                }
+            } else if (y < window.scrollY) {
+                if (scrollDirection !== 'down') {
+                    setScrollDirection('down')
+                }
+            }
+            setY(window.scrollY)
+        },
+        [y]
+    )
 
-    // useEffect(() => {
-    //     setY(window.scrollY)
-    //     window.addEventListener('scroll', handleNavigation)
+    useEffect(() => {
+        setY(window.scrollY)
+        window.addEventListener('scroll', handleNavigation)
 
-    //     return () => {
-    //         window.removeEventListener('scroll', handleNavigation)
-    //     }
-    // }, [handleNavigation])
+        return () => {
+            window.removeEventListener('scroll', handleNavigation)
+        }
+    }, [handleNavigation])
 
     return (
         <>
-            {/* <div style={{position: 'relative'}}>
+            <div style={{position: 'relative'}}>
                 <div className="absolute_right_buttons">
                     <AnimatedSvg
+                        showNode2={showHelper}
                         node1={
                             <div onClick={() => {setShowHelper(prev => !prev)}} className="absolute_button">
                                 {' '}
@@ -127,27 +135,10 @@ const Footer = ({ removeMargin }: { removeMargin?: boolean }) => {
                     )}
     
                     <AnimateHeight show={showHelper}>
-                        <div style={{opacity: showHelper ? '1' : '0'}} className={styles.helper}>
-                            <div className={styles.helper_padding}>
-                                <div style={{whiteSpace: 'nowrap'}} className='flex_space_between'>
-                                    <Typography variant='body3' fontWeight='500'>
-                                    Care Services
-                                    </Typography>
-                                    <div className={styles.flex_row_end}>
-                                        <AppColor.volume />
-                                        <AppColor.minimize />
-                                        <AppColor.close width={'17px'} height={'17px'} fill={AppColor.text} />
-                                    </div>
-                                </div>
-                            </div>
-                            <HorizontalLine />
-                            <div className={styles.helper_padding}>
-                                das
-                            </div>
-                        </div>
+                        <CareComponent callback={(item) => {setShowHelper(item)}} showHelper={showHelper} />
                     </AnimateHeight>
                 </div>
-            </div> */}
+            </div>
             <footer
                 style={removeMargin ? { marginTop: '0px' } : {}}
                 className={styles.wrapper}>

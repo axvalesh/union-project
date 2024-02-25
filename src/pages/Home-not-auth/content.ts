@@ -2,10 +2,10 @@ import { AdvantagesSectionCardProps, PopularCategorysCatalogCardProps, sixSectio
 import catalogServices from '@assets/svg/catalog-services.svg';
 import catalogOrders from '@assets/svg/catalog-orders.svg';
 import catalogSponsorship from '@assets/svg/catalog-sponsorship.svg';
-import advantagesFirstImage from '@assets/images/home-not-auth_advantages_first.png';
-import advantagesSecondImage from '@assets/images/home-not-auth_advantages_second.png';
-import advantagesThirdtImage from '@assets/images/home-not-auth_advantages_third.png';
-import advantagesFourthImage from '@assets/images/home-not-auth_advantages_forth.png';
+import advantagesFirstImage from '@assets/svg/home_not_auth_advanatages_1.svg';
+import advantagesSecondImage from '@assets/svg/home_not_auth_advanatages_2.svg';
+import advantagesThirdtImage from '@assets/svg/home_not_auth_advanatages_3.svg';
+import advantagesFourthImage from '@assets/svg/home_not_auth_advanatages_4.svg';
 import popularServicesImg1 from '@assets/images/popular-categorys_services_1.png';
 import popularServicesImg2 from '@assets/images/popular-categorys_services_2.png';
 import popularServicesImg3 from '@assets/images/popular-categorys_services_3.png';

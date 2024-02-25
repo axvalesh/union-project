@@ -28,7 +28,7 @@ type ItemProps = {
 
 }
 const Item = ({ title, icon, onClick,color }:ItemProps) => (
-    <div className={`${styles.item} cursor`} onClick={onClick}>
+    <div style={{whiteSpace: 'nowrap'}} className={`${styles.item} cursor`} onClick={onClick}>
         {icon}
         <Typography color={color ?? AppColor.text} variant='body5'>{title}</Typography>
     </div>

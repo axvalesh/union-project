@@ -14,3 +14,12 @@
     display: flex;
     align-items: end;
 }
+
+.flex_column_details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    gap: 10px;
+    align-items: center;
+}

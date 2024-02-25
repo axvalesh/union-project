@@ -35,7 +35,7 @@ const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMone
         backgroundPosition: 'center',
         zIndex: 0,
     }
-    const today = new Date('2024-1-23');
+    const today = new Date('2024-3-23');
     const futureDate = new Date(today.getTime() + (53 * 24 * 60 * 60 * 1000) + (3 * 60 * 60 * 1000) + (40 * 60 * 1000) + (20 * 1000));
 
     const moneyRangePercent = (currentMoneyRange / totalMoneyRange)*100

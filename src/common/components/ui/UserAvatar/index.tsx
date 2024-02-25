@@ -36,16 +36,16 @@ const UserAvatar = ({title,activeAgoRole='',noWrap,roleColor,active,name,role,ur
         case "money":
             return <UserAvatarMoney title={title} activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} money={money} />;
        case "image":
-            return <UserAvatarImage title={title} active={active} name={name} url={url} />
+            return <UserAvatarImage width={width} height={height} title={title} active={active} name={name} url={url} />
         default:
             return null;
     }
 };
 
-const UserAvatarImage = ({url,active}:UserAvatarProps) => {
+const UserAvatarImage = ({url,active,width,height}:UserAvatarProps) => {
     return (
-        <div style={{position: 'relative',display: 'flex'}}>
-            <img src={url} width={'38px'} height={'38px'} alt="" />
+        <div style={{position: 'relative',display: 'flex',width: width ?? '38px',height: height ?? '38px'}}>
+            <img src={url} width={width ?? '38px'} height={height ?? '38px'} alt="" />
             <div className={`${styles.active_status} ${active ? styles.active_true : styles.active_false}`}></div>
         </div>
     )

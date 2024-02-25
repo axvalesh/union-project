@@ -12,6 +12,7 @@ import SizeBox from "../../ui/SizeBox";
 import Typography from "@common/components/ui/Typography/Typography";
 import InputCommon from "../../ui/inputs/InputCommon";
 import { categorysText, links } from "../components/MenuLinks/content";
+import MyButtonTransparent from "@common/components/ui/MyButton/variants/MyButtonTransparent";
 
 const HeaderNothAuthorized = () => {
 
@@ -104,16 +105,9 @@ const HeaderNothAuthorized = () => {
              </div>
              <div className={styles.header_third_part}>
                <Link to={'sign-in'}>
-                  <MyButton
-                    border="1px solid transparent"
-                    color="transparent"
-                    textColor={AppColor.text}
-                    hoverColor="transparent"
-                    hoverTextColor={AppColor.orange}
-                    fontWeight="500"
-                    onClick={() => {}}>
-                    Sign in
-                  </MyButton>
+                  <MyButtonTransparent onClick={() => {}} fontWeight="500">
+                    Sing in
+                  </MyButtonTransparent>
                </Link>
                <Link to={'sign-up'}>
                   <MyButton onClick={() => {}} fontWeight="500">

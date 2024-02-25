@@ -5,12 +5,13 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 type AnimatedSvgProps = {
     node1: React.ReactNode;
     node2: React.ReactNode;
+    showNode2?: boolean;
   };
   
-const AnimatedSvg = ({ node1, node2 }:AnimatedSvgProps) => {
+const AnimatedSvg = ({ node1, node2,showNode2=null }:AnimatedSvgProps) => {
     const [hover,setHover] = useState(false);
 
-  
+    const hovermodified = showNode2 != null ? showNode2 || hover : hover;
     return (
       <div 
       onMouseEnter={() => setHover(true)}
@@ -18,7 +19,7 @@ const AnimatedSvg = ({ node1, node2 }:AnimatedSvgProps) => {
         className={styles.animatedSvgContainer}>
         <SwitchTransition mode="out-in">
           <CSSTransition
-            key={hover ? 'node1' : 'node2'}
+            key={hovermodified ? 'node1' : 'node2'}
             addEndListener={() => {}}
             classNames={{
                 enter: styles.fadeEnter,
@@ -29,7 +30,7 @@ const AnimatedSvg = ({ node1, node2 }:AnimatedSvgProps) => {
            }}
             timeout={100} // Adjust timeout as needed
           >
-            {!hover ? (
+            {!hovermodified ? (
               <div className={`${styles.animatedNode} cursor`}>{node1}</div>
             ) : (
               <div className={`${styles.animatedNode} cursor`}>{node2}</div>

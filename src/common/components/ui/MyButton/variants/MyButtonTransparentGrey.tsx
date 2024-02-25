@@ -14,6 +14,7 @@ const MyButtonTransparentGrey = (
             children={props.children}
             border="1px solid transparent"
             color="transparent"
+            borderHover='1px solid transparent'
             textColor={AppColor.text}
             hoverColor={AppColor.white}
             hoverTextColor={AppColor.text}

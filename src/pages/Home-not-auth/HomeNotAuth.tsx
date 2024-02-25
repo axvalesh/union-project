@@ -36,6 +36,7 @@ import SizeBox from '@common/components/ui/SizeBox/index';
 import { Link } from 'react-router-dom';
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
+import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
 
 
 
@@ -158,7 +159,7 @@ const HomeNotAuth = () => {
       </div>
       <div className={styles.wrapper}>
         <section className={styles.advantanges_section}>
-          <Typography textAlign={width <= 768 ? 'center' : 'start'} textTransform='uppercase' variant='titleSmall' color={AppColor.orange}>
+          <Typography textTransform='uppercase' variant='titleSmall' color={AppColor.orange}>
             One Account, <span className={styles.advantanges_section_title_grey}>Four Distinct Roles</span>       
           </Typography>
 
@@ -167,6 +168,8 @@ const HomeNotAuth = () => {
               Explore endless opportunities with our unified account for all user types
             </Typography>
           </div>
+
+          <DynamicPadding />
 
           <div className={styles.advantanges_section_cards}>
             {advantanges_section_card_content.map(item => <AdvantangesSectionCard img={item.img} description={item.description} title={item.title}/>)}
@@ -221,16 +224,9 @@ const HomeNotAuth = () => {
               <MyButton onClick={() => {}} fontWeight="500">
               Browse all services
               </MyButton>
-              <MyButton
-                border="1px solid transparent"
-                color="transparent"
-                textColor={AppColor.text}
-                hoverColor="transparent"
-                hoverTextColor={AppColor.orange}
-                fontWeight="500"
-                onClick={() => {}}>
+              <MyButtonTransparent onClick={() => {}} fontWeight='500' textTransform='uppercase'>
                 Create own service
-              </MyButton>
+                </MyButtonTransparent>
             </div>
             <div className={styles.popular_categorys_skills}>
               <div className={styles.popular_categorys_skills_title}>
@@ -261,7 +257,8 @@ const HomeNotAuth = () => {
           </section>
           </div>
         </div>
-        <div className={styles.wrapper}>
+        <DynamicPadding desktop='0px' mobile='30px'/>
+        <div className={`${styles.wrapper} ${styles.margin_top_slider}`}>
         <section className={styles.fourth_screen}>
             <div className={styles.fourth_screen_shell}>
               <div className={styles.fourth_screen_slider}>
@@ -320,8 +317,9 @@ const HomeNotAuth = () => {
                 />
               </Slider>
               </div>
+              
               <div className={styles.fourth_screen_text}>
-                <div className='center_mobile_text'>
+             
                   <Typography variant='titleSmall' color={AppColor.orange} textTransform='uppercase'>
                     Ignite <span className={styles.fourth_screen_text_grey}>Change Together</span>
                   </Typography>
@@ -330,7 +328,7 @@ const HomeNotAuth = () => {
                     <Typography variant='body1'>
                     Explore featured campaigns and contribute to projects that resonate with you
                     </Typography>
-                  </div>
+                
                 </div>
 
                 <div className={styles.fourth_screen_details_none_mobile}>
@@ -565,8 +563,13 @@ const HomeNotAuth = () => {
                 orderItem2Desktop={1}
                 orderItem2Mobile={0}
                 item1={
-                  <div className={styles.six_section_cards_wrapper}>
-                  {six_section_cards_content.map((item,index) => <SixSectionCard index={index} title={item.title} description={item.description} image={item.image}/>)}
+                  <div style={{paddingBottom: '5px'}} className={styles.six_section_cards_wrapper}>
+                  {six_section_cards_content.map((item,index) => 
+                  <div className={styles.center_card}>
+                    <SixSectionCard index={index} 
+                    title={item.title} description={item.description} image={item.image}/>
+                  </div>
+                  )}
                 </div>
                 }
                 item2={

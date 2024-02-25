@@ -338,8 +338,36 @@ import { ReactComponent as messageChat} from '@assets/svg/messages-chat.svg';
 import { ReactComponent as messageChatOrange} from '@assets/svg/messages-chat-orange.svg';
 import { ReactComponent as volume} from '@assets/svg/volume.svg';
 import { ReactComponent as minimize} from '@assets/svg/minimize.svg';
+import { ReactComponent as volumeActive} from '@assets/svg/UI KIT/codicon_unmute.svg';
+import { ReactComponent as infoWhite} from '@assets/svg/info-white.svg';
+import { ReactComponent as helpWhite} from '@assets/svg/help-white.svg';
+import { ReactComponent as reply} from '@assets/svg/reply.svg';
+import { ReactComponent as questionOrange} from '@assets/svg/question-orange.svg';
+import { ReactComponent as details} from '@assets/svg/details.svg';
+import { ReactComponent as mute} from '@assets/svg/mute.svg';
+import { ReactComponent as closeAsSolved} from '@assets/svg/closeAsSolved.svg';
+import { ReactComponent as giveTip} from '@assets/svg/giveTip.svg';
+import { ReactComponent as questionFaq} from '@assets/svg/question-faq.svg';
+
+import { ReactComponent as chatSolutions} from '@assets/svg/chat_solutions.svg';
+import { ReactComponent as chatDirect} from '@assets/svg/chat_direct.svg';
+import { ReactComponent as chatGroups} from '@assets/svg/chat_groups.svg';
+import { ReactComponent as chatCare} from '@assets/svg/chat_care.svg';
 
 class AppColor {
+    static chatSolutions = chatSolutions;
+    static chatDirect = chatDirect;
+    static chatGroups = chatGroups;
+    static chatCare = chatCare;   
+    static questionFaq = questionFaq;
+    static giveTip = giveTip;
+    static details = details;
+    static mute = mute;
+    static closeAsSolved = closeAsSolved;   
+    static questionOrange = questionOrange;
+    static reply = reply;
+    static infoWhite = infoWhite;
+    static helpWhite = helpWhite;
     static volume = volume;
     static minimize = minimize;   
     static messageChat = messageChat;

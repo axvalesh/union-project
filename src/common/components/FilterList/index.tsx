@@ -11,8 +11,9 @@ type FilterListProps = {
     filters: string[];
     callback?: (item:string) => void;
     activeStartItem?: string;
+    noPadding?: boolean;
 }
-const FilterList = ({filters,callback,category=[],activeStartItem='All'}:FilterListProps) => {
+const FilterList = ({filters,noPadding,callback,category=[],activeStartItem='All'}:FilterListProps) => {
 
     const [activeFilter,setActiveFilter] = useState(activeStartItem);
     const [currentCategory,setCurrentCategory] = useState(category[0]);
@@ -41,6 +42,7 @@ const FilterList = ({filters,callback,category=[],activeStartItem='All'}:FilterL
                     {filters.map((filter) => (
                         <div
                             className={styles.filter_item}
+                            style={noPadding ? {padding: '0px'} : {}}
                             onClick={() => {
                                 setActive(filter)
                             }}>

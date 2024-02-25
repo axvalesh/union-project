@@ -28,7 +28,7 @@ const DropdownList = ({items,title,callback,activeTitle,isOpenOnBeggin=false}:Dr
            <ul className={styles.hide_list_wrapper} style={{display: isShow ? 'flex' : 'none'}}>
             {items.map(item => 
               <li onClick={() => {setCurrentActiveItem(item);callback(item)}}>
-                <Typography textLineHeight='80%' color={currentActiveItem == item ? AppColor.orange : AppColor.text}>• <span style={{color: 'transparent'}}> . </span> {item}</Typography>
+                <Typography fontWeight='400' textLineHeight='80%' color={currentActiveItem == item ? AppColor.orange : AppColor.text}>• <span style={{color: 'transparent'}}> . </span> {item}</Typography>
               </li>  
             )}
            </ul>

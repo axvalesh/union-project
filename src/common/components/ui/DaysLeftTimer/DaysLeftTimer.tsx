@@ -20,6 +20,8 @@ const DaysLeftTimer = ({time,borderRadius,height,width,dotsHeight,dotsWidth,font
         }
     
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        console.log('days',days);
+        
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
@@ -27,7 +29,8 @@ const DaysLeftTimer = ({time,borderRadius,height,width,dotsHeight,dotsWidth,font
         return { days, hours, minutes, seconds };
     };
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
+    console.log('days left timer',timeLeft);
+    
     useEffect(() => {
         const timerInterval = setInterval(() => {
           setTimeLeft(calculateTimeLeft());

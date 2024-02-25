@@ -26,6 +26,7 @@ import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
 import DetailsTableMultiNodes from '@common/components/ui/DetailsTable/DetailsTableMultiNodes/index';
 import PercentBar from '@common/components/ui/PercentBar/PercentBar';
+import { Link } from 'react-router-dom';
 
 const CreateOrderPosting = () => {
 
@@ -483,7 +484,9 @@ const OverviewBlock = () => {
                 <DynamicPadding />
 
                 <div className={'flex_space_between'}>
-                    <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='Negotiation' />
+                   <Link to={'/create-order/negotiation'}>
+                   <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='Negotiation' />
+                   </Link>
                     <ChevronMoveTo variant='right' preview={true} onClick={() => {}} text='Before posting' title='Preview' />
                     <ChevronMoveTo variant='right' onClick={() => {setIsPosted(true)}} text='For free' disabled={true} title='update' />
                 </div>
@@ -515,7 +518,9 @@ const OverviewBlock = () => {
                     <DynamicPadding />
                 </div>
                 <div className={'flex_space_between'}>
-                    <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='Negotiation' />
+                <Link to={'/create-order/negotiation'}>
+                   <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='Negotiation' />
+                   </Link>
                     <ChevronMoveTo variant='right' preview={true} onClick={() => {}} text='Before posting' title='Preview' />
                     <ChevronMoveTo variant='right' onClick={() => {setIsPosted(true)}} text='For free' title='Post' />
                 </div>

@@ -10,6 +10,7 @@ import { fakeUserConstant } from '@common/models/user';
 import AppColor from '@common/styles/variables-static';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
+import { Link } from 'react-router-dom';
 
 const CreateOrderNegotiation = () => {
 
@@ -73,8 +74,14 @@ const CreateOrderNegotiation = () => {
                                 <DynamicPadding />
     
                                 <div className={'flex_space_between'}>
-                                        <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='cancel' />
+                                       
+                                       <Link to={'/create-order/details'}>
+                                       <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='cancel' />
+                                       </Link>
+                                        
+                                        <Link to={'/create-order/posting'}>
                                         <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Negotiation' />
+                                        </Link>
                                 </div>
                             </div>
                        </div>

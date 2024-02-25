@@ -46,7 +46,7 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
 
     return (
         <div>
-        <Header position='static' />
+        <Header position='relative' />
         <NavigationBar
             currentCategoryTitle="Messenger"
             activePageIndex={activePageIndex}
@@ -269,7 +269,7 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
 
 
 
-const FileItemNotific = () => {
+export const FileItemNotific = () => {
 
     return (
         <div className={styles.file_notification_wrapper}>
@@ -552,7 +552,7 @@ type DropdownUserItemProps = {
     node: React.ReactNode;
     length: string;
 }
-const DropdownUserItem = ({length,node,title}:DropdownUserItemProps) => {
+export const DropdownUserItem = ({length,node,title}:DropdownUserItemProps) => {
     const [showDropdown,setShowDropdown] = useState(false);
 
     const handleClick = (event) => {
