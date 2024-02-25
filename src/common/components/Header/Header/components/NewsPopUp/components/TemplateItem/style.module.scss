@@ -1,0 +1,20 @@
+.template_wrapper {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+
+    transition: 0.15s;
+    padding: 15px 30px;
+    border-radius: 20px;
+    
+    &:hover {
+        background-color: $white;
+    }
+}
+
+.flex_column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

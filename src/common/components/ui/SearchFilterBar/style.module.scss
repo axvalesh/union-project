@@ -1,0 +1,46 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filters_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.flex_filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0px;
+    border-top: 1px solid rgba($color: $text, $alpha: 0.1);
+    border-bottom: 1px solid rgba($color: $text, $alpha: 0.1);
+}
+
+.skill_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.flex_item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (min-width:$tabletSize) {
+    .filters_wrapper {
+        gap: 30px;
+    }
+    .wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        input {
+            font-size: 1rem;
+        }
+    }
+}

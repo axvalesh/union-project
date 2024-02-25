@@ -1,0 +1,32 @@
+.orange {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    
+    background-color: $orange;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.general_help {
+    display: flex;
+    height: calc(50vh - 40px);
+    flex-direction: column;
+    gap: 10px;
+}
+.question_item {
+    padding: 15px 30px;
+    display: flex;
+    border-radius: 20px;
+    justify-content: space-between;
+    align-items: start;
+    gap: 20px;
+    transition: 0.2s;
+    &:hover {
+        background-color: $white;
+    }
+}
