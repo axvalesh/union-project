@@ -12,6 +12,13 @@
     }
 }
 
+.chevrons {
+    display: flex;
+    svg {
+        width: 15px;
+    height: 7px;
+    }
+}
 .icons_grid {
     display: flex;
     align-items: center;

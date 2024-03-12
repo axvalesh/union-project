@@ -6,6 +6,7 @@ import Typography from '@common/components/ui/Typography/Typography';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
 import { fakeUserConstant } from '@common/models/user';
 import SizeBox from '@common/components/ui/SizeBox/index';
+import HoverDotsBox from '@common/components/ui/HoverDotsBox/index';
 
 
 type RoadmapProps = {
@@ -28,16 +29,22 @@ const Roadmap = ({completed,text,title,steps}:RoadmapProps) => {
                     {title} {steps && <span style={{color: AppColor.orange}}>{steps}</span>}
                 </Typography>  
               
-                <Typography style={{textOverflow: 'ellipsis'}} textLineHeight='1' variant='body4'>
-                    {text}
-                </Typography>
+               <div className='gap_10'>
+                    <Typography style={{textOverflow: 'ellipsis',maxWidth: '310px'}} textLineHeight='1' variant='body4'>
+                        {text}
+                    </Typography>
+
+                    {completed && <HoverDotsBox />}
+               </div>
            </div>
        
                 {completed
                 ? <div className={styles.flex_column} style={{marginLeft: 'auto',alignItems: 'end'}}>
                    
-                        <UserAvatar url={fakeUserConstant.image} name={fakeUserConstant.name} width='22px' height='22px' 
-                            preventMobileNone={true} active={true}/>
+                        <div style={{display: 'flex',gap: '5px'}}>
+                            <UserAvatar name='' active={true} variant='image' url={fakeUserConstant.image} width='20px' height='20px' />
+                            <Typography variant='body4' fontWeight='500' color={AppColor.text}>John Doe</Typography>
+                        </div>
                     <div className='gap_5'>
                         <AppColor.pigCoins />
                         <Typography variant='body4'>25</Typography>

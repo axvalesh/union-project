@@ -489,7 +489,7 @@ const UsersAll = () => {
                         <div style={{width: '100%'}}>
                              <div className={styles.justify_flex}>
                             <Typography variant="body4">
-                                11 841 programs
+                            <span style={{fontWeight: '500'}}>11 841 </span>programs
                             </Typography>
                             <div className={styles.flex_center}>
                             <div onClick={() => {setShowModalSideBar(true)}} className={'gap_5 mobile'}>

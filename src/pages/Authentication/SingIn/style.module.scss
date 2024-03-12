@@ -30,7 +30,7 @@
     }
 }
 .content_part {
-    padding: 20px 12px 30px 12px;
+    padding: 20px 12px 0px 12px;
 }
 .first_flex {
     display: flex;
@@ -69,8 +69,8 @@
     color: #EB5757;
 }
 .title {
-
-}
+    text-align: center;
+}   
 .or_block {
     width: 100%;
     display: flex;
@@ -79,6 +79,11 @@
 }
 .orange {
     color: $orange;
+
+    transition: 0.2s;
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 .links {
@@ -96,10 +101,15 @@
         flex: 0 0 30%;
         height: 100vh;
     }
+
+    .title {
+        text-align: start;
+    }
     .content_part {
         flex: 0 0 70%;
         display: flex;
         flex-direction: column;
+        padding-bottom: 30px;
         align-items: center;
         justify-content: space-between;
 

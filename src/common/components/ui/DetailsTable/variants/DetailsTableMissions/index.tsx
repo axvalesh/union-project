@@ -43,8 +43,6 @@ const DetailsTableMissions = ({information}:DetailsTableMissionsProps) => {
     
     return (
       <DetailsTable
-        showUsers={showUsers}
-        users={width > 769 ? users : []}
         callbackNav={(item) => { setCurrentPage(item)}}
         filters={['All', 'Progress', 'Completed', 'Available', 'Unavailable']}
         page={currentPage}
@@ -126,7 +124,6 @@ const MissionItem = ({text,completed,callback,users}: {text?:string,completed?: 
     return (
        <div>
             <div className={styles.mission_wrapper}>
-                <div onClick={() => {callback(!showUsers);setShowUsers(prev => !prev)}}>{showUsers ? <AppColor.chevronBottom fill={AppColor.text} /> : <AppColor.chevronTop fill={AppColor.text} />}</div>
                 <div>
                 <AppColor.taskCheck />
                 </div>

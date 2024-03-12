@@ -26,6 +26,7 @@ const CardStatisticsParthnershipConstant  = () => {
         title='Logo by sample in vector in maximum quality' 
         tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
         user={fakeUser}
+        cardType="Logo design"
 
         rate={ 
             <div className={styles.statistic_flex}>

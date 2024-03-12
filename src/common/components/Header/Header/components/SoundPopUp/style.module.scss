@@ -23,13 +23,18 @@
     align-items: center;
     gap: 20px;
 }
+
+.top_filter {
+    padding: 0px 15px;
+}
 .filter_item {
     flex-grow: 1;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 160px;
+    white-space: nowrap;
+    padding: 30px 15px;
 }
 
 .bottom_part {
@@ -48,7 +53,6 @@
 .bottom_part_padding {
     padding: 30px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }

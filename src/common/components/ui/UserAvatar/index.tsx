@@ -21,16 +21,17 @@ type UserAvatarProps = {
     roleColor?: string;
     activeAgoRole?: string;
     title?: string;
+    gap?: string;   
 }
 
 type UserAvatarVariants = "row" | "column" | "money" | 'image'
 
 
-const UserAvatar = ({title,activeAgoRole='',noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatar = ({gap,title,activeAgoRole='',noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":
-            return <UserAvatarRow title={title} activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
+            return <UserAvatarRow gap={gap} title={title} activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} nodeAfterText={nodeAfterText} activeAgo={activeAgo} width={width} height={height} active={active} name={name} role={role} url={url} preventMobileNone={preventMobileNone} flag={flag} />;
         case "column":
             return <UserAvatarColumn title={title} activeAgoRole={activeAgoRole} roleColor={roleColor} noWrap={noWrap} activeAgo={activeAgo} active={active} name={name} role={role} url={url} flag={flag} />;
         case "money":
@@ -51,13 +52,13 @@ const UserAvatarImage = ({url,active,width,height}:UserAvatarProps) => {
     )
 }
 
-const UserAvatarRow = ({noWrap,active,title,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText,roleColor,activeAgoRole}:UserAvatarProps) => {
+const UserAvatarRow = ({gap,noWrap,active,title,name,role,url,preventMobileNone,flag,height,width,activeAgo,nodeAfterText,roleColor,activeAgoRole}:UserAvatarProps) => {
     
     const currentWidth = width != null ? width : '38px';
     const currentHeight = height != null ? height : '38px';
     
     return (
-        <div style={!title ? {maxWidth: '240px'} : {}} className={styles.wrapper}>
+        <div style={!title ? {maxWidth: '240px',gap:gap} : {gap:gap}} className={styles.wrapper}>
            <div className={styles.position_relative}>
                {url != null
                ? <img width={width != null ? width : '38px'} height={height != null ? height : '38px'} src={url} alt="" />
@@ -74,7 +75,7 @@ const UserAvatarRow = ({noWrap,active,title,name,role,url,preventMobileNone,flag
                 </Typography>
                 {role && <SizeBox height='5px'/>}
                 <Typography color={roleColor ?? AppColor.orange} variant='body5' textLineHeight='1'>
-                    {role}{activeAgoRole != '' && <span>{role && <span style={{color: AppColor.text}}>• </span>}<span style={{color: AppColor.transparentBlack}}>{activeAgoRole}</span></span>}
+                    {role}{activeAgoRole != '' && <span>{role && <span style={{color: AppColor.text}}> • </span>}<span style={{color: AppColor.transparentBlack}}>{activeAgoRole}</span></span>}
                 </Typography>
            </div>
       </div>

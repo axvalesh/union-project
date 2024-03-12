@@ -7,10 +7,10 @@
 
 .overflow_shell {
     max-width: 100%;
-    padding: 0px 50px;
+    padding: 0px 30px;
     position: relative;
     display: flex;
-    min-width: 360px;
+    min-width: 250px;
 }
 .shell {
     width: 100%;
@@ -22,8 +22,8 @@
     overflow-y: visible;
 }
 .chevron {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,6 +86,21 @@
 }
 
 @media (min-width:$tabletSize) {
+    .overflow_shell {
+        padding: 0px 50px;
+    }
+
+    .left {
+        right: calc(100% - 50px);
+    }
+
+    .right {
+        left: calc(100% - 50px);
+    }
+    .chevron {
+        width: 50px;
+        height: 50px;
+    }
     .remove_on_desktop {
         display: none;
     }

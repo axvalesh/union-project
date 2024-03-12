@@ -78,7 +78,7 @@ const Footer = ({ removeMargin }: { removeMargin?: boolean }) => {
 
     return (
         <>
-            <div style={{position: 'relative'}}>
+            <div style={{position: 'relative',zIndex: '4'}}>
                 <div className="absolute_right_buttons">
                     <AnimatedSvg
                         showNode2={showHelper}
@@ -134,9 +134,9 @@ const Footer = ({ removeMargin }: { removeMargin?: boolean }) => {
                         />
                     )}
     
-                    <AnimateHeight show={showHelper}>
+        
                         <CareComponent callback={(item) => {setShowHelper(item)}} showHelper={showHelper} />
-                    </AnimateHeight>
+        
                 </div>
             </div>
             <footer

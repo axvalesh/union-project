@@ -42,6 +42,7 @@ import NavigationBarDropdowns from '@common/components/NavigationBarDropdowns/in
 import LastSponsors from '@common/components/LastSponsors/index';
 import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
 import ContactModal from '@pages/Partnership/pages/Program/modals/contactModal/index';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
 
 const Service = () => {
     const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
@@ -65,6 +66,9 @@ const Service = () => {
 
         <div className={'wrapper_page'}>
             <PageDetails
+            endNode={
+                <ButtonDropdownSelect text='All services' variants={['All services','2','3']} />
+            }
                 historyNode={
                     <NavigationItem
                         image={<AppColor.home />}

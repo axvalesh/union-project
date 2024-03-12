@@ -53,7 +53,7 @@ const Activity = () => {
                     <ButtonDropdownSelect text='Customer' variants={['Customer','2','3']} />
                 </div>
                 <DynamicPadding />
-               <SearchFilterBar />
+               <SearchFilterBar date='10/29/22 - 11/29/22' />
 
                 <DynamicPadding />
 

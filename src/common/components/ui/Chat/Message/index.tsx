@@ -52,9 +52,9 @@ export const MessageItemUser = ({backgroundColor,side,text,time}:MessageProps) =
   }
   return (
     <div className={styles.wrapper_top}>
-      {side == 'left' && <ColumnDetails />}
+      {side == 'left' && <ColumnDetails role='Another' />}
         <div style={{alignItems: side == 'left' ? 'start' : 'end'}} className={styles.message_flex}>
-          <div className='gap_10'>
+          <div className='gap_10' style={{alignItems: 'end'}}>
           {side == 'right' && <Typography color={AppColor.transparentBlack} variant='body5'>{time}</Typography>}
             {side == 'left'
             ? <div className='gap_5'>
@@ -71,13 +71,17 @@ export const MessageItemUser = ({backgroundColor,side,text,time}:MessageProps) =
              <Typography variant='body4'>{text}</Typography>
           </div>
         </div>
-        {side == 'right' && <ColumnDetails />}
+        {side == 'right' && <ColumnDetails role='Me' />}
     </div>
   );
 };
 
 
-const ColumnDetails = () => {
+
+type ColumnDetailsProps = {
+  role: "Me" | "Another";
+}
+const ColumnDetails = ({role}:ColumnDetailsProps) => {
 
   const [deleteModal, setDeleteModal] = useState(false);
   return (
@@ -103,27 +107,40 @@ const ColumnDetails = () => {
           <PopUpBottom 
             topPaddingFromNode='20px'
             showNode={<AppColor.threePoints className='cursor' style={{padding: '5px',boxSizing: 'content-box'}} width={'17px'} height={'3px'} />}
-            showBackgroundHover={true}
+            showBackgroundHover={false}
             showNodeHover={<AppColor.threePointsActive className='cursor' style={{padding: '5px',boxSizing: 'content-box'}} width={'17px'} height={'3px'} />}
             popUpNode={
               <ThreeLinesPopUpCustom
                 
-                items={[
-                  {
-                    icon: <AppColor.reply />,
-                    title: 'Reply',
-                  },
-                  {
-                    icon: <AppColor.edit />,
-                    title: 'Edit',
-                  },
-                  {
-                    icon: <AppColor.close fill={AppColor.red} />,
-                    title: 'Delete',
-                    color: AppColor.red,
-                    onClick: () => setDeleteModal(true)
-                  }
-                ]}
+                items={
+                  role == "Me"
+                  ? [
+                    {
+                      icon: <AppColor.reply />,
+                      title: 'Reply',
+                    },
+                    {
+                      icon: <AppColor.edit fill={AppColor.text} />,
+                      title: 'Edit',
+                    },
+                    {
+                      icon: <AppColor.close fill={AppColor.red} />,
+                      title: 'Delete',
+                      color: AppColor.red,
+                      onClick: () => setDeleteModal(true)
+                    }
+                  ] :
+                  [
+                    {
+                      icon: <AppColor.report />,
+                      title: 'Report',
+                    },
+                    {
+                      icon: <AppColor.reply />,
+                      title: 'Reply',
+                    },
+                  ]
+                }
               />
             }
           />

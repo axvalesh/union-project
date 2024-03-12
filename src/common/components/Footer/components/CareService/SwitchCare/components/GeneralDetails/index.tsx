@@ -93,13 +93,13 @@ const GeneralDetails = ({setActiveSwitch}:CareServiceChildProps) => {
 
                         <DynamicPadding desktop='20px' mobile='10px' />
 
-                        <div onClick={() => {setActiveSwitch('main.general help.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
+                        <div onClick={() => {setActiveSwitch('main.general help nopadding.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
                             <UserAvatar active={true} name='name ' role='Customer' url={fakeUserConstant.image} />
                         </div>
-                        <div onClick={() => {setActiveSwitch('main.general help.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
+                        <div onClick={() => {setActiveSwitch('main.general help nopadding.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
                             <UserAvatar active={true} name='name ' role='Customer' url={fakeUserConstant.image} />
                         </div>
-                        <div onClick={() => {setActiveSwitch('main.general help.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
+                        <div onClick={() => {setActiveSwitch('main.general help nopadding.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
                             <UserAvatar active={true} name='name ' role='Customer' url={fakeUserConstant.image} />
                         </div>
       </div>

@@ -33,12 +33,12 @@ const SearchPopUp = () => {
                             <AppColor.chevronBottom fill={AppColor.transparentBlack} width={'8px'} height={'5px'}/>
                         </div>
                         <div style={{display: showDropdown ? 'grid' : 'none'}} className={styles.dropdown_wrapper}>
-                            <DropdownItem callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.searchIconLines fill={AppColor.text} />} title='Search Master' />
-                            <DropdownItem callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.cart fill={AppColor.text} />} title='Services Catalog' />
-                            <DropdownItem callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.orders />} title='Create Order' />
-                            <DropdownItem callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.caseIcon />} title='Sponsorships Catalog' />
-                            <DropdownItem callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.freelancer fill={AppColor.text} />} title='Freelancers Catalog' />
-                            <DropdownItem callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.managers />} title='Contact Managers ' />
+                            <DropdownItem activeTitle={activeSelection} callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.searchIconLines fill={AppColor.text} />} title='Search Master' />
+                            <DropdownItem activeTitle={activeSelection} callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.cart fill={AppColor.text} />} title='Services Catalog' />
+                            <DropdownItem activeTitle={activeSelection} callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.orders />} title='Create Order' />
+                            <DropdownItem activeTitle={activeSelection} callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.caseIcon />} title='Sponsorships Catalog' />
+                            <DropdownItem activeTitle={activeSelection} callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.freelancer fill={AppColor.text} />} title='Freelancers Catalog' />
+                            <DropdownItem activeTitle={activeSelection} callback={(item) => {setActiveSelection(item);setShowDropdown(false)}} icon={<AppColor.managers />} title='Contact Managers ' />
                         </div>
                     </div>
                 </div>
@@ -71,12 +71,13 @@ type DropdownItemProps = {
     icon: React.ReactNode;
     title: string;
     callback: (item:string) => void;
+    activeTitle: string;
 }
-const DropdownItem = ({icon,title,callback}:DropdownItemProps) => {
+const DropdownItem = ({icon,title,callback,activeTitle}:DropdownItemProps) => {
     return (
         <div className={styles.dropdown_item} onClick={() => {callback(title)}}>
             {icon}
-            <Typography variant='body5'>{title}</Typography>
+            <Typography fontWeight={activeTitle == title ? '500' : '400'} variant='body5'>{title}</Typography>
         </div>
     )
 }

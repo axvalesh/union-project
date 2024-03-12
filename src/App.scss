@@ -90,6 +90,7 @@ textarea {
 input {
     font-family: Roboto;
     font-size: 1rem;
+    outline: none;
 }
 
 button {
@@ -139,6 +140,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 /*====================================================================================================*/
 
 .wrapper {
@@ -172,7 +174,7 @@ body {
     justify-content: center;
 
     svg {
-        height: 30px;
+        height: 20px;
     }
 }
 
@@ -185,5 +187,9 @@ body {
         max-height: 60px;
         min-height: 60px;
         aspect-ratio: 1;
+
+        svg {
+            height: 30px;
+        }
     }
 }

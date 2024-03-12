@@ -2,6 +2,14 @@ import AppColor from "@common/styles/variables-static";
 import styles from './style.module.scss';
 import {useEffect, useState} from 'react';
 import Typography from "../../Typography/Typography";
+import BigFilter from "../../BigFilter";
+import SizeBox from "../../SizeBox";
+import { ReviewsNoBorder } from "@common/components/ReviewsProgram/index";
+import { fakeUserConstant } from "@common/models/user";
+import test1 from '@assets/images/test1.png';
+import test2 from '@assets/images/test2.png';
+import test3 from '@assets/images/test3.png';
+import DropdownNumber from "../../SearchFilterBar/components/DropdownNumber";
 
 type DropdownNodeFilterProps = {
     title:string;
@@ -13,10 +21,11 @@ type DropdownNodeFilterProps = {
     noneText?: string;
     noneButton?: any;
     textAfterCount?: any;
+    alwaysActive?: boolean;
 
 }
-const DropdownNodeFilter = ({title,countNotifications,dropnodes,filters,noneText,noneTitle,noneButton,noneIcon,textAfterCount}:DropdownNodeFilterProps) => {
-    const [isActive,setIsActive] = useState(false);
+const DropdownNodeFilter = ({title,countNotifications,dropnodes,filters,alwaysActive,noneText,noneTitle,noneButton,noneIcon,textAfterCount}:DropdownNodeFilterProps) => {
+    const [isActive,setIsActive] = useState(alwaysActive ?? false);
     useEffect(() => {
         if(countNotifications == 0) {
             setIsActive(true);
@@ -24,7 +33,7 @@ const DropdownNodeFilter = ({title,countNotifications,dropnodes,filters,noneText
     },[])
     const [categoryActiveIndex,setCategoryActiveIndex] = useState(0);
     function changeState(event: any) {
-        if(countNotifications > 0) {
+        if(countNotifications > 0 && !alwaysActive) {
             setIsActive((prev) => !prev);
         }
     }
@@ -32,10 +41,12 @@ const DropdownNodeFilter = ({title,countNotifications,dropnodes,filters,noneText
       <div className={styles.wrapper}>
            <div onClick={(event) => {changeState(event)}} className={styles.title_block}>
                 <div className={styles.title_shell}>
-                    <Typography variant="body3" color={isActive ? '#515151' : AppColor.colorWithOpacity('#515151', 0.5)}>
-                        {title}
-                    </Typography>
-                    {countNotifications > 0 ? <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span> : <></>}
+                    <div className="gap_10">
+                        <Typography variant="body3" color={isActive ? '#515151' : AppColor.colorWithOpacity('#515151', 0.5)}>
+                            {title}
+                        </Typography>
+                        {countNotifications > 0 ? <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span> : <></>}
+                    </div>
                     {textAfterCount}
                 </div>
 
@@ -51,34 +62,30 @@ const DropdownNodeFilter = ({title,countNotifications,dropnodes,filters,noneText
                 </div>
 
                 {countNotifications > 0
-                ? <div className={styles.close_chevron}>
-                {isActive
-                ? <AppColor.chevronTop fill={AppColor.text}/>
-                : <AppColor.chevronBottom fill={AppColor.text} fillOpacity={0.5}/>
-                }
-                </div>
+                ? <div className="desktop"><DropdownNumber /></div>
                 : <></>
                 }
            </div>
            <div className={`${isActive ? styles.description_block_active :styles.description_block}`}>
                 <div className={styles.horizontal_line}></div>
-                <div className={styles.padding}>
-                    <div className={styles.filte_wrapper}>
-                        <div className={styles.filter_item}><AppColor.filter/><Typography variant="body4" color={AppColor.transparentBlack}>Filters</Typography></div>
-                        <div className={styles.filter_item}><AppColor.sort/><Typography variant="body4" color={AppColor.transparentBlack}>Most recent</Typography></div>
+                <div className={styles.padding_reviews}>
+                <BigFilter />
+                <div className={styles.horizontal_line}></div>
+                <SizeBox height="30px" />
+                <ReviewsNoBorder likes="55" money="200" text="Saro was very patient and willing to make all the revisions as required. Provided advice based on his knowledge and really easy to chat to."
+                 user={fakeUserConstant} images={[test1,test2,test3]} addInfo={
+                    {
+                        icon: <AppColor.caseIcon height={'22px'} />,
+                        text: 'Musguard OMNI: Rollable Bicycle Mudguards',
+                        users: [fakeUserConstant,fakeUserConstant,fakeUserConstant,fakeUserConstant,fakeUserConstant]
+                    }
+                 } afterPriceNode={
+                    <div className="gap_10">
+                        <AppColor.cart height={'25px'} width={'28px'} fill={AppColor.text} />
+                        <AppColor.flag height={'25px'} width={'22px'} />
                     </div>
-                    <div className={styles.nodes_hover_wrapper}>
-                        {dropnodes != null
-                        ? dropnodes
-                        : 
-                        <div className={styles.none_wrapper}>
-                            {noneIcon}
-                            <Typography variant="body2" fontWeight="500">{noneTitle}</Typography>
-                            <Typography variant="body1" fontWeight="400" color={AppColor.transparentBlack}>{noneText}</Typography>
-                            {noneButton}
-                        </div>
-                        }
-                    </div>
+                 }
+                />
                 </div>
            </div>
       </div>

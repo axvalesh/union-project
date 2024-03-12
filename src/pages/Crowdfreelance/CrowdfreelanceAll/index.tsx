@@ -250,7 +250,7 @@ const CrowdfreelanceAll = () => {
                              <div className={styles.justify_flex}>
                                 <div className='desktop'>
                                 <Typography variant="body4">
-                                    11 841 programs
+                                <span style={{fontWeight: '500'}}>11 841 </span>programs
                                 </Typography>
                             </div>
                             <div className={styles.flex_center}>

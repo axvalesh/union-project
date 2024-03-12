@@ -86,7 +86,7 @@ const MyTeams = () => {
                 />
 
                 <DynamicPadding />
-                <SearchFilterBar />
+                <SearchFilterBar date='10/29/22 - 11/29/22' />
                 <DynamicPadding />
 
                 <DetailsTableMyTeams information={teamsContent}  />

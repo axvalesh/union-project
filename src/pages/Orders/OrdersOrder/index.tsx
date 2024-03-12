@@ -30,11 +30,31 @@ import AskedQuestion from '@common/components/AskedQuestions/index';
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
 import Footer from '@common/components/Footer/Footer';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 const OrdersOrder = () => {
     const arrayHistory = ['Order', 'Development ', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
+
+    const specifRef = useRef(null);
+    const customerRef = useRef(null);
+    const faqRef = useRef(null);
+
+    const mapOfRefs = {
+        'Description': null, // Replace null with the appropriate ref if needed
+        'Specification': specifRef,
+        'Customer': customerRef,
+        'FAQ (2)': faqRef,
+    };
+
+    function scrollToRef(item: string) {
+        const currentRef:RefObject<any> = mapOfRefs[item];
+
+        if(currentRef.current) {
+            const yOffset = currentRef.current.getBoundingClientRect().top - 105;
+            window.scrollTo({ top: yOffset, behavior: 'smooth' });
+        }
+    }
 
     useEffect(() => {
         window.scrollTo({top: 0});
@@ -87,7 +107,7 @@ const OrdersOrder = () => {
 
             <DynamicPadding />
 
-            <FilterList filters={['Description', 'Specification', 'Customer', 'FAQ (2)']} activeStartItem='Customer' />
+            <FilterList callback={(item) => {scrollToRef(item)}} filters={['Description', 'Specification', 'Customer', 'FAQ (2)']} activeStartItem='Description' />
 
             <DynamicPadding mobile='0px' />
 
@@ -112,11 +132,11 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                         <DynamicPadding desktop='30px' mobile='20px'/>
 
                         <Typography variant='body4' color={AppColor.transparentBlack} fontWeight='500'>Tags</Typography>
-
+                        <SizeBox height='10px'/>
                         <TagsDisplay tags={['Logos', 'Logo Design', 'Logo']}/>
 
                         <DynamicPadding />
-                        <Typography variant='body3' fontWeight='500'>Specification</Typography>
+                        <span ref={specifRef}><Typography variant='body3' fontWeight='500'>Specification</Typography></span>
                         <DynamicPadding desktop='30px' mobile='20px'/>
                         <div className='gap_10'>
                             <AppColor.layers />
@@ -130,6 +150,9 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                         </div>
 
                         <DynamicPadding />
+
+                        <span ref={customerRef}><Typography variant='body3' fontWeight='500'>Customer</Typography></span>
+                        <DynamicPadding desktop='30px' mobile='20px'/>
                         <FreelancerCard
                             disableFirstTwo={true}
                             type='Logo design'
@@ -137,7 +160,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                             user={fakeUserConstant} />
 
                     <DynamicPadding />
-                    <div className={'gap_5  '}>
+                    <div ref={faqRef} className={'gap_5  '}>
                         <Typography variant='body3' fontWeight='500'>FAQ</Typography>
                         <div className={styles.box_black}>
                             <Typography variant='body3' color='white' fontWeight='500'>2</Typography>

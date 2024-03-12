@@ -14,7 +14,7 @@ const GeneralHelp = ({setActiveSwitch}:CareServiceChildProps) => {
            <QuestionItem callback={(item) => {setActiveSwitch(item)}}/>
            </div>
            <MyButtonOrange onClick={() => {
-            setActiveSwitch('main.general help.create');
+            setActiveSwitch('main.general help nopadding.create');
            }} padding='15px' fontWeight='500' textTransform='uppercase' width='100%'>
            Create New Question
            </MyButtonOrange>
@@ -24,7 +24,7 @@ const GeneralHelp = ({setActiveSwitch}:CareServiceChildProps) => {
 
 const QuestionItem = ({callback}) => {
     return (
-       <div onClick={() => {callback('main.general help.helpchat showhelp')}} className={`${styles.question_item} cursor`}>
+       <div onClick={() => {callback('main.general help nopadding.helpchat showhelp')}} className={`${styles.question_item} cursor`}>
             <div>
                 <div className='gap_10'>
                     <AppColor.questionOrange />

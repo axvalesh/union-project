@@ -51,7 +51,9 @@ const skillsContent:SkillsItemProps[] = [
 const Upgrades = () => {
 
     const {width,height} = useScreenSize();
-    const [activeUpgradeSection,setActiveUpgradeSection] = useState('Opened Projects')
+    const [activeUpgradeSection,setActiveUpgradeSection] = useState('Opened Projects');
+
+    const [selectedCategory,setSelectedCategory] = useState('Website Development1');
     
     return (
       <div>
@@ -80,6 +82,8 @@ const Upgrades = () => {
                     width > 769
                     ? skillsContent.map(item =>
                         <SkillsItem 
+                            callback={(item) => {setSelectedCategory(item)}}
+                            activeTitle={selectedCategory}
                             icon={item.icon}
                             skills={item.skills}
                             title={item.title}
@@ -221,10 +225,10 @@ const ActiveUpgradeGradeCircle = ({active,disabled,isNext,bottomText,insideText}
                 <div className={styles.menu_wrapper}>
                    <div className={styles.arrow_wrapper}>
                         <div className={styles.active_upgrade_circle} style={{border: isNext ? '1px solid #515151' : '1px solid transparent',backgroundColor: active ? AppColor.orange : isNext ? 'white' : AppColor.transparentBlack}}>
-                            <Typography textTransform='uppercase' variant='body4' color={isNext ? AppColor.text : 'white'}>
+                            <Typography textLineHeight='1' textTransform='uppercase' variant='body4' color={isNext ? AppColor.text : 'white'}>
                                 Grade
                             </Typography>
-                            <Typography variant='titleSmall' color={isNext ? AppColor.text : 'white'}>
+                            <Typography textLineHeight='1' variant='titleSmall' color={isNext ? AppColor.text : 'white'}>
                                 {insideText}
                             </Typography>
                         </div>
@@ -232,10 +236,15 @@ const ActiveUpgradeGradeCircle = ({active,disabled,isNext,bottomText,insideText}
                     && <div className={styles.chevron_absolute}><AppColor.chevronRight fill={AppColor.text} width={14} height={24} /></div> 
                     }
                    </div>
-                    <div><AppColor.chevronRight /></div>
-                    <Typography textLineHeight='100%' variant='body4' color={active ? AppColor.orange : isNext ? AppColor.text : AppColor.transparentBlack}> 
-                        {bottomText}
-                    </Typography>
+
+                   <div style={{display: 'flex'}}>
+                   <DynamicPadding desktop='10px' mobile='0px' side='right'/>
+                        <div style={{display: 'flex',width: '100%',justifyContent: 'center'}}>
+                            <Typography textLineHeight='100%' variant='body4' color={active ? AppColor.orange : isNext ? AppColor.text : AppColor.transparentBlack}> 
+                                {bottomText}
+                            </Typography>
+                        </div>
+                   </div>
                 </div>
                 {!active && <DynamicPadding desktop='34px' mobile='px' side='right'/>}
          </div>
@@ -249,13 +258,14 @@ const DropdownSkills = () => {
     const currentItem = skillsContent[activeIndex];
     return (
         <div className={styles.dropdown_skills_wrapper}>
-            <span onClick={() => { setShowDropdown(prev => !prev)}}><SkillsItem icon={currentItem.icon} skills={currentItem.skills} title={currentItem.title} showDropdown={true} /></span>
+            <span onClick={() => { setShowDropdown(prev => !prev)}}><SkillsItem callback={() => {}} icon={currentItem.icon} skills={currentItem.skills} title={currentItem.title} showDropdown={true} /></span>
             <div className={`${styles.dropdown_wrapper} ${showDropdown ? styles.active_d : styles.disabled_d}`}>
                 {skillsContent.map((item,index) =>
                     {
                         if(index != activeIndex) {
                             return <span onClick={() => { setActiveIndex(index) }}>
                                 <SkillsItem
+                                callback={() => {}}
                                 icon={item.icon}
                                 skills={item.skills}
                                 title={item.title}
@@ -275,10 +285,12 @@ type SkillsItemProps = {
     icon: any;
     skills: string[]
     showDropdown?: boolean;
+    activeTitle?: string;
+    callback?: (item:string) => void;
 }
-const SkillsItem = ({icon,skills,title,showDropdown=false}:SkillsItemProps) => {
+const SkillsItem = ({icon,skills,title,showDropdown=false,activeTitle,callback}:SkillsItemProps) => {
     return (
-        <div className={styles.skills_wrapper}>
+        <div onClick={() => {callback(title)}} style={activeTitle == title ? {backgroundColor: AppColor.white} : {}} className={styles.skills_wrapper}>
             {icon}
             <div>
                 <Typography variant='body5' fontWeight='500'>{title}</Typography>

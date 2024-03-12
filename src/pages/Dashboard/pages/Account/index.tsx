@@ -33,6 +33,8 @@ import InputDropdown from '@common/components/ui/inputs/InputDropdown/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import DropdownPortfolio from '@common/components/ui/Dropdown/DropdownNodes/variants/DropdownPortfolio/index';
 import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
+import LevelProgress from '@common/components/ui/LevelProgress/index';
+import InfoBox from '@common/components/ui/InfoBox/index';
 
 const activityItems = [
     {
@@ -214,7 +216,7 @@ const Account = () => {
     const [skillsContent,setSkillsContent] = useState<SkillType[]>([
         {
             icon: <AppColor.development />,
-            title: 'Web Development',
+            title: 'Website Development',
             skills: ['WordPress']
         },
     ])
@@ -223,6 +225,7 @@ const Account = () => {
 
     const [editModal,setEditModal] = useState(false);
     const [editModalCategory,setEditModalCategory] = useState('Development');
+    const [selectedCategory,setSelectedCategory] = useState('Website Development');
 
     const currentDropdonw = developmentDropdown.find(item => item.title == editModalCategory);
 
@@ -233,6 +236,7 @@ const Account = () => {
 
     const [descriptionText,setDescriptionText] = useState('');
 
+    const [showLevelModal,setShowLevelModal] = useState(false);
     const [languageModal,setLanguageModal] = useState(false);
 
     const [languages,setLanguages] = useState<LanguageType[]>([
@@ -258,6 +262,49 @@ const Account = () => {
 
     return (
       <div>
+
+    {showLevelModal && <ModalCenterBasic desktopMinWidth='900px'
+            bottomPartPadding='30px' nodeAfterTitle={<div className='gap_10'>
+                <DarkBox fontWeight='400' text={'Logo design'.toUpperCase()} />
+                <div className={styles.profile_top_level}>
+                                <AppColor.twoOFFive />
+                                <Typography variant='body4' color={AppColor.text}>
+                                3 lvl 
+                                </Typography>
+                                <div onClick={() => {setShowLevelModal(true)}} className={`${styles.margin_left} cursor`}>
+                                    <Typography variant='body4' fontWeight='500' color={AppColor.green}>
+                                    Junior 
+                                    </Typography>
+                                </div>
+                            </div>
+                            <Typography variant='body4' color={AppColor.transparentBlack}>
+                            Points to middle level
+                            </Typography>
+                            <Typography variant='body4' fontWeight='500'>
+                            1623
+                            </Typography>
+            </div>}
+
+            topPartPadding='20px 30p' callbackClose={() => {setShowLevelModal(false)}} title='Current skill level'>
+
+              <Typography variant='body4'>
+              Earn points to level up to have a higher income.
+              </Typography>
+
+              <DynamicPadding desktop='25px' mobile='15px' />
+              <LevelProgress percent={25} />
+
+
+              <DynamicPadding desktop='25px' mobile='15px' />
+
+              <div className='gap_5' style={{gap: '30px'}}>
+                <LevelRowItem description={'increases skill points  '} icon={<AppColor.doubleChevronsUp/>} title={'Complete Project'} />
+                <LevelRowItem description={'reduces skill points  '} icon={<AppColor.close fill={'white'} />} title={'Unsuccesfull Projects'} />
+                <LevelRowItem description={'reduces skill level     '} icon={<AppColor.statusOffline/>} title={'6 months Offline'} />
+
+              </div>
+            </ModalCenterBasic>}
+        
          {skillsModal && <ModalCenterBasic desktopMinWidth='360px'
             bottomPartPadding='30px' nodeAfterTitle={<div className='gap_10'>
                 <DarkBox text={`${languages.length}`} />
@@ -575,13 +622,15 @@ const Account = () => {
                     </div>
                   <ButtonDropdownSelect text='PROJECTS' variants={['PROJECTS','2','3']} />
                 </div>
-                <DynamicPadding />
+                <DynamicPadding desktop='40px' mobile='20px' />
                 <div className='gap_10'>
                     <div className={styles.after_top_section}>
                         {
                         width > 769
                         ? skillsContent.map(item =>
                             <SkillsItem 
+                                activeCategory={selectedCategory}
+                                callback={(item) => {setSelectedCategory(item)}}
                                 icon={item.icon}
                                 skills={item.skills}
                                 title={item.title}
@@ -599,21 +648,21 @@ const Account = () => {
                        <div className={styles.profile_level_wrapper}>
                             <div className={styles.profile_top_level}>
                                 <AppColor.twoOFFive />
-                                <Typography variant='body4' color={AppColor.transparentBlack}>
+                                <Typography variant='body4' color={AppColor.text}>
                                 3 lvl 
                                 </Typography>
-                                <div className={styles.margin_left}>
-                                    <Typography variant='body4' color={AppColor.green}>
+                                <div onClick={() => {setShowLevelModal(true)}} className={`${styles.margin_left} cursor`}>
+                                    <Typography variant='body4' fontWeight='500' color={AppColor.green}>
                                     Junior 
                                     </Typography>
                                 </div>
                             </div>
                             <PercentBar currentPercent={22} backgroundColor={AppColor.white} color={AppColor.orange}/>
                             <div className={styles.profile_bottom_level}>
-                                <Typography variant='subtitle' textLineHeight='80%'>
+                                <Typography variant='subtitle' fontWeight='500' textLineHeight='80%'>
                                   <div className={styles.text_flex}>  31 <Typography textLineHeight='80%' variant='body4' color={AppColor.transparentBlack}>of 150 XP</Typography></div>
                                 </Typography>
-                                <Typography color={AppColor.orange} variant='body4'>
+                                <Typography fontWeight='500' color={AppColor.orange} variant='body4'>
                                 22%
                                 </Typography>
                             </div>
@@ -632,7 +681,7 @@ const Account = () => {
                        <div className={styles.horizontal_line}></div>
                        <DynamicPadding mobile='20px' desktop='30px' />
                        <div>
-                            <Typography variant='body2' fontWeight='500'>
+                            <Typography textLineHeight='1' variant='body2' fontWeight='500'>
                                 Skills
                             </Typography>
                             <div className={styles.tags_wrapper}>
@@ -643,7 +692,7 @@ const Account = () => {
                        <div className={styles.horizontal_line}></div>
                        <DynamicPadding mobile='20px' desktop='30px' />
                        <div>
-                        <Typography variant='body2' fontWeight='500'>
+                        <Typography textLineHeight='1' variant='body2' fontWeight='500'>
                         <div className={styles.text_flex_gap}> Languages <AppColor.noteText className='cursor' onClick={() => {setLanguageModal(true)}} /> </div>
                                 </Typography>
                                 <DynamicPadding mobile='30px' desktop='30px' />
@@ -657,7 +706,7 @@ const Account = () => {
                        <DynamicPadding mobile='20px' desktop='30px' />
 
                        <div>
-                                <Typography variant='body2' fontWeight='500'>
+                                <Typography textLineHeight='1' variant='body2' fontWeight='500'>
                                     <div className={styles.text_flex_gap}> Education <AppColor.noteText onClick={() => {setEducationModal(true)}} className='cursor' /> </div>
                                 </Typography>
                                 <DynamicPadding mobile='30px' desktop='30px' />
@@ -680,9 +729,10 @@ const Account = () => {
                        <DynamicPadding mobile='20px' desktop='30px' />
 
                        <div>
-                                <Typography variant='body2' fontWeight='500'>
-                                    <div className={styles.text_flex_gap}> Certifications <AppColor.noteText /> </div>
+                                <Typography textLineHeight='1' variant='body2' fontWeight='500'>
+                                    <div className='gap_10'> Certifications <AppColor.noteText /> </div>
                                 </Typography>
+                                <DynamicPadding mobile='20px' desktop='30px' />
                                 <div>
                                     <Typography variant='body4' fontWeight='500'>
                                     UX mind School Certificate
@@ -699,36 +749,37 @@ const Account = () => {
                        <DynamicPadding mobile='20px' desktop='30px' />
                         
                         <div>
-                                 <Typography variant='body2' fontWeight='500'>
-                                    <div className={styles.text_flex_gap}> Last sponsors <div className={styles.info_box}><AppColor.info /></div> </div>
+                                 <Typography textLineHeight='1' variant='body2' fontWeight='500'>
+                                    <div className={styles.text_flex_gap}> Last sponsors <InfoBox /> </div>
                                 </Typography>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
 
                                 <div className={styles.users_wrapper}>
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
-                                    <UserAvatar variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar url={fakeUserConstant.image} variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar url={fakeUserConstant.image} variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar url={fakeUserConstant.image} variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar url={fakeUserConstant.image} variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar url={fakeUserConstant.image} variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
+                                    <UserAvatar url={fakeUserConstant.image} variant='money' active={true} name='Artem M.' flag={<AppColor.UkraineFlagIcon/>} money='4 305' />
                                 </div>
                         </div>
+                        <DynamicPadding desktop='30px' mobile='20px'/>
 
                     </div>
                     <div className={styles.main_right}>
-                        <DynamicPadding desktop='0px' mobile='20px'/>
                         <ContentShell 
                             title={
-                                <Typography variant='body2' fontWeight='500'>
+                                <Typography textLineHeight='1' variant='body2' fontWeight='500'>
                                     <div className={styles.text_flex_gap}> Description <div className={styles.info_box}><AppColor.noteText className='cursor' onClick={() => {setDescriptionModal(true)}} /></div> </div>
                                 </Typography>
                             }
                             node={
-                                <Typography variant='body4'>{descriptionText}</Typography>
+                                <Typography color={AppColor.transparentBlack} variant='body4'>{descriptionText != '' ? descriptionText : 'No info'}</Typography>
                             }
                         />
                         <ContentShell 
                             title={
-                                <Typography variant='body2' fontWeight='500'>
+                                <Typography textLineHeight='1' variant='body2' fontWeight='500'>
                                      Statistics 
                                 </Typography>
                             }
@@ -742,7 +793,7 @@ const Account = () => {
                         />
                         <ContentShell 
                             title={
-                                <Typography variant='body2' fontWeight='500'>
+                                <Typography textLineHeight='1' variant='body2' fontWeight='500'>
                                     <div className={styles.text_flex_gap}> Skills <div className={styles.info_box}><AppColor.noteText className='cursor' onClick={() => {setSkillsModal(true)}} /></div> </div>
                                 </Typography>
                             }
@@ -754,14 +805,29 @@ const Account = () => {
                                 </div>
                             }
                         />
-                        <DropdownNodeFilter
+                        <DropdownNodeFilter alwaysActive={true}
                             countNotifications={5}
                             filters={[]}
                             title='Reviews'
                             textAfterCount={<Typography textLineHeight='80%' variant='body4' color={AppColor.green}>95% positive reviews </Typography>}
                         />
-                         <DropdownNodeActivity filters={['All', 'Service', 'Sponsorship']} countNotification={activityItems.length} activityItems={activityItems} />
-                         <DropdownPortfolio />;
+                         <DropdownNodeActivity filters={
+                            [
+                                {
+                                    hasChildren: true,
+                                    title: 'All'
+                                },
+                                {
+                                    hasChildren: true,
+                                    title: 'Service'
+                                },
+                                {
+                                    hasChildren: false,
+                                    title: 'Sponsorship'
+                                }
+                            ]
+                         } countNotification={activityItems.length} activityItems={activityItems} />
+                         <DropdownPortfolio />
                     </div>
                 </div>
 
@@ -778,6 +844,22 @@ type SkillCheckBoxProps = {
     removeDropdown?: boolean;
     callback?: (item: string,isTrue: boolean) => void;
     initValue?: boolean;
+}
+
+const LevelRowItem = ({title,description,icon}) => {
+    return (
+        <div className='gap_10' style={{alignItems: 'stretch'}}>
+            <div className={styles.level_green_circle}>
+                {icon}
+            </div>
+
+            <div className={styles.flex_column_level}>
+                <Typography textLineHeight='1' variant='body4' fontWeight='500'>{title}</Typography>
+
+                <Typography textLineHeight='1' variant='body5'>{description}</Typography>
+            </div>
+        </div>
+    )
 }
 export const SkillCheckBox = ({initValue,text,callback,removeDropdown=false}:SkillCheckBoxProps) => {
     
@@ -994,17 +1076,23 @@ const DropdownSkills = () => {
     ])
 
     const [activeIndex,setActiveIndex] = useState(0);
+    const [selectedCategory,setSelectedCategory] = useState('Website Development');
     const [showDropdown,setShowDropdown] = useState(false);
     const currentItem = skillsContent[activeIndex];
     return (
         <div className={styles.dropdown_skills_wrapper}>
-            <span onClick={() => { setShowDropdown(prev => !prev)}}><SkillsItem icon={currentItem.icon} skills={currentItem.skills} title={currentItem.title} showDropdown={true} /></span>
+            <span onClick={() => { setShowDropdown(prev => !prev)}}><SkillsItem
+            activeCategory={selectedCategory}
+            callback={(item) => {setSelectedCategory(item)}}
+            icon={currentItem.icon} skills={currentItem.skills} title={currentItem.title} showDropdown={true} /></span>
             <div className={`${styles.dropdown_wrapper} ${showDropdown ? styles.active_d : styles.disabled_d}`}>
                 {skillsContent.map((item,index) =>
                     {
                         if(index != activeIndex) {
                             return <span onClick={() => { setActiveIndex(index) }}>
                                 <SkillsItem
+                                activeCategory={selectedCategory}
+                                callback={(item) => {setSelectedCategory(item)}}
                                 icon={item.icon}
                                 skills={item.skills}
                                 title={item.title}
@@ -1060,10 +1148,12 @@ type SkillsItemProps = {
     icon: any;
     skills: string[]
     showDropdown?: boolean;
+    activeCategory: string;
+    callback: (item:string) => void;
 }
-const SkillsItem = ({icon,skills,title,showDropdown=false}:SkillsItemProps) => {
+const SkillsItem = ({icon,skills,title,showDropdown=false,activeCategory,callback}:SkillsItemProps) => {
     return (
-        <div className={styles.skills_wrapper}>
+        <div onClick={() => {callback(title)}} style={activeCategory == title ? {backgroundColor: AppColor.white} : {}} className={styles.skills_wrapper}>
             {icon}
             <div>
                 <Typography variant='body5' fontWeight='500'>{title}</Typography>

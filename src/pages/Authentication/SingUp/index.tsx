@@ -13,6 +13,7 @@ import googleLogo from '@assets/svg/google-logo.svg';
 import facebookLogo from '@assets/svg/facebook-logo.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 
 const SingUp = () => {
     const [userName,setUserName] = useState('');
@@ -44,7 +45,7 @@ const SingUp = () => {
                     <SizeBox width='19px'/>
                     <Link to={'/sign-in'}>
                         <MyButtonTransparentOrange
-                        onClick={() => {}}
+                        onClick={() => {}} fontWeight='500'
                         >
                             Sign in
                         </MyButtonTransparentOrange>
@@ -56,6 +57,8 @@ const SingUp = () => {
                     Create your free account
                     </Typography>
                     </div>
+
+                    <DynamicPadding desktop='30px' mobile='10px'/>
 
                     <InputBorderText 
                     emptyChangeColor={true}
@@ -88,7 +91,7 @@ const SingUp = () => {
                     </MyButtonOrange>
                     <div className={styles.or_block}>
                     <div className={styles.grey_line}></div>
-                    <Typography variant='body7'>
+                    <Typography variant='body7' color={AppColor.transparentBlack}>
                         or
                     </Typography>
                     <div className={styles.grey_line}></div>
@@ -101,15 +104,15 @@ const SingUp = () => {
                     <img src={facebookLogo} alt="facebook" />
                 </div>
                 <Typography variant='body5'>
-                    By clicking button above, you agree to our <a className={styles.orange} href='#'>terms and conditions</a> and <a className={styles.orange}>privacy policies</a>
+                    By clicking button above, you agree to our <a className={styles.orange} style={{fontWeight: '500'}} href='#'>terms and conditions</a> and <a className={styles.orange} style={{fontWeight: '500'}}>privacy policies</a>
                 </Typography>
                 </div>
                 <div style={{opacity: '0'}} className={styles.first_flex}>
-                    <Typography variant='body4'>
+                    <Typography variant='body4'> 
                         Already have an account?
                     </Typography>
                     <SizeBox width='19px'/>
-                    <MyButtonTransparentOrange
+                    <MyButtonTransparentOrange fontWeight='500'
                     onClick={() => {
                        
                     }}

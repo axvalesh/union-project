@@ -10,7 +10,7 @@ const TemplateItem = () => {
            <AppColor.template height={'35px'} width={'35px'} />
            <div className={styles.flex_column}>
                 <Typography variant='body4' fontWeight='500'>Design portfolio</Typography>
-                <Typography variant='body5'>Saved • 16 Oct 2023 13:15</Typography>
+                <Typography variant='body5'><span className={styles.hover_text} >Saved </span><span className={styles.hover_text} >• 16 Oct 2023 13:15</span></Typography>
            </div>
            <div style={{marginLeft: 'auto',alignSelf: 'center'}} className='gap_5'>
                 <AppColor.edit fill={AppColor.text} height={'15px'}/>

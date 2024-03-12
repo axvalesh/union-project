@@ -9,6 +9,7 @@ import SizeBox from '../SizeBox';
 import HorizontalLine from '../Lines/HorizontalLine';
 import MyCheckbox from '../inputs/Checkbox';
 import PopUpBottom from '../../ModalPopUps/PopUpBottom';
+import { ThreeLinesPopUpCustom } from '../ThreeLinesPopUp';
 
 
 type DetailsTableProps = {
@@ -177,7 +178,7 @@ const DetailsTable = ({endIcon,titleEnd,modalDropdown,group,details,page,project
                           </div>
                           <div className={styles.child_wrapper_desktop}>
                           <PopUpBottom
-                            positionRight='-10px'
+                            positionRight='-100%'
                                     showBackgroundHover={true}
                                     showNodeHover={
                                      <div className='cursor'> <AppColor.threeLinesActive /></div>
@@ -185,7 +186,18 @@ const DetailsTable = ({endIcon,titleEnd,modalDropdown,group,details,page,project
                                    showNode={
                                     <div className='cursor'><AppColor.threeLines /></div>
                                    }
-                                   popUpNode={modalDropdown}
+                                   popUpNode={modalDropdown ?? <ThreeLinesPopUpCustom
+                                    positionRight='45%'
+                                     items={[
+                                    {
+                                      icon: <AppColor.share />,
+                                      title: 'Share'
+                                    },
+                                    {
+                                      icon: <AppColor.report />,
+                                      title: 'Report'
+                                    }
+                                   ]} />}
                                    topPaddingFromNode='27px'
                                />
                           </div>
@@ -217,7 +229,7 @@ const DetailsTable = ({endIcon,titleEnd,modalDropdown,group,details,page,project
               {!removeNavBar && <> <DynamicPadding mobile='20px' desktop='20px' />
               <div className={styles.flex_space}>
                 <Typography variant='body4'>
-                  11 841 missions
+                 <span style={{fontWeight: '500'}}> 11 841</span> missions
                 </Typography>
                 <NavBarLine maxCountPage={11841} callback={(item) => {callbackNav(item)}} />
               </div>

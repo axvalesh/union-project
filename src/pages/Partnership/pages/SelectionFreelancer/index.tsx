@@ -20,6 +20,13 @@ import InputCommon from '@common/components/ui/inputs/InputCommon/index';
 import NavigationBarSelection from '@common/components/NavigationBarSelection/index';
 import CardManager from '@common/components/cards/CardStatiscticsPartnership/variants/CardManager/index';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import DropdownNumber from '@common/components/ui/SearchFilterBar/components/DropdownNumber/index';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
+import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
+import Footer from '@common/components/Footer/Footer';
+import AskedQuestion from '@common/components/AskedQuestions/index';
+import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
+import { Link } from 'react-router-dom';
 
 const SelectionFreelancer = () => {
     const { width, height } = useScreenSize()
@@ -60,17 +67,7 @@ const SelectionFreelancer = () => {
                     />
                 }
                 endNode={
-                    <div className={styles.details_end_node}>
-                        <MyButtonTransparentOrange
-                            fontWeight="500"
-                            textTransform="uppercase"
-                            onClick={() => {}}>
-                            my programs
-                            <AppColor.chevronBottom
-                                fill={AppColor.orange}
-                            />
-                        </MyButtonTransparentOrange>
-                    </div>
+                    <ButtonDropdownSelect text='My programs' variants={['My programs','2','3']} />
                 }
                 pageTitle={title}
             />
@@ -138,7 +135,7 @@ const SelectionFreelancer = () => {
                     <div className={styles.right_part}>
                         <div className={styles.justify_flex}>
                             <Typography variant="body4">
-                            4 {activeSelection.toLowerCase() } managers
+                            <span style={{fontWeight: '500'}}>4</span> {activeSelection.toLowerCase() } managers
                             </Typography>
                             <div className={styles.flex_center}>
                                 <div className={styles.gap_5}>
@@ -165,15 +162,7 @@ const SelectionFreelancer = () => {
                                         Most recent
                                     </Typography>
                                 </div>
-                               <div className={styles.gap_5}> <Typography
-                                        variant="body4"
-                                        fontWeight="500"
-                                        color={
-                                            AppColor.transparentBlack
-                                        }
-                                        textTransform="uppercase">
-                                        3
-                                    </Typography> <AppColor.chevronBottom fill={AppColor.text}/></div>
+                               <DropdownNumber />
                             </div>
                         </div>
                         <DynamicPadding />
@@ -182,6 +171,7 @@ const SelectionFreelancer = () => {
                             {itemsToshow.map((item,index) => (
                                <div className={styles.center_card}>
                                     <CardManager
+                                    links={['aCCOUNT','Stats','Reviews']}
                                     showCardManagerActions={true}
                                     position={
                                         width < 769 ? 'center' :
@@ -226,10 +216,23 @@ const SelectionFreelancer = () => {
                             />
                         </div>
                         <DynamicPadding />
+                        <div className={styles.justify_flex}>
+                            <Link to={'/partnership/program'}>
+                            <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='program' />
+                            </Link>
+                            <Link to={'/partnership/freelancer/progress'}>
+                            <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='progress' />
+                            </Link>
+                        </div>
                     </div>
                 </div>
-
+                
         </div>
+        <CardsSliderRelated />
+        <div className='wrapper_page'>
+            <AskedQuestion />
+        </div>
+        <Footer />
       </div>
     );
 };

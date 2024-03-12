@@ -16,6 +16,7 @@ export interface MyButtonProps {
     width?: string;
     textTransform?: TextTransform;
     disabled?: boolean;
+    lineHeight?: string;
     
 }
 

@@ -44,7 +44,7 @@ const Recovery = () => {
                     <SizeBox width='19px'/>
                    <Link to={'/sign-in'}>
                         <MyButtonTransparentOrange
-                        onClick={() => {}}
+                        onClick={() => {}} fontWeight='500'
                         >
                             Sign in
                         </MyButtonTransparentOrange>

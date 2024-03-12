@@ -23,7 +23,7 @@ const ManagerCare = ({setActiveSwitch}:CareServiceChildProps) => {
         borderText='Project ' labelIcon={<></>} placeholderText='' emptyChangeColor={true}/>
         <DynamicPadding desktop='20px' mobile='15px' />
         <Typography variant='body4'>
-        I agree to have my personal data processed by Uniano for chat support. <span style={{fontWeight: '500'}}>Full policy</span>
+        I agree to have my personal data processed by Uniano for chat support. <span className='underline_appearance' style={{fontWeight: '500'}}>Full policy</span>
         </Typography>
         <DynamicPadding desktop='20px' mobile='15px' />
         <MyButtonOrange
@@ -32,7 +32,7 @@ const ManagerCare = ({setActiveSwitch}:CareServiceChildProps) => {
         }}
         padding='15px'
         disabled={name == '' || email == '' || project == ''}
-        fontWeight='500' textTransform='uppercase' width='100%'>
+        fontWeight='500' width='100%'>
         Search New Manager
         </MyButtonOrange>
         <DynamicPadding desktop='20px' mobile='15px' />     
@@ -41,7 +41,7 @@ const ManagerCare = ({setActiveSwitch}:CareServiceChildProps) => {
            
         }}
         padding='15px'
-        fontWeight='500' textTransform='uppercase' width='100%'>
+        fontWeight='500' width='100%'>
         All Managers
         </MyButtonTransparent>
       </div>

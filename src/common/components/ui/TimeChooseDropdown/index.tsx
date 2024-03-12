@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Typography from '../Typography/Typography';
 import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
@@ -42,6 +42,8 @@ const TimeChooseDropdown = () => {
     const [daysOff,setDaysOff] = useState(false);
     const [showDropdown,setShowDropdown] = useState(false);
 
+
+
     const borderStyles = {
         borderTopLeftRadius: showDropdown ? '20px' : '20px',
         borderTopRightRadius: showDropdown ? '20px' : '20px',
@@ -49,10 +51,26 @@ const TimeChooseDropdown = () => {
         borderBottomRightRadius: showDropdown ? '0px' : '20px',
     };
 
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          setShowDropdown(false);
+        }
+      };
+  
+      document.addEventListener('mousedown', handleClickOutside);
+  
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [dropdownRef]);
+
     return (
-      <div style={{position: 'relative'}}>
+      <div ref={dropdownRef} style={{position: 'relative'}}>
           <div style={{...borderStyles}} className={`${styles.time_choose} cursor`} onClick={() => {setShowDropdown(prev => !prev)}}>
-               <Typography variant='body5'>{daysOff ? 'Day off' : `${selectedTimeFrom} - ${selectedTimeTo}`}</Typography>
+               <Typography color={AppColor.transparentBlack} variant='body5'>{daysOff ? 'Day off' : `${selectedTimeFrom} - ${selectedTimeTo}`}</Typography>
     
                {showDropdown
                ? <AppColor.chevronTop fill={AppColor.text} />

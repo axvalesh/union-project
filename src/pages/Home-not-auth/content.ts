@@ -75,37 +75,7 @@ export const advantanges_section_card_content:AdvantagesSectionCardProps[] = [
       title: 'Sponsors',
       description: 'Make a Difference by Sponsoring Innovative and Impactful Projects'
     },
-  ];
-
-export const popular_categorys_content:PopularCategorysCatalogCardProps[] = [
-    {
-      img: catalogServices,
-      width: 36,
-      height: 28,
-      title: 'Catalog',
-      subtitle: 'Services',
-      activeIndex: 0,
-      cardIndex: 0,
-    },
-    {
-      img: catalogOrders,
-      width: 27,
-      height: 33,
-      title: 'Catalog',
-      subtitle: 'Orders',
-      activeIndex: 0,
-      cardIndex: 1,
-    },
-    {
-      img: catalogSponsorship,
-      width: 33,
-      height: 21,
-      title: 'Catalog',
-      subtitle: 'Sponsorships',
-      activeIndex: 0,
-      cardIndex: 2,
-    },
-  ];
+  ]; 
 
 export const popular_categorys_content_services:PopularCategorysServiceCardProps[] = [
   {

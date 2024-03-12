@@ -6,7 +6,7 @@ import { useGetImage } from '@common/helpers/UseGetImage'
 import AppColor from '@common/styles/variables-static'
 import styles from './style.module.scss'
 import icon_sponsorship from '@assets/svg/sponsors-icon.svg'
-import icon_message from '@assets/svg/message-icon.svg'
+import icon_message from '@assets/svg/message-icon-white-icon.svg'
 import icon_star from '@assets/svg/star.svg'
 import icon_comments from '@assets/svg/comments-icon.svg'
 import PercentBar from '@common/components/ui/PercentBar/PercentBar'
@@ -128,18 +128,24 @@ const CardStatistics = ({
                 />
             </div>
             <div className={styles.shell_bottom}>
-                <AnimatedSvg
-                    node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}
-                    node2={<AppColor.heartOrange height={'18px'} fill={AppColor.text} />}
-                />
-                <AnimatedSvg
-                    node1={<AppColor.notes height={'18px'} fill={AppColor.text} />}
-                    node2={<AppColor.noteOrange height={'18px'} fill={AppColor.text} />}
-                />
-                <AnimatedSvg
-                    node1={<AppColor.eye height={'18px'} fill={AppColor.text} />}
-                    node2={<AppColor.eyeOrange height={'18px'} fill={AppColor.text} />}
-                />
+               <div>
+                    <AnimatedSvg
+                        node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}
+                        node2={<AppColor.heartOrange height={'18px'} fill={AppColor.text} />}
+                    />
+               </div>
+              <div>
+                    <AnimatedSvg
+                        node1={<AppColor.notes height={'18px'} fill={AppColor.text} />}
+                        node2={<AppColor.noteOrange height={'18px'} fill={AppColor.text} />}
+                    />
+              </div>
+               <div>
+                    <AnimatedSvg
+                        node1={<AppColor.eye height={'18px'} fill={AppColor.text} />}
+                        node2={<AppColor.eyeOrange height={'18px'} fill={AppColor.text} />}
+                    />
+               </div>
             </div>
         </div>
     )

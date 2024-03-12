@@ -95,7 +95,7 @@ const MySubscription = () => {
                 </div>
 
                 <DynamicPadding mobile='20px' desktop='20px' />
-                <Typography variant='body5'>{box_content.length} subscriptions</Typography>
+                <Typography variant='body5'><span style={{fontWeight: '500'}}>{box_content.length}</span> subscriptions</Typography>
 
                 <AskedQuestion />
             </div>

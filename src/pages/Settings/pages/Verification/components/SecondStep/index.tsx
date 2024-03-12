@@ -47,6 +47,7 @@ const SecondStep = ({callbackUndo,callbackOn}: {callbackUndo:() => void,callback
                             <Typography variant='body3' fontWeight='500'>Issued сountry</Typography>
                             <DynamicPadding desktop='30px' mobile='20px'/>
                             <InputDropdown 
+                                padding='15px'
                                 dropdownVariants={['Ukraine', 'England', 'Poland', 'USA']}
                                 initText='Select country'
                                 labelIcon={null}
@@ -58,7 +59,7 @@ const SecondStep = ({callbackUndo,callbackOn}: {callbackUndo:() => void,callback
                             <InputCommon 
                                 placeholder='SJ 123 345'
                                 callback={() => {}}  
-                                padding='20px 20px'
+                                padding='15px 20px'
                                 rightPadding={20} 
 
                             />
@@ -69,7 +70,7 @@ const SecondStep = ({callbackUndo,callbackOn}: {callbackUndo:() => void,callback
                             <InputCommon 
                                 placeholder='MM/YY'
                                 callback={() => {}}  
-                                padding='20px 20px'
+                                padding='15px 20px'
                                 rightPadding={20} 
 
                             />

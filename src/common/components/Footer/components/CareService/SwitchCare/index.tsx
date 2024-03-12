@@ -21,6 +21,9 @@ import GeneralUser from './components/GeneralUser';
 import ContactUsSteps from '@common/components/ui/ContactUsSteps/index';
 import CareSolutions from './components/Solutions';
 import SolutionDetails from './components/SolutionDetails';
+import AnimateHeight from '@common/components/AnimateHeight/index';
+import AnimatedSvg from '@common/components/AnimatedSvg/index';
+import GettingsStarted from './components/GettingsStarted';
 
 
 type CareComponentProps = {
@@ -49,123 +52,140 @@ export const CareComponent = ({showHelper,callback}:CareComponentProps) => {
 
     const lastTextItem = activeSwitch.split(' ')[activeSwitch.split(' ').length - 1]
     const lastItem = activeSwitch.split('.')[activeSwitch.split('.').length - 1].split(' ');
+
+    const [volumeOff, setVolumeOff] = useState(false);
     
     
     return (
-        <div style={{opacity: showHelper ? '1' : '0'}} className={styles.helper}>
-            <div className={styles.helper_padding}>
-                <div style={{whiteSpace: 'nowrap'}} className='flex_space_between'>
-                    <div className='gap_15'>
-                        {
-                            activeSwitch != 'main' && <div onClick={moveBack} className='cursor'>
-                                <AppColor.longChevronLeft fill={AppColor.text} />
+        <div style={{}} className={`${styles.helper} ${showHelper ? styles.weak_shadow : styles.no_shadow}`}>
+           <AnimateHeight show={showHelper}>
+              <div className={styles.care_height}>
+                    <div className={styles.helper_padding}>
+                        <div style={{whiteSpace: 'nowrap'}} className='flex_space_between'>
+                            <div className='gap_15'>
+                                {
+                                    activeSwitch != 'main' && <div onClick={moveBack} className='cursor'>
+                                        <AppColor.longChevronLeft fill={AppColor.text} />
+                                    </div>
+                                }
+        
+                                {
+                                    lastTextItem == 'showuser'
+                                    ?  <UserAvatar url={fakeUserConstant.image} flag={<AppColor.UkraineFlagIcon />} active={true} name={fakeUserConstant.name} activeAgo='1 min ago' />
+                                
+                                    : lastTextItem == 'showhelp' ?
+                                    <div className='gap_10'>
+                            <AppColor.questionOrange />
+            
+                            <div>
+                                <Typography variant='body5' fontWeight='500'>
+                                How to create a job ?
+                                </Typography>
+                                <SizeBox height='10px' />
+                                <div className='gap_5'>
+                                <Typography variant='body5' color={AppColor.orange}>Opened</Typography>
+                                <Typography variant='body5' color={AppColor.transparentBlack}>1 min ago</Typography>
+                                </div>
                             </div>
-                        }
-
-                        {
-                            lastTextItem == 'showuser'
-                            ?  <UserAvatar url={fakeUserConstant.image} active={true} name={fakeUserConstant.name} role='Customer' />
-                        
-                            : lastTextItem == 'showhelp' ?
-                            <div className='gap_10'>
-                    <AppColor.questionOrange />
-    
-                    <div>
-                        <Typography variant='body5' fontWeight='500'>
-                        How to create a job ?
-                        </Typography>
-                        <SizeBox height='10px' />
-                        <div className='gap_5'>
-                        <Typography variant='body5' color={AppColor.orange}>Opened</Typography>
-                        <Typography variant='body5' color={AppColor.transparentBlack}>1 min ago</Typography>
+                        </div>
+                                    :
+                                    <Typography variant='body3' fontWeight='500'>
+                                    {
+                                        activeSwitch == 'main' ?
+                                        'Care Service' : eachNewLetterToUpper(activeSwitch.split('.')[activeSwitch.split('.').length - 1])
+                                    }
+                                    </Typography>
+                                }
+                            </div>
+                            <div className={styles.flex_row_end}>
+                                {lastTextItem == 'showuser'
+                                ? <PopUpBottom
+                                    popUpNode={
+                                        <ThreeLinesPopUpCustom
+                                            items={[
+                                                {
+                                                    icon: <AppColor.search />,
+                                                    title: 'Search'
+                                                },
+                                                {
+                                                    icon: <AppColor.volume />,
+                                                    title: 'Mute notifications'
+                                                }
+                                            ]}
+                                        />}
+                                            topPaddingFromNode='20px'
+                                            showNode={<AppColor.chevronBottom fill={AppColor.text} />}
+                                            showBackgroundHover={false}
+                                            showNodeHover={<AppColor.chevronBottom fill={AppColor.orange} />}
+                                        />
+                            : lastTextItem == 'showhelp' ? 
+                            <PopUpBottom
+                                    popUpNode={
+                                        <ThreeLinesPopUpCustom
+                                            items={[
+                                                {
+                                                    icon: <AppColor.details />,
+                                                    title: 'View details',
+                                                    onClick: () => {setActiveSwitch('main.general help.helpchat showhelp.details')}
+                                                },
+                                                {
+                                                    icon: <AppColor.search />,
+                                                    title: 'Search'
+                                                },
+                                                {
+                                                    icon: <AppColor.mute />,
+                                                    title: 'Mute notifications'
+                                                },
+                                                {
+                                                    icon: <AppColor.closeAsSolved />,
+                                                    title: 'Close as solved'
+                                                },
+                                                {
+                                                    icon: <AppColor.edit fill={AppColor.text} />,
+                                                    title: 'Edit'
+                                                },
+                                                {
+                                                    icon: <AppColor.close fill={AppColor.red} />,
+                                                    title: 'Delete'
+                                                }
+                                            ]}
+                                        />}
+                                            topPaddingFromNode='20px'
+                                            showNode={<AppColor.chevronBottom fill={AppColor.text} />}
+                                            showBackgroundHover={false}
+                                            showNodeHover={<AppColor.chevronBottom fill={AppColor.orange} />}
+                                        />
+                                        :
+                                        <AnimatedSvg
+                                        showNode3={volumeOff}
+                                        node1={<AppColor.volume className='cursor' width={'17px'} height={'17px'}  />}
+                                        node2={<AppColor.volumeActiveOrange onClick={() => {setVolumeOff(true)}} className='cursor' width={'17px'} height={'17px'}  />}
+                                        node3={<AppColor.volumeOff onClick={() => {setVolumeOff(false)}} className='cursor' width={'17px'} height={'17px'}  />}
+                                    />}
+                              
+                                <AnimatedSvg
+                                    node1={<AppColor.close className='cursor' onClick={() => {callback(false)}} width={'17px'} height={'17px'} fill={AppColor.text} />}
+                                    node2={<AppColor.close className='cursor' onClick={() => {callback(false)}} width={'17px'} height={'17px'} fill={AppColor.orange} />}
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-                            :
-                            <Typography variant='body3' fontWeight='500'>
-                            {
-                                activeSwitch == 'main' ?
-                                'Care Service' : eachNewLetterToUpper(activeSwitch.split('.')[activeSwitch.split('.').length - 1])
-                            }
-                            </Typography>
+                    <HorizontalLine />
+                    <div className={`${styles.bottom_part}`}>
+                       <div style={
+                        {
+                            padding: lastItem.includes('nopadding') ? '0' : '20px 30px',
+                            paddingBottom: '100px'
                         }
+                    } className={styles.scroll_bar_bottom}>
+                            <SwitchCare 
+                                activeSwitch={activeSwitch}
+                                setActiveSwitch={(item) => {setActiveSwitch(item)}}
+                            />
+                       </div>
                     </div>
-                    <div className={styles.flex_row_end}>
-                        {lastTextItem == 'showuser'
-                        ? <PopUpBottom
-                            popUpNode={
-                                <ThreeLinesPopUpCustom
-                                    items={[
-                                        {
-                                            icon: <AppColor.search />,
-                                            title: 'Search'
-                                        },
-                                        {
-                                            icon: <AppColor.volume />,
-                                            title: 'Mute notifications'
-                                        }
-                                    ]}
-                                />}
-                                    topPaddingFromNode='20px'
-                                    showNode={<AppColor.chevronBottom fill={AppColor.text} />}
-                                    showBackgroundHover={false}
-                                    showNodeHover={<AppColor.chevronBottom fill={AppColor.orange} />}
-                                />
-                    : lastTextItem == 'showhelp' ? 
-                    <PopUpBottom
-                            popUpNode={
-                                <ThreeLinesPopUpCustom
-                                    items={[
-                                        {
-                                            icon: <AppColor.details />,
-                                            title: 'View details',
-                                            onClick: () => {setActiveSwitch('main.general help.helpchat showhelp.details')}
-                                        },
-                                        {
-                                            icon: <AppColor.search />,
-                                            title: 'Search'
-                                        },
-                                        {
-                                            icon: <AppColor.mute />,
-                                            title: 'Mute notifications'
-                                        },
-                                        {
-                                            icon: <AppColor.closeAsSolved />,
-                                            title: 'Close as solved'
-                                        },
-                                        {
-                                            icon: <AppColor.edit fill={AppColor.text} />,
-                                            title: 'Edit'
-                                        },
-                                        {
-                                            icon: <AppColor.close fill={AppColor.red} />,
-                                            title: 'Delete'
-                                        }
-                                    ]}
-                                />}
-                                    topPaddingFromNode='20px'
-                                    showNode={<AppColor.chevronBottom fill={AppColor.text} />}
-                                    showBackgroundHover={false}
-                                    showNodeHover={<AppColor.chevronBottom fill={AppColor.orange} />}
-                                />
-                                :
-                    <AppColor.volume />}
-                        <AppColor.minimize className='cursor' style={{paddingTop: '10px',boxSizing: 'content-box'}} onClick={() => {setActiveSwitch('main')}} />
-                        <AppColor.close className='cursor' onClick={() => {callback(false)}} width={'17px'} height={'17px'} fill={AppColor.text} />
-                    </div>
-                </div>
-            </div>
-            <HorizontalLine />
-            <div style={
-                {
-                    padding: lastItem.includes('nopadding') ? '0' : '20px 30px',
-                }
-            } className={`${styles.bottom_part}`}>
-                <SwitchCare 
-                    activeSwitch={activeSwitch}
-                    setActiveSwitch={(item) => {setActiveSwitch(item)}}
-                />
-            </div>
+              </div>
+           </AnimateHeight>
         </div>
     )
 }
@@ -182,14 +202,15 @@ const SwitchCare = ({activeSwitch,setActiveSwitch}:SwitchCareProps) => {
 
     const returnMap = {
         'main': <MainCare setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
-        'main.community': <CommunityCare />,
+        'main.community': <CommunityCare setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
+        'main.community.getting started': <GettingsStarted setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
         'main.managers': <ManagerCare setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
-        'main.general help.create': <GeneralHelpCreate setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
-        'main.general help': <GeneralHelp setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
+        'main.general help nopadding.create': <GeneralHelpCreate setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
+        'main.general help nopadding': <GeneralHelp setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
         'main.contact us': <ContactUsSteps />,
-        'main.general help.helpchat showhelp': <GeneralChat />,
-        'main.general help.helpchat showhelp.details': <GeneralDetails setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
-        'main.general help.helpchat showhelp.details.user': <GeneralUser />,
+        'main.general help nopadding.helpchat showhelp': <GeneralChat />,
+        'main.general help nopadding.helpchat showhelp.details': <GeneralDetails setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
+        'main.general help nopadding.helpchat showhelp.details.user': <GeneralUser />,
         'main.managerchat showuser': <ManagerChat />,
         'main.solutions nopadding': <CareSolutions setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
         'main.solutions nopadding.details': <SolutionDetails />

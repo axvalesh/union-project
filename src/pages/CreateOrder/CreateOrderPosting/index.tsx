@@ -6,7 +6,7 @@ import Typography from '@common/components/ui/Typography/Typography';
 import { fakeUserConstant } from '@common/models/user';
 import AppColor from '@common/styles/variables-static';
 import FilterList from '@common/components/FilterList/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 import BackgroundItem from '@pages/Settings/pages/Profile/components/BackgroundItem/index';
@@ -32,6 +32,9 @@ const CreateOrderPosting = () => {
 
     const [selectedFilter,setSelectedFilter] = useState('Overview');
 
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
     return (
       <div>
              <HeaderSearch 
@@ -292,124 +295,127 @@ const FiltersBlock =() => {
 
     const [selectedCountries,setSelectedCountrues] = useState([]);
     return (
-        <ResponsiveLayoutTwo
-        gap='120px'
-        item1MaxWidth='730px'
-        item2MaxWidth='330px'
-        item1={
-            <div>
-               <Typography variant='body3' fontWeight='500'>
-               Access
-               </Typography>
-               <DynamicPadding desktop='30px' mobile='20px'/>
-               <InputDropdown
-                    marginLeft={true}
-                    dropdownVariants={['Only personal invitations','Only for filtered freelancers']}
-                    initText='Only personal invitations'
-                    labelIcon={<></>}
-                    callback={() => {}}
-                    iconHeight='12px'
-               />   
-
-               <DynamicPadding desktop='20px' mobile='15px'/>
-               {selectedUsers.map(item => <SelectUser activeSelected={selectedUsers} callbackRemove={() => {setSelectedUsers([])}} />)}
-               <DynamicPadding desktop='30px' mobile='20px'/>
-                <MyButtonOrange textTransform='uppercase' onClick={() => {}}> <div className={styles.white}><AppColor.plus stroke={AppColor.orange}/></div> Add Freelancer</MyButtonOrange>
-               <DynamicPadding desktop='30px' mobile='20px'/>
-               <DynamicPadding />   
-               
+       <>
+       <DynamicPadding />
+            <ResponsiveLayoutTwo
+            gap='120px'
+            item1MaxWidth='730px'
+            item2MaxWidth='330px'
+            item1={
+                <div>
                    <Typography variant='body3' fontWeight='500'>
-                   Need To Hire
+                   Access
                    </Typography>
                    <DynamicPadding desktop='30px' mobile='20px'/>
                    <InputDropdown
                         marginLeft={true}
-                        dropdownVariants={['1 freelancers','2 freelancers','3 freelancers']}
-                        initText='2 freelancers'
+                        dropdownVariants={['Only personal invitations','Only for filtered freelancers']}
+                        initText='Only personal invitations'
                         labelIcon={<></>}
                         callback={() => {}}
                         iconHeight='12px'
                    />   
     
-                   <DynamicPadding />
-                   <div style={{opacity: '0.5',userSelect: 'none'}}>
-                   <div className={styles.positive_wrapper}>
-                        <div>
-                            <Typography variant='body3' fontWeight='500'>Positive Reviews</Typography>
-                            <DynamicPadding desktop='30px' mobile='20px'/>
-                            <SelectionItem  icon={<AppColor.starColored fill={AppColor.green}/>} text='90% and Up ' color={AppColor.green}/>
-                        </div>
-                        <div>
-                            <Typography variant='body3' fontWeight='500'>Freelancers</Typography>
-                            <DynamicPadding desktop='30px' mobile='20px'/>
-                            <SelectionItem  icon={<AppColor.teams fill={AppColor.text}/>} text='Teams Only'/>
-                        </div>
-                        <div>
-                            <Typography variant='body3' fontWeight='500'>Account Level</Typography>
-                            <DynamicPadding desktop='30px' mobile='20px'/>
-                            <SelectionItem  icon={<></>} text='No Preference'/>
-                        </div>
-                   </div>
-                   <DynamicPadding />
-                   <Typography variant='body3' fontWeight='500'>
-                   Cooperation
-                   </Typography>
+                   <DynamicPadding desktop='20px' mobile='15px'/>
+                   {selectedUsers.map(item => <SelectUser activeSelected={selectedUsers} callbackRemove={() => {setSelectedUsers([])}} />)}
                    <DynamicPadding desktop='30px' mobile='20px'/>
-    
-                   <div className={styles.wrapper_campaign}>
-                        
-                        <Typography variant='body4'>Were previous projects with freelancers</Typography>
-    
-                        <SwitchButton width='44px' height='24px' disable={true} startValue={true} />
-                    </div>
+                    <MyButtonOrange textTransform='uppercase' onClick={() => {}}> <div className={styles.white}><AppColor.plus stroke={AppColor.orange}/></div> Add Freelancer</MyButtonOrange>
+                   <DynamicPadding desktop='30px' mobile='20px'/>
+                   <DynamicPadding />   
+                   
+                       <Typography variant='body3' fontWeight='500'>
+                       Need To Hire
+                       </Typography>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+                       <InputDropdown
+                            marginLeft={true}
+                            dropdownVariants={['1 freelancers','2 freelancers','3 freelancers']}
+                            initText='2 freelancers'
+                            labelIcon={<></>}
+                            callback={() => {}}
+                            iconHeight='12px'
+                       />   
+        
+                       <DynamicPadding />
+                       <div style={{opacity: '0.5',userSelect: 'none'}}>
+                       <div className={styles.positive_wrapper}>
+                            <div>
+                                <Typography variant='body3' fontWeight='500'>Positive Reviews</Typography>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+                                <SelectionItem  icon={<AppColor.starColored fill={AppColor.green}/>} text='90% and Up ' color={AppColor.green}/>
+                            </div>
+                            <div>
+                                <Typography variant='body3' fontWeight='500'>Freelancers</Typography>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+                                <SelectionItem  icon={<AppColor.teams fill={AppColor.text}/>} text='Teams Only'/>
+                            </div>
+                            <div>
+                                <Typography variant='body3' fontWeight='500'>Account Level</Typography>
+                                <DynamicPadding desktop='30px' mobile='20px'/>
+                                <SelectionItem  icon={<></>} text='No Preference'/>
+                            </div>
+                       </div>
+                       <DynamicPadding />
+                       <Typography variant='body3' fontWeight='500'>
+                       Cooperation
+                       </Typography>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+        
+                       <div className={styles.wrapper_campaign}>
+                            
+                            <Typography variant='body4'>Were previous projects with freelancers</Typography>
+        
+                            <SwitchButton width='44px' height='24px' disable={true} startValue={true} />
+                        </div>
+                        <DynamicPadding />
+                       <Typography variant='body3' fontWeight='500'>
+                       Location
+                       </Typography>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+                       <InputDropdown
+                            marginLeft={true}
+                            dropdownVariants={['Ukraine','Congo','England']}
+                            initText='Add regions, countries or cities'
+                            labelIcon={<></>}
+                            callback={() => {}}
+                            iconHeight='12px'
+                       />  
+                       <DynamicPadding />
+                    <Typography variant='body3' fontWeight='500'>
+                    Languages 
+                       </Typography>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+                       <InputDropdown
+                            marginLeft={true}
+                            dropdownVariants={['Ukraine','Congo','England']}
+                            initText='Add languages'
+                            labelIcon={<></>}
+                            callback={() => {}}
+                            iconHeight='12px'
+                       />    
                     <DynamicPadding />
-                   <Typography variant='body3' fontWeight='500'>
-                   Location
-                   </Typography>
-                   <DynamicPadding desktop='30px' mobile='20px'/>
-                   <InputDropdown
-                        marginLeft={true}
-                        dropdownVariants={['Ukraine','Congo','England']}
-                        initText='Add regions, countries or cities'
-                        labelIcon={<></>}
-                        callback={() => {}}
-                        iconHeight='12px'
-                   />  
-                   <DynamicPadding />
-                <Typography variant='body3' fontWeight='500'>
-                Languages 
-                   </Typography>
-                   <DynamicPadding desktop='30px' mobile='20px'/>
-                   <InputDropdown
-                        marginLeft={true}
-                        dropdownVariants={['Ukraine','Congo','England']}
-                        initText='Add languages'
-                        labelIcon={<></>}
-                        callback={() => {}}
-                        iconHeight='12px'
-                   />    
-                <DynamicPadding />
-                <Typography variant='body3' fontWeight='500'>
-                Other Filters
-                   </Typography>
-                   <DynamicPadding desktop='30px' mobile='20px'/>
-                   <InputDropdown
-                        marginLeft={true}
-                        dropdownVariants={['Ukraine','Congo','England']}
-                        initText='Add regions, countries or cities'
-                        labelIcon={<></>}
-                        callback={() => {}}
-                        iconHeight='12px'
-                   />   
-               </div>
-            </div>
-        }
-        item2={
-            <div className='desktop'>
-                <TitleExampleUl />
-            </div>
-        }
-    />
+                    <Typography variant='body3' fontWeight='500'>
+                    Other Filters
+                       </Typography>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+                       <InputDropdown
+                            marginLeft={true}
+                            dropdownVariants={['Ukraine','Congo','England']}
+                            initText='Add regions, countries or cities'
+                            labelIcon={<></>}
+                            callback={() => {}}
+                            iconHeight='12px'
+                       />   
+                   </div>
+                </div>
+            }
+            item2={
+                <div className='desktop'>
+                    <TitleExampleUl />
+                </div>
+            }
+        />
+       </>
 )
 }
 type SelectUserProps = {
@@ -444,7 +450,9 @@ const SelectUser = ({activeSelected,callbackRemove}:SelectUserProps) => {
 const OverviewBlock = () => {
     const [isPosted,setIsPosted] = useState(false);
     return (
-        isPosted
+        <>
+        <DynamicPadding />
+        {isPosted
         ? <ResponsiveLayoutTwo
         gap='120px'
         item1MaxWidth='730px'
@@ -531,7 +539,8 @@ const OverviewBlock = () => {
                 <BackgroundItem image='' />
             </div>
         }
-    />
+    />}
+        </>
     )
 }
 
@@ -560,68 +569,71 @@ const DetailsItem = ({icon,text,title,absolute}:DetailsItemProps) => {
 
 const AdvancedBlock = () => {
     return (
-        <ResponsiveLayoutTwo
-            gap='120px'
-            item1MaxWidth='730px'
-            item2MaxWidth='330px'
-            item1={
-                <div>
-                   <Typography variant='body3' fontWeight='500'>
-                   Visibility
-                   </Typography>
-                   <DynamicPadding desktop='30px' mobile='20px'/>
-                   <InputDropdown
-                        marginLeft={true}
-                        dropdownVariants={['All users and search engines', 'All registered users and search engines', 'All users, all registered users']}
-                        initText='All users and search engines'
-                        labelIcon={<></>}
-                        callback={() => {}}
-                        iconHeight='12px'
-                   />   
-
-                   <DynamicPadding />
-                   <Typography variant='body3' fontWeight='500'>
-                   Sponsorship Campaign
-                   </Typography>
-                   <DynamicPadding desktop='30px' mobile='20px'/>
-                   <div className={styles.wrapper_campaign}>
-                        <div className='gap_10'>
-                            <div className={styles.orange}>
-                                    <AppColor.caseWhite />
-                            </div>
-                                <Typography variant='body5' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>Change a campaign</Typography>
-                        </div>
-                        <div className='gap_10'>
-                            <AppColor.workClub />
-                                <Typography variant='body4' fontWeight='500'>WorkClub</Typography>
-                        </div>
-                   </div>
-
-                   <DynamicPadding />
-                  <div className='gap_10'>
+       <>
+       <DynamicPadding />
+            <ResponsiveLayoutTwo
+                gap='120px'
+                item1MaxWidth='730px'
+                item2MaxWidth='330px'
+                item1={
+                    <div>
                        <Typography variant='body3' fontWeight='500'>
-                       Urgent Order
+                       Visibility
                        </Typography>
-                       <AppColor.upCirlcle />
-                  </div>
-                   <DynamicPadding desktop='30px' mobile='20px'/>
-
-                   <div style={{opacity: '0.5'}} className={styles.wrapper_campaign}>
-                        <div className='gap_15'>
-                            <Urgent />
-                            <Typography variant='body4'>you will have a special badge about urgent order</Typography>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+                       <InputDropdown
+                            marginLeft={true}
+                            dropdownVariants={['All users and search engines', 'All registered users and search engines', 'All users, all registered users']}
+                            initText='All users and search engines'
+                            labelIcon={<></>}
+                            callback={() => {}}
+                            iconHeight='12px'
+                       />   
+    
+                       <DynamicPadding />
+                       <Typography variant='body3' fontWeight='500'>
+                       Sponsorship Campaign
+                       </Typography>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+                       <div className={styles.wrapper_campaign}>
+                            <div className='gap_10'>
+                                <div className={styles.orange}>
+                                        <AppColor.caseWhite />
+                                </div>
+                                    <Typography variant='body5' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>Change a campaign</Typography>
+                            </div>
+                            <div className='gap_10'>
+                                <AppColor.workClub />
+                                    <Typography variant='body4' fontWeight='500'>WorkClub</Typography>
+                            </div>
+                       </div>
+    
+                       <DynamicPadding />
+                      <div className='gap_10'>
+                           <Typography variant='body3' fontWeight='500'>
+                           Urgent Order
+                           </Typography>
+                           <AppColor.upCirlcle />
+                      </div>
+                       <DynamicPadding desktop='30px' mobile='20px'/>
+    
+                       <div style={{opacity: '0.5'}} className={styles.wrapper_campaign}>
+                            <div className='gap_15'>
+                                <Urgent />
+                                <Typography variant='body4'>you will have a special badge about urgent order</Typography>
+                            </div>
+    
+                            <SwitchButton width='44px' height='24px' disable={true}  />
                         </div>
-
-                        <SwitchButton width='44px' height='24px' disable={true}  />
                     </div>
-                </div>
-            }
-            item2={
-                <div className='desktop'>
-                    <TitleExampleUl />
-                </div>
-            }
-        />
+                }
+                item2={
+                    <div className='desktop'>
+                        <TitleExampleUl />
+                    </div>
+                }
+            />
+       </>
     )
 }
 

@@ -88,6 +88,9 @@ const DetailsTableMyPrograms = ({informationTable,informationDropdown}:DetailsTa
                         />
                     </div>
                </div>
+               <DynamicPadding desktop='30px' mobile='20px'/>
+               <HorizontalLine />
+
                 </div>
             : null
             }
@@ -96,9 +99,11 @@ const DetailsTableMyPrograms = ({informationTable,informationDropdown}:DetailsTa
             currentItem != null ? [
                 {
                     title: 'Program',
-                    child: <UserAvatar
-                        // nodeAfterText={ <div className={styles.gap_5}><AppColor.playButton/><AppColor.refreshColored/></div> }
-                        width='30px' height='30px' variant='row'  active={true} preventMobileNone={true} name={currentItem.memberName} />
+                    maxWidth: '250px',
+                    child: <div className='gap_10'>
+                        <UserAvatar variant='image' url={fakeUserConstant.image} name='' active={true} />
+                        <Typography variant='body4' fontWeight='500'>Artem Markevych Logo Design Partnership</Typography>
+                    </div>
                 },
                 {
                     title: 'Date',
@@ -106,7 +111,7 @@ const DetailsTableMyPrograms = ({informationTable,informationDropdown}:DetailsTa
                 },
                 {
                     title: 'Category',
-                    child: <div className={styles.category_wrapper}><Typography color='white' textTransform='uppercase' variant='body4'>{currentItem.category}</Typography></div>
+                    child: <div className={styles.category_wrapper}><Typography color='white' fontWeight='500' textTransform='uppercase' fontSizeStatic='13px'>{currentItem.category}</Typography></div>
                 },
                 {
                     title: 'Rate',

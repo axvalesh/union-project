@@ -11,8 +11,47 @@ import AppColor from '@common/styles/variables-static';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import StepOrderNegotiationOne, { StepOrderNegotiationTwo, StepOrderNegotiationThree, StepOrderNegotiationFour, StepOrderNegotiationFive } from './Steps';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
+import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
 
 const CreateOrderNegotiation = () => {
+
+    const [stepOneText,setTextOneStep] = useState('');
+    const [stepTwoText,setStepTwoText] = useState('');
+    const [stepThree,setStepThree] = useState('');
+    const [stepFour,setStepFour] = useState('');
+    const [activeStep,setActiveStep] = useState(1);
+
+
+    const mapsStepsValues = {
+        1: stepOneText,
+        2: stepTwoText,
+        3: stepThree,
+        4: stepFour
+    }
+
+    const mapsItem = {
+        1: <StepOrderNegotiationOne callbackStep={() => {}} value={stepOneText} callback={(item) => {setTextOneStep(item)}} />,
+        2: <StepOrderNegotiationTwo callbackStep={(item) => {setActiveStep(item)}} stepOneValue={stepOneText} value={stepTwoText} callback={(item) => {setStepTwoText(item)}} />,
+        
+        3: <StepOrderNegotiationThree callbackStep={(item) => {setActiveStep(item)}} value={stepThree} stepOneValue={stepOneText}
+        stepTwoValue={stepTwoText}
+        callback={(item) => {setStepThree(item)}} />,
+
+        4: <StepOrderNegotiationFour callbackStep={(item) => {setActiveStep(item)}} value={stepFour} stepOneValue={stepOneText}
+        stepTwoValue={stepTwoText} stepThreeValue={stepThree} stepFourValue={stepFour}
+        callback={(item) => {setStepFour(item)}} />,
+
+        5: <StepOrderNegotiationFive callbackStep={(item) => {setActiveStep(item)}} value={stepThree} stepOneValue={stepOneText}
+        stepTwoValue={stepTwoText} stepFourValue={stepFour} stepThreeValue={stepThree}
+        callback={(item) => {setStepThree(item)}} />
+    }
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
 
     return (
       <div>
@@ -44,30 +83,16 @@ const CreateOrderNegotiation = () => {
                    </div>
                 </div>
                 <DynamicPadding/>
-                                <StepsOfPreparing
-                                    elements={[
-                                        {
-                                            text: 'Fixed payment',
-                                            solve: 'Change payment way',
-                                        },
-                                        {
-                                            text: '$200, 6 days delivery',
-                                            solve: 'Change details',
-                                        },
-                                        {
-                                            text: 'Logo Design specification form',
-                                            solve: 'Change specification',
-                                        },
-                                        {
-                                            text: 'NDA.pdf, NCA.pdf',
-                                            solve: 'Change documents to sign',
-                                        },
-                                    ]}
-                                />
+                                {mapsItem[activeStep]}
+                                {activeStep != 5 && <DynamicPadding desktop='30px' mobile='20px'/>}
+                                {activeStep != 5 && <div style={{justifyContent: 'end'}} className='gap_5'>
+                                    <MyButtonTransparent disabled={activeStep == 1} onClick={() => {setActiveStep(prev => prev - 1)}} fontWeight='500' textTransform='uppercase'>Prev</MyButtonTransparent>
+                                    <MyButtonOrange disabled={mapsStepsValues[activeStep] == ''} onClick={() => {setActiveStep(prev => prev + 1)}} fontWeight='500' textTransform='uppercase'>Next</MyButtonOrange>
+                                    </div>}
     
                                 <DynamicPadding />
     
-                                <div className={styles.text_box}>
+                                <div style={{opacity: activeStep == 5 ? '1' : '0'}} className={styles.text_box}>
                                     <Typography variant='body4'>You can move to the results and find out which solution is relevant for you.</Typography>
                                 </div>
     

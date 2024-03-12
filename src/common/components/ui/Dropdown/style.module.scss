@@ -5,6 +5,12 @@
     align-items: center;
     cursor: pointer;
     @include prevent-select;
+
+    svg {
+        width: 15px;
+        height: 7px;
+    }
+    
     .title_shell {
         flex: 0 0 80%;
     }
@@ -23,4 +29,13 @@
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+@media (min-width:$tabletSize) {
+    .title_block {
+        svg {
+            width: 15px;
+            height: 10px;
+        }
+    }
 }

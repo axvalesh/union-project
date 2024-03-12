@@ -13,10 +13,10 @@ const CardTypeDisplay = ({text,backgroundColor,textColor,textTransform}:CardType
 
     return (
     <div className={styles.total_wrapper}>
-        <div style={{display: 'flex',backgroundColor: AppColor.text,borderTopLeftRadius: '5px'}}>
+        <div style={{display: 'flex',borderTopLeftRadius: '5px'}}>
           <div className={styles.round_box}></div>
         <div className={styles.wrapper} style={{backgroundColor: backgroundColor}}>
-          <p style={{textTransform: textTransform,color: textColor}} className={styles.text}>{text.toUpperCase()}</p>
+          <p style={{textTransform: textTransform,color: textColor,fontSize: '13px',fontWeight: '500'}} className={styles.text}>{text.toUpperCase()}</p>
         </div>
         </div>
       <div className={styles.wrapper_triangles}>

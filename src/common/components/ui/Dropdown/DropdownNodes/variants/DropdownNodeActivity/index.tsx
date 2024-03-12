@@ -11,10 +11,14 @@ import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButto
 import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
 import { fakeUserConstant } from '@common/models/user';
+import MyButtonTransparentBlack from '@common/components/ui/MyButton/variants/MyButtonTransparentBlack';
 
 type DropdownNodeActivityProps = {
     activityItems: ActivityItemProps[];
-    filters: string[];
+    filters: {
+      hasChildren: boolean;
+      title: string;
+  }[];
     countNotification: number;
   };
   
@@ -49,7 +53,7 @@ type DropdownNodeActivityProps = {
             })()
           }
             {activityItems.length > showItemsCount
-            ? <div className={styles.absolute_show}> <MyButtonTransparentOrange onClick={() => {setShowItemsCount(prev => prev+4)}} >Show more +4</MyButtonTransparentOrange> </div>
+            ? <div className={styles.absolute_show}> <MyButtonTransparentBlack onClick={() => {setShowItemsCount(prev => prev+4)}} >Show more +4</MyButtonTransparentBlack> </div>
             : <></>}
         </div>}
       />
@@ -78,8 +82,8 @@ export const ActivityItem = ({image,percent,price,tag,title,iconNode,filter,pres
                         {title}
                     </Typography>
                     <DynamicPadding desktop='10px' mobile='10px' />
-                    <Typography variant='body4' color={AppColor.transparentBlack}>
-                        {filter} {tag.map(item => ` • ${item}`)}  • {present}
+                    <Typography variant='body4'>
+                        <span className={styles.hover_text}>{filter}</span> {tag.map(item => <span className={styles.hover_text}> • {item}</span>)}  • <span className={styles.hover_text}>{present}</span>
                     </Typography>
                 </div>
                <div className={styles.desktop}>

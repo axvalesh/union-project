@@ -29,7 +29,7 @@ const CardsSliderRelated = ({secondSlider=false}: {secondSlider?:boolean}) => {
                    </div>
                    <SizeBox width='50px'/>
                  </div>
-                 <DynamicPadding desktop='30px' mobile='20px'/>
+                 <DynamicPadding desktop='20px' mobile='10px'/>
                    <Slider showDots={true} padding='0px 40px' maxShowCount={4} swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={10} itemWidth={250} gap={40}>
                       <CardStatisticTest />
                       <CardStatisticTest />
@@ -89,7 +89,7 @@ const SliderItem = ({lvl,priceFrom,priceWithoutDiscount,text,user}:SliderItemPro
       </div>
       <div className='gap_5'>
         {levelIcon}
-        <div style={{display: 'flex'}}> 
+        <div style={{display: 'flex',gap: '5px'}}> 
           <Typography variant='body5' color='white' fontWeight='500'>from ${priceFrom}</Typography>
           <Typography variant='body5' color={AppColor.grey} textDecoration='line-through' fontWeight='500'>{priceWithoutDiscount}</Typography> 
         </div>

@@ -8,10 +8,15 @@ import PercentBar from '@common/components/ui/PercentBar/PercentBar';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import { useState } from 'react';
 import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange';
+import MyButtonTransparentBlack from '@common/components/ui/MyButton/variants/MyButtonTransparentBlack';
+import HoverDotsBox from '@common/components/ui/HoverDotsBox/index';
 
 type DropdownNodeRoadmapProps = {
     roadmapItems: RoadMapItemProps[];
-    filters: string[];
+    filters: {
+      hasChildren: boolean;
+      title: string;
+  }[];
     countNotification: number;
   };
   
@@ -38,7 +43,7 @@ type DropdownNodeRoadmapProps = {
               for (let index = 0; index < roadmapItems.length && index + 1 <= showItemsCount; index++) {
                 const item = roadmapItems[index];
                 if (activeCategory === 'All' || item.filter === activeCategory) {
-                  displayedItems.push(<RoadMapItem key={index} {...item} />);
+                  displayedItems.push(<RoadMapItem  key={index} {...item} />);
                 }
               }
 
@@ -46,7 +51,7 @@ type DropdownNodeRoadmapProps = {
             })()
           }
             {roadmapItems.length > showItemsCount
-            ? <div className={styles.absolute_show}> <MyButtonTransparentOrange onClick={() => {setShowItemsCount(prev => prev+4)}} >Show more +4</MyButtonTransparentOrange> </div>
+            ? <div className={styles.absolute_show}> <MyButtonTransparentBlack onClick={() => {setShowItemsCount(prev => prev+4)}} >Show more +4</MyButtonTransparentBlack> </div>
             : <></>}
         </div>}
       />
@@ -74,9 +79,14 @@ const RoadMapItem = ({amount,icon,text,title,user,stepsCompleted}:RoadMapItemPro
                           {title} <Typography color={AppColor.orange}>{stepsCompleted}</Typography>
                       </Typography>
                       <DynamicPadding desktop='10px' mobile='10px' />
-                      <Typography variant='body4' color={AppColor.transparentBlack}>
-                          {text}
-                      </Typography>
+                     <div className='gap_5' style={{alignItems: 'end'}}>
+                        <Typography variant='body4' color={AppColor.transparentBlack}>
+                            {text}
+                        </Typography>
+                        <div style={{display: 'flex',marginBottom: '2px'}}>
+                        <HoverDotsBox />
+                        </div>
+                     </div>
                       <DynamicPadding mobile='10px' desktop='0px' />
                       <div className={styles.mobile}>
      

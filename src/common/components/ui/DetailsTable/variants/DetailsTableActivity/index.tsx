@@ -7,6 +7,7 @@ import Typography from '@common/components/ui/Typography/Typography';
 import UserAvatar from '../../../UserAvatar';
 import DynamicPadding from '../../../DynamicPadding';
 import { useScreenSize } from '@common/helpers/useScreenSize';
+import { fakeUserConstant } from '@common/models/user';
 
 export type DetailsTableActivityProps = {
     information: DetailsTableActivityPropsItem[];
@@ -72,8 +73,8 @@ const DetailsTableActivity = ({information}:DetailsTableActivityProps) => {
                           {
                               title: 'User',
                               child: (
-                                  <UserAvatar
-                                      flag={<AppColor.UkraineFlagIcon />}
+                                  <UserAvatar gap='5px' noWrap={true}
+                                  width='22px' height='22px' url={fakeUserConstant.image}
                                       preventMobileNone={true}
                                       variant="row"
                                       active={true}
@@ -158,14 +159,13 @@ const MissionItem = ({text,image}: {text?:string,image:any}) => {
 
             <div className={styles.mission_wrapper}>
                 
-               <div> {image}</div>
+               <UserAvatar variant='image' active={true} name='Name' url={fakeUserConstant.image} />
                
                 <div className={styles.mission_wrapper}>
                    <div>
-                        <Typography variant='body4' fontWeight='500'>
+                        <Typography textLineHeight='1' variant='body4' fontWeight='500'>
                             {text}
                         </Typography>
-                        <DynamicPadding mobile='10px' desktop='10px' />
                    </div>
                    
                 </div>

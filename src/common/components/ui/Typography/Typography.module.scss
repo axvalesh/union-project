@@ -1,7 +1,7 @@
 .title {
     font-size: 1.5rem; //24 fixed
     letter-spacing: 1.08px;
-    line-height: 116%;
+    line-height: 150%;
     font-weight: 600;
     color: $text;
 }
@@ -9,7 +9,7 @@
 .titleBig {
     font-size: 1.375rem; //38 - 
     letter-spacing: 1.08px;
-    line-height: 116%;
+    line-height: 150%;
     font-weight: 600;
     color: $text;
 }
@@ -17,7 +17,7 @@
 
 .titleSmall { 
     font-size: 1.375rem; //22-29 fixed
-    line-height: 116%;
+    line-height: 150%;
     font-weight: 600;
     letter-spacing: 0.99px;
     color: $text;
@@ -25,7 +25,7 @@
 
 .subtitle { 
     font-size: 1.25rem; //23
-    line-height: 104%;
+    line-height: 150%;
     color: $text;
 }
 
@@ -38,7 +38,7 @@
 
 .body2 { 
     font-size: 1.125rem; //18 fixed
-    line-height: 133%;
+    line-height: 150%;
     font-weight: 500;
     color: $text;
 }
@@ -53,21 +53,21 @@
 
 .body4 { 
     font-size: 0.875rem; //14-16 fixed
-    line-height: 120%;
+    line-height: 150%;
     font-weight: 400;
     color: $text;
 }
 
 .body5 {
     font-size: 0.875rem; //14-14 fixed
-    line-height: 120%;
+    line-height: 150%;
     font-weight: 400;
     color: $text;
 }
 
 .body6 {
     font-size: 1.25rem; //20-20 fixed
-    line-height: 120%;
+    line-height: 150%;
     font-weight: 500;
     color: $text;
 }
@@ -82,6 +82,7 @@
 
 .inputText { 
     font-size: 0.875rem;
+    line-height: 150%;
     color: $text;
 }
 

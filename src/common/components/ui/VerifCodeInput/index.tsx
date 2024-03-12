@@ -8,6 +8,7 @@ type VerificationCodeInputProps = {
 }
 const VerificationCodeInput = ({ length,callback }:VerificationCodeInputProps) => {
     const inputRefs = Array.from({ length }, () => useRef<HTMLInputElement>(null));
+    const [activeIndex, setActiveIndex] = useState(0);
     const [code,setCode] = useState('');
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const VerificationCodeInput = ({ length,callback }:VerificationCodeInputProps) =
   const handleInputChange = (index, value:string,event) => {
     if(!isNaN(Number(value))) {
         if (value && index < length - 1) {
+        setActiveIndex(index + 1);
         inputRefs[index + 1].current.focus();
         setCode(prev => prev + value)
         } else {
@@ -40,7 +42,7 @@ const VerificationCodeInput = ({ length,callback }:VerificationCodeInputProps) =
     <div className={styles.boxes_grid}>
       {Array.from({ length }, (_, index) => (
         <input
-        className={styles.input_box}
+          className={`${index == activeIndex ? styles.input_box : activeIndex > index ? styles.input_box_filled : styles.input_box_empty}`}
           key={index}
           type="number"
           maxLength={1}

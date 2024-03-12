@@ -46,7 +46,7 @@ const SingIn = () => {
                     <SizeBox width='19px'/>
                     <Link to={'/sign-up'}>
                         <MyButtonTransparentOrange
-                        onClick={() => {}}
+                        onClick={() => {}} fontWeight='500'
                         >
                             Sign up
                         </MyButtonTransparentOrange>
@@ -128,7 +128,7 @@ const SingIn = () => {
                 </div>
                 <DynamicPadding desktop='20px' mobile='15px'/>
                 <Typography variant='body5'>
-                    By clicking button above, you agree to our <a className={styles.orange} href='#'>terms and conditions</a> and <a className={styles.orange}>privacy policies</a>
+                    By clicking button above, you agree to our <a className={styles.orange} style={{fontWeight: '500'}}  href='#'>terms and conditions</a> and <a style={{fontWeight: '500'}}  className={styles.orange}>privacy policies</a>
                 </Typography>
                 </div>
                 <div style={{opacity: '0'}} className={styles.first_flex}>

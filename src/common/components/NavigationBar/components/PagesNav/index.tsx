@@ -25,7 +25,7 @@ const PagesNav = ({hovered}:PagesNavProps) => {
                             {item.title}
                         </Typography>
                         <div>
-                        <Typography color={AppColor.transparentBlack} variant='body1'>
+                        <Typography color={AppColor.transparentBlack} fontWeight='400' variant='body1'>
                             {item.text}
                         </Typography>
                         </div>

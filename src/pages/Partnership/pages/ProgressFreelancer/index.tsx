@@ -14,7 +14,7 @@ import SizeBox from '@common/components/ui/SizeBox/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import ChevronMoveTo from '@common/components/ui/ChevronMoveTo/index';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PercentBar from '@common/components/ui/PercentBar/PercentBar';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import TextDotted from '@common/components/ui/TextDotted/index';
@@ -27,6 +27,10 @@ import { Link } from 'react-router-dom';
 const ProgressFreelancer = () => {
     const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Artem Markevych WordPress Partnership';
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
     return (
         <div>
         <Header />

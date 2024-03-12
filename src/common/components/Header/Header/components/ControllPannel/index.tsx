@@ -29,11 +29,13 @@ const ControllPannel = () => {
 
     const [arbitrationModal,setArbitrationModal] = useState(false);
 
+    const [activeRole,setActiveRole] = useState('Freelancer');
+
     
 
     return (
       <div className={styles.controll_pannel}>
-           <MyButtonOrange onClick={() => {setModeratorModal(true)}} fontWeight='500'>
+           <MyButtonOrange onClick={() => {setModeratorModal(true)}} padding='3px 12px' fontWeight='500'>
            <div style={{marginRight: 'auto',opacity: '0'}}><AppColor.chevronRight height={'14px'} width={'7px'} fill='white'/></div> Customer <div style={{marginLeft: 'auto',paddingTop: '5px'}}><AppColor.chevronRight height={'14px'} width={'7px'} fill='white'/></div>
            </MyButtonOrange>
 
@@ -94,6 +96,7 @@ const ControllPannel = () => {
                         <TimeChoose dayName='Thursday' />
                         <TimeChoose dayName='Friday' />
                         <TimeChoose dayName='Saturday' />
+                        <TimeChoose dayName='Sunday' />
                     </div>
 
                     <DynamicPadding desktop='30px' mobile='20px'/>
@@ -216,25 +219,29 @@ const ControllPannel = () => {
                             <div className={styles.second_item_grid}>
                                 <ChooseRole 
                                     activeNode={<AppColor.freelancerWhite />}
-                                    activeText='Freelancer'
+                                    activeText={activeRole}
+                                    callback={(item) => {setActiveRole(item)}}
                                     icon={<AppColor.freelancer fill={AppColor.text}/>}
                                     text='Customer'
                                 />
                                  <ChooseRole 
                                     activeNode={<AppColor.freelancerWhite />}
-                                    activeText='Freelancer'
+                                    activeText={activeRole}
+                                    callback={(item) => {setActiveRole(item)}}
                                     icon={<AppColor.freelancer fill={AppColor.text}/>}
                                     text='Freelancer'
                                 />
                                  <ChooseRole 
                                     activeNode={<AppColor.freelancerWhite />}
-                                    activeText='Freelancer'
+                                    activeText={activeRole}
+                                    callback={(item) => {setActiveRole(item)}}
                                     icon={<AppColor.freelancer fill={AppColor.text}/>}
                                     text='Sponsor'
                                 />
                                  <ChooseRole 
                                     activeNode={<AppColor.freelancerWhite />}
-                                    activeText='Freelancer'
+                                    activeText={activeRole}
+                                    callback={(item) => {setActiveRole(item)}}
                                     icon={<AppColor.managers fill={AppColor.text}/>}
                                     text='Manager'
                                 />
@@ -337,7 +344,7 @@ const ControllPannel = () => {
                 <ModalCenterBasic 
                 nodeAfterTitle={
                     <div className={styles.category}>
-                        <Typography textTransform='uppercase' fontSizeStatic='13px' fontWeight='500' color='white'>
+                        <Typography textTransform='uppercase' fontSizeStatic='13px' fontWeight='400' color='white'>
                         Logo design <AppColor.trianleDown fill='white'/>
                         </Typography>
                     </div>
@@ -465,11 +472,11 @@ type ChooseRoleProps = {
     activeNode: React.ReactNode;
     text: string;
     activeText: string;
-
+    callback: (item:string) => void;
 }
-const ChooseRole = ({activeNode,activeText,icon,text}:ChooseRoleProps) => {
+const ChooseRole = ({activeNode,activeText,icon,text,callback}:ChooseRoleProps) => {
     return (
-        <div className={styles.choose_role} style={{backgroundColor: activeText == text ? AppColor.orange : 'transparent'}}>
+        <div onClick={() => {callback(text)}} className={`${styles.choose_role} cursor`} style={{backgroundColor: activeText == text ? AppColor.orange : 'transparent'}}>
             {activeText == text ? activeNode : icon}
             <Typography variant='body4' fontWeight='500' textTransform='uppercase' color={activeText == text ? 'white' : AppColor.text}>
                 {text}
@@ -496,7 +503,7 @@ const SelectModalModerator = ({icon,onClick, textColor,text,title,selectedItem}:
             {icon}
             <div className={styles.flex_column}>
                 <Typography variant='body5' fontWeight='500'>{title}</Typography>
-                <Typography variant='body5' color={textColor ?? AppColor.text}>{text}</Typography>
+                <Typography variant='body5' color={textColor ?? AppColor.transparentBlack}>{text}</Typography>
             </div>
 
             <div style={{opacity: (selectedItem == title || hovered) ? '1' : '0',marginLeft: 'auto'}} className={styles.flex_icon}>

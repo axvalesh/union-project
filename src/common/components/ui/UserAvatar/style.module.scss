@@ -2,7 +2,7 @@
 .wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 5px;
 }
 
@@ -14,6 +14,8 @@
     height: 30%;
     border-radius: 50%;
     background-color: $red;
+    min-width: 8px;
+    min-height: 8px;
     max-width: 22px;
     max-height: 22px;
 }
@@ -25,6 +27,8 @@
     display: none;
 }
 .position_relative {
+    width: fit-content;
+    height: fit-content;
     display: flex;
     position: relative;
 }

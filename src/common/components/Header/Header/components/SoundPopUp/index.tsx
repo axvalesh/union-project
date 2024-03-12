@@ -47,8 +47,8 @@ const SoundPopUp = () => {
                             </Typography>
                         </div>  
                   </div>
-    
-                  <DropdownNumber />
+                    
+                  <div style={{marginLeft: 'auto'}}><DropdownNumber /></div>
               </div>
             </div>
       </div>

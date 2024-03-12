@@ -25,13 +25,17 @@ const CreatePopUp = () => {
     const [showModalInviteToOrder,setShowModalInviteToOrder] = useState(false);
     const [users,setUsers] = useState([fakeUserConstant,fakeUserConstant]);
 
+    const [inputText,setInputText] = useState('');
+
+    const [inviteText,setInviteText] = useState('');
+
     return (
       <div className={styles.create_wrapper}>
 
             {showModalPersonalOrder && 
             <ModalCenter onClickHandler={() => {setShowModalPersonalOrder(false)}}>
                 <div className='modal_wrapper_item'>
-                    <div style={{padding: '30px'}} className='flex_space_between'>
+                    <div style={{padding: '20px'}} className='flex_space_between'>
                         <Typography variant='body3' fontWeight='500'>
                         Personal Offer
                         </Typography>
@@ -43,14 +47,16 @@ const CreatePopUp = () => {
                     <div style={{padding: '30px'}}>
                        <div style={{position: 'relative'}}>
                             <InputCommon
-                                callback={() => {}}
+                                callback={(text) => {setInputText(text)}}
                                 placeholder='Enter a user name or list from save&notes'
                                 padding='20px 80px 20px 20px'
                                 rightPadding={80}
                                 disableClose={true}
                             />
                             <div className={styles.absolute_button}>
-                            <MyButtonBlack onClick={() => {}} padding='3px 14px'>
+                            <MyButtonBlack
+                            disabled={inputText.length == 0}
+                            onClick={() => {}} padding='6px 14px'>
                                 ADD
                             </MyButtonBlack>
                             </div>
@@ -74,10 +80,10 @@ const CreatePopUp = () => {
                        <DynamicPadding desktop='30px' mobile='20px'/>
 
                        <div style={{display: 'flex',justifyContent: 'end'}}>
-                            <MyButtonTransparent fontWeight='500' onClick={() => {setShowModalPersonalOrder(false)}}>
+                            <MyButtonTransparent textTransform='uppercase' fontWeight='500' onClick={() => {setShowModalPersonalOrder(false)}}>
                             Cancel
                             </MyButtonTransparent>
-                            <MyButtonOrange onClick={() => {}}>
+                            <MyButtonOrange textTransform='uppercase' onClick={() => {}}>
                             Create a personal order
                             </MyButtonOrange>
                        </div>
@@ -88,7 +94,7 @@ const CreatePopUp = () => {
             {showModalInviteToOrder && 
             <ModalCenter onClickHandler={() => {setShowModalInviteToOrder(false)}}>
                 <div className='modal_wrapper_item'>
-                    <div style={{padding: '30px'}} className='flex_space_between'>
+                    <div style={{padding: '20px'}} className='flex_space_between'>
                         <Typography variant='body3' fontWeight='500'>
                         Invite To Order
                         </Typography>
@@ -110,14 +116,14 @@ const CreatePopUp = () => {
                     <div style={{padding: '30px'}}>
                        <div style={{position: 'relative'}}>
                             <InputCommon
-                                callback={() => {}}
+                                callback={(text) => {setInviteText(text)}}
                                 placeholder='Enter a user name or list from save&notes'
                                 padding='20px 80px 20px 20px'
                                 rightPadding={80}
                                 disableClose={true}
                             />
                             <div className={styles.absolute_button}>
-                            <MyButtonBlack onClick={() => {}} padding='3px 14px'>
+                            <MyButtonBlack disabled={inviteText.length == 0} onClick={() => {}} padding='6px 14px'>
                                 ADD
                             </MyButtonBlack>
                             </div>
@@ -180,7 +186,7 @@ const CreatePopUp = () => {
            <div className={styles.vertical_line}>
 
            </div>
-           <div className={styles.right_part}>
+           <div className={styles.right_part} style={{padding: showOrder ? '30px' : '0px'}}>
                 {showOrder &&
                 <div style={{whiteSpace: 'nowrap'}}>
                     <Typography variant='body4' fontWeight='500'>
@@ -190,10 +196,10 @@ const CreatePopUp = () => {
                     <DynamicPadding desktop='30px' mobile='20px'/>
                     <div className={styles.grid_15}>
                        <Link to={'/create-order/details'}>
-                       <Typography variant='body4'>Common Order</Typography>
+                       <Typography className={styles.hover_link} variant='body4'>Common Order</Typography>
                        </Link>
-                        <div className='cursor' onClick={() => {setShowModalPersonalOrder(true)}}><Typography variant='body4'>Personal Offer</Typography></div>
-                       <div className='cursor' onClick={() => {setShowModalInviteToOrder(true)}}> <Typography variant='body4'>Invite To Order</Typography></div>
+                        <div className='cursor' onClick={() => {setShowModalPersonalOrder(true)}}><Typography className={styles.hover_link} variant='body4'>Personal Offer</Typography></div>
+                       <div className='cursor' onClick={() => {setShowModalInviteToOrder(true)}}> <Typography className={styles.hover_link} variant='body4'>Invite To Order</Typography></div>
                     </div>    
                 </div>}
            </div>

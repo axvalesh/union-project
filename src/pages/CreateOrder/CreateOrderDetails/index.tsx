@@ -11,9 +11,43 @@ import AppColor from '@common/styles/variables-static';
 import AskedQuestion from '@common/components/AskedQuestions/index';
 import Footer from '@common/components/Footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import StepOneOrder, { StepFourOrder, StepThreeOrder, StepTwoOrder } from './Steps';
+import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 
 const CreateOrderDetails = () => {
     const navigate = useNavigate();
+    
+    const [stepOneText,setTextOneStep] = useState('');
+    const [stepTwoText,setStepTwoText] = useState('');
+    const [stepThree,setStepThree] = useState('');
+    const [activeStep,setActiveStep] = useState(1);
+
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+
+
+    const mapsStepsValues = {
+        1: stepOneText,
+        2: stepTwoText,
+        3: stepThree
+    }
+
+    const mapsItem = {
+        1: <StepOneOrder callbackStep={() => {}} value={stepOneText} callback={(item) => {setTextOneStep(item)}} />,
+        2: <StepTwoOrder callbackStep={(item) => {setActiveStep(item)}} stepOneValue={stepOneText} value={stepTwoText} callback={(item) => {setStepTwoText(item)}} />,
+        
+        3: <StepThreeOrder callbackStep={(item) => {setActiveStep(item)}} value={stepThree} stepOneValue={stepOneText}
+        stepTwoValue={stepTwoText}
+        callback={(item) => {setStepThree(item)}} />,
+
+        4: <StepFourOrder callbackStep={(item) => {setActiveStep(item)}} value={stepThree} stepOneValue={stepOneText}
+        stepTwoValue={stepTwoText} stepThreeValue={stepThree}
+        callback={(item) => {setStepThree(item)}} />
+    }
+
     return (
       <div>
            <HeaderSearch 
@@ -44,26 +78,18 @@ const CreateOrderDetails = () => {
                    </div>
                 </div>
                 <DynamicPadding/>
-                                <StepsOfPreparing
-                                    elements={[
-                                        {
-                                            text: 'WordPress site with booking/payment functionality',
-                                            solve: 'Change title',
-                                        },
-                                        {
-                                            text: 'WordPress',
-                                            solve: 'Change category',
-                                        },
-                                        {
-                                            text: 'WordPress, website, new website, CMS',
-                                            solve: 'Change skills',
-                                        },
-                                    ]}
-                                />
+                               <div>
+                                {mapsItem[activeStep]}
+                                {activeStep != 4 && <DynamicPadding desktop='30px' mobile='20px'/>}
+                                {activeStep != 4 && <div style={{justifyContent: 'end'}} className='gap_5'>
+                                    <MyButtonTransparent disabled={activeStep == 1} onClick={() => {setActiveStep(prev => prev - 1)}} fontWeight='500' textTransform='uppercase'>Prev</MyButtonTransparent>
+                                    <MyButtonOrange disabled={mapsStepsValues[activeStep] == ''} onClick={() => {setActiveStep(prev => prev + 1)}} fontWeight='500' textTransform='uppercase'>Next</MyButtonOrange>
+                                    </div>}
+                                </div>
     
                                 <DynamicPadding />
     
-                                <div className={styles.text_box}>
+                                <div style={{opacity: activeStep == 4 ? '1' : '0',transition: '0.2s'}} className={styles.text_box}>
                                     <Typography variant='body4'>You can move to negotiation step and provide payment and delivery conditions.</Typography>
                                 </div>
     
@@ -72,7 +98,9 @@ const CreateOrderDetails = () => {
                                 <div className={'flex_space_between'}>
                                         <ChevronMoveTo variant='left' onClick={() => {navigate(-1)}} text='Step back' title='cancel' />
                                         <Link to={'/create-order/negotiation'}>
-                                        <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Negotiation' />
+                                        <ChevronMoveTo disabled={
+                                            activeStep != 4
+                                        } variant='right' onClick={() => {}} text='Next step' title='Negotiation' />
                                         </Link>
                                 </div>
                             </div>
