@@ -88,6 +88,7 @@ const StartGuide = () => {
                    </div>
                     <DynamicPadding desktop="50px" mobile="30px" />
                     <DropdownNode
+                    boolean={true}
                         amount="25"
                         icon={<AppColor.colorFlag />}
                         node={
@@ -116,7 +117,7 @@ const StartGuide = () => {
                     />
                     <DynamicPadding desktop="20px" mobile="15px" />
                     <DropdownNode
-                        backgroundColor="white"
+                        
                         amount="25"
                         title={
                             <Typography
@@ -153,13 +154,15 @@ const StartGuide = () => {
                        </div>
 
                        <Link to={'/dashboard/home'}>
-                            <MyButtonOrange
+                            <MyButtonOrange textTransform='uppercase' fontWeight='500'
                                 onClick={() => {}}
                                 padding="8px 19px">
                                 Complete later
                             </MyButtonOrange>
                        </Link>
                     </div>
+
+                    <DynamicPadding />
                 </div>
             </div>
         </div>
@@ -171,20 +174,22 @@ type DropdownNodeProps = {
     node: React.ReactNode
     icon: React.ReactNode
     amount: string
-    backgroundColor?: string
+   
+    boolean?: boolean;
 }
 const DropdownNode = ({
     title,
     node,
     icon,
     amount,
-    backgroundColor,
+   
+    boolean
 }: DropdownNodeProps) => {
-    const [isShow, setShow] = useState(false)
+    const [isShow, setShow] = useState(boolean ?? false)
     return (
         <div>
             <div
-                style={{ backgroundColor: backgroundColor }}
+                style={{backgroundColor: isShow ? '#F5F5F5' : 'transparent'}}
                 onClick={() => {
                     setShow((prev) => !prev)
                 }}
@@ -192,7 +197,7 @@ const DropdownNode = ({
                 {isShow ? (
                     <AppColor.chevronTop fill={AppColor.text} />
                 ) : (
-                    <AppColor.chevronBottom fill={AppColor.text} />
+                    <AppColor.chevronBottom fill={AppColor.transparentBlack} />
                 )}
                 <div>
                     {icon}

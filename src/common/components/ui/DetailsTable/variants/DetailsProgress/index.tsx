@@ -9,6 +9,7 @@ import AppColor from '@common/styles/variables-static'
 import Typography from '@common/components/ui/Typography/Typography'
 import UserAvatar from '../../../UserAvatar'
 import MyButtonBlack from '@common/components/ui/MyButton/variants/MyButtonBlack'
+import MyButtonTransparentBlack from '@common/components/ui/MyButton/variants/MyButtonTransparentBlack'
 
 type DetailsTableMyProgramsProps = {
     informationTable: DetailsTableMyProgramsItem[]
@@ -66,7 +67,7 @@ const DetailsProgress = ({
                             <DynamicPadding desktop='30px' mobile='40px'/>
                             <div className='justify_center'>
     
-                                <MyButtonBlack onClick={() => {setDropdownShowItemCount(5)}}>Show more +4</MyButtonBlack>
+                                <MyButtonTransparentBlack padding='12px 20px' fontWeight='500' onClick={() => {setDropdownShowItemCount(5)}}>Show more +4</MyButtonTransparentBlack>
                                 </div>
                             </>
                         }
@@ -83,7 +84,10 @@ const DetailsProgress = ({
                                   <UserAvatar
                                       width="38px"
                                       height="38px"
+                                      noWrap={true}
+                                      flag={<AppColor.UkraineFlagIcon />}
                                       variant="row"
+                                      role='Manager'
                                       url={fakeUserConstant.image}
                                       active={true}
                                       preventMobileNone={true}
@@ -190,15 +194,18 @@ const DropdownMyProgramsItemUser = ({
         <div className={styles.dropdown_wrapper}>
             <DynamicPadding desktop="20px" mobile="20px" />
             <div className={styles.dropdown_content_user}>
-                <UserAvatar
-                    width="38px"
-                    height="38px"
-                    variant="row"
-                    active={true}
-                    preventMobileNone={true}
-                    name={userName}
-                    url={fakeUserConstant.image}
-                />
+            <UserAvatar
+                                      width="38px"
+                                      height="38px"
+                                      noWrap={true}
+                                      flag={<AppColor.UkraineFlagIcon />}
+                                      variant="row"
+                                      role='Manager'
+                                      url={fakeUserConstant.image}
+                                      active={true}
+                                      preventMobileNone={true}
+                                      name={fakeUserConstant.name}
+                                  />
 
                 <div className={styles.dropdown_text_width}>
                     <Typography variant="body4">

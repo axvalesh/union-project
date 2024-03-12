@@ -38,7 +38,7 @@ const InputDropdown = ({padding,iconHeight,iconBeforeVariant,marginLeft,initText
     return (
         <div style={{padding: padding,...borderStyles}} onClick={() => {setShowDropdown(prev => !prev)}} className={styles.border_input}>
             <div className={styles.flex}>
-                <Typography variant="body4">{currenText}</Typography>
+                <Typography textLineHeight='1' color={currenText == initText ? AppColor.transparentBlack : AppColor.text} variant="body4">{currenText}</Typography>
                 <div style={{marginLeft: marginLeft ? 'auto' : '0px'}}>
                     {
                     showDropdown

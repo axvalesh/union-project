@@ -87,16 +87,18 @@ const HeaderNothAuthorized = () => {
                   <Logo />
                 </span>
              </div>
-            <div className={styles.hamburger__wrapper_user}>
-            <img src={mobile_user_svg} alt="" />
-  
-             </div>
-             <div className={styles.header_second_part}>
+           <Link to={'/sign-up'}>
+              <div className={styles.hamburger__wrapper_user}>
+              <img src={mobile_user_svg} alt="" />
+    
+               </div>
+           </Link>
+             <div style={{position: 'relative'}} className={styles.header_second_part}>
                 <li>
-                  <ul {...eventHandlers} >Customers</ul>
-                  <ul {...eventHandlers} >Freelancers</ul>
-                  <ul {...eventHandlers} >Sponsors</ul>
-                  <ul {...eventHandlers} >Managers</ul>
+                  <ul title="Customers" {...eventHandlers} >Customers</ul>
+                  <ul title="Freelancers"  {...eventHandlers} >Freelancers</ul>
+                  <ul title="Sponsors"  {...eventHandlers} >Sponsors</ul>
+                  <ul title="Managers"  {...eventHandlers} >Managers</ul>
                   
                 </li>
                 <div {...eventHandlers} className={`${styles.hover_wrapper} ${hovered ? styles.active : styles.disabled}`}>
@@ -180,10 +182,9 @@ export const MobileNavBar = () => {
 
           />)}
         </div>
-        <SizeBox height="20px"/>
+  
       </div>
       <HorizontalLine />
-      <SizeBox height="20px"/>
 
          <div className={styles.active_selection_padding}>
            <div className={styles.links_grid_20}>
@@ -240,35 +241,38 @@ const ChooseSubCategory = ({activeTitle,callback,details,}:ChooseSubCategoryProp
 type ChooseCategoryType = {
   title: string;
   icon: React.ReactNode;
+  description?: string;
+  activeIcon?: React.ReactNode;
 }
 
 const categoryItems:ChooseCategoryType[] = [
   {
-    icon: <AppColor.cart fill="white"/>,
-    title: 'Services'
+    icon: <AppColor.cartOrange fill={AppColor.text}/>,
+    title: 'Services',
+    activeIcon: <AppColor.cart fill={'white'}/>
   },
   {
-    icon: <AppColor.ordersWhite fill="white"/>,
+    icon: <AppColor.orders fill="white"/>,
+    activeIcon: <AppColor.ordersWhite />,
+    title: 'Orders'
+  },
+  {
+    icon: <AppColor.caseIcon fill="white"/>,
+    activeIcon: <AppColor.caseWhite />,
     title: 'Orders'
   }
 ]
-const ChooseCategory = () => {
+export const ChooseCategory = () => {
 
   const [activeCategory,setActiveCategory] = useState<ChooseCategoryType>(categoryItems[0]);
 
   const [showDropdown,setShowdropdown] = useState(false);
 
-  const borderStyles = {
-    borderTopLeftRadius: showDropdown ? '20px' : '20px',
-    borderTopRightRadius: showDropdown ? '20px' : '20px',
-    borderBottomLeftRadius: showDropdown ? '0px' : '20px',
-    borderBottomRightRadius: showDropdown ? '0px' : '20px',
-};
   return (
     <div style={{position: 'relative'}}>
 
-      <div onClick={() => {setShowdropdown(prev => !prev)}} style={{...borderStyles}} className={styles.choose_category_item}>
-        {activeCategory.icon}
+      <div onClick={() => {setShowdropdown(prev => !prev)}} className={`${styles.choose_category_item} cursor`}>
+        {activeCategory.activeIcon}
         <Typography variant="body4" fontWeight="500" color='white'>{activeCategory.title}</Typography>
         <div style={{display: 'flex',marginLeft: 'auto'}}>
           {showDropdown
@@ -277,11 +281,20 @@ const ChooseCategory = () => {
         </div>
       </div>
 
+      <div style={{opacity: showDropdown ? '1' : '0',pointerEvents: showDropdown ? 'all' : 'none'}} className={styles.abs_trianle_center}>
+
+      </div>
+
       <div style={{opacity: showDropdown ? '1' : '0',pointerEvents: showDropdown ? 'all' : 'none'}} className={styles.choose_category_grid}>
         {categoryItems.map(item => 
-          <div style={{padding: '5px 0px'}} onClick={() => {setActiveCategory(item);setShowdropdown(false)}} className="gap_10">
+          <div style={{padding: '5px 0px',alignItems: 'stretch'}} onClick={() => {setActiveCategory(item);setShowdropdown(false)}} className="gap_10 cursor"
+          
+          >
             {item.icon}
-            <Typography variant="body4" fontWeight="500" color='white'>{item.title}</Typography>
+           <div className={styles.flex_column}>
+           <Typography textLineHeight="1" variant="body4" fontWeight="500" color={AppColor.transparentBlack}>Catalog</Typography>
+           <Typography textLineHeight="1" variant="body4" fontWeight="500" color={AppColor.text}>{item.title}</Typography>
+           </div>
           </div>  
         )}
       </div>

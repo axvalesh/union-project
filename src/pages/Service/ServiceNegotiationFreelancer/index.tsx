@@ -22,6 +22,9 @@ import TextDotted from '@common/components/ui/TextDotted/index';
 import { DetailsDropdownItem } from '@pages/Partnership/pages/ProgressFreelancer/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import { Link } from 'react-router-dom';
+import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
+import AskedQuestion from '@common/components/AskedQuestions/index';
+import Footer from '@common/components/Footer/Footer';
 
 const ServiceNegotiationFreelancer = () => {
     const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
@@ -297,6 +300,14 @@ const ServiceNegotiationFreelancer = () => {
             />
 
         </div>
+
+        <CardsSliderRelated />
+
+        <div className='wrapper_page'>
+            <AskedQuestion />
+        </div>
+
+        <Footer />
            
       </div>
     );

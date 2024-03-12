@@ -18,11 +18,13 @@ export type sixSectionCardProps = {
 }
 
 export type PopularCategorysCatalogCardProps = {
-  img: string;
+  icon?: React.ReactNode;
   title: string;
   subtitle: string;
   width: number;
   height: number;
   activeIndex: number;
   cardIndex: number;
+  activeIcon?: React.ReactNode;
+  callback?: (item:number) => void;
 };

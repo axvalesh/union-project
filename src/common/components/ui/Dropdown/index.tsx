@@ -9,16 +9,20 @@ type DropdownProps = {
     showLine?: boolean;
 }
 const Dropdown = ({title,description,showLine=true}:DropdownProps) => {
-    const [isActive,setIsActive] = useState(false);
+    const [isActive,setIsActive] = useState(true);
+    const [hover,setHover] = useState(false);
 
     const changeState = () => {
         setIsActive(prev => !prev);
     }
     return (
       <div className={styles.wrapper}>
-           <div onClick={changeState} className={styles.title_block}>
+           <div
+           onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+           onClick={changeState} className={styles.title_block}>
                 <div className={styles.title_shell}>
-                    <Typography variant="body1" color={isActive ? '#515151' : AppColor.colorWithOpacity('#515151', 0.5)}>
+                    <Typography variant="body1" fontWeight="500" color={isActive || hover ? '#515151' : AppColor.transparentBlack}>
                         {title}
                     </Typography>
                 </div>

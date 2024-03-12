@@ -57,8 +57,17 @@
     grid-template-columns: 1fr;
     gap: 15px;
 }
+
+.hover_link {
+    color: rgba($color: black, $alpha: 0.5);
+    transition: 0.2s;
+
+    &:hover {
+        color: $text;
+    }
+}
 .right_part {
-    padding: 30px;
+    
 }
 .flex_column {
     display: flex;

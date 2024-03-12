@@ -7,6 +7,7 @@ import InputBorderText from '@common/components/ui/inputs/InputBorderText/index'
 import AppColor from '@common/styles/variables-static';
 import InputBorderTextDropdown from '@common/components/ui/inputs/InputBorderTextDropdown/index';
 import { useEffect, useState } from 'react';
+import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 
 type dataType = {
     firstName: string;
@@ -39,9 +40,15 @@ const FirstStep = ({callback,formData1,updateFormData1}: {callback:() => void,fo
     }
     return (
      <div>
-          <div className={styles.wrapper}>
-               <div className={styles.left}>
-                    <div>
+
+        <ResponsiveLayoutTwo
+            gap='80px'
+            item1MaxWidth='630px'
+            item2MaxWidth='490px'
+            
+            item1={
+                <>
+                <div>
                         <Typography variant='body4'>Step 1/3 - User personal information</Typography>
                         <PercentBar
                             currentPercent={33.3}
@@ -135,9 +142,12 @@ const FirstStep = ({callback,formData1,updateFormData1}: {callback:() => void,fo
                                     placeholderText=''
                                 />  
                             </div>
-               </div>
-               <div className={styles.right}>
-                    <div className={styles.right_wrapper}>
+                </>
+            }
+
+            item2={
+                <>
+                <div className={styles.right_wrapper}>
                         <Typography variant='body4' fontWeight='500'>Requirements:</Typography>
                         <DynamicPadding desktop='15px' mobile='15px'/>
                         <div style={{marginLeft: '15px'}}>
@@ -146,8 +156,9 @@ const FirstStep = ({callback,formData1,updateFormData1}: {callback:() => void,fo
                             <Typography variant='body4' fontWeight='400'>• All information must match your proof of identity document and proof of address document.</Typography>
                         </div>
                     </div>
-               </div>
-          </div>
+                </>
+            }
+        />
           <DynamicPadding/>
           <div onClick={() => { isCanMoveOn() ? handleMove() : () => { } }} className={styles.justify}>
                 <div className={styles.column}>

@@ -82,7 +82,7 @@ const MainCare = ({setActiveSwitch}:CareServiceChildProps) => {
                     image={test7}
                />
           </div>
-          <div onClick={() => {setActiveSwitch('main.general help')}}>
+          <div onClick={() => {setActiveSwitch('main.general help nopadding')}}>
                <CareServiceItem
                     description='Chat With Moderators' title='General Help' 
                     icon={<AppColor.infoWhite />}
@@ -111,9 +111,9 @@ const CareServiceItem = ({description,title,icon,image}:CareServiceItemProps) =>
     return (
         <div style={{backgroundImage: `url(${image ?? test1})`}} className={`${styles.care_service_item} cursor`}>
             <div style={{zIndex: 1}}>
-                <Typography variant='body4' fontWeight='500' color='#E0E0E0'>{title}</Typography>
+                <Typography variant='body4' className={styles.care_text} fontWeight='500'>{title}</Typography>
                 <SizeBox height='5px'/>
-                <Typography variant='body5' color='white'>{description}</Typography>
+                <Typography variant='body5' className={styles.care_text}>{description}</Typography>
             </div>
             <div className={styles.background_dark}></div>
             <div className={styles.care_service_abs}>

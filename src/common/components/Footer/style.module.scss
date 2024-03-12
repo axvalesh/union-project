@@ -22,17 +22,6 @@
     align-items: end;
     gap: 10px;
 }
-
-.helper {
-    position: fixed;
-    bottom: 120px;
-    right: 10px;
-    width: 400px;
-    @include weakShadow;
-    border-radius: 20px;
-    background-color: white;
-    transition: 0.2s;
-}
 .helper_padding {
     padding: 20px 30px;
 }
@@ -97,6 +86,14 @@
     cursor: pointer;
     &:hover {
         opacity: 0.6;
+    }
+}
+
+.list a {
+    transition: 0.2s;
+    color: white;
+    &:hover {
+        color: #A8A8AD;
     }
 }
 @media (min-width: $tabletSize) {

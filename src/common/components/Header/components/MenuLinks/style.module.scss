@@ -6,8 +6,9 @@
 
 .links_wrapper {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
     padding: 20px 30px;
+    gap: 10px;
 }
 
 .horizontal_line {
@@ -31,8 +32,19 @@
     padding: 6px 15px;
     @include weakShadow;
     border-radius: 20px;
+    transition: 0.2s;
+    &:focus {
+        @include midShadow;
+    }
 }
 
+.color_title {
+    color: rgba($color: black, $alpha: 0.5);
+    transform: 0.2s;
+    &:hover {
+        color: $text;
+    }
+}
 .search_categorys {
     display: flex;
     flex-direction: column;
@@ -84,13 +96,21 @@
     width: 100%;
 }
 .link_wrapper {
+    flex: 1;
     transition: all 0.3s ease;
     display: flex;
-    width: 16%;
+
     padding: 22px 20px;
     border-radius: 20px;
     gap: 10px;
     align-items: center;
     cursor: pointer;
     user-select: none;
+
+    svg {
+        min-height: 27px;
+        min-width: 27px;
+        width: 27px;
+        height: 27px;
+    }
 }

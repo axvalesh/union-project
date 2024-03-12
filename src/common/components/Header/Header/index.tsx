@@ -1,7 +1,7 @@
 import Logo from '@common/components/Logo/Logo'
 import AppColor from '@common/styles/variables-static'
 import { useHover } from '@common/helpers/useHover'
-import MenuLinks from '../components/MenuLinks'
+import MenuLinks, { MenuLinksAuthorized } from '../components/MenuLinks'
 
 import styles from './style.module.scss'
 import MyButtonTransparentOrange from '@common/components/ui/MyButton/variants/MyButtonTransparentOrange'
@@ -22,12 +22,11 @@ import { SelectDropdown, MobileNavBar } from '../Header-not-authorized/Header-no
 const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
     const [hovered, setHovered] = useState(false);
 
-    const [hoveredLink,setHoveredLink] = useState(0);
+    const [hoveredLink,setHoveredLink] = useState(3);
 
     const [headerVisible, setHeaderVisible] = useState(false);
     const [showModal,setShowModal] = useState(false);
     const [activeSelection,setActiveSelection] = useState('');
-
 
     useEffect(() => {
         setTimeout(() => {
@@ -137,45 +136,59 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
                                 </div>
                                 <div className={styles.header_second_part}>
                                     <li>
-                                        <ul onClick={() => {setHovered(prev => !prev)}}>
-                                            Service{' '}
+                                        <ul title='Service' onClick={() => {setHovered(prev => !prev)
+                                        setHoveredLink(0);
+                                        }}>
+                                            <div title='Service'>
+                                            Service
+                                            </div>
                                             <AppColor.chevronBottom
                                                 width={10}
                                                 height={6}
                                                 fill={AppColor.text}
-                                            />{' '}
+                                            />
                                         </ul>
-                                        <ul onClick={() => {setHovered(prev => !prev)}}>
-                                            Order{' '}
+                                        <ul title='Order' onClick={() => {
+                                             setHoveredLink(1);
+                                            setHovered(prev => !prev)
+                                           
+                                        }}>
+                                            <div title='Order'>Order</div>
                                             <AppColor.chevronBottom
                                                 width={10}
                                                 height={6}
                                                 fill={AppColor.text}
-                                            />{' '}
+                                            />
                                         </ul>
-                                        <ul onClick={() => {setHovered(prev => !prev)}}>
-                                            Partnership{' '}
+                                        <ul title='Partnership' onClick={() => {setHovered(prev => !prev)
+                                        setHoveredLink(2);
+                                        }}>
+                                          <div title='Partnership'>  Partnership</div>
                                             <AppColor.chevronBottom
                                                 width={10}
                                                 height={6}
                                                 fill={AppColor.text}
-                                            />{' '}
+                                            />
                                         </ul>
-                                        <ul onClick={() => {setHovered(prev => !prev)}}>
-                                            Crowdfreelance{' '}
+                                        <ul title='Crowdfreelance' onClick={() => {setHovered(prev => !prev)
+                                        setHoveredLink(3);
+                                        }}>
+                                            <div title='Crowdfreelance' >Crowdfreelance</div>
                                             <AppColor.chevronBottom
                                                 width={10}
                                                 height={6}
                                                 fill={AppColor.text}
-                                            />{' '}
+                                            />
                                         </ul>
-                                        <ul onClick={() => {setHovered(prev => !prev)}}>
-                                            Users{' '}
+                                        <ul title='Users' onClick={() => {setHovered(prev => !prev)
+                                        setHoveredLink(4);
+                                        }}>
+                                           <div  title='Users'> Users</div>
                                             <AppColor.chevronBottom
                                                 width={10}
                                                 height={6}
                                                 fill={AppColor.text}
-                                            />{' '}
+                                            />
                                         </ul>
                                         
                                     </li>
@@ -187,7 +200,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
                                                 ? styles.active
                                                 : styles.disabled
                                         }`}>
-                                        <MenuLinks hoveredLink={hoveredLink} />
+                                        <MenuLinksAuthorized hoveredLink={hoveredLink} />
                                     </div>
                                 </div>
                                 <div className={styles.header_third_part}>
@@ -246,7 +259,9 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
                             </div>
                         </header>
                     </div>
+                    <div className={styles.bottom_line}>
                     <HorizontalLine />
+                    </div>
                 </div>
            </div>
        </>

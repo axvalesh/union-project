@@ -9,9 +9,18 @@
     min-height: 100%;
     @include weakShadow;
 
+    .care_text {
+        color: white;
+        transition: 0.2s;
+    }
+
     &:hover {
         .care_service_abs {
                 background-color: $text;
+        }
+
+        .care_text {
+            color: #E0E0E0;
         }
     }
 }

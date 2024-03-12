@@ -28,7 +28,7 @@ const GeneralHelpCreate = ({setActiveSwitch}:CareServiceChildProps) => {
         <DynamicPadding desktop='20px' mobile='15px' />
         <MyButtonOrange
         onClick={() => {
-            setActiveSwitch('main.general help');
+            setActiveSwitch('main.general help nopadding');
         }}
         padding='15px'
         disabled={name == '' || email == '' || project == ''}

@@ -37,6 +37,7 @@ import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index'
 import InputCommon from '@common/components/ui/inputs/InputCommon/index'
 import { Link } from 'react-router-dom'
 import FiltersTemplate from '@common/components/ui/FiltersTemplate/index'
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index'
 
 const ServiceAll = () => {
     const { width, height } = useScreenSize()
@@ -113,17 +114,7 @@ const ServiceAll = () => {
                         />
                     }
                     endNode={
-                        <div className={styles.details_end_node}>
-                            <MyButtonTransparentOrange
-                                fontWeight="500"
-                                textTransform="uppercase"
-                                onClick={() => {}}>
-                                All programs{' '}
-                                <AppColor.chevronBottom
-                                    fill={AppColor.orange}
-                                />
-                            </MyButtonTransparentOrange>
-                        </div>
+                        <ButtonDropdownSelect text='All programs' variants={['All programs','2','3']} />
                     }
                     pageTitle="Brand Identity Design "
                 />
@@ -520,7 +511,7 @@ const ServiceAll = () => {
                     <div className={styles.justify_flex}>
                             <div className='desktop'>
                                     <Typography variant="body4">
-                                        11 841 programs
+                                    <span style={{fontWeight: '500'}}>11 841 </span>programs
                                     </Typography>
                                 </div>
                                 <div className={styles.flex_center}>

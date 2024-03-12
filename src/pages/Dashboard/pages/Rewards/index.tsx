@@ -26,17 +26,26 @@ const rewards:RewardItemProps[] = [
     {
         image: <img src={headphones} />,
         title: 'Logitech G435 LIGHTSPEED ',
-        user: <UserAvatar active={true} name='Artem M.' />
+        user: <div className='gap_5'>
+            <UserAvatar variant='image' url={fakeUserConstant.image} width='22px' height='22px' active={true} name='Artem M.' />
+            <Typography variant='body4' fontWeight='500' textLineHeight='1'>Artem M.</Typography>
+        </div>,
     },
     {
         image: <AppColor.box width={62} height={62} />   ,
         title: 'Logitech G435 LIGHTSPEED ',
-        user: <UserAvatar active={true} name='Artem M.' />
+        user: <div className='gap_5'>
+            <UserAvatar variant='image' url={fakeUserConstant.image} width='22px' height='22px' active={true} name='Artem M.' />
+            <Typography variant='body4' fontWeight='500' textLineHeight='1'>Artem M.</Typography>
+        </div>,
     },
     {
         image: <AppColor.cart fill={AppColor.text} width={80} height={62} />, 
         title: 'Logitech G435 LIGHTSPEED ',
-        user: <UserAvatar active={true} name='Artem M.' />,
+        user: <div className='gap_5'>
+            <UserAvatar variant='image' url={fakeUserConstant.image} width='22px' height='22px' active={true} name='Artem M.' />
+            <Typography variant='body4' fontWeight='500' textLineHeight='1'>Artem M.</Typography>
+        </div>,
         count: 3
     }
 ]

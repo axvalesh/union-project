@@ -1,6 +1,6 @@
-import HeaderNothAuthorized from '@common/components/Header/Header-not-authorized/Header-not-authorized';
+import HeaderNothAuthorized, { ChooseCategory } from '@common/components/Header/Header-not-authorized/Header-not-authorized';
 import styles from './style.module.scss'
-import {useState,useEffect} from 'react'
+import {useState,useEffect, useRef} from 'react'
 import chevronDownTransparent from '@assets/svg/chevron-down-transparent.svg'
 import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
@@ -8,8 +8,8 @@ import MyButton from '@common/components/ui/MyButton/MyButton';
 
 import fourthBcSvg from '@assets/svg/home-page-fourth-background.svg';
 import listCheckedSvg from '@assets/svg/icon-checked.svg';
-import mobileImage from '@assets/images/home-not-auth_topBackground-mobile.png';
-import desktopImage from '@assets/images/home-not-auth_topBackground.png';
+import mobileImage from '@assets/images/home_background_mobile.svg';
+import desktopImage from '@assets/images/home_background_desktop.svg';
 import searchIcon from '@assets/svg/search-icon.svg';
 import testUserImage2 from '@assets/images/test-user-image2.png';
 import pointIcon from '@assets/svg/point-icon.svg';
@@ -24,7 +24,7 @@ import peoplesImage7 from '@assets/images/home-page-peoples7.png';
 import peoplesImage8 from '@assets/images/home-page-peoples8.png';
 
 import { AdvantagesSectionCardProps, PopularCategorysCatalogCardProps, PopularCategorysServiceCardProps, sixSectionCardProps } from './models';
-import { advantanges_section_card_content, popular_categorys_content, popular_categorys_content_services, six_section_cards_content } from './content';
+import { advantanges_section_card_content, popular_categorys_content_services, six_section_cards_content } from './content';
 import Slider from '@common/components/ui/Slider/Slider';
 import { popular_services } from '@common/content/services';
 import CardTime from '@common/components/cards/CardTime/CardTime';
@@ -37,9 +37,44 @@ import { Link } from 'react-router-dom';
 import ResponsiveLayoutTwo from '@common/components/ResponsiveLayoutTwo/index';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
+import { ThreeLinesPopUpCustom } from '@common/components/ui/ThreeLinesPopUp/index';
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
 
 
 
+const popular_categorys_content:PopularCategorysCatalogCardProps[] = [
+  {
+    icon: <AppColor.cart height={'15px'} width={'20px'} fill={AppColor.text} />,
+    activeIcon: <AppColor.cart height={'15px'} width={'20px'} fill={AppColor.white} />,
+    width: 36,
+    height: 28,
+    title: 'Catalog',
+    subtitle: 'Services',
+    activeIndex: 0,
+    cardIndex: 0,
+  },
+  {
+    icon: <AppColor.orders height={'15px'} width={'20px'} />,
+    activeIcon: <AppColor.ordersWhite height={'15px'} width={'20px'}/>,
+    width: 27,
+    height: 33,
+    title: 'Catalog',
+    subtitle: 'Orders',
+    activeIndex: 0,
+    cardIndex: 1,
+  },
+  {
+    icon: <AppColor.caseIcon height={'15px'} width={'20px'} />,
+    activeIcon: <AppColor.caseWhite height={'15px'} width={'20px'}/>,
+    width: 33,
+    height: 21,
+    title: 'Catalog',
+    subtitle: 'Sponsorships',
+    activeIndex: 0,
+    cardIndex: 2,
+  },
+];
 
 const HomeNotAuth = () => {
   
@@ -55,7 +90,9 @@ const HomeNotAuth = () => {
     }
 
     setBcImageFirst(imageUrl);
-  }, []);
+  }, [width]);
+
+  const [activeFilter,setActiveFilter] = useState('Search Master');
 
     const divStyle = {
         backgroundImage: `url(${bcImageFirst})`,
@@ -99,9 +136,11 @@ const HomeNotAuth = () => {
 
       const flagImage = useGetImage(`flags/${fakeUser2.country}`,false);
 
+      const [catalogIndex,setCatalogIndex] = useState(0);
+
     return (
-      <>
-        <div style={divStyle} className={styles.welcome_screen_wrapper}>
+      <div className={styles.overflow_max}>
+        <div style={divStyle} className={styles.home_back_image}>
         <HeaderNothAuthorized />
             <div className={styles.wrapper}>
             <div className={styles.emptyLine}></div>
@@ -120,7 +159,7 @@ const HomeNotAuth = () => {
             </span>
            
               <span className={styles.input_wrapper_search_button}>
-                <Typography style={{letterSpacing: '0.48px'}} variant='body1' color='white' textTransform='uppercase'>
+                <Typography textLineHeight='1' style={{letterSpacing: '0.48px'}} variant='body1' color='white' textTransform='uppercase'>
                   Search
                 </Typography>
               </span>
@@ -128,12 +167,61 @@ const HomeNotAuth = () => {
                 <input type="text" placeholder='I’m looking for'/>
                 <div className={styles.input_wrapper_absolute}>
                     <span></span>
-                    <div className={styles.input_wrapper_absolute_dropdown}>
-                        <Typography variant='body1' color={AppColor.transparentBlack}>
-                            Search Master
-                        </Typography>
-                        <img src={chevronDownTransparent} alt="showList" />
-                    </div>
+                    <PopUpBottom 
+                    activeFilter={activeFilter}
+                      
+                  topPaddingFromNode='8px'
+                  popUpNode={
+                    <ThreeLinesPopUpCustom
+
+                      items={[
+                        {
+                          icon: <AppColor.search height={'15px'} width={'20px'} />,
+                          title: 'Search Master',
+                          color: activeFilter == 'Search Master' ? AppColor.text : AppColor.transparentBlack,
+                          fontWeight: activeFilter == 'Search Master' ? '500' : '400',
+                          onClick: () => {setActiveFilter('Search Master')}
+                        },
+                        {
+                          icon: <AppColor.cart height={'15px'} width={'20px'} fill={AppColor.text} />,
+                          title: 'Services Catalog',
+                          color: activeFilter == 'Services Catalog' ? AppColor.text : AppColor.transparentBlack,
+                          fontWeight: activeFilter == 'Services Catalog' ? '500' : '400',
+                          onClick: () => {setActiveFilter('Services Catalog')}
+                        },
+                        {
+                          icon: <AppColor.orders height={'15px'} width={'20px'} />,
+                          title: 'Create Order',
+                          color: activeFilter == 'Create Order' ? AppColor.text : AppColor.transparentBlack,
+                          fontWeight: activeFilter == 'Create Order' ? '500' : '400',
+                          onClick: () => {setActiveFilter('Create Order')}
+                        },
+                        {
+                          icon: <AppColor.caseIcon height={'15px'} width={'20px'} />,
+                          title: 'Sponsorships Catalog',
+                          color: activeFilter == 'Sponsorships Catalog' ? AppColor.text : AppColor.transparentBlack,
+                          fontWeight: activeFilter == 'Sponsorships Catalog' ? '500' : '400',
+                          onClick: () => {setActiveFilter('Sponsorships Catalog')}
+                        },
+                        {
+                          icon: <AppColor.freelancer height={'15px'} width={'20px'} />,
+                          title: 'Freelancers Catalog',
+                          color: activeFilter == 'Freelancers Catalog' ? AppColor.text : AppColor.transparentBlack,
+                          fontWeight: activeFilter == 'Freelancers Catalog' ? '500' : '400',
+                          onClick: () => {setActiveFilter('Freelancers Catalog')}
+                        },
+                        {
+                          icon: <AppColor.managers height={'15px'} width={'20px'} />,
+                          title: 'Contact Managers',
+                          color: activeFilter == 'Contact Managers' ? AppColor.text : AppColor.transparentBlack,
+                          fontWeight: activeFilter == 'Contact Managers' ? '500' : '400',
+                          onClick: () => {setActiveFilter('Contact Managers')}
+                        }
+                      ]}
+                    />
+                  }
+
+                    />
                 </div>
            </div>
 
@@ -145,19 +233,21 @@ const HomeNotAuth = () => {
               border='none'
               borderHover='none'
               width='296px'
+              textTransform='uppercase'
               onClick={() => {}}>
                       Search
               </MyButton>
              </span>
       
           <span className={styles.welcome_text_bottom}>
-           <Typography variant='body1'>
+           <Typography variant='body1' fontWeight='400'>
            Explore a world of possibilities! Choose the perfect fit for your projects
            </Typography>
            </span>
         </div>
       </div>
       <div className={styles.wrapper}>
+        <DynamicPadding desktop='80px' mobile='30px'/>
         <section className={styles.advantanges_section}>
           <Typography textTransform='uppercase' variant='titleSmall' color={AppColor.orange}>
             One Account, <span className={styles.advantanges_section_title_grey}>Four Distinct Roles</span>       
@@ -196,32 +286,42 @@ const HomeNotAuth = () => {
               </Typography>
             </div>
 
+            <DynamicPadding desktop='0px' mobile='30px'/>
+
+            <div style={{width: '260px'}} className='mobile'>
+            <ChooseCategory />
+            </div>
+            <DynamicPadding desktop='0px' mobile='30px' />
             {
               width <= AppColor.tabletSize
-            ? <div className={styles.popular_categorys_categorysDisplay}>
-                <div className={styles.popular_categorys_categorysDisplay_mobile}></div>
-              </div>
+            ? <div></div>
               :
             <div className={styles.popular_categorys_categorysDisplay}>
-                {popular_categorys_content.map(item => <PopularCategorysCatalogCard 
-                activeIndex={item.activeIndex} 
-                cardIndex={item.cardIndex} 
+                {popular_categorys_content.map((item,index) => <PopularCategorysCatalogCard 
+                callback={(item) => {setCatalogIndex(index)}}
+                activeIndex={catalogIndex} 
+                cardIndex={index} 
                 height={item.height} 
-                img={item.img}
+                activeIcon={item.activeIcon}
+                icon={item.icon}
                 subtitle={item.subtitle}
                 title={item.title}
                 width={item.width}
                 />)}
             </div>
             }
+
+            <DynamicPadding mobile='0px' desktop='50px'/>
             <div  className={styles.popular_categorys_slider}>
             <Slider maxShowCount={4} itemWidth={260} maxWidth={width <= AppColor.tabletSize ? 260 : 1100} elementsCount={popular_categorys_content_services.length} gap={20}>
               {popular_categorys_content_services.map(item => <PopularCategorysServiceCard img={item.img} svg={item.svg} title={item.title}/>)}
             </Slider>
+
+            <DynamicPadding desktop='30px' mobile='20px' />
             </div>
             <div className={styles.popular_categorys_buttons}>
            
-              <MyButton onClick={() => {}} fontWeight="500">
+              <MyButton textTransform='uppercase' onClick={() => {}} fontWeight="500">
               Browse all services
               </MyButton>
               <MyButtonTransparent onClick={() => {}} fontWeight='500' textTransform='uppercase'>
@@ -235,11 +335,19 @@ const HomeNotAuth = () => {
                 </Typography>
               </div>
               <section className={styles.popular_categorys_skills_list}>
-                {popular_services.map(service => <div><Typography fontWeight='400' variant='body1'>{service}</Typography></div>)}
+                {popular_services.map(service =>
+                  <Link to={'/service/all'}>
+                     <div className={`${styles.hover_text_popular} cursor`}>
+                    <Typography title={service} className={styles.hover_text_item} variant='body4'>{service}</Typography>
+                    </div>
+                  </Link>
+                  
+                  )}
               </section>
+              <DynamicPadding desktop='0px' mobile='30px'/>
               <div className={styles.popular_categorys_buttons_mobile}>
            
-              <MyButton onClick={() => {}} fontWeight="500">
+              <MyButton onClick={() => {}} textTransform='uppercase' fontWeight="500">
               Browse all services
               </MyButton>
               <MyButton
@@ -249,7 +357,9 @@ const HomeNotAuth = () => {
                 hoverColor="transparent"
                 hoverTextColor={AppColor.orange}
                 fontWeight="500"
-                onClick={() => {}}>
+                onClick={() => {}}
+                textTransform='uppercase'
+                >
                 Create own service
               </MyButton>
             </div>
@@ -257,7 +367,7 @@ const HomeNotAuth = () => {
           </section>
           </div>
         </div>
-        <DynamicPadding desktop='0px' mobile='30px'/>
+        <DynamicPadding desktop='80px' mobile='30px'/>
         <div className={`${styles.wrapper} ${styles.margin_top_slider}`}>
         <section className={styles.fourth_screen}>
             <div className={styles.fourth_screen_shell}>
@@ -325,7 +435,7 @@ const HomeNotAuth = () => {
                   </Typography>
   
                   <div className={styles.fourth_screen_text_margin_top}>
-                    <Typography variant='body1'>
+                    <Typography variant='body4' fontWeight='400' color={AppColor.transparentBlack}>
                     Explore featured campaigns and contribute to projects that resonate with you
                     </Typography>
                 
@@ -375,25 +485,28 @@ const HomeNotAuth = () => {
                 </div>
               </div>  
               <div className={styles.fourth_screen_sponsor_wrapper}>
-                <img width={38} height={38} src={testUserImage2} alt="userImage" />
-              
-                <div className={styles.fourth_screen_details_wrapper}>
-                  <div>
-                  <img width={16} height={13} src={flagImage} alt="" />
-                  <span className={styles.fourth_screen_inline_text}>
-                    <Typography variant='body4'>
-                    <span style={{color:'transparent'}}>a</span>
-                      <span style={{fontWeight: '500'}} className='underline_appearance'>{fakeUser2.name}</span>
+                <DynamicPadding desktop='50px' mobile='30px' side='right' />
+                <div className={styles.fourth_screen_sponsor_wrapper}>
+                  <img width={38} height={38} src={testUserImage2} alt="userImage" />
+                
+                  <div className={styles.fourth_screen_details_wrapper}>
+                    <div>
+                    <img width={16} height={13} src={flagImage} alt="" />
+                    <span className={styles.fourth_screen_inline_text}>
+                      <Typography variant='body4'>
                       <span style={{color:'transparent'}}>a</span>
-                      sponsored $2 500 in 
-                      <span style={{color:'transparent'}}>a</span>
-                      <span style={{fontWeight: '500'}} className='underline_appearance'>GameWithMe launch </span>
+                        <span style={{fontWeight: '500'}} className='underline_appearance'>{fakeUser2.name}</span>
+                        <span style={{color:'transparent'}}>a</span>
+                        sponsored $2 500 in 
+                        <span style={{color:'transparent'}}>a</span>
+                        <span style={{fontWeight: '500'}} className='underline_appearance'>GameWithMe launch </span>
+                      </Typography>
+                    </span>
+                    </div>
+                    <Typography variant='body4' color={AppColor.transparentBlack}>
+                      2 hours ago
                     </Typography>
-                  </span>
                   </div>
-                  <Typography variant='body4' color={AppColor.transparentBlack}>
-                    2 hours ago
-                  </Typography>
                 </div>
               </div>
               <div className={styles.fourth_screen_details_none_desktop}>
@@ -416,12 +529,13 @@ const HomeNotAuth = () => {
                       </Typography>
                     </li>
                   </ul>
-                  <div className={styles.fourth_screen_buttons}>
+                  <div className={styles.fourth_screen_buttons} style={{gap: '5px'}}>
                     <MyButton
                     color={AppColor.orange}
                     textColor='white'
                     hoverColor='transparent'
                     hoverTextColor={AppColor.orange}
+                    width='210px'
                     onClick={() => {}} textTransform='uppercase'>
                     try sponsorship
                     </MyButton>
@@ -441,15 +555,18 @@ const HomeNotAuth = () => {
             </div>
           </section>
         </div>
+        <DynamicPadding desktop='80px' mobile='30px'/>
         <div className={styles.fifth_section_background}>
           <div className={styles.wrapper}>
           <section className={styles.fifth_sectin_wrapper}>
           <div className={styles.fifth_sectin_wrapper_flex}>
             <div className={styles.fifth_sectin_wrapper_details_wrapper}>
-              <Typography variant='titleSmall' textTransform='uppercase'>
-                Elevate Projects with Professional <span style={{color: AppColor.orange}}>Management</span>
-              </Typography>
-              <span className={styles.fifth_sectin_details_text_margin}>
+              <div className='center_mobile_text'>
+                <Typography variant='titleSmall' textTransform='uppercase'>
+                  Elevate Projects with Professional <span style={{color: AppColor.orange}}>Management</span>
+                </Typography>
+              </div>
+              <span className={`${styles.fifth_sectin_details_text_margin} center_mobile_text`}>
               <Typography variant='body4' color={AppColor.transparentBlack}>
                 Experience the advantages of being a manager on our platform
               </Typography>
@@ -476,10 +593,13 @@ const HomeNotAuth = () => {
                 </ul>
                   <div className={styles.fourth_screen_buttons}>
                     <MyButton
-                    onClick={() => {}} textTransform='uppercase'>
+                    width='210px'
+                    textSize='14px'
+                    onClick={() => {}} fontWeight='500' textTransform='uppercase'>
                     contact managers
                     </MyButton>
                     <MyButton
+                    textSize='14px'
                       border="1px solid transparent"
                       color="transparent"
                       textColor={AppColor.text}
@@ -516,7 +636,7 @@ const HomeNotAuth = () => {
                 </ul>
                   <div className={styles.fourth_screen_buttons}>
                     <MyButton
-                    onClick={() => {}} textTransform='uppercase'>
+                    onClick={() => {}} fontWeight='500' textTransform='uppercase'>
                     contact managers
                     </MyButton>
                     <MyButton
@@ -563,14 +683,23 @@ const HomeNotAuth = () => {
                 orderItem2Desktop={1}
                 orderItem2Mobile={0}
                 item1={
-                  <div style={{paddingBottom: '5px'}} className={styles.six_section_cards_wrapper}>
-                  {six_section_cards_content.map((item,index) => 
-                  <div className={styles.center_card}>
-                    <SixSectionCard index={index} 
-                    title={item.title} description={item.description} image={item.image}/>
+                  <div>
+                    <div style={{paddingBottom: '5px'}} className={styles.six_section_cards_wrapper}>
+                    {six_section_cards_content.map((item,index) => 
+                    <div className={styles.center_card}>
+                      <SixSectionCard index={index} 
+                      title={item.title} description={item.description} image={item.image}/>
+                    </div>
+                    )}
                   </div>
-                  )}
-                </div>
+                  <DynamicPadding desktop='0px' mobile='30px' />
+                 <div className='mobile justify_center'>
+                    
+                    <MyButtonOrange textTransform='uppercase' onClick={() => {}} >
+                    join us now
+                    </MyButtonOrange>
+                 </div>
+                  </div>
                 }
                 item2={
                  <div className='responsive_layout_child'>
@@ -585,14 +714,16 @@ const HomeNotAuth = () => {
                         </Typography>
                         </span>
                     </div>
-                      <MyButton
-                      color={AppColor.orange}
-                      textColor='white'
-                      hoverColor='transparent'
-                      hoverTextColor={AppColor.orange}
-                      onClick={() => {}} textTransform='uppercase'>
-                        join us now
-                      </MyButton>
+                    <div className='desktop'>
+                        <MyButton
+                        color={AppColor.orange}
+                        textColor='white'
+                        hoverColor='transparent'
+                        hoverTextColor={AppColor.orange}
+                        onClick={() => {}} textTransform='uppercase'>
+                          join us now
+                        </MyButton>
+                    </div>
                 </div>
                  </div>
                 }
@@ -600,10 +731,82 @@ const HomeNotAuth = () => {
              
         </div>
         <Footer />
-      </>
+      </div>
     );
 };
 
+
+type PopUpBottomProps = {
+  popUpNode: React.ReactNode;
+  topPaddingFromNode?: string;
+  showBackgroundHover?: boolean;
+  positionRight?: string;
+  activeFilter: string;
+}
+const PopUpBottom = ({popUpNode,topPaddingFromNode,activeFilter,positionRight=''}:PopUpBottomProps) => {
+
+  const [show,setShow] = useState(false);
+
+  const nodeRef = useRef(null);
+  useEffect(() => {
+  const handleOutsideClick = (event: MouseEvent) => {
+    const clickedElement = event.target as HTMLElement;
+    if (clickedElement.closest('.overlay_prevent_close')) return;  //ignore overlay modal and modals children
+
+    
+    if (nodeRef.current && !nodeRef.current.contains(event.target as Node)) {
+        setShow(false);
+        
+    } else {
+        
+        
+    }
+  };
+
+  document.addEventListener('mousedown', handleOutsideClick);
+
+  return () => {
+    document.removeEventListener('mousedown', handleOutsideClick);
+  };
+  }, []);
+
+
+  const currentColor = show ? AppColor.text : AppColor.transparentBlack;
+
+  const handleClick = () => {
+    setShow(prev => !prev);console.log('cliclk');
+  }
+
+  return (
+  <div  ref={nodeRef}  style={{position:'relative'}}>
+      <div style={{display: 'flex',justifyContent: 'space-between',alignItems: 'center',width: '130px',textAlign: 'center'}} className='cursor' onClick={handleClick} >
+
+      <Typography variant='body1' color={currentColor}>
+                          {activeFilter}
+      </Typography>
+
+      <AppColor.chevronBottom fill={currentColor} height={'10px'} width={'10px'} />
+          
+      </div>
+      <div  style={positionRight != '' ? {
+        right: positionRight,
+        left: 'auto',
+        transform: 'translateX(0)',
+        top: `calc(100% + ${topPaddingFromNode})`,
+        opacity: show ? '1' : '0',
+        pointerEvents: show ? 'all' : 'none',
+        display: show ? 'block' : 'none'
+      } : {
+        top: `calc(100% + ${topPaddingFromNode})`,
+        opacity: show ? '1' : '0',
+        pointerEvents: show ? 'all' : 'none',
+        display: show ? 'block' : 'none'
+      }} className={styles.popup_node}>
+            {popUpNode}
+      </div>
+  </div>
+  );
+};
 
 const AdvantangesSectionCard = ({img,title,description}:AdvantagesSectionCardProps) => {
   return (
@@ -623,15 +826,17 @@ const AdvantangesSectionCard = ({img,title,description}:AdvantagesSectionCardPro
   )
 }
 
-const PopularCategorysCatalogCard = ({img,title,subtitle,width,height,activeIndex,cardIndex}:PopularCategorysCatalogCardProps) => {
+const PopularCategorysCatalogCard = ({icon,title,subtitle,width,height,activeIndex,cardIndex,callback,activeIcon}:PopularCategorysCatalogCardProps) => {
   return (
-    <div style={{backgroundColor: activeIndex == cardIndex ? AppColor.orange : AppColor.white}} className={styles.popular_categorys_card}>
-      <img src={img} width={width} height={height} alt="image" />
+    <div
+    onClick={() => callback(cardIndex)}
+    style={{backgroundColor: activeIndex == cardIndex ? AppColor.orange : AppColor.white}} className={`${styles.popular_categorys_card} cursor`}>
+      {cardIndex == activeIndex ? activeIcon : icon}
       <div>
         <Typography variant='body5' color={activeIndex == cardIndex ? 'white' : AppColor.transparentBlack}>
         {title}
         </Typography>
-        <Typography variant='body4' color={activeIndex == cardIndex ? 'white' : AppColor.text}>
+        <Typography fontWeight='500' variant='body4' color={activeIndex == cardIndex ? 'white' : AppColor.text}>
         {subtitle}
         </Typography>
       </div>
@@ -667,6 +872,7 @@ const SixSectionCard = ({title,description,image,index}: sixSectionCardProps) =>
           {title}
         </Typography>
         <span className={styles.orange_line}></span>
+        <SizeBox height='5px'/>
         <Typography variant='body1' fontWeight='400' textAlign='center'>
           {description}
         </Typography>

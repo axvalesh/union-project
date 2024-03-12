@@ -24,5 +24,21 @@
 .wrapper_scroll {
     padding-right: 15px;
     overflow-y: auto;
-    @include scrollStyles;
+    @-moz-document url-prefix() {
+        scrollbar-width: thin;
+        scrollbar-color: $orange $white;
+    }
+  
+    &::-webkit-scrollbar {
+        width: 5px;  /* Width of the scrollbar */
+        background-color: $white;
+        border-radius: 20px;
+    }
+    
+  
+    &::-webkit-scrollbar-thumb {
+        background-color: $orange;  /* Color of the thumb */
+        border-radius: 1px;  /* Rounded corners of the thumb */
+        border-radius: 20px;
+    }
 }

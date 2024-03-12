@@ -24,6 +24,7 @@ type MessengerPageProps = {
 }
 const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
 
+    const [showSidebar,setShowSidebar] = useState(false);
     const desktopRef = useRef(null);
 
     useEffect(() => {
@@ -41,6 +42,28 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
               setVisible(true);
             }, 0);
       }, []);
+
+      const [sidebarStyles,setSidebarStyles] = useState(styles.show_sidebar_white);
+
+      const [isSidebarChangeGoing,setIsSidebarChangeGoing] = useState(false);
+
+      useEffect(() => {
+
+        if(isSidebarChangeGoing) return;
+
+        setIsSidebarChangeGoing(true);
+
+        setTimeout(() => {
+            if(showSidebar) {
+                setSidebarStyles(styles.show_sidebar_white);
+            } else {
+                setSidebarStyles(styles.hide_sidebar_white);
+            }
+            setIsSidebarChangeGoing(false);
+        },200)
+        
+      },[showSidebar]);
+      
 
       
 
@@ -96,7 +119,7 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
     
                             <div className='gap_20'>
                                 <AppColor.searchIconBlack />
-                                <AppColor.sidebarExpand />
+                                <AppColor.sidebarExpand onClick={() => {setShowSidebar(prev => !prev)}} className='cursor' />
                                 <AppColor.chevronBottom fill={AppColor.text}/>
                             </div>
                         </div>
@@ -127,118 +150,120 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
                     </div>
 
                     </div>
-                    <div className={styles.white_background_right}>
-                        <DynamicPadding desktop='30px' mobile='20px'/>
-                        <div className={styles.top_image_wrapper}>
-                            <div className={styles.absolute_left}>
-                                <div className={styles.border_item}>
-                                    <AppColor.threePoints />
+           
+                        <div className={`${styles.white_background_right} ${showSidebar ? styles.show_sidebar : styles.remove_sidebar}`}>
+                            <DynamicPadding desktop='30px' mobile='20px'/>
+                            <div className={styles.top_image_wrapper}>
+                                <div className={styles.absolute_left}>
+                                    <div className={styles.border_item}>
+                                        <AppColor.threePoints />
+                                    </div>
+                                    <div className={styles.border_item}>
+                                        <div style={{display: 'flex',marginLeft: '4px'}}><AppColor.notes /></div>
+                                    </div>
+                                    <div className={styles.border_item}>
+                                        <AppColor.heart fill={AppColor.orange} />
+                                    </div>
                                 </div>
-                                <div className={styles.border_item}>
-                                    <div style={{display: 'flex',marginLeft: '4px'}}><AppColor.notes /></div>
+                                <div style={{position: 'relative',display: 'flex'}}>
+                                <img src={fakeUserConstant.image} width={'124px'} height={'124px'} alt="" />
+                                <div style={{width: '22px',height: '22px'}} className={styles.status_active}></div>
                                 </div>
-                                <div className={styles.border_item}>
-                                    <AppColor.heart fill={AppColor.orange} />
+                                <SizeBox height='20px'/>
+                                <div className='gap_5'>
+                                    <AppColor.UkraineFlagIcon />
+                                    <Typography textLineHeight='1' variant='body3' fontWeight='500'>Artem M.</Typography>
                                 </div>
+                                <SizeBox height='15px'/>
+                                <div className='gap_5'>
+                                    <Typography variant='body4' color={AppColor.orange}>Freelancer</Typography>
+                                    <AppColor.chevronBottom fill={AppColor.orange} height={'6px'} width={'12px'}/>
+                                </div>
+                                <SizeBox height='15px'/>
+    
+                                <MyButtonOrange width='100%' textTransform='uppercase' onClick={() => {}}>
+                                Send message <div className={styles.white}>
+                                    <Typography variant='body5' color={AppColor.orange}>3</Typography>
+                                </div>
+                                </MyButtonOrange>
+                                <SizeBox height='15px'/>
+                                <MyButtonTransparentOrange disabled={true} width='100%' textTransform='uppercase' onClick={() => {}}>
+                                CReate
+                                </MyButtonTransparentOrange>
+                                <SizeBox height='15px'/>
+                                <HorizontalLine />
+                                
                             </div>
-                            <div style={{position: 'relative',display: 'flex'}}>
-                            <img src={fakeUserConstant.image} width={'124px'} height={'124px'} alt="" />
-                            <div style={{width: '22px',height: '22px'}} className={styles.status_active}></div>
+                           <div className={styles.padding_desktop}>
+                           <SizeBox height='20px'/>
+                            <div className='flex_space_between'>
+                                <div className='gap_10'>
+                                    <Typography variant='body3' fontWeight='500'>Notifications</Typography>
+                                    <div className='black_box'>
+                                        <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>12</Typography>
+                                    </div>
+                                </div>
+                                <Typography variant='body5' fontWeight='500' color={AppColor.transparentBlack}>View All</Typography>
                             </div>
                             <SizeBox height='20px'/>
-                            <div className='gap_5'>
-                                <AppColor.UkraineFlagIcon />
-                                <Typography textLineHeight='1' variant='body3' fontWeight='500'>Artem M.</Typography>
-                            </div>
-                            <SizeBox height='15px'/>
-                            <div className='gap_5'>
-                                <Typography variant='body4' color={AppColor.orange}>Freelancer</Typography>
-                                <AppColor.chevronBottom fill={AppColor.orange} height={'6px'} width={'12px'}/>
-                            </div>
-                            <SizeBox height='15px'/>
-
-                            <MyButtonOrange width='100%' textTransform='uppercase' onClick={() => {}}>
-                            Send message <div className={styles.white}>
-                                <Typography variant='body5' color={AppColor.orange}>3</Typography>
-                            </div>
-                            </MyButtonOrange>
-                            <SizeBox height='15px'/>
-                            <MyButtonTransparentOrange disabled={true} width='100%' textTransform='uppercase' onClick={() => {}}>
-                            CReate
-                            </MyButtonTransparentOrange>
-                            <SizeBox height='15px'/>
-                            <HorizontalLine />
-                            
-                        </div>
-                       <div className={styles.padding_desktop}>
-                       <SizeBox height='20px'/>
-                        <div className='flex_space_between'>
-                            <div className='gap_10'>
-                                <Typography variant='body3' fontWeight='500'>Notifications</Typography>
-                                <div className='black_box'>
-                                    <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>12</Typography>
-                                </div>
-                            </div>
-                            <Typography variant='body5' fontWeight='500' color={AppColor.transparentBlack}>View All</Typography>
-                        </div>
-                        <SizeBox height='20px'/>
-                       <div className={styles.noticication_wrapper}>
-                            <NotificationItem 
-                                notText='sent files to Logo by sample in vector in maximum project '
-                                fileTitle='requirements'  
-                            />
+                           <div className={styles.noticication_wrapper}>
+                                <NotificationItem 
+                                    notText='sent files to Logo by sample in vector in maximum project '
+                                    fileTitle='requirements'  
+                                />
+        
+                                <NotificationItem 
+                                    notText='sent files to Logo by sample in vector in maximum project '
+                                    offer={{
+                                        budget: '$300',
+                                        deadline: '4 days',
+                                    }} 
+                                />
+                           </div>
     
-                            <NotificationItem 
-                                notText='sent files to Logo by sample in vector in maximum project '
-                                offer={{
-                                    budget: '$300',
-                                    deadline: '4 days',
-                                }} 
-                            />
-                       </div>
-
-                       <SizeBox height='20px'/>
-                       <HorizontalLine />
-                       <SizeBox height='20px'/>
-                        <div className='flex_space_between'>
+                           <SizeBox height='20px'/>
+                           <HorizontalLine />
+                           <SizeBox height='20px'/>
+                            <div className='flex_space_between'>
+                                <div className='gap_10'>
+                                    <Typography variant='body3' fontWeight='500'>Files</Typography>
+                                    <div className='black_box'>
+                                        <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>12</Typography>
+                                    </div>
+                                </div>
+                                <Typography variant='body5' fontWeight='500' color={AppColor.transparentBlack}>View All</Typography>
+                            </div>
+                                
+                           </div>
+                           <SizeBox height='20px'/>
+                                <FileItemNotific />
+                                <FileItemNotific />
+                                <FileItemNotific />
+                                <div className={styles.padding_desktop}>
+                        <SizeBox height='20px'/>
+                           <HorizontalLine />
+                           <SizeBox height='20px'/>
+                            <div className='flex_space_between'>
+                                <div className='gap_10'>
+                                    <Typography variant='body3' fontWeight='500'>Common Activity</Typography>
+                                    <div className='black_box'>
+                                        <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>1</Typography>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                            <SizeBox height='20px'/>
                             <div className='gap_10'>
-                                <Typography variant='body3' fontWeight='500'>Files</Typography>
-                                <div className='black_box'>
-                                    <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>12</Typography>
+                                <img src={fakeUserConstant.image} width={'38px'} height={'38px'} alt="" />
+                                <div className={styles.flex_column}>
+                                    <Typography variant='body5' fontWeight='500'>Logo by sample in vector in maximum  </Typography>
+                                    <SizeBox height='5px'/>
+                                    <Typography fontSizeStatic='12px' color={AppColor.transparentBlack}>Feb 26, 2022 07:39 </Typography>
                                 </div>
                             </div>
-                            <Typography variant='body5' fontWeight='500' color={AppColor.transparentBlack}>View All</Typography>
+                            <SizeBox height='20px'/>
+                    
                         </div>
-                            
-                       </div>
-                       <SizeBox height='20px'/>
-                            <FileItemNotific />
-                            <FileItemNotific />
-                            <FileItemNotific />
-                            <div className={styles.padding_desktop}>
-                    <SizeBox height='20px'/>
-                       <HorizontalLine />
-                       <SizeBox height='20px'/>
-                        <div className='flex_space_between'>
-                            <div className='gap_10'>
-                                <Typography variant='body3' fontWeight='500'>Common Activity</Typography>
-                                <div className='black_box'>
-                                    <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>1</Typography>
-                                </div>
-                            </div>
-                          
-                        </div>
-                        <SizeBox height='20px'/>
-                        <div className='gap_10'>
-                            <img src={fakeUserConstant.image} width={'38px'} height={'38px'} alt="" />
-                            <div className={styles.flex_column}>
-                                <Typography variant='body5' fontWeight='500'>Logo by sample in vector in maximum  </Typography>
-                                <SizeBox height='5px'/>
-                                <Typography fontSizeStatic='12px' color={AppColor.transparentBlack}>Feb 26, 2022 07:39 </Typography>
-                            </div>
-                        </div>
-                        <SizeBox height='20px'/>
-                    </div>
                     </div>
                     
                 </div>
@@ -429,7 +454,7 @@ const CommentPreview = () => {
     return (
         <div onClick={() => {setShowModal(true);}} className={styles.comment_preview}>
             <div className='flex_space_between'>
-                <UserAvatar preventMobileNone={true} flag={<AppColor.UkraineFlagIcon/>} activeAgoRole='1 min ago' active={true} name={fakeUserConstant.name} url={fakeUserConstant.image} role='Customer'/>
+                <UserAvatar preventMobileNone={true} flag={<AppColor.UkraineFlagIcon/>} activeAgoRole='1 min ago' active={true} name={fakeUserConstant.name} roleColor='#F2C94C' url={fakeUserConstant.image} role='Searching'/>
                 <div className={styles.orange_box}>
                     <Typography variant='body5' fontWeight='500' color='white'>3</Typography>
                 </div>

@@ -83,7 +83,7 @@ const CreateSponsorshipDetails = () => {
  
                              <div className={'flex_space_between'}>
                                      <ChevronMoveTo variant='left' onClick={() => {}} text='Step back' title='cancel' />
-                                     <ChevronMoveTo variant='right' onClick={() => {}} text='Next step' title='Negotiation' />
+                                     <ChevronMoveTo  variant='right' onClick={() => {}} text='Next step' title='Negotiation' />
                              </div>
                          </div>
                     </div>

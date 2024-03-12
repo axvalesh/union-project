@@ -12,7 +12,8 @@
 
 .wrapper_top {
     display: flex;
-    align-items: end;
+    align-items: stretch;
+    gap: 10px;
 }
 
 .flex_column_details {

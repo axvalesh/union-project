@@ -112,17 +112,40 @@
     >li {
         cursor: pointer;
         display: flex;
-        gap: 19px;
+        gap: 20px;
+        align-items: start;
 
         >ul {
             transition: all 0.3s ease;
+
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            
+            
+            svg {
+                width: 10px;
+                height: 6px;
+            }
+
+            >div  {
+                &::before {
+                display: block;
+                content: attr(title);
+                font-weight: 500;
+                height: 0;
+                overflow: hidden;
+                visibility: hidden;
+                }
+            }
             &:hover {
                 fill: $orange;
                 font-weight: 500;
                 color: $orange;
             }
         }
-        >ul:hover * {
+
+        >ul:hover svg {
              
                 fill: $orange;
             
@@ -159,7 +182,7 @@
 }
 .hover_wrapper {
     position: absolute;
-    top: calc(100% + 14px);
+    top: calc(100% + 1px);
     right: 0;
     left: 0;
     z-index: 3;
@@ -169,7 +192,18 @@
     display: none;
 }
 
+.bottom_line {
+    display: none;
+}
 @media (min-width: 1000px) {
+    .bottom_line {
+        display: block;
+    }
+    .fixed_header {
+        -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.11);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.11);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.11);
+    }
 
     .header__container {
         display: flex;

@@ -3,7 +3,7 @@
     width: 100%;
     flex-direction: column;
     gap: 20px;
-    overflow-y: auto;
+    max-height: 200px;
     
     @include scrollStyles;
 }

@@ -265,7 +265,35 @@ export const RelatedTopics = () => {
             <div className={styles.related_topics}>
                 {tmp.slice(0,showCount).map((item) => <div className='gap_5'>
                     <AppColor.questionFaq />
-                    <Typography variant='body4'>What is Uniano?</Typography>
+                    <Typography className='underline_appearance' variant='body4'>What is Uniano?</Typography>
+                </div>)}
+            </div>
+            <SizeBox height='20px' />
+           {showCount < tmp.length &&  <div onClick={() => {setShowCount(prev => prev+4)}} className={`${styles.border_cehvron} cursor`}>
+                <AppColor.chevronBottom fill={AppColor.text} />
+            </div>}
+            {showCount < tmp.length && <SizeBox height='20px' />}
+        </div>
+    )
+}
+
+
+type TopicsComponentProps = {
+    title: string;
+}
+export const TopicsComponent = ({title}:TopicsComponentProps) => {
+    const tmp = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    const [showCount,setShowCount] = useState(4);
+    return (
+        <div>
+            <Typography variant='body4' fontWeight='500'>
+            {title}
+            </Typography>
+            <SizeBox height='20px' />
+            <div className={styles.related_topics}>
+                {tmp.slice(0,showCount).map((item) => <div className='gap_5'>
+                    <AppColor.questionFaq />
+                    <Typography className='underline_appearance' variant='body4'>What is Uniano?</Typography>
                 </div>)}
             </div>
             <SizeBox height='20px' />

@@ -5,8 +5,6 @@ import Typography from '../Typography/Typography';
 import InputCommon from '../inputs/InputCommon';
 import PopUpBottom from '../../ModalPopUps/PopUpBottom';
 import { useRef, useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import DynamicPadding from '../DynamicPadding';
 import MyCheckbox from '../inputs/Checkbox';
 import SizeBox from '../SizeBox';
@@ -18,21 +16,81 @@ import DropdownRecent from './components/DropdownRecent';
 import ButtonChooseList from '../../ButtonChooseList';
 import ButtonsSelectList from '../../ButtonsSelectList';
 import MyButtonTransparentOrange from '../MyButton/variants/MyButtonTransparentOrange';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import HorizontalLine from '../Lines/HorizontalLine';
+import MyButtonTransparent from '../MyButton/variants/MyButtonTransparent';
+import MyButtonOrange from '../MyButton/variants/MyButtonOrange';
+
+
 
 type SearchFilterBarProps = {
      recent?: boolean;
      date?: string;
      exportIcon?: boolean;
 }
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+
 const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
 
 
      const [selectedFilters,setSelectedFilters] = useState<string[]>([]);
 
-     const [startDate, setStartDate] = useState(new Date());
-
      const [categoriesMore,setCategoriesMore] = useState(false);
+     const [dateState, setDateState] = useState<Value>();
+     const onChange = (newDate) => {
+          setDateState(newDate);
+        };
 
+     const handleLastWeekClick = () => {
+          const today = new Date();
+          const lastWeek = new Date(today);
+          lastWeek.setDate(today.getDate() - 7);
+      
+          setDateState([lastWeek,today ]);
+        };
+        const handleLastTwoWeeks = () => {
+          const today = new Date();
+          const lastWeek = new Date(today);
+          lastWeek.setDate(today.getDate() - 14);
+      
+          setDateState([lastWeek,today ]);
+        };
+        const handleLastMonth = () => {
+          const today = new Date();
+          const lastMonth = new Date(today);
+          lastMonth.setMonth(today.getMonth() - 1);
+
+      
+          setDateState([lastMonth,today ]);
+        };
+        const handleLastThreeMonth = () => {
+          const today = new Date();
+          const lastMonth = new Date(today);
+          lastMonth.setMonth(today.getMonth() - 3);
+      
+          setDateState([lastMonth,today ]);
+        };
+        const handleLastYear = () => {
+          const today = new Date();
+          const lastMonth = new Date(today);
+          lastMonth.setMonth(today.getMonth() - 12);
+      
+          setDateState([lastMonth,today ]);
+        };
+       
+        const handleFirstDayOfMonth = () => {
+          const today = new Date();
+          const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        
+      
+          setDateState([firstDayOfMonth,today ]);
+        };
+       
     return (
       <div className={styles.wrapper}>
            <InputCommon 
@@ -50,18 +108,85 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
                                              <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>{date}</Typography>
                                         </div>
                                     }
-                                    popUpNode={<div>
-                                       <Calendar 
-                                        locale='en-US'
-                                        calendarType='iso8601'
-                                        formatShortWeekday={(locale, date) => {
-                                             const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-                                             return weekdays[date.getDay()];
-                                         }}
+                                    popUpNode={<div className={styles.calendar_wrapper} style={{display: 'flex'}}>
+                                        <div className={styles.date_grid}>
+                                             <DateText onClick={handleLastWeekClick} text={'Last 7 days'} />
+                                             <DateText onClick={handleLastTwoWeeks} text={'Last 14 days'} />
+                                             <DateText onClick={handleLastMonth} text={'Last 30 days'} />
+                                             <DateText onClick={handleLastThreeMonth} text={'Last 3 months'} />
+                                             <DateText onClick={handleLastYear} text={'Last 12 months'} />
+                                             <DateText onClick={handleFirstDayOfMonth} text={'Month to date'} />
+                                             <DateText onClick={() => {}} text={'Quarter to date'} />
+                                             <DateText onClick={() => {}} text={'All time'} />
+                                             <DateText onClick={() => {}} text={'Custom'} />
+                                        </div>
+                                        <div className={styles.vertical_line}></div>
+                                    <div>
+                                          <div style={{display: 'flex'}}>
+                                             <div  className={styles.calendar_item_wrapper}>
+                                                  <Calendar
+                                                   
+                                                        next2AriaLabel={null}
+                                                        prev2AriaLabel={null}
+                                                        prev2Label={null}
+                                                        next2Label={null}
+                                                       onChange={onChange}
+                                                       value={dateState}
+                                                       selectRange={true}
+                                                       locale='en-US'
+                                                      
+                                                       calendarType='iso8601'
+                                                       
+                                                       formatShortWeekday={(locale, date) => {
+                                                            const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+                                                            return weekdays[date.getDay()];
+                                                        }}
+                                                  />
+                                             </div>
+                                             <div className={styles.vertical_line}></div>
+                                             <div className={styles.calendar_item_wrapper}>
+                                                  <Calendar
+                                              
+                                                            next2AriaLabel={null}
+                                                            prev2AriaLabel={null}
+                                                            prev2Label={null}
+                                                            next2Label={null}
+                                                            onChange={onChange}
+                                                            value={dateState}
+                                                            selectRange={true}
+                                                            locale='en-US'
+                                                            
+                                                       
+                                                            calendarType='iso8601'
+                                                            
+                                                            formatShortWeekday={(locale, date) => {
+                                                                 const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+                                                                 return weekdays[date.getDay()];
+                                                            }}
+                                                       />
+                                             </div>
+                                          </div>
+                                          <HorizontalLine />
 
-                                         selectRange={true}
-                                         
-                                       />
+                                          <div className={styles.full_space}>
+                                               <div className='gap_10'>
+                                                  <div className='gap_10'>
+                                                       <DayPreviwBox text={'10/29/22'} />
+                                                       <AppColor.minus fill={AppColor.text} />
+                                                       <DayPreviwBox text={'10/29/22'} />
+                                                  </div>
+     
+                                                  <div className='gap_10' style={{marginLeft: 'auto'}}>
+                                                       <MyButtonTransparent fontWeight='500' onClick={() => {}} textTransform='uppercase'>
+                                                       Cancel
+                                                       </MyButtonTransparent>
+                                                       <MyButtonOrange fontWeight='500' onClick={() => {}} textTransform='uppercase'>
+                                                       Save
+                                                       </MyButtonOrange>
+                                                  </div>
+                                               </div>
+                                          </div>
+                                    </div>
                                     </div>}
                                     topPaddingFromNode='30px'
                                 />
@@ -227,6 +352,23 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
       </div>
     );
 };
+
+
+
+const DayPreviwBox = ({text}) => {
+     return (
+          <div className={styles.day_preview_box}>
+               <Typography variant='body4'>{text}</Typography>
+          </div>
+     )
+}
+const DateText = ({text,onClick}) => {
+     return (
+          <div onClick={onClick} className={styles.date_text_hover}>
+               <Typography textLineHeight='1' variant='body5'>{text}</Typography>
+          </div>
+     )
+}
 
 
 export const FilterTags = () => {

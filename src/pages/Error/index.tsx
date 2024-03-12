@@ -38,7 +38,7 @@ const Error = () => {
               Oops! That page can’t be found.          
             </Typography>
            <div className={styles.block_margin}>
-            <Typography variant="body4" textAlign="center">
+            <Typography variant="body4" textAlign="center" color={AppColor.transparentBlack}>
                 It looks like nothing was found at this location. Maybe try one of the links below or a search?
               </Typography>
            </div>

@@ -48,7 +48,7 @@ const CreateTeamButton = () => {
         <>
             <PlusButton callbackOpen={() => {setShowModal(true)}} />
              {showModal && <ModalCenterBasic
-              desktopMinWidth='360px' bottomPartPadding='30px' callbackClose={() => {setShowModal(false)}} title='Add mission'
+              desktopMinWidth='360px' bottomPartPadding='30px' callbackClose={() => {setShowModal(false)}} title='Add team'
                 nodesBeforeClose={[<AppColor.template />]} 
              >
 

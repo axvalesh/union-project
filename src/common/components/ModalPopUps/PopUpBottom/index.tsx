@@ -16,8 +16,6 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
 
     const [show,setShow] = useState(false);
 
-    const [hovered, eventHandlers] = useHover({delayInMilliseconds: 1000,hoverDelay: 150});
-
     const nodeRef = useRef(null);
     useEffect(() => {
      const handleOutsideClick = (event: MouseEvent) => {

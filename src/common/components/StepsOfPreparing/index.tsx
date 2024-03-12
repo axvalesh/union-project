@@ -33,7 +33,7 @@ type StepItemProps = {
 export const StepItem = ({solve,text,drawLine,onSolveClick,afterTextNode}:StepItemProps) => {
     return (
         <div className={styles.step_item}>
-            <div className={styles.step_verical_wrapper}>
+            <div className={styles.step_verical_wrapper_solving}>
                 <div className={styles.box_true}><AppColor.singTrue width={'14px'} height={'10px'} stroke={AppColor.orange} /></div>
                 {drawLine && <div className={styles.vertical_line}></div>}
             </div>
@@ -60,13 +60,14 @@ type StepItemSolvingProps = {
     title: string;
     stepNumber: string;
     solveNode: React.ReactNode;
+    drawLine?: boolean;
 }
-export const StepItemSolving = ({solveNode,stepNumber,title}:StepItemSolvingProps) => {
+export const StepItemSolving = ({solveNode,stepNumber,title,drawLine=true}:StepItemSolvingProps) => {
     return (
         <div className={styles.step_item}>
             <div className={styles.step_verical_wrapper_solving}>
                 <div className={styles.box_true}><Typography variant='body4' fontWeight='500'>{stepNumber}</Typography></div>
-                <div className={styles.vertical_line}></div>
+                <div style={{opacity: drawLine ? '1' : '0'}} className={styles.vertical_line}></div>
             </div>
             <div style={{width: '100%'}}>
                 <SizeBox height='5px'/>
@@ -85,6 +86,7 @@ type StepsOfPreparingEndSolvingProps ={
      solve: string; 
      onSolveClick: () => void;
      afterTextNode?: React.ReactNode;
+     drawLine?: boolean;
     }[];
     solvingNode: React.ReactNode;
  }
@@ -93,7 +95,7 @@ export const StepsOfPreparingEndSolving = ({elements,solvingNode}:StepsOfPrepari
      return (
        <div className={styles.steps_grid}>
             {elements.map((item,index) =>
-                 <StepItem afterTextNode={item.afterTextNode} drawLine={true} solve={item.solve} onSolveClick={item.onSolveClick} text={item.text}/>
+                 <StepItem afterTextNode={item.afterTextNode} drawLine={item.drawLine ?? true} solve={item.solve} onSolveClick={item.onSolveClick} text={item.text}/>
              )}
              {solvingNode}
        </div>

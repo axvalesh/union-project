@@ -9,6 +9,7 @@ import { ActivityItem } from '@common/components/ui/Dropdown/DropdownNodes/varia
 import { fakeUserConstant } from '@common/models/user';
 import SavedItem from './components/SavedItem';
 import TemplateItem from './components/TemplateItem';
+import DropdownNumber from '@common/components/ui/SearchFilterBar/components/DropdownNumber/index';
 
 
 const topFilters = [
@@ -50,6 +51,8 @@ type MapItemProps = {
     activeBottomSelect?: string;
 }
 const MapItem = ({activeSelection}:MapItemProps) => {
+
+    const [savedActiveOpenFilter,setSavedActiveOpenFilter] = useState(0);
     const mapItems = {
         'Roadmap': [
             <Roadmap 
@@ -58,13 +61,13 @@ const MapItem = ({activeSelection}:MapItemProps) => {
                 completed={false}
             />,
             <Roadmap 
-                text='You can upload or update your profile picture in Settings - Profile'
+                text='Provide complete information about yourself'
                 title='Upload your profile picture'
                 completed={true}
                 steps=' 1 of 12 completed'
             />,
             <Roadmap 
-                text='You can upload or update your profile picture in Settings - Profile'
+                text='Provide complete information about yourself'
                 title='Upload your profile picture'
                 completed={true}
                 steps=' 1 of 12 completed'
@@ -100,9 +103,9 @@ const MapItem = ({activeSelection}:MapItemProps) => {
             />
         ],
         'Saved & Notes': [
-            <SavedItem text='Odio purus ac ac sem vitae pulvinar viverra lacus, lectus. Cure pa lactus.' />,
-            <SavedItem />,
-            <SavedItem />,
+            <SavedItem index={1} callback={(item) => {setSavedActiveOpenFilter(item)}} activeOpenFilter={savedActiveOpenFilter} text='Odio purus ac ac sem vitae pulvinar viverra lacus, lectus. Cure pa lactus.' />,
+            <SavedItem index={2} callback={(item) => {setSavedActiveOpenFilter(item)}} activeOpenFilter={savedActiveOpenFilter} />,
+            <SavedItem index={3} callback={(item) => {setSavedActiveOpenFilter(item)}} activeOpenFilter={savedActiveOpenFilter} />,
         ],
         'Templates': [
             <TemplateItem />,
@@ -141,25 +144,39 @@ const MapItemBottom = ({activeSelection,activeBottomSelect,callbackBottom}:MapIt
             <div className={styles.bottom_part_padding}>
                 <div className={styles.bottom_buttons}>
                     {selectedItems.map(item =>
-                        <div className='cursor' onClick={() => {callbackBottom(item)}}>
-                            <Typography color={item == activeBottomSelect ? AppColor.orange : AppColor.text}
-                            fontWeight={item == activeBottomSelect ? '500' : '400'}
-                            variant='body4'>{item}</Typography>
-                        </div>)}
+
+                            <div          
+                            className='cursor' onClick={() => {callbackBottom(item)}}>
+                          <BottomFilterItem activeBottomSelect={activeBottomSelect} item={item} />
+                            </div>
+                        
+                       )}
                 </div>
                <div className='gap_20'>
                         {activeSelection == 'Saved & Notes' && <Typography variant='body4' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>No list</Typography>}
                         {activeSelection == 'Templates' && <Typography variant='body4' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>Orders</Typography>}
-                   <div className='gap_5'>
-                        <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>
-                            3
-                        </Typography>
-                        <AppColor.chevronBottom fill={AppColor.transparentBlack}/>
-                    </div>
+                   <DropdownNumber />
                </div>
             </div>
         </div>
     );
 }
+
+const BottomFilterItem = ({item,activeBottomSelect}) => {
+
+    const [hovered, setHovered] = useState(false);
+
+    return (
+        <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        className='cursor'>
+        <Typography color={item == activeBottomSelect || hovered ? AppColor.orange : AppColor.text}
+        fontWeight={item == activeBottomSelect ? '500' : '400'}
+        variant='body4'>{item}</Typography>
+        </div>
+    )
+}
+
 
 export default NewsPopUp;

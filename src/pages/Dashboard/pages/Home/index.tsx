@@ -184,10 +184,10 @@ const DashboardHome = () => {
                             <AppColor.wallet />
                         </div>
                           <div>
-                            <Typography color={AppColor.transparentBlack} variant='body9'>
+                            <Typography color={AppColor.transparentBlack}  variant='body9'>
                             Avaliable Balance
                             </Typography>
-                            <Typography variant='body4'>
+                            <Typography fontWeight='500' variant='body4'>
                             $35 032.93
                             </Typography>
                         </div>
@@ -203,7 +203,7 @@ const DashboardHome = () => {
                             <Typography color={AppColor.transparentBlack} variant='body9'>
                             Sponsorhip Balance
                             </Typography>
-                            <Typography variant='body4'>
+                            <Typography fontWeight='500' variant='body4'>
                             $15 031.00
                             </Typography>
                           </div>  
@@ -233,13 +233,36 @@ const DashboardHome = () => {
                     </div>
                 </div>
                 <DynamicPadding
-                    desktop='70px'
-                    mobile='30px'
+                 
                 />
                 <section className={styles.second_section}>
                    <div className={styles.dropdown_first}>
-                        <DropdownNodeRoadmap countNotification={roadmapItems.length}  filters={['All', 'Guide', 'Mission']} roadmapItems={roadmapItems} />
-                       <DropdownNodeActivity filters={['All', 'Service', 'Sponsorship']} countNotification={activityItems.length} activityItems={activityItems} />;
+                        <DropdownNodeRoadmap countNotification={roadmapItems.length}  filters={[{
+                            title: 'All',
+                            hasChildren: true
+                        },
+                        {
+                            title: 'Guide',
+                            hasChildren: false
+                        },
+                        {
+                            title: 'Mission',
+                            hasChildren: true
+                        },
+                       ]} roadmapItems={roadmapItems} />
+                       <DropdownNodeActivity filters={[{
+                            title: 'All',
+                            hasChildren: true
+                        },
+                        {
+                            title: 'Service',
+                            hasChildren: true
+                        },
+                        {
+                            title: 'Sponsorship',
+                            hasChildren: false
+                        },
+                       ]}  countNotification={activityItems.length} activityItems={activityItems} />;
                    </div>
                    <div className={styles.dropdown_second}>
                         <DropdownNode

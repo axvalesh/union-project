@@ -1,4 +1,4 @@
-import { userModel } from 'common/models/user'
+import { fakeUserConstant, userModel } from '@common/models/user'
 import Typography from '../../ui/Typography/Typography'
 import testUserImage from '@assets/images/test-user-image.png'
 import bc_image from '@assets/images/card-time-background.png'
@@ -16,6 +16,7 @@ import CardTypeDisplay from '../CardTypeDisplay/CardTypeDisplay'
 import Urgent from '../../ui/Urgent'
 import { CSSProperties } from 'react';
 import AnimatedSvg from '../../AnimatedSvg'
+import UserAvatar from '../../ui/UserAvatar'
 type CardStatisticPartnershipProps = {
     title: string
     user: userModel
@@ -85,14 +86,16 @@ const CardStatisticPartnership = ({
                     {title}
                 </Typography>
                 <div className={styles.content_top_first}>
-                    <img  src={testUserImage} alt="userImage" />
+                    <UserAvatar variant='image' active={true} name='name' url={fakeUserConstant.image} />
                     <div>
-                        <img src={flagImage} alt="countryFlag" />
-                        <span className={styles.name}>
-                            <Typography variant="body5" color="white">
-                                {user.name}
-                            </Typography>
-                        </span>
+                        <div className='gap_5'>
+                            <img src={flagImage} alt="countryFlag" />
+                            <span className={styles.name}>
+                                <Typography variant="body5" color="white">
+                                    {user.name}
+                                </Typography>
+                            </span>
+                        </div>
                         <Typography
                             variant="body5"
                             color={AppColor.orange}>

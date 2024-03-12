@@ -72,7 +72,7 @@ const Verification = () => {
                     }
                     pageTitle="verification"
                     endNode={
-                        // @ts-ignore
+                    
                         stepsSolved != 3 
                         ? <div className={styles.unverified_wrapper}>
                             <AppColor.closeRed/> <Typography textTransform='uppercase' variant='body4' fontWeight='500'>unverified</Typography>

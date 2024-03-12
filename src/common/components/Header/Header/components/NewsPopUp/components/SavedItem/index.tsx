@@ -20,12 +20,15 @@ import UserListSelect from '@common/components/ui/UserListSelect/index';
 
 type SavedItemProps = {
     text?: string;
+    callback: (item:number) => void;
+    activeOpenFilter: number;
+    index: number;
 }
 
 const listFilters = [
     'No list','My services','Freelancers','My partners'
 ]
-const SavedItem = ({text}:SavedItemProps) => {
+const SavedItem = ({text,activeOpenFilter,callback,index}:SavedItemProps) => {
 
     const [listFilter,setListFilter] = useState('My freelancers');
     const [showModal,setShowModal] = useState(false);
@@ -43,21 +46,21 @@ const SavedItem = ({text}:SavedItemProps) => {
         {modalEdit && 
             <ModalCenter onClickHandler={() => {setModalEdit(false)}}>
                 <div className='modal_wrapper_item'>
-                    <div style={{padding: '30px'}} className='flex_space_between'>
+                    <div style={{padding: '20px'}} className='flex_space_between'>
                         <div className='gap_20'>
                             <Typography variant='body3' fontWeight='500'>
                             Note about freelancer
                             </Typography>
-                            <UserListSelect />
+                            <UserListSelect index={index} activeFilterIndex={activeOpenFilter} callback={callback} />
                         </div>
                         <div className='cursor' onClick={() => {setModalEdit(false)}}>
                         <AppColor.close width={'17px'} height={'17px'} fill={AppColor.text}/>
                         </div>
                     </div>
                     <HorizontalLine />
-                    <div style={{padding: '30px'}}>
+                    <div style={{padding: '30px',maxHeight: '100%',overflowY: 'auto'}}>
                             <MessagesDisplay
-                                maxHeight='300px'
+                                maxHeight='60vh'
                                 selectBox={true}
                                 messageColorLeft='#FFF7E9'
                                 messageColorRight='#DDEAEF'
@@ -83,24 +86,12 @@ const SavedItem = ({text}:SavedItemProps) => {
                                         text:'Another text is just for example to shw. My fear of stairs is escalating. ',
                                         time:'08:21',
                                     },
-                                    {
-                                        side:'right',
-                                        text:'My fear of stairs is escalating',
-                                        time:'08:21',
-                                    },
-                                    {
-                                        side:'right',
-                                        text:'My fear of stairs is escalating. Another text is just for example to shw',
-                                        time:'08:21',
-                                    },
-                                    {
-                                        side:'right',
-                                        text:'Another text is just for example to shw',
-                                        time:'08:21',
-                                    },
+                                   
                                 ]}
                             />
+
                             <DynamicPadding desktop='30px' mobile='20px'/>
+
                             <InputBarChat />
                     
                     </div>
@@ -108,7 +99,7 @@ const SavedItem = ({text}:SavedItemProps) => {
             </ModalCenter>}
            <div className={styles.saved_flex}>
              
-                <UserListSelect />
+                <UserListSelect index={index} callback={callback} activeFilterIndex={activeOpenFilter} />
        
                <div className={styles.icons_grid}>
                     <div className={styles.icon_border}>

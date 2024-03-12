@@ -96,7 +96,7 @@ const PartnershipCompleted = () => {
                     <Typography variant='body3' fontWeight='500'>Tips</Typography>
                     <DynamicPadding desktop='30px' mobile='20px' />
                     
-                    <TipsItem />
+                    <TipsItem description={'Submit a new partnership project with'} firstButtonText={'this program'} secondButtonText={'other programs'} />
                     </div>
                 }
                 item2={
@@ -209,7 +209,7 @@ const PartnershipCompleted = () => {
     );
 };
 
-export const TipsItem =() => {
+export const TipsItem =({description,firstButtonText,secondButtonText}) => {
     const [activeTips,setActiveTips] = useState<string>('5');
     return (
        <div className={styles.tips_main_wrapper}>
@@ -244,11 +244,11 @@ export const TipsItem =() => {
 
             <div className={`box_shadow ${styles.end_node}`}>
                 <div className={styles.absolute_end_node}><AppColor.plus stroke={AppColor.orange}/></div>
-                <Typography variant='body4'>Submit a new partnership project with <span style={{fontWeight: '500'}}>Artem M.</span></Typography>
+                <Typography variant='body4'>{description} <span style={{fontWeight: '500'}}>Artem M.</span></Typography>
                 <DynamicPadding desktop='30px' mobile='15px'/>
                 <div className={styles.buttons_end}>
-                    <MyButtonOrange onClick={() => {}} textTransform='uppercase'>this program</MyButtonOrange>
-                    <MyButtonTransparentOrange onClick={() => {}} textTransform='uppercase'>this program</MyButtonTransparentOrange>
+                    <MyButtonOrange onClick={() => {}} textTransform='uppercase'>{firstButtonText}</MyButtonOrange>
+                    <MyButtonTransparentOrange onClick={() => {}} textTransform='uppercase'>{secondButtonText}</MyButtonTransparentOrange>
                 </div>
             </div>
        </div>

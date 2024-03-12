@@ -16,7 +16,7 @@
 }
 .active {
     position: absolute;
-    top: calc(100% + 50px);
+    top: calc(100% + 35px);
     padding: 15px;
     @include weakShadow;
     z-index: 2;

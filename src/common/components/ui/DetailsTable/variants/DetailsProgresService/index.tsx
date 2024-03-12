@@ -84,6 +84,7 @@ const DetailsProgresService = ({
                                       variant="row"
                                       url={fakeUserConstant.image}
                                       active={true}
+                                      role='Customer'
                                       preventMobileNone={true}
                                       name={currentItem.memberName}
                                   />
@@ -215,6 +216,7 @@ const DropdownMyProgramsItemUser = ({
                     preventMobileNone={true}
                     name={userName}
                     url={fakeUserConstant.image}
+                    role='Customer'
                 />
 
                 <div className={styles.dropdown_text_width}>

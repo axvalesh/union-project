@@ -40,9 +40,13 @@ const ChevronMoveToRight = ({variant,onClick,text,title,disabled,cancel,preview}
             
             style={disabled ? {backgroundColor: 'white'} : {}} onClick={!disabled ? onClick : () => {}} className={`${styles.chevron} cursor`}>
                 {cancel
-                ? <AppColor.close fill={AppColor.text} width={'17px'} height={'17px'}/>
+                ? !hovered
+                    ? <AppColor.close fill={AppColor.text} width={'17px'} height={'17px'}/>
+                    : <AppColor.close fill={'white'} width={'17px'} height={'17px'}/>
                 : preview 
-                ? <AppColor.preview width={'24px'} />
+                ? !hovered
+                    ? <AppColor.preview fill={AppColor.transparentBlack} width={'24px'} />
+                    : <AppColor.preview fill='white' width={'24px'} />
                 : hovered
                 ? <AppColor.longRightWhite width={'24px'} />
                 : <AppColor.longChevronRight width={'24px'} />}

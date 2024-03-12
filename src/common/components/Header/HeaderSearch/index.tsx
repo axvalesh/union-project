@@ -5,7 +5,7 @@ import PercentBar from '@common/components/ui/PercentBar/PercentBar';
 import Typography from '@common/components/ui/Typography/Typography';
 import Logo from '@common/components/Logo/Logo';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type HeaderSearchProps = {
         allItemsProgress: string[];
@@ -45,10 +45,12 @@ const HeaderSearch = ({allItemsProgress,currentItemProgress}:HeaderSearchProps) 
                             )}
                         </div>
                     </div>   
-                    <div onClick={() => {navigate(-1)}} className={`${styles.close_box} ${styles.desktop}`}>
-                        <AppColor.close fill='white' width={'16px'} height={'16px'}/>
-                    </div>
-
+                    <Link to={'/dashboard/home'}>
+                        <div className={`${styles.close_box} ${styles.desktop}`}>
+                            <AppColor.close fill='white' width={'16px'} height={'16px'}/>
+                        </div>
+    
+                    </Link>
                     <div className={`${styles.mobile} gap_5` }>
                         <Typography textLineHeight='1' variant='body5' color='white' fontWeight='500'>Category </Typography>
                         <AppColor.chevronBottom fill='white' height={'6px'} width={'12px'}/>

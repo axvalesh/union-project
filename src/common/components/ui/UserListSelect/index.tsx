@@ -14,16 +14,19 @@ import MyButtonOrange from '../MyButton/variants/MyButtonOrange';
 import DynamicPadding from '../DynamicPadding';
 
 
-const UserListSelect = () => {
+const UserListSelect = ({activeFilterIndex,callback,index}) => {
     const [listFilter,setListFilter] = useState('My freelancers');
     const [listFilters,setListFilters] = useState([
         'No list','My services','Freelancers','My partners'
     ]);
-    const [showModal,setShowModal] = useState(false);
 
     const handleClose = (event:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.stopPropagation();
-        setShowModal(prev => !prev)
+        if(activeFilterIndex == index){
+            callback(0);
+        } else {
+            callback(index);
+        }
     }
 
     const [showAddModal,setShowAddModal] = useState(false);
@@ -73,14 +76,16 @@ const UserListSelect = () => {
                     </div>
                     <div onClick={(event) => {handleClose(event)}} className='gap_5 cursor' style={{position: 'relative'}}>
                         <Typography variant='body5' color={AppColor.transparentBlack}>
-                        Users • <span style={{fontWeight: showModal ? '500' : '400'}}>{listFilter}</span> 
+                        Users • <span style={{fontWeight: activeFilterIndex == index ? '500' : '400'}}>{listFilter}</span> 
                     
                         </Typography>
-                        {showModal
-                        ? <AppColor.chevronTop fill={AppColor.transparentBlack}/>
-                        : <AppColor.chevronBottom fill={AppColor.transparentBlack}/>}
+                        <div className={styles.chevrons}>
+                            {activeFilterIndex == index
+                            ? <AppColor.chevronTop fill={AppColor.transparentBlack}/>
+                            : <AppColor.chevronBottom fill={AppColor.transparentBlack}/>}
+                        </div>
 
-                        {showModal && <div className={styles.absolute_show}>
+                        {activeFilterIndex == index && <div className={styles.absolute_show}>
                                     <div className={styles.absolute_top}>
                                         <div onClick={() => {setShowAddModal(true)}} className={`${styles.orange_box} cursor`}>
                                             <AppColor.plus stroke='white'/>

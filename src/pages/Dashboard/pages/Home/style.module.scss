@@ -47,17 +47,22 @@
     align-items: center;
     gap: 10px;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .flex_center_money_green {
     display: flex;
     justify-content: center;
+    margin-top: 5px;
+    gap: 5px;
 
 }
 .flex_center_money_red {
     display: flex;
     align-items: end;
+    margin-bottom: 5px;
     justify-content: center;
+    gap: 5px;
 }
 
 

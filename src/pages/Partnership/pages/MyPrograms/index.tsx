@@ -17,6 +17,7 @@ import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import { fakeUserConstant, userModel } from '@common/models/user';
 import CardsSliderRelated from '@common/components/CardsSliderRelated/index';
+import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
 
 const PartnershipMyPrograms = () => {
 
@@ -39,17 +40,7 @@ const PartnershipMyPrograms = () => {
                     />
                 }
                 endNode={
-                    <div className={styles.details_end_node}>
-                        <MyButtonTransparentOrange
-                            fontWeight="500"
-                            textTransform="uppercase"
-                            onClick={() => {}}>
-                            my programs
-                            <AppColor.chevronBottom
-                                fill={AppColor.orange}
-                            />
-                        </MyButtonTransparentOrange>
-                    </div>
+                    <ButtonDropdownSelect text='My programs' variants={['My programs','2','3']} />
                 }
                 pageTitle="My programs  "
             />

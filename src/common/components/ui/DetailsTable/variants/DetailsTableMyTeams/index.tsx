@@ -46,7 +46,7 @@ const DetailsTableMyTeams = ({information}:DetailsTableMyTeamsProps) => {
 
     return (
      <>
-        {leaveModal && <ModalCenterBasic bottomPartPadding='30px' callbackClose={() => {setLeaveModal(true)}} title='Leave team'
+        {leaveModal && <ModalCenterBasic bottomPartPadding='30px' callbackClose={() => {setLeaveModal(false)}} title='Leave team'
             desktopMaxWidth='360px'>
                 {!requested && <ModalLeaveTemplate
                     text='You can’t leave team Tugas Virtual Solutions while there is a valid contract. '
@@ -119,6 +119,7 @@ const DetailsTableMyTeams = ({information}:DetailsTableMyTeamsProps) => {
                     },
                     {
                         title: 'Position',
+                        maxWidth: '80px',
                         child: <Typography variant='body4'>{currentItem.position}</Typography>
                     },
                     {

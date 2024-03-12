@@ -13,6 +13,7 @@
     background-color: $white;
     padding: 17px 13px;
     border-radius: 20px;
+    height: fit-content;
 }
 
 .justify {
@@ -51,6 +52,7 @@
     }
     .right {
         max-width: 490px;
+        width: 100%;
     }
     .inputs_wrapper {
         grid-template-columns: 1fr 1fr;

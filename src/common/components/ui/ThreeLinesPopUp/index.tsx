@@ -1,6 +1,6 @@
 
 import AppColor from '@common/styles/variables-static';
-import Typography from '../Typography/Typography';
+import Typography, { fontWeight } from '../Typography/Typography';
 import styles from './style.module.scss';
 import { useState } from 'react';
 
@@ -25,12 +25,13 @@ type ItemProps = {
     icon: React.ReactNode;
     onClick?: () => void;
     color?: string;
+    fontWeight?: fontWeight;
 
 }
-const Item = ({ title, icon, onClick,color }:ItemProps) => (
+const Item = ({ title, icon, onClick,color,fontWeight }:ItemProps) => (
     <div style={{whiteSpace: 'nowrap'}} className={`${styles.item} cursor`} onClick={onClick}>
         {icon}
-        <Typography color={color ?? AppColor.text} variant='body5'>{title}</Typography>
+        <Typography className={styles.text_of_item} color={color ?? AppColor.text} variant='body5'>{title}</Typography>
     </div>
 );
 
@@ -46,7 +47,7 @@ export const ThreeLinesPopUpCustom = ({items,positionRight=''}:ThreeLinesPopUpPr
                {items.map((item, index) => <Item key={index} {...item} />)}
           </div>
           <div
-          style={positionRight != '' ? {transform: 'translateX(0)', right: positionRight,left: 'auto'} : {}}
+          style={positionRight != '' ? {transform: 'translateX(50%)', right: positionRight,left: 'auto'} : {}}
           className={styles.triangle}></div>
      </div>
     );
@@ -61,14 +62,19 @@ export const ButtonDropdownSelect = ({text,variants}:ButtonDropdownSelectProps) 
     const [openDropdown,setOpenDropdown] = useState(false);
     const [activeSelection,setActiveSelection] = useState(variants[0]);
 
+    const [hovered,setHovered] = useState(false);
+
     return (
      <div style={{position: 'relative'}}>
-        <div onClick={() => {setOpenDropdown(prev => !prev)}} style={{backgroundColor: openDropdown ? AppColor.orange : 'white'}} className={`${styles.button_active} cursor`}>
-            <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={openDropdown ? 'white' : AppColor.orange}>{activeSelection}</Typography>
+        <div 
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={() => {setOpenDropdown(prev => !prev)}} style={{backgroundColor: openDropdown || hovered ? AppColor.orange : 'white'}} className={`${styles.button_active} cursor`}>
+            <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={openDropdown || hovered ? 'white' : AppColor.orange}>{activeSelection}</Typography>
             {
                 openDropdown
                 ? <AppColor.chevronTop fill={'white'} width={'16px'} height={'8px'} />
-                : <AppColor.chevronBottom fill={AppColor.orange} width={'16px'} height={'8px'} />
+                : <AppColor.chevronBottom fill={hovered ? 'white' : AppColor.orange} width={'16px'} height={'8px'} />
             }
         </div>
     

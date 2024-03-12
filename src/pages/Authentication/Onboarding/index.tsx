@@ -3,10 +3,10 @@ import styles from './style.module.scss'
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange'
 import AppColor from '@common/styles/variables-static'
 
-import image1 from '@assets/images/onboarding-1.png'
-import image2 from '@assets/images/onboarding-2.png'
-import image3 from '@assets/images/onboarding-3.png'
-import image4 from '@assets/images/onboarding-4.png'
+import image1 from '@assets/images/onboarding-1.svg'
+import image2 from '@assets/images/onboarding-2.svg'
+import image3 from '@assets/images/onboarding-3.svg'
+import image4 from '@assets/images/onboarding-4.svg'
 import { useEffect, useState } from 'react'
 import DynamicPadding from '@common/components/ui/DynamicPadding/index'
 import { useNavigate } from 'react-router-dom'
@@ -99,7 +99,7 @@ const Onboarding = () => {
                <div className={styles.button}>
                <MyButtonOrange onClick={() => { 
                     navigate('/start-guide');
-                 }} width="100%">
+                 }} width="100%" padding='15px'>
                     Let’s Start
                 </MyButtonOrange>
                </div>
@@ -118,10 +118,12 @@ type CardProps = {
 const Card = ({ image, text, title,currentIndex,activeIndex }: CardProps) => {
     return (
         <div className={styles.card}>
+            <DynamicPadding desktop='20px' mobile='15px'/>
             <img src={image} alt="" />
+            <DynamicPadding desktop='20px' mobile='15px'/>
             <Typography color={currentIndex == activeIndex ? AppColor.orange : AppColor.text} variant="body8">{title}</Typography>
             <Typography color={currentIndex == activeIndex ? AppColor.orange : AppColor.text} variant="body4" textAlign="center">
-                {text}
+            Posuere sed at erat justo, fames maecenas orci iaculis vel. 
             </Typography>
         </div>
     )

@@ -101,7 +101,7 @@ const ServiceCompleted = () => {
                         <Typography variant='body3' fontWeight='500'>Tips</Typography>
                         <DynamicPadding desktop='30px' mobile='20px'/>
 
-                        <TipsItem />
+                        <TipsItem description={'Start a new service project with'} firstButtonText={'this service'} secondButtonText={'other services'} />
                     </div>
                 }
                 item2={

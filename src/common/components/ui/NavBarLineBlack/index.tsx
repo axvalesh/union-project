@@ -32,7 +32,7 @@ const NavBarLineBlack = ({callback,maxCountPage}: {callback: (item:number) => vo
           className={styles.box}
           style={i == currentPage || hovered ? {opacity: 1} : {}}>
           <Typography
-              variant="body4"
+              variant="subtitle"
               >
               {i}
           </Typography>
@@ -40,14 +40,26 @@ const NavBarLineBlack = ({callback,maxCountPage}: {callback: (item:number) => vo
       : <></>
       )
     }
+
+    const [dotsHovered, setDotsHovered] = useState(false);
+    const [lastHovered, setLastHovered] = useState(false);
+
     numberBoxes.push(
-        currentPage + 30 < maxCountPage && <div className={styles.box}>...</div>,
-        currentPage + 30 < maxCountPage && <div onClick={() => {
+        currentPage + 30 < maxCountPage && <div 
+        onMouseEnter={() => setDotsHovered(true)}
+        onMouseLeave={() => setDotsHovered(false)}
+        style={dotsHovered ? {opacity: 1} : {}}
+         className={styles.box}>...</div>,
+        currentPage + 30 < maxCountPage && <div
+        onMouseEnter={() => setLastHovered(true)}
+        onMouseLeave={() => setLastHovered(false)}
+        style={lastHovered ? {opacity: 1} : {}}
+        onClick={() => {
           if(currentPage+30 < maxCountPage) {
               setCurrentPage(currentPage+30)
             }
       }} className={styles.box}>
-          <Typography variant="body4">{currentPage+30}</Typography>
+          <Typography variant="subtitle">{currentPage+30}</Typography>
       </div>
     )
   

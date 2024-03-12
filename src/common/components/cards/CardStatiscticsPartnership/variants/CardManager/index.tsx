@@ -18,6 +18,7 @@ import { useState } from 'react'
 import UserAvatar from '@common/components/ui/UserAvatar/index'
 import SwitchButton from '@common/components/ui/SwitchButton/index'
 import SizeBox from '@common/components/ui/SizeBox/index'
+import { DisplayArrayOfDetailsProfile } from '@pages/Partnership/pages/Program/index'
 
 type CardManagerProps = {
     title: string
@@ -57,7 +58,7 @@ const CardManager = ({
     switchButton,
     absoluteIcons,
     links,
-    details
+    details,
 }: CardManagerProps) => {
     const flagImage = useGetImage(`flags/${user.country}`, false)
     const [isSelected,setIsSelected] = useState(false);
@@ -165,7 +166,7 @@ const CardManager = ({
                 {links != null && <SizeBox height='15px'/>}
                 {links != null &&
                 <div className={styles.links_wrapper}>
-                    {links.map(item => <Typography textTransform='uppercase' color='white' variant='body5' fontWeight='500'>{item}</Typography>)}
+                    <DisplayArrayOfDetailsProfile array={links}/>
                 </div>}
                 <div className={styles.tags_wrapper}>
                     {tags.map((tag) => (

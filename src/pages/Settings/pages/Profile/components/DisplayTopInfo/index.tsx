@@ -55,7 +55,7 @@ const DisplayTopInfo = ({user}:DisplayTopInfoProps) => {
                     <Typography textLineHeight='1' variant='body3' fontWeight='500'>{user.name} <AppColor.edit className="cursor" onClick={() => {setEditUserName(true)}} fill={AppColor.text}/></Typography>
                 </div>
                 <div className={styles.top_item_flex}>
-                    <MyButtonBlack onClick={() => {}}>Update Profile Picture</MyButtonBlack> <AppColor.close fill={AppColor.red} />
+                    <MyButtonBlack textTransform="uppercase" onClick={() => {}}>Update Profile Picture</MyButtonBlack> <AppColor.close fill={AppColor.red} />
                 </div>
                 <div className={styles.top_item_flex}>
                     <Typography textLineHeight='1' variant='body4'>Must be JPEG, PNG, or GIF and cannot exceed 10MB.</Typography>

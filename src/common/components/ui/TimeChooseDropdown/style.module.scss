@@ -48,6 +48,11 @@
     gap: 10px;
     justify-content: center;
     min-width: 100px;
+
+    svg {
+        width: 15px;
+        height: 7px;
+    }
 }
 
 .item_grid_border {

@@ -353,8 +353,22 @@ import { ReactComponent as chatSolutions} from '@assets/svg/chat_solutions.svg';
 import { ReactComponent as chatDirect} from '@assets/svg/chat_direct.svg';
 import { ReactComponent as chatGroups} from '@assets/svg/chat_groups.svg';
 import { ReactComponent as chatCare} from '@assets/svg/chat_care.svg';
+import { ReactComponent as volumeActiveOrange} from '@assets/svg/volumeActive.svg';
+import { ReactComponent as volumeOff} from '@assets/svg/volumeOff.svg';
+
+import { ReactComponent as cartOrange} from '@assets/svg/cartOrange.svg';
+import { ReactComponent as doubleChevronsUp} from '@assets/svg/double-chevrons-up.svg';
+import { ReactComponent as statusOffline} from '@assets/svg/status-offline.svg';
+
+import { ReactComponent as messageIconWhiteIcon} from '@assets/svg/message-icon-white-icon.svg';
 
 class AppColor {
+    static messageIconWhiteIcon = messageIconWhiteIcon;
+    static doubleChevronsUp = doubleChevronsUp;
+    static statusOffline = statusOffline;   
+    static cartOrange = cartOrange;
+    static volumeOff = volumeOff;
+    static volumeActiveOrange = volumeActiveOrange;
     static chatSolutions = chatSolutions;
     static chatDirect = chatDirect;
     static chatGroups = chatGroups;

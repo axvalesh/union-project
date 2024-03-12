@@ -2,7 +2,9 @@
 .filters_wrapper {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    max-width: 100%;
+    overflow-x: auto;
+    @include scrollStyles;
     gap: 20px;
     
 }
@@ -36,7 +38,7 @@
     cursor: pointer;
     user-select: none;
     transition: 0.15s;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
     &:hover {
         * {
             color: $orange;

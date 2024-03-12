@@ -8,6 +8,14 @@
     }
 }
 
+.hover_text {
+    color: rgba($color: black, $alpha: 0.5);
+    transition: 0.2s;
+
+    &:hover {
+        color: $text;
+    }
+}
 
 .mobile {
     display: flex;

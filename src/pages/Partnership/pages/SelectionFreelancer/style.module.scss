@@ -14,6 +14,12 @@
     grid-template-columns: 1fr;
     gap: 30px;
 }
+.justify_flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .center_card {
     display: flex;
     justify-content: center;

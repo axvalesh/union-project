@@ -7,7 +7,10 @@ import DropdownNumber from "../../SearchFilterBar/components/DropdownNumber";
 type DropdownNodeProps = {
     title:string;
     countNotifications: number;
-    filters: string[];
+    filters: {
+        hasChildren: boolean;
+        title: string;
+    }[];
     dropnodes?: React.ReactNode;
     noneIcon?: any;
     noneTitle?: string;
@@ -19,35 +22,25 @@ type DropdownNodeProps = {
 
 }
 const DropdownNode = ({title,countNotifications,nodeAfterTitle,dropnodes,filters,noneText,noneTitle,noneButton,noneIcon,textAfterCount,callback}:DropdownNodeProps) => {
-    const [isActive,setIsActive] = useState(false);
-    useEffect(() => {
-        if(countNotifications == 0) {
-            setIsActive(true);
-        }
-    },[])
-    const [categoryActiveIndex,setCategoryActiveIndex] = useState(0);
-    function changeState(event: any) {
-        event.stopPropagation();
-        event.nativeEvent.stopImmediatePropagation();
-        if(countNotifications > 0) {
-            setIsActive((prev) => !prev);
-        }
-    }
+   
+    
+    
+    const [categoryActiveIndex, setCategoryActiveIndex] = useState(0);
     return (
       <div className={styles.wrapper}>
-           <div onClick={(event) => {changeState(event)}} className={styles.title_block}>
-                <div className="gap_10">
+           <div  className={styles.title_block}>
+                <div className={`gap_10 ${styles.full_mobile_width}`}>
                     <div className={styles.title_shell}>
-                        <Typography variant="body3" color={isActive ? '#515151' : AppColor.colorWithOpacity('#515151', 0.5)}>
+                        <Typography variant="body3" color={AppColor.text}>
                             {title}
                         </Typography>
                         {countNotifications > 0 ? <span className={styles.count_notifications}> <Typography textLineHeight="100%" variant="body3" fontWeight="500" color="white"> {countNotifications}</Typography></span> : <></>}
                         {textAfterCount}
                         {nodeAfterTitle && nodeAfterTitle}
                     </div>
-                    <div className="mobile">
+                    <div style={{marginLeft: 'auto'}} className="mobile">
                     {countNotifications > 0
-                    ? <div className={styles.close_chevron}>
+                    ? <div  className={styles.close_chevron}>
                     <DropdownNumber />
                 </div>
                 : <></>
@@ -58,10 +51,11 @@ const DropdownNode = ({title,countNotifications,nodeAfterTitle,dropnodes,filters
                 <div className={styles.filter_all_wrapper}>
                 {filters.map((filter,index) =>
                     <FilterItem
-                        text={filter}
+                        hasChildren={filter.hasChildren}
+                        text={filter.title}
                         activeIndex={categoryActiveIndex}
                         itemIndex={index}
-                        onClick={() => { setCategoryActiveIndex(index); callback(filter);}}
+                        onClick={() => { setCategoryActiveIndex(index); callback(filter.title);}}
                     />
                 )}
                 </div>
@@ -75,14 +69,16 @@ const DropdownNode = ({title,countNotifications,nodeAfterTitle,dropnodes,filters
                 }
                 </div>
            </div>
-           <div className={`${isActive ? styles.description_block_active :styles.description_block}`}>
+           <div className={styles.description_block_active}>
                 <div className={styles.horizontal_line}></div>
                 <div className={styles.nodes_hover_wrapper}>
                     {dropnodes != null
                     ? dropnodes
                     : 
                     <div className={styles.none_wrapper}>
-                        {noneIcon}
+                      <div className={styles.icon_wrapper_none}>
+                      {noneIcon}
+                      </div>
                         <Typography variant="body2" fontWeight="500">{noneTitle}</Typography>
                         <Typography variant="body1" fontWeight="400" color={AppColor.transparentBlack}>{noneText}</Typography>
                         {noneButton}
@@ -99,12 +95,17 @@ type FilterItemProps = {
     activeIndex: number;
     itemIndex: number;
     onClick: any;
+    hasChildren: boolean;
 }
-const FilterItem = ({activeIndex,itemIndex,text,onClick}:FilterItemProps) => {
+const FilterItem = ({activeIndex,itemIndex,text,onClick,hasChildren}:FilterItemProps) => {
     const active = activeIndex == itemIndex;
     return ( 
-        <div onClick={onClick} className={styles.filter_wrapper} style={{border: `1px solid ${active ? AppColor.orange : 'transparent'}`}}>
-            <Typography variant="body4" fontWeight={active ? '500' : '400'} color={active ? AppColor.orange : AppColor.text}> {text} </Typography>
+        <div onClick={() => {
+            if(hasChildren) {
+                onClick();
+            }
+        }} className={styles.filter_wrapper} style={{border: `1px solid ${active ? AppColor.orange : 'transparent'}`}}>
+            <Typography variant="body4" fontWeight={active ? '500' : '400'} color={active ? AppColor.orange : !hasChildren ? AppColor.transparentBlack : AppColor.text}> {text} </Typography>
         </div>
     )
 }

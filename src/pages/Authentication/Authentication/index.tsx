@@ -76,20 +76,20 @@ const PinStep = ({callback}:StepProps) => {
 
             </div>
              <div className={styles.center}>
-             <DynamicPadding desktop='0px' mobile='30px'/>
+             <DynamicPadding desktop='0px' mobile='15px'/>
                     <div className={styles.title}>
                     <Typography textTransform='uppercase' variant='titleSmall'>
                     Authentication                             
                     </Typography>
                     </div>
 
-                    <DynamicPadding />  
+                    <DynamicPadding desktop='30px' mobile='15px' />  
                     <Typography  variant='body5' fontWeight='500' color={AppColor.transparentBlack}>Step 2 of 2</Typography>
                     <DynamicPadding desktop='15px' mobile='10px'/>
                     <Typography variant='body3' fontWeight='500'>Enter your PIN </Typography>
                     <DynamicPadding desktop='30px' mobile='20px'/>  
                     <Typography variant='body4'>Enter your 6-digit PIN to continue log in. </Typography>
-                    <DynamicPadding desktop='20px' mobile='10px'/>
+                    <DynamicPadding desktop='30px' mobile='20px'/>
                     <InputBorderText 
                     borderText='PIN  '
                     type='number'
@@ -105,8 +105,8 @@ const PinStep = ({callback}:StepProps) => {
                     <DynamicPadding desktop='30px' mobile='15px'/>
 
                    <div className={styles.flex_end}>
-                        <MyButtonTransparent textTransform='uppercase' onClick={() => {callback('email')}}>Back</MyButtonTransparent>
-                        <MyButtonOrange disabled={pin.length != 6} textTransform='uppercase' onClick={() => {}}>Log in</MyButtonOrange>
+                        <MyButtonTransparent  fontWeight='500' textTransform='uppercase' onClick={() => {callback('email')}}>Back</MyButtonTransparent>
+                        <MyButtonOrange fontWeight='500'  disabled={pin.length != 6} textTransform='uppercase' onClick={() => {}}>Log in</MyButtonOrange>
                    </div>
                 
              </div>
@@ -133,14 +133,14 @@ const PhoneStep = ({callback}:StepProps) => {
             <div>
 
             </div>
-             <div className={styles.center}> <DynamicPadding desktop='0px' mobile='30px'/>
+             <div className={styles.center}> <DynamicPadding desktop='0px' mobile='15px'/>
                     <div className={styles.title}>
                     <Typography textTransform='uppercase' variant='titleSmall'>
                     Authentication                             
                     </Typography>
                     </div>
 
-                    <DynamicPadding />  
+                    <DynamicPadding desktop='50px' mobile='15px' />  
                     
                     
                     <Typography variant='body3' fontWeight='500'>Enter code </Typography>
@@ -163,8 +163,8 @@ const PhoneStep = ({callback}:StepProps) => {
                     <DynamicPadding desktop='30px' mobile='15px'/>
 
                    <div className={styles.flex_end}>
-                        <MyButtonTransparent textTransform='uppercase' onClick={() => {callback('start')}}>Back</MyButtonTransparent>
-                        <MyButtonOrange disabled={verifCode.length != 6} textTransform='uppercase' onClick={() => {}}>Log in</MyButtonOrange>
+                        <MyButtonTransparent fontWeight='500' textTransform='uppercase' onClick={() => {callback('start')}}>Back</MyButtonTransparent>
+                        <MyButtonOrange fontWeight='500' disabled={verifCode.length != 6} textTransform='uppercase' onClick={() => {}}>Log in</MyButtonOrange>
                    </div>
                 
              </div>
@@ -193,20 +193,20 @@ const EmailStep = ({callback}:StepProps) => {
 
                </div>
                 <div className={styles.center}>
-                <DynamicPadding desktop='0px' mobile='30px'/>
+                <DynamicPadding desktop='0px' mobile='15px'/>
                     <div className={styles.title}>
                     <Typography textTransform='uppercase' variant='titleSmall'>
                     Authentication                             
                     </Typography>
                     </div>
 
-                    <DynamicPadding />  
+                    <DynamicPadding desktop='30px' mobile='15px' />  
                     <Typography  variant='body5' fontWeight='500' color={AppColor.transparentBlack}>Step 1 of 2</Typography>
                     <DynamicPadding desktop='15px' mobile='10px'/>
                     <Typography variant='body3' fontWeight='500'>Check your email </Typography>
                     <DynamicPadding desktop='30px' mobile='20px'/>  
                     <Typography variant='body4'>A 6-digit verification code has been sent to <span style={{fontWeight: '500'}}>in***@gmail.com.</span> Enter it below. </Typography>
-                    <DynamicPadding desktop='20px' mobile='10px'/>
+                    <DynamicPadding desktop='30px' mobile='20px'/>
                     <InputBorderText 
                     type='number'
                     borderText='Verification code '
@@ -231,8 +231,8 @@ const EmailStep = ({callback}:StepProps) => {
                     <DynamicPadding desktop='30px' mobile='15px'/>
 
                    <div className={styles.flex_end}>
-                        <MyButtonTransparent textTransform='uppercase' onClick={() => {callback('start')}}>Back</MyButtonTransparent>
-                        <MyButtonOrange disabled={verifCode.length != 6} textTransform='uppercase' onClick={() => {callback('pin')}}>Continue</MyButtonOrange>
+                        <MyButtonTransparent fontWeight='500' textTransform='uppercase' onClick={() => {callback('start')}}>Back</MyButtonTransparent>
+                        <MyButtonOrange  fontWeight='500' disabled={verifCode.length != 6} textTransform='uppercase' onClick={() => {callback('pin')}}>Continue</MyButtonOrange>
                    </div>
                    
                 </div>
@@ -290,8 +290,8 @@ const BeginStep = ({callback}:StepProps) => {
                     <DynamicPadding desktop='40px' mobile='15px'/>
 
                    <div className={styles.flex_end}>
-                        <Link to={'/recovery'}><MyButtonTransparent textTransform='uppercase' onClick={() => {}}>Cancel</MyButtonTransparent></Link>
-                        <MyButtonOrange textTransform='uppercase' onClick={() => {callback(selectedVariant == 1 ? 'phone' : 'email')}}>Next</MyButtonOrange>
+                        <Link to={'/recovery'}><MyButtonTransparent  fontWeight='500' textTransform='uppercase' onClick={() => {}}>Cancel</MyButtonTransparent></Link>
+                        <MyButtonOrange width='70px' textTransform='uppercase' fontWeight='500' onClick={() => {callback(selectedVariant == 1 ? 'phone' : 'email')}}>Next</MyButtonOrange>
                    </div>
                    
                 </div>

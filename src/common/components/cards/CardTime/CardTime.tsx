@@ -109,18 +109,24 @@ const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMone
            </div>
            {showBottomActions &&
                 <div className={`${styles.activity_items}`}>
-               <AnimatedSvg
-                    node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}
-                    node2={<AppColor.heartOrange height={'18px'} fill={AppColor.text} />}
-                />
-                <AnimatedSvg
-                    node1={<AppColor.notes height={'18px'} fill={AppColor.text} />}
-                    node2={<AppColor.noteOrange height={'18px'} fill={AppColor.text} />}
-                />
-                <AnimatedSvg
-                    node1={<AppColor.eye height={'18px'} fill={AppColor.text} />}
-                    node2={<AppColor.eyeOrange height={'18px'} fill={AppColor.text} />}
-                />
+              <div>
+                   <AnimatedSvg
+                        node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}
+                        node2={<AppColor.heartOrange height={'18px'} fill={AppColor.text} />}
+                    />
+              </div>
+                <div>
+                    <AnimatedSvg
+                        node1={<AppColor.notes height={'18px'} fill={AppColor.text} />}
+                        node2={<AppColor.noteOrange height={'18px'} fill={AppColor.text} />}
+                    />
+                </div>
+               <div>
+                    <AnimatedSvg
+                        node1={<AppColor.eye height={'18px'} fill={AppColor.text} />}
+                        node2={<AppColor.eyeOrange height={'18px'} fill={AppColor.text} />}
+                    />
+               </div>
              </div>}
       </div>
     );

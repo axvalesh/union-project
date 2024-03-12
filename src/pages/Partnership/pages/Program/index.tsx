@@ -14,7 +14,7 @@ import Typography from '@common/components/ui/Typography/Typography';
 import FilterList from '@common/components/FilterList/index';
 import TagsDisplay from '@common/components/TagsDisplay/index';
 import SizeBox from '@common/components/ui/SizeBox/index';
-import { useState } from 'react';
+import { Ref, RefObject, useEffect, useRef, useState } from 'react';
 import TextDotted from '@common/components/ui/TextDotted/index';
 import fakeUserImage from '@assets/images/user-fake.png';
 import CardTypeDisplay from '@common/components/cards/CardTypeDisplay/CardTypeDisplay';
@@ -51,6 +51,31 @@ const Program = () => {
     const arrayHistory = ['Partnership', 'Development', 'Web Development', 'WordPress']
 
     const [deeplinkModal, setDeeplinkModal] = useState(false);
+
+    const ratesRef = useRef(null);
+    const toolsRef = useRef(null);
+    const freelancerRef = useRef(null);
+    const reviewsRef = useRef(null);
+    const faqRef = useRef(null);
+
+    const mapOfRefs = {
+        'Description': null, // Replace null with the appropriate ref if needed
+        'Rates': ratesRef,
+        'Tools': toolsRef,
+        'Freelancer': freelancerRef,
+        'Reviews (25)': reviewsRef,
+        'FAQ (2)': faqRef,
+    };
+
+    function scrollToRef(item: string) {
+        const currentRef:RefObject<any> = mapOfRefs[item];
+
+        if(currentRef.current) {
+            const yOffset = currentRef.current.getBoundingClientRect().top - 105;
+            window.scrollTo({ top: yOffset, behavior: 'smooth' });
+        }
+    }
+
     return (
         <div>
         <Header />
@@ -70,17 +95,7 @@ const Program = () => {
                     />
                 }
                 endNode={
-                    <div className={styles.details_end_node}>
-                        <MyButtonTransparentOrange
-                            fontWeight="500"
-                            textTransform="uppercase"
-                            onClick={() => {}}>
-                            my programs
-                            <AppColor.chevronBottom
-                                fill={AppColor.orange}
-                            />
-                        </MyButtonTransparentOrange>
-                    </div>
+                    <ButtonDropdownSelect text='My programs' variants={['My programs','2','3']} />
                 }
                 pageTitle={title}
             />
@@ -111,8 +126,9 @@ const Program = () => {
             <DynamicPadding />
 
             <FilterList
-                activeStartItem='Rates'
+                activeStartItem='Description'
                 filters={['Description', 'Rates', 'Tools', 'Freelancer', 'Reviews (25)', 'FAQ (2)']}
+                callback={(item) => {scrollToRef(item)}}
             />
              <DynamicPadding />
 
@@ -137,9 +153,9 @@ const Program = () => {
                                 tags={['Logos', 'Logo Design', 'Logo']}
                             />
                             <DynamicPadding />
-                            <ConditionSection />
+                            <span ref={ratesRef}><ConditionSection /></span>
                             <DynamicPadding />
-                            <Typography variant='body3' fontWeight='500'>Tools</Typography>
+                            <span ref={toolsRef}><Typography variant='body3' fontWeight='500'>Tools</Typography></span>
 
                             <DynamicPadding desktop='40px' mobile='30px'/>
                             <div className={styles.tools_wrapper_section}>
@@ -163,14 +179,14 @@ const Program = () => {
                             
 
                             <DynamicPadding />
-                            <Typography variant='body3' fontWeight='500'>Freelancer</Typography>
+                            <span ref={freelancerRef}><Typography variant='body3' fontWeight='500'>Freelancer</Typography></span>
 
                             <DynamicPadding desktop='40px' mobile='30px'/>
                             <FreelancerCard user={fakeUserConstant} />
                             <DynamicPadding />
                             <div className={styles.review_wrapper}>
             <div className={styles.gap_10}>
-                <Typography variant='body3' fontWeight='500'>Reviews</Typography>
+                <span ref={reviewsRef}><Typography variant='body3' fontWeight='500'>Reviews</Typography></span>
                 <div className={styles.box_black}>
                     <Typography variant='body3' color='white' fontWeight='500'>1</Typography>
                 </div>
@@ -199,7 +215,7 @@ const Program = () => {
 />
 
 <DynamicPadding />
-<div className={styles.questions_answers}>
+<div ref={faqRef} className={styles.questions_answers}>
     <Typography variant='body3' fontWeight='500'>Questions & Answers</Typography>
     <div className={styles.box_black}>
         <Typography variant='body3' color='white' fontWeight='500'>2</Typography>
@@ -298,9 +314,9 @@ showLine={false}
     
                                 <Typography variant='body4' fontWeight='500' color={AppColor.red}>You do not qualify for this program</Typography>
                                 <DynamicPadding desktop='15px' mobile='10px' />
-                                <MyButtonOrange disabled={true} width='100%' onClick={() => {}}>Submit</MyButtonOrange>
+                                <MyButtonOrange  fontWeight='500' textTransform='uppercase' disabled={true} width='100%' onClick={() => {}}>Submit</MyButtonOrange>
                                 <DynamicPadding desktop='15px' mobile='10px' />
-                                <MyButtonTransparentOrange width='100%' onClick={() => {}}>Submit</MyButtonTransparentOrange>
+                                <MyButtonTransparentOrange fontWeight='500' textTransform='uppercase'  width='100%' onClick={() => {}}>Contact Freelancer</MyButtonTransparentOrange>
                           </div>
                         </div>
                       </div>
@@ -482,6 +498,14 @@ export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCard
                                     return <div key={item} className='cursor' onClick={() => {setServicesModal(true)}}>
                                       <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>
                                     </div>;
+                                case 'portfolio':
+                                    return <div key={item} className='cursor' onClick={() => {setPortfolioModal(true)}}>
+                                        <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>
+                                    </div>;
+                                case 'reviews':
+                                    return <div key={item} className='cursor' onClick={() => {setReviewsModal(true)}}>
+                                        <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>
+                                    </div>;
                                   // Add more cases for other links/modal actions as needed
                                   default:
                                     return <Typography textTransform='uppercase' color={AppColor.transparentBlack} variant='body5' fontWeight='500'>{item}</Typography>; // Render nothing for unsupported links
@@ -499,6 +523,134 @@ export const FreelancerCard = ({disableFirstTwo,user,type,links}: FreelancerCard
                 </div>
             </div>
        </div>
+    )
+}
+
+
+export const DisplayArrayOfDetailsProfile = ({array}: {array:string[]}) => {
+
+    let modifiedArray = [];
+    const [partnershipModal, setPartnershipModal] = useState(false);
+    const [subscriptionsModal, setSubscriptionsModal] = useState(false);
+    const [completedModal, setCompletedModal] = useState(false);
+    const [statsModal, setStatsModal] = useState(false);
+    const [servicesModal, setServicesModal] = useState(false);
+    const [portfolioModal, setPortfolioModal] = useState(false);
+    const [reviewsModal, setReviewsModal] = useState(false);
+
+    return (
+      <>
+      {subscriptionsModal && <ModalCenterBasic
+      
+      desktopMaxWidth='1260px' bottomPartPadding='30px' callbackClose={() => {setSubscriptionsModal(false)}}
+          title='Subscriptions'
+      >
+              <SubscriptionsModal />
+          </ModalCenterBasic>}
+       {reviewsModal && <ModalCenterBasic
+      nodeAfterTitle={
+          <div className={styles.flex_node}>
+              <DarkBox text='3' />
+              <Typography variant='body4' color={AppColor.green}>95% positive reviews </Typography>
+              <div style={{flexGrow: '1'}}></div>
+              <ButtonDropdownSelect text='Projects' variants={['Projects' , 'Projects1']} />
+              <DropdownNumber />
+              <SizeBox width='30px'/>
+          </div>
+      }
+      desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setReviewsModal(false)}}
+          title='Reviews'
+      >
+              <ReviewsModal />
+          </ModalCenterBasic>}
+       {portfolioModal && <ModalCenterBasic
+      nodeAfterTitle={
+          <div className={styles.flex_node}>
+              <DarkBox text='3' />
+              <div style={{flexGrow: '1'}}></div>
+              <DropdownNumber />
+              <SizeBox width='30px'/>
+          </div>
+      }
+      desktopMaxWidth='880px' bottomPartPadding='30px' callbackClose={() => {setPortfolioModal(false)}}
+          title='Portfolio'
+      >
+              <PorftolioModal />
+          </ModalCenterBasic>}
+      {servicesModal && <ModalCenterBasic
+      nodeAfterTitle={<DarkBox text='3' />}
+      desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setServicesModal(false)}}
+          title='Services'
+      >
+              <ServiceModal />
+          </ModalCenterBasic>}
+      {statsModal && <ModalCenterBasic
+      nodeAfterTitle={<div className={styles.flex_node}>
+          <DarkBox text='3' />
+          <div style={{flexGrow: '1'}}></div>
+          <ButtonDropdownSelect text='Projects' variants={['Projects' , 'Projects1']} />
+          <SizeBox width='30px'/>
+          </div>}
+      desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setStatsModal(false)}}
+          title='Statistics'
+      >
+            <StatsModal />
+          </ModalCenterBasic>}
+      {partnershipModal && <ModalCenterBasic
+      nodeAfterTitle={<DarkBox text='3' />}
+      desktopMaxWidth='820px' bottomPartPadding='30px' callbackClose={() => {setPartnershipModal(false)}}
+          title='Parterships'
+      >
+              <PartnershipModal />
+          </ModalCenterBasic>}
+      {completedModal && <ModalCenterBasic
+      desktopMinWidth='650px'
+      nodeAfterTitle={
+          <div className={styles.flex_node}>
+              <DarkBox text='3' />
+              <div style={{flexGrow: '1'}}></div>
+              <div className='gap_10' style={{gap: '30px'}}>
+                  <ButtonDropdownSelect text='Projects' variants={['Projects' , 'Projects1']} />
+                  <DropdownNumber />
+              </div>
+              <SizeBox width='30px'/>
+          </div>
+      }
+      desktopMaxWidth='650px' bottomPartPadding='10px' callbackClose={() => {setCompletedModal(false)}}
+          title='Common activity'
+      >
+          <ActivityModal />
+          </ModalCenterBasic>}
+           <div className='gap_10' style={{flexWrap: 'wrap'}}>
+            {array.map(item => {
+                switch(item.toLowerCase()) {
+                    case 'account':
+                      return <Link key={item} to={'/dashboard/account'}>
+                        <Typography textTransform='uppercase' color={'white'} variant='body5' fontWeight='500'>{item}</Typography>
+                      </Link>;
+                    case 'stats':
+                      return <div key={item} className='cursor' onClick={() => {setStatsModal(true)}}>
+                        <Typography textTransform='uppercase' color={'white'} variant='body5' fontWeight='500'>{item}</Typography>
+                      </div>;
+                    case 'services':
+                      return <div key={item} className='cursor' onClick={() => {setServicesModal(true)}}>
+                        <Typography textTransform='uppercase' color={'white'} variant='body5' fontWeight='500'>{item}</Typography>
+                      </div>;
+                  case 'portfolio':
+                      return <div key={item} className='cursor' onClick={() => {setPortfolioModal(true)}}>
+                          <Typography textTransform='uppercase' color={'white'} variant='body5' fontWeight='500'>{item}</Typography>
+                      </div>;
+                  case 'reviews':
+                      return <div key={item} className='cursor' onClick={() => {setReviewsModal(true)}}>
+                          <Typography textTransform='uppercase' color={'white'} variant='body5' fontWeight='500'>{item}</Typography>
+                      </div>;
+                    // Add more cases for other links/modal actions as needed
+                    default:
+                      return <Typography textTransform='uppercase' color={'white'} variant='body5' fontWeight='500'>{item}</Typography>; // Render nothing for unsupported links
+                  }
+            })}
+           </div>
+      </>
     )
 }
 const ToolsItem = ({icon,text,title,onClick}:ToolsItemProps) => {

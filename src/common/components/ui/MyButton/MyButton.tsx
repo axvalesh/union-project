@@ -17,7 +17,7 @@ const MyButton = ({
     hoverTextColor,
     width,
     textTransform,
-    disabled
+    disabled,
 }: MyButtonProps) => {
     const style = !disabled ? {
         '--backgroundColor': color ?? 'transparent',

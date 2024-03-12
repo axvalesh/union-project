@@ -4,8 +4,9 @@ import styles from './style.module.scss';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import DropdownList from '@pages/Community/components/DropdownList/index';
 import { useState } from 'react';
+import { CareServiceChildProps } from '../..';
 
-const CommunityCare = () => {
+const CommunityCare = ({setActiveSwitch}:CareServiceChildProps) => {
     const [currentActiveTitle, setCurrentActiveTitle] = useState('');
     
     return (
@@ -15,7 +16,7 @@ const CommunityCare = () => {
            <div className={styles.grid_30}>
            <DropdownList 
                     title='Getting Started'
-                    callback={(item) => setCurrentActiveTitle(item)}
+                    callback={(item) => {setCurrentActiveTitle(item);setActiveSwitch('main.community.getting started')}}
                     items={['Registration', 'Password recovery', 'Verification', 'Changing my username']}
                 />
                 <DropdownList 
