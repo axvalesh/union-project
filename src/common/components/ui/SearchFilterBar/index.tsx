@@ -155,6 +155,7 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
                                                             value={dateState}
                                                             selectRange={true}
                                                             locale='en-US'
+                                                            
                                                        
                                                             calendarType='iso8601'
                                                             
