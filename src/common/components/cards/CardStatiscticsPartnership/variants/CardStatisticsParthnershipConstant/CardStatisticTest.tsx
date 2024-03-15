@@ -25,7 +25,7 @@ type CardStatisticsParthnershipConstantProps = {
     setRemoveLastElement?: (value: boolean) => void;
 }
 const CardStatisticsParthnershipConstant  = ({navigateTo,removeLastElement,setRemoveLastElement}: CardStatisticsParthnershipConstantProps) => {
-
+    // tmp update
     return (
         <CardStatisticPartnership 
         navigateTo={navigateTo}
