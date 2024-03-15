@@ -8,10 +8,13 @@ import { ReactComponent as CommunityImage} from '@assets/svg/community-white.svg
 import { ReactComponent as ManagersImage} from '@assets/svg/managers-white.svg';
 import { ReactComponent as GeneralHelpImage} from '@assets/svg/general-help.svg';
 import { ReactComponent as ContactUs} from '@assets/svg/contact-us.svg';
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import { useScreenSize } from '@common/helpers/useScreenSize';
+import { FooterTriggerContext } from '@common/context/footer_trigger'
 const AskedQuestion = () => {
     const {width,height} = useScreenSize();
+
+    const {activeCategory,setActiveCategory} = useContext(FooterTriggerContext); 
     return (
        <div>
         {width <= 768 && <Cookies />}
@@ -60,24 +63,28 @@ const AskedQuestion = () => {
               title="Community"
               description="FAQ & Discussions"
               color={AppColor.orange}
+              onClick={() => {setActiveCategory('main.community')}}
               />
               <LinkCard 
               image={<ManagersImage />}
               title="Managers"
               description="Help You With Solutions"
               color={AppColor.text}
+              onClick={() => {setActiveCategory('main.managers')}}
               />
               <LinkCard 
               image={<GeneralHelpImage />}
               title="General Help"
               description="Chat With Moderators"
               color={AppColor.green}
+              onClick={() => {setActiveCategory('main.general help')}}
               />
               <LinkCard 
               image={<ContactUs />}
               title="Contact Us"
               description="Still need help?"
               color='#F2C94C'
+              onClick={() => {setActiveCategory('main.contact us')}}
               />
             </div> 
           </div>
@@ -89,10 +96,11 @@ type LinkCardProps = {
     title: string;
     description:string;
     color: string;
+    onClick?: (item) => void;
   }
-  const LinkCard = ({image,title,description,color}:LinkCardProps) => {
+  const LinkCard = ({image,title,description,color,onClick}:LinkCardProps) => {
     return (
-      <div className={styles.link_card}>
+      <div onClick={onClick} className={styles.link_card}>
         <div className={styles.link_card_image} style={{backgroundColor: color}}>
         {image}
         </div>

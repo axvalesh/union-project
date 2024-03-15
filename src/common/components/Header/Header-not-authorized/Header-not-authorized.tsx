@@ -13,6 +13,8 @@ import Typography from "@common/components/ui/Typography/Typography";
 import InputCommon from "../../ui/inputs/InputCommon";
 import { categorysText, links } from "../components/MenuLinks/content";
 import MyButtonTransparent from "@common/components/ui/MyButton/variants/MyButtonTransparent";
+import AnimateHeight from "../../AnimateHeight";
+import DynamicPadding from "../../ui/DynamicPadding";
 
 const HeaderNothAuthorized = () => {
 
@@ -38,6 +40,21 @@ const HeaderNothAuthorized = () => {
 
   const [activeSelection,setActiveSelection] = useState('');
 
+  const [prevSelection,setPrevSelection] = useState('');
+
+
+  const handleChange = (item) => {
+    if(activeSelection != '') {
+      setActiveSelection('');
+      setTimeout(() => {
+        setActiveSelection(item);
+        setPrevSelection(activeSelection);
+      },400)
+    } else {
+      setActiveSelection(item);
+    }
+  }
+
     return (
       <div className={styles.header_fixed}>
         <div className={`${styles.header_modal_fixed} ${showModal && styles.active_modal}`}>
@@ -47,30 +64,31 @@ const HeaderNothAuthorized = () => {
               <div className={styles.white_box}>
                   <SelectDropdown 
                     activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
+                    callback={(item) => {handleChange(item)}}
                     title="Customers"
                   />
                   <SelectDropdown 
                     activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
+                    callback={(item) => {handleChange(item)}}
                     title="Freelancers"
                   />
                   <SelectDropdown 
                     activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
+                    callback={(item) => {handleChange(item)}}
                     title="Sponsors"
                   />
                   <SelectDropdown 
                     activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
+                    callback={(item) => {handleChange(item)}}
                     title="Managers"
                   />  
               </div>
   
               <SizeBox height="50px"/>
   
-              {activeSelection != '' &&
-              <MobileNavBar />}
+              <AnimateHeight show={activeSelection != ''}>
+              <MobileNavBar callbackSelection={(item) => {handleChange(item)}} prevSelection={prevSelection} />
+              </AnimateHeight>
           </div>
           </div>
         </div>
@@ -155,15 +173,27 @@ const subCategoryItems:ChooseCategoryType[] = [
     title: 'Consulting'
   }
 ]
-export const MobileNavBar = () => {
+
+type MobileNavBarProps = {
+  prevSelection: string;
+  callbackSelection: (item:string) => void;
+  removeCategory?: boolean;
+
+}
+export const MobileNavBar = ({prevSelection,callbackSelection,removeCategory=false}) => {
 
   const [activeCategory,setActiveCategory] = useState<categorysText>(categorysText.Development); 
   const [activeSubCategory,setActiveSubCategory] = useState('');
   return (
     <div className={styles.active_selection}>
-      <div className={styles.active_selection_padding}>
+      {prevSelection != '' && <div onClick={() => {callbackSelection(prevSelection)}} className={`${styles.active_selection_padding} gap_10`}>
+        <AppColor.longChevronLeft fill={AppColor.text} />
+          <Typography variant="body3" fontWeight="500">{prevSelection}</Typography>
+        </div>}
+        {prevSelection != '' &&  <HorizontalLine /> }
+     {!removeCategory &&  <div className={styles.active_selection_padding}>
         <ChooseCategory />
-      </div>
+      </div>}
       <HorizontalLine />
       <div className={styles.active_selection_padding}>
         <InputCommon

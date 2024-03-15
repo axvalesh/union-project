@@ -30,6 +30,7 @@
       "@common/models/*": ["common/models/*.ts"],
       "@common/styles/*": ["common/styles/*.ts"],
       "@common/content/*": ["common/content/*.ts"],
+      "@common/context/*": ["common/context/*.tsx"],
       "@pages/*": ["pages/*.tsx"],
     },
   },

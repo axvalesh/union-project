@@ -48,7 +48,7 @@ export const StepItem = ({solve,text,drawLine,onSolveClick,afterTextNode}:StepIt
                 <SizeBox height='20px'/>
                 <div onClick={onSolveClick} style={{marginLeft: '5px'}} className="gap_10 cursor">
                     <AppColor.edit fill={AppColor.orange} />
-                    <Typography variant='body5' fontWeight='500' color={AppColor.orange}>{solve}</Typography>
+                    <Typography variant='body5' className={styles.step_item_hover_text} color={AppColor.orange}>{solve}</Typography>
                 </div>
                 <DynamicPadding desktop='30px' mobile='20px'/>
             </div>
@@ -61,8 +61,9 @@ type StepItemSolvingProps = {
     stepNumber: string;
     solveNode: React.ReactNode;
     drawLine?: boolean;
+    removeHeight?: boolean;
 }
-export const StepItemSolving = ({solveNode,stepNumber,title,drawLine=true}:StepItemSolvingProps) => {
+export const StepItemSolving = ({solveNode,stepNumber,title,drawLine=true,removeHeight}:StepItemSolvingProps) => {
     return (
         <div className={styles.step_item}>
             <div className={styles.step_verical_wrapper_solving}>

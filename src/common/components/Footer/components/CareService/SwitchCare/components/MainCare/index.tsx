@@ -23,12 +23,12 @@ const MainCare = ({setActiveSwitch}:CareServiceChildProps) => {
     const location = useLocation();
     const [authorisedUser,setAuthotizedUser] = useState(false);
     useEffect(() => {
-        console.log('Current route is ' + location.pathname);
-        if(location.pathname === '/') {
-            setAuthotizedUser(false);
-        } else {
-            setAuthotizedUser(true);
-        }
+     //    console.log('Current route is ' + location.pathname);
+     //    if(location.pathname === '/') {
+     //        setAuthotizedUser(false);
+     //    } else {
+     //        setAuthotizedUser(true);
+     //    }
         
     }, [location.pathname]);
     
@@ -82,7 +82,7 @@ const MainCare = ({setActiveSwitch}:CareServiceChildProps) => {
                     image={test7}
                />
           </div>
-          <div onClick={() => {setActiveSwitch('main.general help nopadding')}}>
+          <div onClick={() => {setActiveSwitch('main.general help')}}>
                <CareServiceItem
                     description='Chat With Moderators' title='General Help' 
                     icon={<AppColor.infoWhite />}

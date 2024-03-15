@@ -40,10 +40,10 @@ const MyCheckbox = ({
                           backgroundColor: 'white',
                           boxShadow:
                               '-1px 1px 6px 2px rgba(0,0,0,0.11)',
-                              maxWidth:width,maxHeight:height,width:width,height:height,borderRadius: borderRadius
+                              maxWidth:width,maxHeight:height,width:width,height:height,borderRadius: borderRadius,minHeight: height,minWidth: width
                       }
                     : {
-                        maxWidth:width,maxHeight:height,width:width,height:height,borderRadius: borderRadius
+                        maxWidth:width,maxHeight:height,width:width,height:height,borderRadius: borderRadius,minHeight: height,minWidth: width
                     }
             }
             onClick={() => {

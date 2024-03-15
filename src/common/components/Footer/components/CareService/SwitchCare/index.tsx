@@ -3,7 +3,7 @@ import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
 import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
 import styles from './style.module.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { fakeUserConstant } from '@common/models/user';
 import MainCare from './components/MainCare';
 import CommunityCare from './components/CommunityCare';
@@ -24,6 +24,7 @@ import SolutionDetails from './components/SolutionDetails';
 import AnimateHeight from '@common/components/AnimateHeight/index';
 import AnimatedSvg from '@common/components/AnimatedSvg/index';
 import GettingsStarted from './components/GettingsStarted';
+import { FooterTriggerContext } from '@common/context/footer_trigger';
 
 
 type CareComponentProps = {
@@ -38,7 +39,17 @@ function eachNewLetterToUpper(str: string):string {
 }
 
 export const CareComponent = ({showHelper,callback}:CareComponentProps) => { 
+
+    const {activeCategory,setActiveCategory} = useContext(FooterTriggerContext);
+
     const [activeSwitch, setActiveSwitch] = useState('main');
+
+    useEffect(() => {
+        if(activeCategory != '') {
+            setActiveSwitch(activeCategory);
+            setActiveCategory('');
+        }
+    },[activeCategory])
 
 
     function moveBack() {
@@ -77,13 +88,14 @@ export const CareComponent = ({showHelper,callback}:CareComponentProps) => {
                                     <div className='gap_10'>
                             <AppColor.questionOrange />
             
-                            <div>
+                            <div className={styles.flex_column}>
                                 <Typography variant='body5' fontWeight='500'>
                                 How to create a job ?
                                 </Typography>
-                                <SizeBox height='10px' />
+                 
                                 <div className='gap_5'>
                                 <Typography variant='body5' color={AppColor.orange}>Opened</Typography>
+                                <Typography variant='body4' color={AppColor.text}>•</Typography>
                                 <Typography variant='body5' color={AppColor.transparentBlack}>1 min ago</Typography>
                                 </div>
                             </div>
@@ -174,7 +186,7 @@ export const CareComponent = ({showHelper,callback}:CareComponentProps) => {
                     <div className={`${styles.bottom_part}`}>
                        <div style={
                         {
-                            padding: lastItem.includes('nopadding') ? '0' : '20px 30px',
+                            padding: '20px 30px',
                             paddingBottom: '100px'
                         }
                     } className={styles.scroll_bar_bottom}>
@@ -205,12 +217,12 @@ const SwitchCare = ({activeSwitch,setActiveSwitch}:SwitchCareProps) => {
         'main.community': <CommunityCare setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
         'main.community.getting started': <GettingsStarted setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
         'main.managers': <ManagerCare setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
-        'main.general help nopadding.create': <GeneralHelpCreate setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
-        'main.general help nopadding': <GeneralHelp setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
+        'main.general help.create': <GeneralHelpCreate setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
+        'main.general help': <GeneralHelp setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
         'main.contact us': <ContactUsSteps />,
-        'main.general help nopadding.helpchat showhelp': <GeneralChat />,
-        'main.general help nopadding.helpchat showhelp.details': <GeneralDetails setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
-        'main.general help nopadding.helpchat showhelp.details.user': <GeneralUser />,
+        'main.general help.helpchat showhelp': <GeneralChat />,
+        'main.general help.helpchat showhelp.details': <GeneralDetails setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
+        'main.general help.helpchat showhelp.details.user': <GeneralUser />,
         'main.managerchat showuser': <ManagerChat />,
         'main.solutions nopadding': <CareSolutions setActiveSwitch={(item) => {setActiveSwitch(item)}} />,
         'main.solutions nopadding.details': <SolutionDetails />

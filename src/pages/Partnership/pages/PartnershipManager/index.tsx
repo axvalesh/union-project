@@ -60,6 +60,16 @@ const PartnershipManager = () => {
     const maxValueRef = useRef(null)
     const [removedTagFromSideBar,setRemovedTagFromSideBar] = useState('');
 
+    const [removeLastElement, setRemoveLastElement] = useState(false);
+
+    useEffect(() => {
+        const value = JSON.parse(localStorage.getItem('removeLastElement'));
+        if(value === true) {
+            setRemoveLastElement(true);
+        }
+    },[])
+
+
     useEffect(() => {
         const arrayLengthStart = width <= 768 ? 4 : 9
 
@@ -612,9 +622,11 @@ const PartnershipManager = () => {
                             <div className={styles.cards_wrapper}>
                                 {itemsToshow.map((item) => (
                                     <div className='center_card'>
-                                        <Link to={'/partnership/program'}>
-                                        <CardStatisticsParthnershipConstant />
-                                        </Link>
+                                        
+                                        <CardStatisticsParthnershipConstant removeLastElement={removeLastElement}
+                                        setRemoveLastElement={(item) => {setRemoveLastElement(item)}}
+                                        navigateTo='/partnership/program' />
+                                    
                                     </div>
                                 ))}
                             </div>

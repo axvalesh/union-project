@@ -16,6 +16,19 @@
     user-select: none;
 }
 
+
+.text_of_item {
+    &::after {
+        display: block;
+        content: attr(title);
+        font-weight: 500;
+        height: 1px;
+        color: transparent;
+        overflow: hidden;
+        visibility: hidden;
+    }
+}
+
 .button_active {
     display: flex;
     align-items: center;
@@ -47,7 +60,6 @@
     background-color: white;
     border-radius: 20px;
     white-space: nowrap;
-    padding: 15px;
     display: grid;
     grid-template-columns: 1fr;
 }

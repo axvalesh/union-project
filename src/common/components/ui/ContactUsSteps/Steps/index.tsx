@@ -64,9 +64,8 @@ export const StepOneContactUs = ({callback,value,callbackStep}:StepProps) => {
 
     return (
         <StepItemSolving solveNode={
-            <div className='grid_15'>
-                <Typography variant='body4' fontWeight='500'>What can we help you with?</Typography>
-                <SizeBox height='10px' />
+            <div className='grid_15' style={{gap: '20px'}}>
+               
 
                 <DropdownContactUs activeSelect={selectedCategory} callback={(item) => {setSelectedCategory(item)}} 
                  text='Customers' dropdownNode={
@@ -86,7 +85,6 @@ export const StepOneContactUs = ({callback,value,callbackStep}:StepProps) => {
                     </div>
                  }  
                 />
-                <SizeBox height='10px' />
                 <DropdownContactUs activeSelect={selectedCategory} callback={(item) => {setSelectedCategory(item)}} 
                  text='no customers' dropdownNode={
                     <div className={styles.grid_3}>
@@ -106,7 +104,7 @@ export const StepOneContactUs = ({callback,value,callbackStep}:StepProps) => {
                  }  
                 />
             </div>
-        } stepNumber='1' title={value} />
+        } stepNumber='1' title={'What can we help you with?'} />
     );
 };
 
@@ -114,7 +112,7 @@ const DropdownChild = ({icon,text,callback}) => {
     return (
         <div onClick={() => {callback(text)}} className={`${styles.dropdown_child} cursor`}>
             {icon}
-            <Typography variant='body5' fontWeight='500'>{text}</Typography>
+            <Typography className={styles.hover_text_child} variant='body5'>{text}</Typography>
         </div>
     )
 }
@@ -128,7 +126,7 @@ const DropdownContactUs = ({callback,dropdownNode,text,activeSelect}:DropdownCon
     const isActive = text == activeSelect;
     return (
        <div>
-            <div onClick={() => {callback(text)}} className={`${styles.dropdown_item} cursor`} style={{backgroundColor: isActive ? AppColor.orange : 'transparent'}}>
+            <div onClick={() => {callback(text)}} className={`${styles.dropdown_item} cursor`} style={{opacity: isActive ? '0.73' : '1',backgroundColor: isActive ? AppColor.orange : 'transparent'}}>
                 <Typography color={isActive ? 'white' : AppColor.text} variant='body5' fontWeight='500'>{text}</Typography>
                 {
                     isActive 
@@ -153,7 +151,7 @@ export const StepTwoContactUs= ({callback,value,stepOneValue,callbackStep}:StepP
                     text: '',
                     afterTextNode: <div className='gap_5'>
                         <Typography variant='body4'>{stepOneValue[0]}</Typography>
-                        <AppColor.chevronRight width={'6px'} height={'12px'} fill={AppColor.text} />
+                        <AppColor.chevronRight width={'6px'} height={'12px'} fill={'#A8A8AD'} />
                         <Typography variant='body4'>{stepOneValue[1]}</Typography>
                     </div>,
                     onSolveClick: () => {callbackStep(1)}
@@ -229,20 +227,22 @@ export const StepThreeContactUs = ({callback,value,stepOneValue,stepTwoValue,cal
                                 }} fontWeight='500' textTransform='uppercase'>
                                 Contact Us
                                 </MyButtonOrange>
-                                <MyButtonTransparent onClick={() => {}} fontWeight='500' textTransform='uppercase'>
+                                <MyButtonTransparent onClick={() => {}} fontWeight='500' >
                                 Ask Community
                                 </MyButtonTransparent>
                             </div>
                         </div>
                         : <div>
                             <BigInputOutside callback={() => {}} />
-                            <DynamicPadding desktop='20px' mobile='10px' />
+
+                            <DynamicPadding desktop='10px' mobile='0px' />
+                  
                             <MyButtonOrange onClick={() => {
                              
                                 }} fontWeight='500' textTransform='uppercase'>
                                 Create a ticket
                             </MyButtonOrange>
-                            <DynamicPadding />
+                            <DynamicPadding desktop='30px' mobile='20px' />
                             <RelatedTopics />
                         </div>
                     }
@@ -261,7 +261,7 @@ export const RelatedTopics = () => {
             <Typography variant='body4' fontWeight='500'>
             Related Topics
             </Typography>
-            <SizeBox height='20px' />
+            <SizeBox height='10px' />
             <div className={styles.related_topics}>
                 {tmp.slice(0,showCount).map((item) => <div className='gap_5'>
                     <AppColor.questionFaq />

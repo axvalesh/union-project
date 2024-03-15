@@ -14,6 +14,7 @@
 .scroll_bar_bottom {
     max-height: calc(100vh - 270px);
     overflow-y: auto;
+    height: 100%;
     @include scrollStyles;
 }
 .care_height {
@@ -36,10 +37,16 @@
 
 .flex_row_end {
     display: flex;
-    align-items: end;
-    gap: 15px;
+    align-items: center;
+    gap: 30px;
 }
 
+.flex_column {
+    display: flex;
+    min-height: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+}
 
 @media (min-width: $tabletSize) {
     .helper {

@@ -14,9 +14,10 @@ import { formatNumberWithSpaces } from '@common/helpers/stringFunctions'
 import DaysLeftTimer from '@common/components/ui/DaysLeftTimer/DaysLeftTimer'
 import CardTypeDisplay from '../CardTypeDisplay/CardTypeDisplay'
 import Urgent from '../../ui/Urgent'
-import { CSSProperties } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 import AnimatedSvg from '../../AnimatedSvg'
 import UserAvatar from '../../ui/UserAvatar'
+import { useNavigate } from 'react-router-dom'
 type CardStatisticPartnershipProps = {
     title: string
     user: userModel
@@ -36,6 +37,9 @@ type CardStatisticPartnershipProps = {
     lvl?: string;
     userDetails?: svgTextProps[];
     imageBorderLeft?: string;
+    navigateTo?: string;
+    removeLastElementProps?: boolean;
+    setRemoveLastElementProps?: (value: boolean) => void;
 }
 const CardStatisticPartnership = ({
     title,
@@ -53,9 +57,12 @@ const CardStatisticPartnership = ({
     dateAgo,
     isUrgent,
     cardType,
+    navigateTo,
     typeColor,
     textTransform,
-    iconsAbsolute
+    iconsAbsolute,
+    removeLastElementProps,
+    setRemoveLastElementProps
 }: CardStatisticPartnershipProps) => {
     const flagImage = useGetImage(`flags/${user.country}`, false)
 
@@ -66,7 +73,18 @@ const CardStatisticPartnership = ({
         backgroundPosition: 'center',
         zIndex: 0,
     }
-    const today = new Date('2023-11-23')
+    const today = new Date('2023-11-23');
+    const [removeLastElement, setRemoveLastElement] = useState(false);
+
+    useEffect(() => {
+        setRemoveLastElement(removeLastElementProps);
+    },[removeLastElementProps])
+    const navigate = useNavigate();
+
+    const setRemoveLastElementInLocalStorage = () => {
+        setRemoveLastElementProps(true);
+        localStorage.setItem('removeLastElement', JSON.stringify(true));
+    }
     
     return (
         <div className={styles.shell}>
@@ -80,8 +98,13 @@ const CardStatisticPartnership = ({
             </span>}
             <div className={styles.right_abolute}>{iconsAbsolute ?? <AppColor.refresh/>}</div>
             <div
+                onClick={() => {
+                    if(navigateTo) {
+                        navigate(navigateTo);
+                    }
+                }}
                 style={{...topImageStyles,borderTopLeftRadius: imageBorderLeft,overflow: 'hidden'}}
-                className={styles.shell_top_image}>
+                className={`${styles.shell_top_image} cursor`}>
                 <Typography variant="body5" color="white">
                     {title}
                 </Typography>
@@ -185,7 +208,7 @@ const CardStatisticPartnership = ({
                 </>}
                 
             </div>
-            <div className={styles.shell_bottom}>
+            <div style={removeLastElement ? {display: 'none'} : {}} className={styles.shell_bottom}>
                 <AnimatedSvg
                     node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}
                     node2={<AppColor.heartOrange height={'18px'} fill={AppColor.text} />}
@@ -196,7 +219,7 @@ const CardStatisticPartnership = ({
                 />
                 <AnimatedSvg
                     node1={<AppColor.eye height={'18px'} fill={AppColor.text} />}
-                    node2={<AppColor.eyeOrange height={'18px'} fill={AppColor.text} />}
+                    node2={<AppColor.eyeOrange onClick={() => {setRemoveLastElementInLocalStorage()}} height={'18px'} fill={AppColor.text} />}
                 />
             </div>
         </div>

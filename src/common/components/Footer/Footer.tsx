@@ -9,10 +9,11 @@ import facebook from '@assets/svg/facebook.svg'
 import telegram from '@assets/svg/telegram.svg'
 import AppColor from '@common/styles/variables-static'
 import AnimatedSvg from '../AnimatedSvg'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useContext } from 'react'
 import HorizontalLine from '../ui/Lines/HorizontalLine'
 import AnimateHeight from '../AnimateHeight'
 import { CareComponent } from './components/CareService/SwitchCare'
+import { FooterTriggerContext } from '@common/context/footer_trigger';
 
 export const levelMap = {
     1: <AppColor.oneOfFive />,
@@ -22,6 +23,17 @@ export const levelMap = {
     5: <AppColor.fiveOfFive />,
 }
 const Footer = ({ removeMargin }: { removeMargin?: boolean }) => {
+
+    const [tmpSwitch, setTmpSwitch] = useState('');
+
+    const {activeCategory,setActiveCategory} = useContext(FooterTriggerContext);
+
+    useEffect(() => {
+        if(activeCategory != '') {
+            setShowHelper(true);
+        }
+    },[activeCategory])
+
     const [y, setY] = useState(window.scrollY)
 
     const [showHelper, setShowHelper] = useState(false);

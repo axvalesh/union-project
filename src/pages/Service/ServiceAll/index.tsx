@@ -58,6 +58,15 @@ const ServiceAll = () => {
     const maxValueRef = useRef(null)
     const [removedTagFromSideBar,setRemovedTagFromSideBar] = useState('');
 
+    const [removeLastElement,setRemoveLastElement] = useState(false);
+
+    useEffect(() => {
+        const value = JSON.parse(localStorage.getItem('removeLastElement'));
+        if(value === true) {
+            setRemoveLastElement(true);
+        }
+    },[])
+
     useEffect(() => {
         const arrayLengthStart = width <= 768 ? 4 : 9
 
@@ -550,9 +559,8 @@ const ServiceAll = () => {
     
                             <div className={styles.cards_wrapper}>
                             {itemsToshow.map((item) => (
-                                <Link to={'/service/'}>
-                                <div className='center_card'><CardStatisticsParthnershipConstant /></div>
-                                </Link>
+                               
+                                <div className='center_card'><CardStatisticsParthnershipConstant navigateTo='/service/' removeLastElement={removeLastElement} setRemoveLastElement={setRemoveLastElement} /></div>
                             ))}
                             </div>
                             <DynamicPadding

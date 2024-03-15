@@ -80,7 +80,7 @@ const CrowdfreelanceCompleted = () => {
                         <Typography variant='body3' fontWeight='500'>Tips</Typography>
                         <DynamicPadding desktop='30px' mobile='20px'/>
 
-                        <TipsItem />
+                        <TipsItem description={'Sponsor a new campaign project with'} firstButtonText={'this campaign'} secondButtonText={'new campaign'}  />
                     </div>
                 }
                 item2={

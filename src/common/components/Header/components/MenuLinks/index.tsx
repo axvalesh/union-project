@@ -19,6 +19,7 @@ const MenuLinks = ({hoveredLink}:{hoveredLink?:number}) => {
     const [activeCategory,setActiveCategory] = useState<categorysText>(categorysText.Development); 
 
     
+    
     return (
       <div className={styles.wrapper}>
            <div className={styles.links_wrapper}>

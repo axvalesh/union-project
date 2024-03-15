@@ -19,10 +19,18 @@ const fakeUser:userModel = {
     }
   }
   
-const CardStatisticsParthnershipConstant  = () => {
+type CardStatisticsParthnershipConstantProps = {
+    navigateTo?: string;
+    removeLastElement?: boolean;
+    setRemoveLastElement?: (value: boolean) => void;
+}
+const CardStatisticsParthnershipConstant  = ({navigateTo,removeLastElement,setRemoveLastElement}: CardStatisticsParthnershipConstantProps) => {
 
     return (
         <CardStatisticPartnership 
+        navigateTo={navigateTo}
+        removeLastElementProps={removeLastElement}
+        setRemoveLastElementProps={setRemoveLastElement}
         title='Logo by sample in vector in maximum quality' 
         tags={['Logo','Logo Design', 'Logo Maker', 'Logo Create']}
         user={fakeUser}
