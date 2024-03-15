@@ -1,4 +1,5 @@
 
+import AppColor from '@common/styles/variables-static';
 import Typography, { fontWeight } from '../Typography/Typography';
 import styles from './style.module.scss';
 
@@ -7,8 +8,9 @@ type DarkBoxProps = {
     fonstSize?: string;
     onClick?: () => void;
     fontWeight?: fontWeight;
+    triangleDown?: boolean;
 }
-const DarkBox = ({onClick,text,fonstSize,fontWeight}:DarkBoxProps) => {
+const DarkBox = ({onClick,text,fonstSize,fontWeight,triangleDown}:DarkBoxProps) => {
 
     return (
       <div onClick={() => {
@@ -16,9 +18,12 @@ const DarkBox = ({onClick,text,fonstSize,fontWeight}:DarkBoxProps) => {
           onClick()
         }
       }} className={styles.dark_box}>
-           <Typography fontSizeStatic={fonstSize} textLineHeight='1' variant='body4' fontWeight={fontWeight ?? '500'} color='white'>
+           <Typography textTransform='uppercase' fontSizeStatic={fonstSize ?? '13px'} textLineHeight='1' variant='body4' fontWeight={fontWeight ?? '400'} color='white'>
             {text}
            </Typography>
+           {
+            triangleDown && <AppColor.trianleDown fill='white' />
+           }
       </div>
     );
 };

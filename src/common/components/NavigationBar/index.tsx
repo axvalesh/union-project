@@ -11,11 +11,13 @@ type NavigationBarProps = {
     currentCategoryTitle?: nav_var_categorys_titles
     activePageIndex: number
     newCategory?: nav_categorys;
+    removeMaxWidth?: boolean;
 }
 const NavigationBar = ({
     currentCategoryTitle,
     activePageIndex,
-    newCategory
+    newCategory,
+    removeMaxWidth
 }: NavigationBarProps) => {
 
     const currentCategory: nav_categorys = newCategory ?? nav_var_categorys.find(
@@ -60,7 +62,7 @@ const NavigationBar = ({
     
     return (
         <div ref={nodeRef} style={{opacity: visible ? '1' : '0'}}  className={styles.wrapper}>
-            <div className={styles.content}>
+            <div style={removeMaxWidth ? {maxWidth: 'none',padding: '0px 30px'} : {margin: '0 auto',width: '1200px'}} className={styles.content}>
                 <div className='gap_15'>
                     <div  className={styles.category_hover}>
                         <div className={styles.title_hover} onClick={() => {setHovered(prev => !prev)}}>

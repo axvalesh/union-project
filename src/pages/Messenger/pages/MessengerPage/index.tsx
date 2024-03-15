@@ -69,8 +69,8 @@ const MessengerPage = ({activePageIndex}:MessengerPageProps) => {
 
     return (
         <div>
-        <Header position='relative' />
-        <NavigationBar
+        <Header removeMaxWidth={true} position='relative' />
+        <NavigationBar removeMaxWidth={true}
             currentCategoryTitle="Messenger"
             activePageIndex={activePageIndex}
         />
@@ -298,6 +298,7 @@ export const FileItemNotific = () => {
 
     return (
         <div className={styles.file_notification_wrapper}>
+             <div className={styles.absolute_background_color}></div>
             <AppColor.pdfFile/>
             <div>
                 <Typography textLineHeight='1' variant='body5' fontWeight='500'>requirements1.pdf </Typography>

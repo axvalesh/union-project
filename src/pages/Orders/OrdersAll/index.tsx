@@ -58,6 +58,16 @@ const OrdersAll = () => {
     const maxValueRef = useRef(null)
     const [removedTagFromSideBar,setRemovedTagFromSideBar] = useState('');
 
+
+    const [removeLastElement, setRemoveLastElement] = useState(false);
+
+    useEffect(() => {
+        const value = JSON.parse(localStorage.getItem('removeLastElement'));
+        if(value === true) {
+            setRemoveLastElement(true);
+        }
+    },[])
+
     useEffect(() => {
         window.scrollTo({top: 0});
     },[])
@@ -621,9 +631,12 @@ const OrdersAll = () => {
 
                         <div className={styles.cards_wrapper}>
                             {itemsToshow.map((item,index) => (
-                              <Link to={'/orders/order'}>
+                  
                                    <div className={styles.card_center}>
                                         <CardStatisticPartnership
+                                        navigateTo='/orders/order'
+                                        removeLastElementProps={removeLastElement}
+                                        setRemoveLastElementProps={setRemoveLastElement}
                                         typeColor='white'
                                         textTransform='uppercase'
                                         iconsAbsolute={<AppColor.noteCard fill='white'/>}
@@ -660,7 +673,7 @@ const OrdersAll = () => {
                                         
                                         />
                                    </div>
-                              </Link>
+                          
                             ))}
                         </div>
                         <DynamicPadding

@@ -9,7 +9,7 @@ const ManagerChat = () => {
     return (
       <div className={styles.padding}>
            <MessagesDisplayUsers 
-             maxHeight='100%'
+           maxHeight='400px'
              messageColorLeft='white'
              messageColorRight='#DDEAEF'
              messages={[
@@ -33,33 +33,15 @@ const ManagerChat = () => {
                   text: 'I need help with my project',
                   time: '12:01'
               },
-              {
-                side: 'left',
-                text: 'Hello, how can I help you?',
-                time: '12:00'
-            },
-            {
-                side: 'right',
-                text: 'I need help with my project',
-                time: '12:01'
-            },
-            {
-              side: 'left',
-              text: 'Hello, how can I help you?',
-              time: '12:00'
-          },
-          {
-              side: 'right',
-              text: 'I need help with my project',
-              time: '12:01'
-          }
+
              ]}
            />
 
            <DynamicPadding desktop='30px' mobile='20px'/>
 
            <InputBarChat />
-         
+           
+           
       </div>
     );
 };

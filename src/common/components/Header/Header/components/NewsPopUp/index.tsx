@@ -10,6 +10,7 @@ import { fakeUserConstant } from '@common/models/user';
 import SavedItem from './components/SavedItem';
 import TemplateItem from './components/TemplateItem';
 import DropdownNumber from '@common/components/ui/SearchFilterBar/components/DropdownNumber/index';
+import { ButtonDropdownSelect, TextDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
 
 
 const topFilters = [
@@ -153,8 +154,8 @@ const MapItemBottom = ({activeSelection,activeBottomSelect,callbackBottom}:MapIt
                        )}
                 </div>
                <div className='gap_20'>
-                        {activeSelection == 'Saved & Notes' && <Typography variant='body4' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>No list</Typography>}
-                        {activeSelection == 'Templates' && <Typography variant='body4' fontWeight='500' textTransform='uppercase' color={AppColor.transparentBlack}>Orders</Typography>}
+                        {activeSelection == 'Saved & Notes' &&   <TextDropdownSelect text='NO LIST' variants={['NO LIST','2','3']} />}
+                        {activeSelection == 'Templates' &&   <TextDropdownSelect text='ORDERS' variants={['ORDERS','2','3']} />}
                    <DropdownNumber />
                </div>
             </div>

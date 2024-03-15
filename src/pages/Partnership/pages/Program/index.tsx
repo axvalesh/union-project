@@ -58,6 +58,10 @@ const Program = () => {
     const reviewsRef = useRef(null);
     const faqRef = useRef(null);
 
+    useEffect(() => {
+        window.scrollTo({top: 0});
+    },[])
+
     const mapOfRefs = {
         'Description': null, // Replace null with the appropriate ref if needed
         'Rates': ratesRef,

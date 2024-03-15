@@ -28,6 +28,12 @@
 .modal_padding {
     padding: 0px 12px;
 }
+
+.white_box_column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
 .white_box {
     @include weakShadow;
     width: 100%;

@@ -74,12 +74,11 @@
     }
 }
 .first_item_grid {
-    padding-right: 20px;
     border-right: 1px solid rgba($color: $text, $alpha: 0.1);
 }
 .moderator_grid {
     display: grid;
-    grid-template-columns: repeat(3,auto);
+    grid-template-columns: 1fr;
 }
 .moderator_title_padding {
     padding-top: 30px;
@@ -117,5 +116,21 @@
     padding: 10px 20px;
     background-color: white;
     border-radius: 20px;
+    width: calc(100vw - 20px);
     @include weakShadow;
+}
+
+@media (min-width: $tabletSize) {
+    .controll_pannel {
+        width: auto;
+    }
+
+    .moderator_grid {
+        grid-template-columns: repeat(3,auto);
+    }
+
+    .first_item_grid {
+        padding-right: 20px;
+    }
+
 }

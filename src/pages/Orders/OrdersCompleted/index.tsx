@@ -99,7 +99,7 @@ const OrdersCompleted = () => {
                         <Typography variant='body3' fontWeight='500'>Tips</Typography>
                         <DynamicPadding desktop='30px' mobile='20px'/>
 
-                        <TipsItem />
+                        <TipsItem description={'Start a new order project with'} firstButtonText={'this order'} secondButtonText={'new order'} />
                     </div>
                 }
                 item2={

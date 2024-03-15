@@ -21,6 +21,7 @@ import 'react-calendar/dist/Calendar.css';
 import HorizontalLine from '../Lines/HorizontalLine';
 import MyButtonTransparent from '../MyButton/variants/MyButtonTransparent';
 import MyButtonOrange from '../MyButton/variants/MyButtonOrange';
+import { setDate } from 'date-fns';
 
 
 
@@ -35,60 +36,122 @@ type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 
-const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
+const SearchFilterBar = ({recent,exportIcon}:SearchFilterBarProps) => {
 
 
      const [selectedFilters,setSelectedFilters] = useState<string[]>([]);
 
+     const today = new Date();
+     const lastWeek = new Date(today);
+     lastWeek.setDate(today.getDate() - 7);
+
      const [categoriesMore,setCategoriesMore] = useState(false);
-     const [dateState, setDateState] = useState<Value>();
-     const onChange = (newDate) => {
-          setDateState(newDate);
-        };
+     const [startDate, setStartDate] = useState<ValuePiece>(lastWeek);
+     const [endDate, setEndDate] = useState<ValuePiece>(today);
+
+     const [showedCalendar,setShowedCalendar] = useState(false);
+
+     const formattedStart = startDate != null ? startDate.toLocaleDateString('en-US', {
+          month: 'numeric',
+          day: 'numeric',
+          year: '2-digit',
+     }) : 'Pick Date';
+     const formattedEnd = endDate != null ? endDate.toLocaleDateString('en-US', {
+          month: 'numeric',
+          day: 'numeric',
+          year: '2-digit',
+     }) : 'Pick Date';
+     const handleStartDateChange = (date:ValuePiece,event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+          const targetElement = event.currentTarget;
+          targetElement.classList.add('react-calendar-custom-active');
+          console.log(targetElement);
+          
+          if(endDate != null && endDate > date) {
+               setStartDate(date);
+          } else if(endDate != null && endDate < date) {
+               setStartDate(endDate);
+               setEndDate(date);
+          } else {
+               setStartDate(date);
+          }
+     };
+     
+     const handleEndDateChange = (date:ValuePiece,event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+          const targetElement = event.currentTarget;
+          targetElement.classList.add('react-calendar-custom-active');
+          if(startDate != null && startDate < date) {
+               setEndDate(date);
+          } else if(startDate != null && startDate > date) {
+               setEndDate(startDate);
+               setStartDate(date);
+          } else {
+               setEndDate(date);
+          }
+     };
 
      const handleLastWeekClick = () => {
           const today = new Date();
           const lastWeek = new Date(today);
           lastWeek.setDate(today.getDate() - 7);
-      
-          setDateState([lastWeek,today ]);
+          
+          setStartDate(lastWeek);
+          setEndDate(today);
+          // setDateState([lastWeek,today ]);
         };
         const handleLastTwoWeeks = () => {
           const today = new Date();
           const lastWeek = new Date(today);
           lastWeek.setDate(today.getDate() - 14);
+
+          setStartDate(lastWeek);
+          setEndDate(today);
       
-          setDateState([lastWeek,today ]);
+          // setDateState([lastWeek,today ]);
         };
         const handleLastMonth = () => {
           const today = new Date();
           const lastMonth = new Date(today);
           lastMonth.setMonth(today.getMonth() - 1);
 
+          setStartDate(lastMonth);
+          setEndDate(today);
+
       
-          setDateState([lastMonth,today ]);
+          // setDateState([lastMonth,today ]);
         };
         const handleLastThreeMonth = () => {
           const today = new Date();
           const lastMonth = new Date(today);
           lastMonth.setMonth(today.getMonth() - 3);
+
+          setStartDate(lastMonth);
+          setEndDate(today);
+
       
-          setDateState([lastMonth,today ]);
+          // setDateState([lastMonth,today ]);
         };
         const handleLastYear = () => {
           const today = new Date();
           const lastMonth = new Date(today);
           lastMonth.setMonth(today.getMonth() - 12);
+
+          setStartDate(lastMonth);
+          setEndDate(today);
+
       
-          setDateState([lastMonth,today ]);
+          // setDateState([lastMonth,today ]);
         };
        
         const handleFirstDayOfMonth = () => {
           const today = new Date();
           const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+          setStartDate(firstDayOfMonth);
+          setEndDate(today);
+
         
       
-          setDateState([firstDayOfMonth,today ]);
+          // setDateState([firstDayOfMonth,today ]);
         };
        
     return (
@@ -100,12 +163,15 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
            />
 
            <div className={styles.filters_wrapper}>
-           {date && <div className={`${styles.flex_item} cursor`}>
+           <div className={`${styles.flex_item} cursor`}>
                          <PopUpBottom
+                              callbackShow={(item) => {setShowedCalendar(item)}}
                                     showNode={
                                         <div className='gap_10 cursor'>
                                              <AppColor.calendar />
-                                             <Typography textLineHeight='1' textTransform='uppercase' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>{date}</Typography>
+                                             <Typography textLineHeight='1' 
+                                              textTransform='uppercase' variant='body4' fontWeight='500' 
+                                              color={showedCalendar ? AppColor.text : AppColor.transparentBlack}>{formattedStart} - {formattedEnd}</Typography>
                                         </div>
                                     }
                                     popUpNode={<div className={styles.calendar_wrapper} style={{display: 'flex'}}>
@@ -126,15 +192,18 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
                                              <div  className={styles.calendar_item_wrapper}>
                                                   <Calendar
                                                    
-                                                        next2AriaLabel={null}
-                                                        prev2AriaLabel={null}
-                                                        prev2Label={null}
-                                                        next2Label={null}
-                                                       onChange={onChange}
-                                                       value={dateState}
-                                                       selectRange={true}
+                                                       next2AriaLabel={null}
+                                                       prev2AriaLabel={null}
+                                                       prev2Label={null}
+                                                       next2Label={null}
+                                                       onChange={handleStartDateChange}
+                                                       value={[startDate,endDate]}
+                                       
                                                        locale='en-US'
-                                                      
+
+
+                                                       
+                                                     
                                                        calendarType='iso8601'
                                                        
                                                        formatShortWeekday={(locale, date) => {
@@ -151,10 +220,10 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
                                                             prev2AriaLabel={null}
                                                             prev2Label={null}
                                                             next2Label={null}
-                                                            onChange={onChange}
-                                                            value={dateState}
-                                                            selectRange={true}
+                                                            onChange={handleEndDateChange}
+                                                            value={[startDate,endDate]}
                                                             locale='en-US'
+                                                           
                                                             
                                                        
                                                             calendarType='iso8601'
@@ -171,9 +240,9 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
                                           <div className={styles.full_space}>
                                                <div className='gap_10'>
                                                   <div className='gap_10'>
-                                                       <DayPreviwBox text={'10/29/22'} />
+                                                       <DayPreviwBox text={formattedStart} />
                                                        <AppColor.minus fill={AppColor.text} />
-                                                       <DayPreviwBox text={'10/29/22'} />
+                                                       <DayPreviwBox text={formattedEnd} />
                                                   </div>
      
                                                   <div className='gap_10' style={{marginLeft: 'auto'}}>
@@ -190,7 +259,7 @@ const SearchFilterBar = ({recent,date,exportIcon}:SearchFilterBarProps) => {
                                     </div>}
                                     topPaddingFromNode='30px'
                                 />
-                    </div>}
+                    </div>
                <div className={styles.flex_item}>
                <PopUpBottom
                     showNode={

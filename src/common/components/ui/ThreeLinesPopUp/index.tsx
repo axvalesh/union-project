@@ -31,7 +31,7 @@ type ItemProps = {
 const Item = ({ title, icon, onClick,color,fontWeight }:ItemProps) => (
     <div style={{whiteSpace: 'nowrap'}} className={`${styles.item} cursor`} onClick={onClick}>
         {icon}
-        <Typography className={styles.text_of_item} color={color ?? AppColor.text} variant='body5'>{title}</Typography>
+        <Typography title={title} className={styles.text_of_item} color={color ?? AppColor.text} variant='body5'>{title}</Typography>
     </div>
 );
 
@@ -76,6 +76,82 @@ export const ButtonDropdownSelect = ({text,variants}:ButtonDropdownSelectProps) 
                 ? <AppColor.chevronTop fill={'white'} width={'16px'} height={'8px'} />
                 : <AppColor.chevronBottom fill={hovered ? 'white' : AppColor.orange} width={'16px'} height={'8px'} />
             }
+        </div>
+    
+         <div style={{display: openDropdown ? 'block' : 'none'}} className={styles.absolute_item}>
+             <div style={{position: 'relative'}}>
+                  <div className={styles.items_grid}>
+                       {variants.map(item => 
+                       <div onClick={() => {setActiveSelection(item);setOpenDropdown(false)}} className={`${styles.dropdown_item} cursor`}>
+                           <Typography variant='body4' fontWeight='500' textTransform='uppercase'>
+                                {item}
+                           </Typography>
+                       </div>)
+                       }
+                  </div>
+                  <div
+                  className={styles.triangle}></div>
+             </div>
+         </div>
+     </div>
+    );
+};
+
+
+
+export const ButtonDropdownSelectDark = ({text,variants}:ButtonDropdownSelectProps) => {
+
+    const [openDropdown,setOpenDropdown] = useState(false);
+    const [activeSelection,setActiveSelection] = useState(variants[0]);
+
+    const [hovered,setHovered] = useState(false);
+
+    return (
+     <div style={{position: 'relative'}}>
+        <div  
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={() => {setOpenDropdown(prev => !prev)}} className={`cursor gap_5`}>
+            <Typography textTransform='uppercase' fontSizeStatic='13px' fontWeight='500' color={'white'}>{activeSelection}</Typography>
+            {
+                openDropdown
+                ? <AppColor.triangleTop fill={'white'} width={'8px'} height={'6px'} />
+                : <AppColor.trianleDown fill={'white'} width={'8px'} height={'6px'} />
+            }
+        </div>
+    
+         <div style={{display: openDropdown ? 'block' : 'none'}} className={styles.absolute_item}>
+             <div style={{position: 'relative'}}>
+                  <div className={styles.items_grid}>
+                       {variants.map(item => 
+                       <div onClick={() => {setActiveSelection(item);setOpenDropdown(false)}} className={`${styles.dropdown_item} cursor`}>
+                           <Typography fontSizeStatic='13px' fontWeight='500' textTransform='uppercase'>
+                                {item}
+                           </Typography>
+                       </div>)
+                       }
+                  </div>
+                  <div
+                  className={styles.triangle}></div>
+             </div>
+         </div>
+     </div>
+    );
+};
+export const TextDropdownSelect = ({text,variants}:ButtonDropdownSelectProps) => {
+
+    const [openDropdown,setOpenDropdown] = useState(false);
+    const [activeSelection,setActiveSelection] = useState(variants[0]);
+
+    const [hovered,setHovered] = useState(false);
+
+    return (
+     <div style={{position: 'relative'}}>
+        <div 
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onClick={() => {setOpenDropdown(prev => !prev)}} className={`cursor`}>
+            <Typography textTransform='uppercase' variant='body4' fontWeight='500' color={openDropdown || hovered ? AppColor.text : AppColor.transparentBlack}>{activeSelection}</Typography>
         </div>
     
          <div style={{display: openDropdown ? 'block' : 'none'}} className={styles.absolute_item}>

@@ -61,6 +61,15 @@ const CrowdfreelanceAll = () => {
     const maxValueRef = useRef(null)
     const [removedTagFromSideBar,setRemovedTagFromSideBar] = useState('');
 
+    const [removeLastElement,setRemoveLastElement] = useState(false);
+
+    useEffect(() => {
+        const value = JSON.parse(localStorage.getItem('removeLastElement'));
+        if(value === true) {
+            setRemoveLastElement(true);
+        }
+    },[])
+
     useEffect(() => {
         const arrayLengthStart = width <= 768 ? 4 : 9
 
@@ -289,9 +298,12 @@ const CrowdfreelanceAll = () => {
 
                         <div className={styles.cards_wrapper}>
                             {itemsToshow.map((item,index) => (
-                              <Link to={'/crowdfreelance/campaign'}>
+                             
                                <div className={styles.card_center}>
                                     <CardTime 
+                                    setRemoveLastElementProps={setRemoveLastElement}
+                                    navigateTo='/crowdfreelance/campaign'
+                                    removeLastElementProps={removeLastElement}
                                     topUsers={[fakeUserConstant,fakeUserConstant,fakeUserConstant]}
                                         showBottomActions={true}
                                         title='Logo by sample in vector in maximum quality' 
@@ -302,7 +314,6 @@ const CrowdfreelanceAll = () => {
 
                                         />
                                </div>
-                              </Link>
                             ))}
                         </div>
                         <DynamicPadding

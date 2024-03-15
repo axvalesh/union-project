@@ -14,6 +14,8 @@ import ImageCardsPlaceholder from '@common/components/ImageCardsPlaceholder/inde
 import SwitchButton from '@common/components/ui/SwitchButton/index';
 import DynamicPadding from '@common/components/ui/DynamicPadding/index';
 import HorizontalLine from '@common/components/ui/Lines/HorizontalLine/index';
+import SizeBox from '@common/components/ui/SizeBox/index';
+import { fakeUserConstant } from '@common/models/user';
 
 export type StepProps = {
     callback: (item: any) => void;
@@ -59,7 +61,7 @@ export const StepOneButtonAddPortfolio = ({callback,value}:StepProps) => {
     return (
         <StepItemSolving solveNode={
             <InputCommon initText={value} padding='15px 30px' width='100%' callback={(item) => {callback(item)}} placeholder='Title' />
-        } stepNumber='1' title={value} />
+        } stepNumber='1' title={'Title'} />
     );
 };
 
@@ -107,15 +109,18 @@ export const StepThreeButtonAddPortfolio = ({callback,value,stepOneValue,stepTwo
             solvingNode={
                 <StepItemSolving solveNode={
                   <div className={styles.grid_3}>
-                    {  skills.map(item => <SkillCheckBox initValue={array.includes(item)} text={item} removeDropdown={true} callback={(text,isTrue) => {
-                        if(isTrue) {
-                            setArray(prev => [...prev,item])
-                        } else {
-                            if(array.includes(item)) {
-                                setArray(prev => prev.filter(tmp => tmp != item))
+                    { 
+                    skills.map(item =>
+                        <SkillSelectTmp initValueProp={array.includes(item)} text={item}  callback={(text,isTrue) => {
+                            if(isTrue) {
+                                setArray(prev => [...prev,item])
+                            } else {
+                                if(array.includes(item)) {
+                                    setArray(prev => prev.filter(tmp => tmp != item))
+                                }
                             }
-                        }
-                    }} />)}
+                        }} />
+    )}
                   </div>
                 } stepNumber='3' title='Skills' />
             }
@@ -123,6 +128,18 @@ export const StepThreeButtonAddPortfolio = ({callback,value,stepOneValue,stepTwo
     )
 }
 
+
+const SkillSelectTmp = ({text,callback,initValueProp}) => {
+    const [initValue,setInitValue] = useState(initValueProp ?? false);
+    useEffect(() => {
+        callback(text,initValue);
+    },[initValue])
+    return (
+        <div onClick={() => {setInitValue(prev => !prev)}}>
+            <SkillCheckBox initValue={initValue} text={text} callback={callback} removeDropdown={true} />
+        </div>
+    )
+}
 export const StepFourButtonAddPortfolio = ({callback,value,stepOneValue,stepTwoValue,stepThreeValue,callbackStep}:StepProps) => {
 
     return (
@@ -139,7 +156,7 @@ export const StepFourButtonAddPortfolio = ({callback,value,stepOneValue,stepTwoV
                     onSolveClick: () => {callbackStep(2)}
                 },
                 {
-                    solve: 'Change repeatability',//array to string look like: item1, item2, item3
+                    solve: 'Change skills',
                     text: stepThreeValue.join(', '),
                     onSolveClick: () => {callbackStep(3)}
                 },
@@ -167,14 +184,13 @@ export const StepFourButtonAddPortfolio = ({callback,value,stepOneValue,stepTwoV
 }
 
 export const StepFiveButtonAddPortfolio = ({callback,value,stepOneValue,stepTwoValue,stepThreeValue,stepFourValue,callbackStep}:StepProps) => {
-    const [tmpArray,setTmpArray] = useState(value);
+  
+    const [questions,setQuestions] = useState(value);
+    
 
     useEffect(() => {
-        callback(tmpArray);
-    },[tmpArray])
-
-    console.log(tmpArray,'tmpArray');
-    
+        setQuestions(value)
+    }, [value])
 
     const [showAskedQuestions,setShowAskedQuestions] = useState(false);
     
@@ -193,12 +209,12 @@ export const StepFiveButtonAddPortfolio = ({callback,value,stepOneValue,stepTwoV
                     onSolveClick: () => {callbackStep(2)}
                 },
                 {
-                    solve: 'Change repeatability',
+                    solve: 'Change skills',
                     text: stepThreeValue.join(', '),
                     onSolveClick: () => {callbackStep(3)}
                 },
                 {
-                    solve: 'Change time period',
+                    solve: 'Change images',
                     text: `${stepFourValue.length} images`,
                     onSolveClick: () => {callbackStep(4)}
                 },
@@ -211,7 +227,7 @@ export const StepFiveButtonAddPortfolio = ({callback,value,stepOneValue,stepTwoV
                             <SwitchButton callback={(item) => {setShowAskedQuestions(item)}} width='44px' height='24px' />
                         </div>
                         <DynamicPadding desktop='20px' mobile='10px'/>
-                        {showAskedQuestions && tmpArray.map((item,index) => <FaqItem title={item.question} text={item.answer} />)}
+                        {showAskedQuestions && questions.map((item,index) => <FaqItem index={index} title={item.question} text={item.answer} />)}
 
                    </div>
                 } stepNumber='5' title='FAQ' />
@@ -237,40 +253,42 @@ export const StepSixButtonAddPortfolio = ({callback,value,stepOneValue,stepTwoVa
                     onSolveClick: () => {callbackStep(2)}
                 },
                 {
-                    solve: 'Change repeatability',
+                    solve: 'Change skills',
                     text: stepThreeValue.join(', '),
                     onSolveClick: () => {callbackStep(3)}
                 },
                 {
-                    solve: 'Change time period',
+                    solve: 'Change images',
                     text: `${stepFourValue.length} images`,
                     onSolveClick: () => {callbackStep(4)}
                 },
                 {
-                    solve: 'Change subscriptions',
-                    text: `${stepFiveValue.length} questions`,
+                    solve: 'Change FAQ',
+                    text: `${stepFiveValue.length} FAQs`,
                     onSolveClick: () => {callbackStep(5)}
                 },
             ]}
             solvingNode={
                 <StepItemSolving solveNode={
                     <div className='gap_20'>
-                        <InputCommon padding='15px 30px' textAlingCenter={true} callback={(item) => {setActiveSelection(item);callback(item)}}
-                            placeholder='Enter Manually' type='number' width='100%'
-                        />
-                        <SelectItemSix activeText={activeSelection} callback={(item) => {setActiveSelection(item);callback(item)}} 
-                            text='5'
-                        />
-                        <SelectItemSix activeText={activeSelection} callback={(item) => {setActiveSelection(item);callback(item)}} 
-                            text='10'
-                        />
-                        <SelectItemSix activeText={activeSelection} callback={(item) => {setActiveSelection(item);callback(item)}} 
-                            text='20'
-                        />
+                        <StepSixComponent onClick={(item) => {setActiveSelection(item);callback(item)}} activeSelection={activeSelection} icon={<AppColor.internal />} title={'Internal project'} />
+                        <StepSixComponent onClick={(item) => {setActiveSelection(item);callback(item)}} activeSelection={activeSelection} icon={<AppColor.external />} title={'External project'} />
                     </div>
-                } stepNumber='6' title='Limits' />
+                } stepNumber='6' title='Project design' />
                 } 
             />
+    )
+}
+
+const StepSixComponent = ({icon,title,onClick,activeSelection}) => {
+    return (
+        <div style={activeSelection == title ? {backgroundColor: '#F5F5F5'} : {}} onClick={() => {onClick(title)}} className={`${styles.step_six_component} cursor`}>
+            <div className={styles.abs_info}>
+                <InfoBox />
+            </div>
+            {icon}
+            <Typography variant='body5'>{title}</Typography>
+        </div>
     )
 }
 
@@ -292,45 +310,154 @@ export const StepSevenButtonAddPortfolio = ({callback,value,stepOneValue,stepTwo
                     onSolveClick: () => {callbackStep(2)}
                 },
                 {
-                    solve: 'Change repeatability',
+                    solve: 'Change skills',
                     text: stepThreeValue.join(', '),
                     onSolveClick: () => {callbackStep(3)}
                 },
                 {
-                    solve: 'Change time period',
+                    solve: 'Change images',
                     text: `${stepFourValue.length} images`,
                     onSolveClick: () => {callbackStep(4)}
                 },
                 {
-                    solve: 'Change subscriptions',
+                    solve: 'Change FAQ',
                     text: `${stepFiveValue.length} questions`,
                     onSolveClick: () => {callbackStep(5)}
                 },
                 {
-                    solve: 'Change limit',
-                    text: `${stepSixValue} - ${stepSixValue} limit`,
+                    solve: 'Change project design',
+                    text: `${stepSixValue}`,
                     onSolveClick: () => {callbackStep(6)}
                 },
             ]}
             solvingNode={
                 <StepItemSolving solveNode={
-                    <div className='gap_20'>
-                      
-                    </div>
-                } stepNumber='7' title='Purpose' />
+                    <StepSevenComponent />
+                } stepNumber='7' title='Completed project' />
                 } 
             />
     )
 }
 
 
+export const StepFinalPortfolio = ({callback,value,stepOneValue,stepTwoValue,stepSixValue,stepThreeValue,stepFiveValue,stepFourValue,callbackStep}:StepProps) => {
+    return (
+        <StepsOfPreparingEndSolving 
+        elements={[
+            {
+                solve: 'Change title',
+                text: stepOneValue,
+                onSolveClick: () => {callbackStep(1)}
+            },
+            {
+                solve: 'Change description',
+                text: stepTwoValue,
+                onSolveClick: () => {callbackStep(2)}
+            },
+            {
+                solve: 'Change skills',
+                text: stepThreeValue.join(', '),
+                onSolveClick: () => {callbackStep(3)}
+            },
+            {
+                solve: 'Change images',
+                text: `${stepFourValue.length} images`,
+                onSolveClick: () => {callbackStep(4)}
+            },
+            {
+                solve: 'Change FAQ',
+                text: `${stepFiveValue.length} questions`,
+                onSolveClick: () => {callbackStep(5)}
+            },
+            {
+                solve: 'Change project design',
+                text: `${stepSixValue}`,
+                onSolveClick: () => {callbackStep(6)}
+            },
+            {
+                solve: 'Change completed project',
+                text: `$100`,
+                onSolveClick: () => {callbackStep(7)}
+            },
+        ]}
+        solvingNode={
+           <></>
+            } 
+        />
+    )
+}
+
+
+const StepSevenComponent = () => {
+
+
+    return (
+        <div className={styles.seven_component}>
+            <StepSevenComponentChoose firstItem={true} />
+            <HorizontalLine />
+            <InputCommon padding='16px 50px' rightPadding={40} callback={() => {}} placeholder='Search' borderRadius='0px' boxShadowNone={true} icon={<AppColor.search />} />
+            <HorizontalLine />
+
+            <div className={styles.scroll_seven}>
+                <DynamicPadding desktop='20px' mobile='15px' />
+                <div className={styles.seven_padding}>
+                        <Typography textLineHeight='1' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>
+                        Services
+                        </Typography>
+                </div>
+                <DynamicPadding desktop='20px' mobile='15px' />
+                <StepSevenComponentChoose />
+                <StepSevenComponentChoose />
+                <StepSevenComponentChoose />
+    
+                <DynamicPadding desktop='20px' mobile='15px' />
+                <div className={styles.seven_padding}>
+                        <Typography textLineHeight='1' variant='body4' fontWeight='500' color={AppColor.transparentBlack}>
+                        Orders
+                        </Typography>
+                </div>
+                <DynamicPadding desktop='20px' mobile='15px' />
+                <StepSevenComponentChoose />
+                <StepSevenComponentChoose />
+                <StepSevenComponentChoose />
+            </div>
+
+        </div>
+    )
+}
+
+
+const StepSevenComponentChoose = ({firstItem}: {firstItem?: boolean}) => {
+    return (
+        <div style={firstItem ? {backgroundColor: 'transparent'} : {}} className={styles.seven_choose_item}>
+            <img src={fakeUserConstant.image} width={'38px'} height={'38px'} alt="" />
+
+            <div className={styles.flex_column}>
+                <Typography variant='body4' fontWeight='500'>Logo by sample in vector in maximum quality </Typography>
+                <div className='gap_5'>
+                    <Typography variant='body5' className={styles.hover_text}>A. Markevych</Typography>
+                    <Typography variant='body5' className={styles.hover_text}>• 16 Oct - 25 Nov (39 days)</Typography>
+                </div>
+            </div>
+
+            <div className={'gap_10'} style={{marginLeft: 'auto'}}>
+                <Typography variant='subtitle' fontWeight='500'>$100</Typography>
+                <AppColor.boxIcon />
+                <AppColor.flag />
+            </div>
+        </div>
+    )
+}
+
 type FagItemProps = {
     title: string;
     text: string;
+    index: number;
 }
-const FaqItem = ({text,title}:FagItemProps) => {
+const FaqItem = ({text,title,index}:FagItemProps) => {
     return (
         <div>
+            {index != 0 && <SizeBox height='20px' />}
             <div className={styles.faq_item}>
                 <AppColor.arrowFour />
     

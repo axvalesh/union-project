@@ -14,6 +14,8 @@ import UserAvatar from '@common/components/ui/UserAvatar/index';
 import { fakeUserConstant } from '@common/models/user';
 import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
 import MyButtonOrange from '@common/components/ui/MyButton/variants/MyButtonOrange';
+import PopUpBottom from '@common/components/ModalPopUps/PopUpBottom/index';
+import { ThreeLinesPopUpCustom } from '@common/components/ui/ThreeLinesPopUp/index';
 
 
 
@@ -28,6 +30,8 @@ const CreatePopUp = () => {
     const [inputText,setInputText] = useState('');
 
     const [inviteText,setInviteText] = useState('');
+
+    const [dropdownOrder,setDropdownOrder] = useState(false);
 
     return (
       <div className={styles.create_wrapper}>
@@ -105,12 +109,43 @@ const CreatePopUp = () => {
                     <HorizontalLine />
 
                     <SizeBox height='30px' />
-                    <div style={{paddingLeft: '30px'}} className='gap_10'>
-                        <img src={fakeUserConstant.image} width={'38px'} height={'38px'} alt="" />
-                        <Typography variant='body4' fontWeight='500'>
-                        Logo Design
-                        </Typography>
-                        <AppColor.chevronBottom width={'12px'} height={'6px'} fill={AppColor.text}/>
+                   
+                    <div style={{paddingLeft: '30px',width: 'fit-content'}} className='gap_10'>
+                    <PopUpBottom 
+                    topPaddingFromNode='10px'
+                     popUpNode={
+                       <ThreeLinesPopUpCustom 
+                       items={[
+                        {
+                            icon: <></>,
+                            title: 'Logo Design'
+                        },
+                        {
+                            icon: <></>,
+                            title:  'Logo Design'
+                        },
+                        {
+                            icon: <></>,
+                            title:  'Logo Design'
+                        }
+                       ]}
+                       />
+                     }
+                     callbackShow={(item) => {setDropdownOrder(item)}}
+
+                     showNode={
+                    
+                        <div className='gap_10'>
+                            <img src={fakeUserConstant.image} width={'38px'} height={'38px'} alt="" />
+                            <Typography variant='body4' fontWeight='500'>
+                            Logo Design
+                            </Typography>
+                            {dropdownOrder
+                            ? <AppColor.chevronTop width={'12px'} height={'6px'} fill={AppColor.text}/>
+                            : <AppColor.chevronBottom width={'12px'} height={'6px'} fill={AppColor.text}/>}
+                        </div>
+                     }
+                    />
                     </div>
              
                     <div style={{padding: '30px'}}>

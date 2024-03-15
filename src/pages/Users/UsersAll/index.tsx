@@ -54,6 +54,15 @@ const UsersAll = () => {
     const maxValueRef = useRef(null)
     const [removedTagFromSideBar,setRemovedTagFromSideBar] = useState('');
 
+    const [removeLastElement,setRemoveLastElement] = useState(false);
+
+    useEffect(() => {
+        const value = JSON.parse(localStorage.getItem('removeLastElement'));
+        if(value === true) {
+            setRemoveLastElement(true);
+        }
+    },[])
+
     useEffect(() => {
         const arrayLengthStart = width <= 768 ? 4 : 9
 
@@ -529,6 +538,9 @@ const UsersAll = () => {
                             {itemsToshow.map((item,index) => (
                                   <div className={'center_card'}>
                                  <CardStatisticPartnership
+                                 removeLastElementProps={removeLastElement}
+                                 setRemoveLastElementProps={setRemoveLastElement}
+                       
                                  userDetails={[
                                     {
                                         text: '95%',

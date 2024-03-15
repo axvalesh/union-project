@@ -362,7 +362,15 @@ import { ReactComponent as statusOffline} from '@assets/svg/status-offline.svg';
 
 import { ReactComponent as messageIconWhiteIcon} from '@assets/svg/message-icon-white-icon.svg';
 
+import { ReactComponent as internal} from '@assets/svg/internal.svg';
+import { ReactComponent as external} from '@assets/svg/external.svg';
+
+import { ReactComponent as boxIcon} from '@assets/svg/box_icon.svg';
+
 class AppColor {
+    static boxIcon = boxIcon;
+    static internal = internal;
+    static external = external;    
     static messageIconWhiteIcon = messageIconWhiteIcon;
     static doubleChevronsUp = doubleChevronsUp;
     static statusOffline = statusOffline;   
@@ -673,6 +681,7 @@ class AppColor {
     static cookies = cookies;
 
     static orange = '#F4A72A';
+    static yellow = '#F2C94C';
     static white = '#F5F5F5';
     static ligthWhite = '#FCFCFC'
     static grey = '#A8A8AD'

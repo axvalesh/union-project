@@ -33,6 +33,32 @@ const FiltersTemplate = () => {
     );
 };
 
+
+export const FilterTemplateDropdown = () => {
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    return (
+      <div style={{position: 'relative'}}>
+          <div onClick={() => {setShowDropdown(prev => !prev)}} className='flex_space_between'>
+            <AppColor.template />           
+          </div>
+
+          <div className={styles.abs_item} style={{opacity: showDropdown ? '1' : '0',right: '-50px'}}>
+                <AnimateHeight show={showDropdown}>
+                    <div className={styles.padding}><Typography variant='body5' color={AppColor.transparentBlack} fontWeight='500'>Recent</Typography></div>
+                    <Recent text={'01/23/2023 23:10 - Crypto Wall ...'} />
+                    <Recent text={'01/23/2023 23:10 - Crypto Wall ...'} />
+
+                    <SizeBox height='10px'/>
+                    <div className={styles.padding}><Typography variant='body5' color={AppColor.transparentBlack} fontWeight='500'>Saved</Typography></div>
+                    <Recent text={'01/23/2023 23:10 - Crypto Wall ...'} edit={true}/>
+                    <Recent text={'01/23/2023 23:10 - Crypto Wall ...'} edit={true}/>
+                    <SizeBox height='10px'/>
+                </AnimateHeight>
+          </div>
+      </div>
+    );
+}
 const Recent = ({text,edit}: {text:string;edit?: boolean}) => {
     return (
         <div className={`${styles.recent} cursor`}>

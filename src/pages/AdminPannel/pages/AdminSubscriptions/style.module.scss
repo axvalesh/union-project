@@ -9,6 +9,25 @@
     overflow-x: hidden;
 }
 
+.hover_text {
+    font-weight: 400;
+    color: rgba($color: black, $alpha: 0.5);
+    transition: 0.2s;
+
+    &:hover {
+        font-weight: 500;
+        color: $text;
+    }
+}
+
+.flex_3 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
 .scroll_bar {
     overflow-x: auto;
     border-bottom: 1px solid rgba($color: $text, $alpha: 0.1);

@@ -17,6 +17,8 @@ import UserAvatar from '@common/components/ui/UserAvatar/index';
 import { fakeUserConstant } from '@common/models/user';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import TextDotted from '@common/components/ui/TextDotted/index';
+import DarkBox from '@common/components/ui/DarkBox/index';
+import { ButtonDropdownSelect, ButtonDropdownSelectDark } from '@common/components/ui/ThreeLinesPopUp/index';
 
 const ControllPannel = () => {
 
@@ -344,9 +346,7 @@ const ControllPannel = () => {
                 <ModalCenterBasic 
                 nodeAfterTitle={
                     <div className={styles.category}>
-                        <Typography textTransform='uppercase' fontSizeStatic='13px' fontWeight='400' color='white'>
-                        Logo design <AppColor.trianleDown fill='white'/>
-                        </Typography>
+                        <ButtonDropdownSelectDark text='Logo Design' variants={['Logo Design', '1', '2']} />
                     </div>
                 }
                 prevClose={true} bottomPartPadding='30px 30px' callbackClose={() => {setArbitrationModal(false)}} title='Arbitrator' topPartPadding='15px 30px'>

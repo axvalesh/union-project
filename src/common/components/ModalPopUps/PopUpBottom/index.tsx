@@ -11,8 +11,9 @@ type PopUpBottomProps = {
         topPaddingFromNode?: string;
         showBackgroundHover?: boolean;
         positionRight?: string;
+        callbackShow?: (show:boolean) => void;
 }
-const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFromNode,showNodeHover,positionRight=''}:PopUpBottomProps) => {
+const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFromNode,showNodeHover,positionRight='',callbackShow}:PopUpBottomProps) => {
 
     const [show,setShow] = useState(false);
 
@@ -38,6 +39,14 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
          document.removeEventListener('mousedown', handleOutsideClick);
      };
  }, []);
+
+    useEffect(() => {
+
+        if(callbackShow){
+            callbackShow(show);
+        }
+    },[show]);
+
     return (
       <div  ref={nodeRef}  style={{position:'relative'}}>
            <div className='cursor' onClick={() => {setShow(prev => !prev)}} >
@@ -68,7 +77,7 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
      </div>}
                
            </div>
-           <div  style={positionRight != '' ? {
+           <div style={positionRight != '' ? {
             right: positionRight,
             left: 'auto',
             transform: 'translateX(0)',

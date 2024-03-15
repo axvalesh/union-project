@@ -15,6 +15,8 @@ import DaysLeftTimer from "@common/components/ui/DaysLeftTimer/DaysLeftTimer";
 import CardTypeDisplay from "../CardTypeDisplay/CardTypeDisplay";
 import DynamicPadding from "../../ui/DynamicPadding";
 import AnimatedSvg from "../../AnimatedSvg";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 type CardTimeProps = {
     title: string;
     user: userModel;
@@ -24,9 +26,14 @@ type CardTimeProps = {
     date: Date;
     showBottomActions?: boolean;
     topUsers?: userModel[];
+    removeLastElementProps?: boolean;
+    setRemoveLastElementProps?: (value: boolean) => void;
+    navigateTo?: string;
 }
-const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMoneyRange,topUsers,date}:CardTimeProps) => {
+const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,navigateTo,currentMoneyRange,topUsers,date,removeLastElementProps,setRemoveLastElementProps}:CardTimeProps) => {
     const flagImage = useGetImage(`flags/${user.country}`,false);
+
+    const navigate = useNavigate();
 
     const topImageStyles = {
         backgroundImage: `url(${bc_image})`,
@@ -35,6 +42,13 @@ const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMone
         backgroundPosition: 'center',
         zIndex: 0,
     }
+
+    const [removeLastElement,setRemoveLastElement] = useState(false);
+
+    useEffect(() => {
+        setRemoveLastElement(removeLastElementProps);
+    },[removeLastElementProps])
+
     const today = new Date('2024-3-23');
     const futureDate = new Date(today.getTime() + (53 * 24 * 60 * 60 * 1000) + (3 * 60 * 60 * 1000) + (40 * 60 * 1000) + (20 * 1000));
 
@@ -56,7 +70,7 @@ const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMone
               }
             )
             }
-           <div style={topImageStyles} className={styles.shell_top_image}>
+           <div onClick={() => {navigate(navigateTo)}} style={topImageStyles} className={styles.shell_top_image}>
             <Typography variant="body5" color="white">
                 {title}
             </Typography>
@@ -108,7 +122,7 @@ const CardTime = ({title,user,showBottomActions,tags,totalMoneyRange,currentMone
             </div>
            </div>
            {showBottomActions &&
-                <div className={`${styles.activity_items}`}>
+                <div style={removeLastElement ? {display: 'none'} : {}} className={`${styles.activity_items}`}>
               <div>
                    <AnimatedSvg
                         node1={<AppColor.hearPlus height={'18px'} fill={AppColor.text} />}

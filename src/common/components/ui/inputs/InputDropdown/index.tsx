@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Typography from '../../Typography/Typography';
 import styles from './style.module.scss';
 import AppColor from '@common/styles/variables-static';
+import AnimateHeight from '@common/components/AnimateHeight/index';
 
 type InputDropdownProps = {
     initText: string;
@@ -52,12 +53,16 @@ const InputDropdown = ({padding,iconHeight,iconBeforeVariant,marginLeft,initText
                     />}
                 </div>
             </div>
-            <div className={styles.variants_wrapper} style={{display: showDropdown ? 'grid' : 'none'}}>
-                {dropdownVariants.map(item =>
-                   <div
-                   onClick={() => {handleChange(item)}}
-                   className={styles.variant_item}> <Typography variant='body4'>{item}</Typography>    </div>
-                )}
+            <div className={styles.variants_wrapper} style={!showDropdown ? { boxShadow: 'none', WebkitBoxShadow: 'none', MozBoxShadow: 'none' } : {}}>
+                <AnimateHeight show={showDropdown}>
+                    <div className={styles.variants_abs_shell}>
+                        {dropdownVariants.map(item =>
+                           <div
+                           onClick={() => {handleChange(item)}}
+                           className={styles.variant_item}> <Typography variant='body4'>{item}</Typography>    </div>
+                        )}
+                    </div>
+                </AnimateHeight>
             </div>
             <div className={styles.label_icon}>{labelIcon}</div>
             <div className={styles.icon_before}>{iconBeforeVariant}</div>

@@ -23,11 +23,14 @@ import SliderTransparentSwiper from '@common/components/ui/SliderTransparentSwip
 import SliderByRef from '@common/components/ui/SliderByRef/index';
 import UserAvatar from '@common/components/ui/UserAvatar/index';
 import PopUpBottom from '@common/components/ModalPopUps/PopUpBottom/index';
-import ThreeLinesPopUp from '@common/components/ui/ThreeLinesPopUp/index';
+import ThreeLinesPopUp, { ThreeLinesPopUpCustom } from '@common/components/ui/ThreeLinesPopUp/index';
 import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent';
-import { StepOneButtonAddPortfolio, StepThreeButtonAddPortfolio, StepFourButtonAddPortfolio, StepFiveButtonAddPortfolio, StepSixButtonAddPortfolio, StepSevenButtonAddPortfolio, StepTwoButtonAddPortfolio } from './Steps';
+import { StepOneButtonAddPortfolio, StepThreeButtonAddPortfolio, StepFourButtonAddPortfolio, StepFiveButtonAddPortfolio, StepSixButtonAddPortfolio, StepSevenButtonAddPortfolio, StepTwoButtonAddPortfolio, StepFinalPortfolio } from './Steps';
 import SizeBox from '@common/components/ui/SizeBox/index';
 import InputCommon from '@common/components/ui/inputs/InputCommon/index';
+import DarkBox from '@common/components/ui/DarkBox/index';
+import ButtonChooseList from '@common/components/ButtonChooseList/index';
+import { FilterTemplateDropdown } from '@common/components/ui/FiltersTemplate/index';
 
 const dropdownItems = [
     {
@@ -92,10 +95,28 @@ const DropdownPortfolio = () => {
         7: <StepSevenButtonAddPortfolio callbackStep={(item) => {setActiveStep(item)}} stepOneValue={stepOneText}
         stepTwoValue={stepTwoText} stepThreeValue={stepThree} stepFourValue={stepFour} stepFiveValue={stepFive} stepSixValue={stepSix}
         value={stepSix} 
+        callback={(item) => {setStepSix(item)}}/>,
+
+
+        8: <StepFinalPortfolio callbackStep={(item) => {setActiveStep(item)}} stepOneValue={stepOneText}
+        stepTwoValue={stepTwoText} stepThreeValue={stepThree} stepFourValue={stepFour} stepFiveValue={stepFive} stepSixValue={stepSix}
+        value={stepSix} 
         callback={(item) => {setStepSix(item)}}/>
     }
 
     const [addQuestion,setAddQuestion] = useState(false);
+
+
+    const mapsOfValues = {
+        1: stepOneText,
+        2: stepTwoText,
+        3: stepThree,
+        4: stepFour,
+        5: stepFive,
+        6: stepSix,
+        7: 'pass',
+        8: 'pass'
+    }
 
     return (
       <>
@@ -128,34 +149,43 @@ const DropdownPortfolio = () => {
             </MyButtonOrange>
         </div>
         </ModalCenterBasic>}
-      {addModal && <ModalCenterBasic desktopMinWidth='620px' bottomPartPadding='30px' callbackClose={() => {setAddModal(false)}} title='Add portfolio'
-                nodesBeforeClose={[<AppColor.template />]} 
+      {addModal && <ModalCenterBasic desktopMinWidth='830px' bottomPartPadding='30px' callbackClose={() => {setAddModal(false)}} title='Add portfolio'
+                nodesBeforeClose={[<FilterTemplateDropdown />]} 
              >
 
-                {mapsItem[activeStep] || null}
-
-                 <DynamicPadding desktop='30px' mobile='20px'/>
-                    <div style={{whiteSpace: 'nowrap'}} className='flex_space_between'>
-                        {activeStep == 5  && <div className='gap_5 cursor' style={{marginLeft: '35px'}} onClick={() => {setAddQuestion(true)}}>
-                            <Typography variant='body5' color={AppColor.orange}>
-                            Add question
-                            </Typography>
-                            </div>}
-                        <div className={styles.flex_end}>
-                            <MyButtonTransparent onClick={() => {
-                                if(activeStep >= 1) {
-                                    setActiveStep(prev => prev-1)
-                                } else {
-                                    setAddModal(false);
-                                }
-                            }} fontWeight='500' textTransform='uppercase'>
-                            Cancel
-                            </MyButtonTransparent>
-                            <MyButtonOrange onClick={() => {setActiveStep(prev => prev+1)}} fontWeight='500' textTransform='uppercase'>
-                            Next
-                            </MyButtonOrange>
+                <div style={{minHeight: '300px'}}>
+                    {mapsItem[activeStep] || null}
+    
+                     <DynamicPadding desktop='30px' mobile='20px'/>
+                        <div style={{whiteSpace: 'nowrap'}} className='flex_space_between'>
+                            {activeStep == 5  && <div className='gap_5 cursor' style={{marginLeft: '35px'}} onClick={() => {setAddQuestion(true)}}>
+                                <Typography variant='body5' color={AppColor.orange}>
+                                Add question
+                                </Typography>
+                                </div>}
+                            <div className={styles.flex_end}>
+                                <MyButtonTransparent onClick={() => {
+                                    if(activeStep >= 1) {
+                                        setActiveStep(prev => prev-1)
+                                    } else {
+                                        setAddModal(false);
+                                    }
+                                }} fontWeight='500' textTransform='uppercase'>
+                                Cancel
+                                </MyButtonTransparent>
+                                {activeStep != 8 && <MyButtonOrange disabled={
+                                    mapsOfValues[activeStep] == null || mapsOfValues[activeStep] == '' || mapsOfValues[activeStep].length == 0
+                                } onClick={() => {setActiveStep(prev => prev+1)}} fontWeight='500' textTransform='uppercase'>
+                                Next
+                                </MyButtonOrange>}
+                                {activeStep == 8 && <MyButtonOrange disabled={
+                                    mapsOfValues[activeStep] == null || mapsOfValues[activeStep] == '' || mapsOfValues[activeStep].length == 0
+                                } onClick={() => {setAddModal(false)}} fontWeight='500' textTransform='uppercase'>
+                                Save
+                                </MyButtonOrange>}
+                            </div>
                         </div>
-                    </div>
+                </div>
                 </ModalCenterBasic>}
       {showModal && <ModalCenterBasic
             desktopMaxWidth='calc(40vw + 60px)'
@@ -234,7 +264,19 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
 
             {showEdit && <ModalCenterBasic 
             desktopMinWidth='60vw'
-             bottomPartPadding='30px' callbackClose={() => {setShowEdit(false)}} title='Portfolio'>
+            bottomPartPadding='30px' callbackClose={() => {setShowEdit(false)}} title='Portfolio'
+            nodeAfterTitle={
+                <div style={{width: '100%'}} className='gap_10'>
+                    <DarkBox text='5' />
+
+                    <div style={{marginLeft: 'auto'}}>
+                    <ButtonChooseList buttonPadding='3px 14px' buttons={['All','Active','Pending']} callback={() => {}} gap='0px' initValue='All'/>
+                    </div>
+
+                    <SizeBox width='30px'/>
+                </div>
+            } 
+             >
                 <div className={styles.profile_grid}>
                     <EditPortfolio />
                     <EditPortfolio />
@@ -293,9 +335,16 @@ const EditPortfolio = () => {
      <div className={styles.edit_profile}>
         <div className='gap_20'>
             <AppColor.arrowFour />
-            <UserAvatar active={true} name='' title={'Logo by sample in vector in maximum quality '} role='Logo Design • 16 Oct - 25 Nov (39 days)'
-                roleColor={AppColor.transparentBlack}
-            />
+            <div className='gap_10'>
+            <UserAvatar active={true} variant='image' name='Artem M.' url={fakeUserConstant.image} />
+                <div className={styles.flex_column} style={{alignItems: 'start'}}>
+                    <Typography variant='body4' fontWeight='500' className='underline_appearance'>Logo by sample in vector in maximum quality </Typography>
+                    <div className='gap_5'>
+                        <Typography variant='body5' className={`${styles.hover_dark} cursor`}>Logo Design</Typography>
+                        <Typography variant='body5' className={`${styles.hover_dark} cursor`}>• 16 Oct - 25 Nov (39 days)</Typography>
+                    </div>
+                </div>
+            </div>
         </div>
         <Typography variant='body3' fontWeight='500' >$200</Typography>
         <PopUpBottom
@@ -307,7 +356,16 @@ const EditPortfolio = () => {
             showNode={
                <div className='cursor'> <AppColor.threeLines /></div>
             }
-            popUpNode={<ThreeLinesPopUp />}
+            popUpNode={<ThreeLinesPopUpCustom 
+                positionRight='25px'
+                items={[
+                    { icon: <AppColor.share />, title: 'Share' },
+                    { icon: <AppColor.report />, title: 'Report' },
+                    { icon: <AppColor.edit fill={AppColor.text} />, title: 'Edit' },
+                    { icon: <AppColor.playGreen />, title: 'Resume', color: AppColor.green },
+                    { icon: <AppColor.close fill={AppColor.red} />, title: 'Delete', color: AppColor.red },
+                ]}
+            />}
             topPaddingFromNode='27px'
         />
      </div>

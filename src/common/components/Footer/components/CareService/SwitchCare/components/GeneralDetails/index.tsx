@@ -71,7 +71,7 @@ const GeneralDetails = ({setActiveSwitch}:CareServiceChildProps) => {
                                     <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>12</Typography>
                                 </div>
                             </div>
-                            <Typography variant='body5' fontWeight='500' color={AppColor.transparentBlack}>View All</Typography>
+                            <Typography variant='body5' fontWeight='500' className={styles.hover_all}>View All</Typography>
                         </div>
                             
                        <SizeBox height='20px'/>
@@ -79,8 +79,12 @@ const GeneralDetails = ({setActiveSwitch}:CareServiceChildProps) => {
                             <FileItemNotific />
                             <FileItemNotific />
 
+                            
+
 
                             <DynamicPadding desktop='20px' mobile='10px' />
+                            <HorizontalLine />
+          <DynamicPadding desktop='20px' mobile='10px' />
           <div className='flex_space_between'>
                             <div className='gap_10'>
                                 <Typography variant='body3' fontWeight='500'>Members</Typography>
@@ -88,19 +92,22 @@ const GeneralDetails = ({setActiveSwitch}:CareServiceChildProps) => {
                                     <Typography variant='body3' textLineHeight='1' fontWeight='500' color='white'>125</Typography>
                                 </div>
                             </div>
-                            <Typography variant='body5' fontWeight='500' color={AppColor.transparentBlack}>View All</Typography>
+                            <Typography variant='body5' fontWeight='500' className={styles.hover_all}>View All</Typography>
                         </div>
 
                         <DynamicPadding desktop='20px' mobile='10px' />
 
-                        <div onClick={() => {setActiveSwitch('main.general help nopadding.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
-                            <UserAvatar active={true} name='name ' role='Customer' url={fakeUserConstant.image} />
+                        <div onClick={() => {setActiveSwitch('main.general help.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
+                            <div className={styles.absolute_background_color}></div>
+                            <UserAvatar flag={<AppColor.UkraineFlagIcon />}  active={true} name='Artem M. ' role='Moderator' url={fakeUserConstant.image} />
                         </div>
-                        <div onClick={() => {setActiveSwitch('main.general help nopadding.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
-                            <UserAvatar active={true} name='name ' role='Customer' url={fakeUserConstant.image} />
+                        <div onClick={() => {setActiveSwitch('main.general help.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
+                            <div className={styles.absolute_background_color}></div>
+                            <UserAvatar  flag={<AppColor.UkraineFlagIcon />} active={true} name='Artem M. ' role='Moderator' url={fakeUserConstant.image} />
                         </div>
-                        <div onClick={() => {setActiveSwitch('main.general help nopadding.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
-                            <UserAvatar active={true} name='name ' role='Customer' url={fakeUserConstant.image} />
+                        <div onClick={() => {setActiveSwitch('main.general help.helpchat showhelp.details.user')}} className={`${styles.hover_item} cursor`}>
+                            <div className={styles.absolute_background_color}></div>
+                            <UserAvatar  flag={<AppColor.UkraineFlagIcon />} active={true} name='Artem M. ' role='Moderator' url={fakeUserConstant.image} />
                         </div>
       </div>
     );

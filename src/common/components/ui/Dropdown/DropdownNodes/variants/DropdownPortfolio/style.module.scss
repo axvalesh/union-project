@@ -12,6 +12,15 @@
     justify-content: center;
 }
 
+.hover_dark {
+    color: rgba($color: black, $alpha: 0.5);
+    transition: 0.2s;
+  
+    &:hover {
+      color: $text;
+    }
+  }
+
 .flex_column {
     display: flex;
     flex-direction: column;

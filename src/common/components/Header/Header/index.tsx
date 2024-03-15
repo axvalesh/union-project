@@ -18,8 +18,9 @@ import SoundPopUp from './components/SoundPopUp'
 import ControllPannel from './components/ControllPannel'
 import SizeBox from '../../ui/SizeBox'
 import { SelectDropdown, MobileNavBar } from '../Header-not-authorized/Header-not-authorized'
+import AnimateHeight from '../../AnimateHeight'
 
-const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
+const Header = ({position='fixed',removeMaxWidth=false}: {position?: 'fixed' | 'relative',removeMaxWidth?: boolean}) => {
     const [hovered, setHovered] = useState(false);
 
     const [hoveredLink,setHoveredLink] = useState(3);
@@ -27,6 +28,21 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
     const [headerVisible, setHeaderVisible] = useState(false);
     const [showModal,setShowModal] = useState(false);
     const [activeSelection,setActiveSelection] = useState('');
+
+    const [prevSelection,setPrevSelection] = useState('');
+
+
+    const handleChange = (item) => {
+        if(activeSelection != '') {
+        setActiveSelection('');
+        setTimeout(() => {
+            setActiveSelection(item);
+            setPrevSelection(activeSelection);
+        },400)
+        } else {
+        setActiveSelection(item);
+        }
+    }
 
     useEffect(() => {
         setTimeout(() => {
@@ -50,32 +66,98 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
             <SizeBox height="100px"/>
             <div className={styles.modal_padding}>
               <div className={styles.white_box}>
-                  <SelectDropdown 
-                    activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
-                    title="Customers"
-                  />
-                  <SelectDropdown 
-                    activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
-                    title="Freelancers"
-                  />
-                  <SelectDropdown 
-                    activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
-                    title="Sponsors"
-                  />
-                  <SelectDropdown 
-                    activeTitle={activeSelection}
-                    callback={(item) => {setActiveSelection(item)}}
-                    title="Managers"
-                  />  
+              <div className={styles.white_box_column}>
+                  <PopUpBottom
+                                           
+                                           showNode={
+                                               <div className={styles.transition_item}>
+                                                   <MyButtonTransparentOrange
+                                                 fontWeight="500"
+                                                 padding='10px 14px'
+                                                 onClick={() => {}}>
+                                                 <div className={styles.button_content}>
+                                                     <div className={styles.plus_box}>
+                                                         
+                                                         <AppColor.plus
+                                                             width={'9px'}
+                                                             height={'9px'}
+                                                             stroke={AppColor.orange}
+                                                         />
+                                                     </div>
+                                                     CREATE
+                                                 </div>
+                                             </MyButtonTransparentOrange>
+                                               </div>
+                                           }
+                                           popUpNode={<CreatePopUp />}
+                                           topPaddingFromNode='27px'
+                                       />
+                      <SelectDropdown 
+                        activeTitle={activeSelection}
+                        callback={(item) => {handleChange(item)}}
+                        title="Service"
+                      />
+                      <SelectDropdown 
+                        activeTitle={activeSelection}
+                        callback={(item) => {handleChange(item)}}
+                        title="Order"
+                      />
+                      <SelectDropdown 
+                        activeTitle={activeSelection}
+                        callback={(item) => {handleChange(item)}}
+                        title="Partnership"
+                      />
+                      <SelectDropdown 
+                        activeTitle={activeSelection}
+                        callback={(item) => {handleChange(item)}}
+                        title="Crowdfreelance"
+                      /> 
+                      <SelectDropdown 
+                        activeTitle={activeSelection}
+                        callback={(item) => {handleChange(item)}}
+                        title="Users"
+                      />  
+
+                      <div className='gap_20'>
+                      <PopUpBottom
+                                        showBackgroundHover={true}
+                                        showNodeHover={<AppColor.searchOrange height={'20px'} />}
+                                        showNode={
+                                            <AppColor.search height={'20px'} />
+                                        }
+                                        popUpNode={<SearchPopUp />}
+                                        topPaddingFromNode='30px'
+                                    />
+                                    <PopUpBottom
+                                        showBackgroundHover={true}
+                                        showNodeHover={<AppColor.newsOrange height={'20px'} />}
+                                        showNode={
+                                            <AppColor.news fill={AppColor.text} height={'20px'} />
+                                        }
+                                        popUpNode={<NewsPopUp />}
+                                        topPaddingFromNode='30px'
+                                    />
+    
+                                     <PopUpBottom
+                                        showBackgroundHover={true}
+                                        showNodeHover={<AppColor.soundOrange height={'20px'} />}
+                                        showNode={
+                                            <AppColor.sound height={'20px'}/>
+                                        }
+                                        popUpNode={<SoundPopUp />}
+                                        topPaddingFromNode='30px'
+                                    />
+                                    
+                                    
+                      </div>
+              </div>
               </div>
   
               <SizeBox height="50px"/>
   
-              {activeSelection != '' &&
-              <MobileNavBar />}
+              <AnimateHeight show={activeSelection != ''}>
+              <MobileNavBar removeCategory={true} callbackSelection={(item) => {handleChange(item)}} prevSelection={prevSelection} />
+              </AnimateHeight>
           </div>
           </div>
         </div>
@@ -83,7 +165,7 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
             
             {position == 'fixed' && <DynamicPadding desktop='92px' mobile='92px'/> }
                 <div  style={{opacity: headerVisible ? '1' : '0',position: position}} className={styles.fixed_header}>
-                    <div className={styles.wrapper}>
+                    <div style={removeMaxWidth ? {maxWidth: 'none',padding: '0px 30px'} : {}} className={styles.wrapper}>
                         <header className={styles.header}>
                             <div className={styles.header__container}>
                             <div onClick={() => {setShowModal(prev => !prev)}} style={{backgroundColor: showModal ? AppColor.orange : 'transparent'}} className={styles.hamburger__wrapper}>
@@ -126,13 +208,32 @@ const Header = ({position='fixed'}: {position?: 'fixed' | 'relative'}) => {
                                    </div>
                                 </div>
                                 <div className={styles.hamburger__wrapper_user}>
-                                  <UserAvatar
+                                  
+                                  <PopUpBottom
+                                  positionRight='0px'
+                                        showNodeHover={<div style={{opacity: '0.8'}}>
+                                          <UserAvatar
                                     active={true}
                                     name='Artem M.'
                                     role='Customer'
                                     url={fakeUserConstant.image}
                                     preventMobileNone={false}
                                   />
+                                  
+                                        </div>}
+                                        showNode={
+                                            <UserAvatar
+                                            active={true}
+                                            name='Artem M.'
+                                            role='Customer'
+                                            url={fakeUserConstant.image}
+                                            preventMobileNone={false}
+                                          />
+                                        }
+                                        popUpNode={<ControllPannel />}
+                                        topPaddingFromNode='30px'
+                                    />
+                                    
                                 </div>
                                 <div className={styles.header_second_part}>
                                     <li>
