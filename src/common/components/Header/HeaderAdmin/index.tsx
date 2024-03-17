@@ -8,6 +8,11 @@ import MenuLinks from '../components/MenuLinks';
 import styles from './style.module.scss';
 import { fakeUserConstant } from '@common/models/user';
 import { useEffect, useState } from 'react';
+import PopUpBottom from '../../ModalPopUps/PopUpBottom';
+import ControllPannel from '../Header/components/ControllPannel';
+import NewsPopUp from '../Header/components/NewsPopUp';
+import SearchPopUp from '../Header/components/SearchPopUp';
+import SoundPopUp from '../Header/components/SoundPopUp';
 
 type HeaderAdminProps = {
     modalMobile: React.ReactNode;
@@ -136,16 +141,57 @@ const HeaderAdmin = ({modalMobile}:HeaderAdminProps) => {
                         </div>
                     </div>
                     <div className={styles.header_third_part}>
-                        <AppColor.search />
-                        <AppColor.news fill={AppColor.text} />
-                        <AppColor.sound />
-
-                        <UserAvatar
-                          active={true}
-                          name='Artem M.'
-                          role='Customer'
-                          url={fakeUserConstant.image}
-                        />
+                    <PopUpBottom
+                                        showBackgroundHover={true}
+                                        showNodeHover={<AppColor.searchOrange height={'20px'} />}
+                                        showNode={
+                                            <AppColor.search height={'20px'} />
+                                        }
+                                        popUpNode={<SearchPopUp />}
+                                        topPaddingFromNode='30px'
+                                    />
+                                    <PopUpBottom
+                                        showBackgroundHover={true}
+                                        showNodeHover={<AppColor.newsOrange height={'20px'} />}
+                                        showNode={
+                                            <AppColor.news fill={AppColor.text} height={'20px'} />
+                                        }
+                                        popUpNode={<NewsPopUp />}
+                                        topPaddingFromNode='30px'
+                                    />
+    
+                                     <PopUpBottom
+                                        showBackgroundHover={true}
+                                        showNodeHover={<AppColor.soundOrange height={'20px'} />}
+                                        showNode={
+                                            <AppColor.sound height={'20px'}/>
+                                        }
+                                        popUpNode={<SoundPopUp />}
+                                        topPaddingFromNode='30px'
+                                    />
+                                    
+                                    
+                                    <PopUpBottom
+                                        showNodeHover={<div style={{opacity: '0.8'}}>
+                                            <UserAvatar
+                                    url={fakeUserConstant.image}
+                                      active={true}
+                                      name='Artem M.'
+                                      role='Customer'
+                                    />
+                                        </div>}
+                                        showNode={
+                                            <UserAvatar
+                                                url={fakeUserConstant.image}
+                                                active={true}
+                                                name='Artem M.'
+                                                role='Customer'
+                                            />
+                                        }
+                                        popUpNode={<ControllPannel />}
+                                        topPaddingFromNode='30px'
+                                    />
+                                    
                     </div>
                 </div>
             </header>

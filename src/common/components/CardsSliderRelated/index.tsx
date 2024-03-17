@@ -99,4 +99,61 @@ const SliderItem = ({lvl,priceFrom,priceWithoutDiscount,text,user}:SliderItemPro
   )
 }
 
+export const CardsSliderParticipates = ({secondSlider=false}: {secondSlider?:boolean}) => {
+
+  return (
+  <div>
+    <DynamicPadding />
+   
+     
+               <div style={{display: 'flex'}}>
+       
+                 <div style={{flexGrow: '1'}}>
+                    <FilterListBig
+                      activeStartItem='Services Participated'
+                      orangeText='History'
+                      filters={['Services Participated']}
+                    />
+                 </div>
+            
+               </div>
+               <DynamicPadding desktop='20px' mobile='10px'/>
+                 <Slider showDots={true} removeButtons={true} padding='0px 0px' maxShowCount={4} swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={10} itemWidth={250} gap={40}>
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                    <CardStatisticTest />
+                </Slider>
+               {secondSlider &&
+               <>
+                 <DynamicPadding />
+                <FilterListBig
+                    activeStartItem='Suitable'
+                    orangeText='Services'
+                    filters={['Suitable', 'Services', 'Freelancers']}
+                  />
+                <DynamicPadding desktop='30px' mobile='20px'/>
+                <ButtonChooseList buttons={['Web Development', 'Web Design', 'IT Support']} buttonPadding='5px 13px' callback={() => {}}
+                  gap='0px' initValue='Web Development'/>
+                  <Slider swiper={true} paddingBottom='10px' paddingTop='20px' elementsCount={6} itemWidth={250}  gap={20}>
+                    <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
+                    <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
+                    <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
+                    <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
+                    <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
+                    <SliderItem lvl={1} priceFrom='5' priceWithoutDiscount='15' text='Professional business logo with copyrights ' user={fakeUserConstant} />
+                  </Slider>
+               </>}
+
+
+  </div>
+  );
+};
+
 export default CardsSliderRelated;

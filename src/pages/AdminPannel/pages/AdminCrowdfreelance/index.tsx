@@ -258,7 +258,7 @@ const AdminCrowdfreelance = () => {
     
                     <div className='cursor' onClick={() => {setShowSettingsModal(true)}}>
                         <Typography variant='body4' fontWeight='500' textTransform='uppercase' className={styles.hover_text}>Sponsorships settings</Typography>
-                        </div>
+                    </div>
                </div>
     
                <DynamicPadding />

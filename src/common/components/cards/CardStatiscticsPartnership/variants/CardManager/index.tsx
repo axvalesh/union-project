@@ -19,6 +19,10 @@ import UserAvatar from '@common/components/ui/UserAvatar/index'
 import SwitchButton from '@common/components/ui/SwitchButton/index'
 import SizeBox from '@common/components/ui/SizeBox/index'
 import { DisplayArrayOfDetailsProfile } from '@pages/Partnership/pages/Program/index'
+import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index'
+import InputCommon from '@common/components/ui/inputs/InputCommon/index'
+import MyButtonTransparent from '@common/components/ui/MyButton/variants/MyButtonTransparent'
+import MyButtonRed from '@common/components/ui/MyButton/variants/MyButtonRed'
 
 type CardManagerProps = {
     title: string
@@ -76,10 +80,39 @@ const CardManager = ({
         ? {left: '0'}
         : {left: '50%',transform: 'translateX(-50%)'}
 
+
+    const [cancelModal,setCanceledModal] = useState(false);
+    const [cancelText,setCancelText] = useState('');
+    const [hired,setHired] = useState(false);
+
+    const [isCancelled,setIsCancelled] = useState(false);
     
     return (
         <div className={styles.shell}>
-            {!disableAbsoluteItems &&  showCardManagerActions && <div style={{display: isSelected ? 'flex' : 'none',...positionStyle}} className={styles.absolute_select}>
+            {
+                cancelModal && <ModalCenterBasic desktopMinWidth='830px' bottomPartPadding='30px' topPartPadding='15px 30px' callbackClose={() => {setCanceledModal(false)}} title='Move to cancelled'
+                nodeAfterTitle={
+                    <UserAvatar variant='image' active={true} url={fakeUserConstant.image} name='' />
+                }
+                >
+                    <InputCommon maxSymbolCount={300} placeholder='Please write reason of cancel (optional)' padding='15px 20px' callback={(item) => {setCancelText(item)}}/>
+                    <SizeBox height='10px' />
+                    <div className='flex_end'>
+                        <Typography variant='body4' color={AppColor.transparentBlack}>{cancelText.length} / 300</Typography>
+                    </div>
+                    <SizeBox height='25px' />
+
+                    <div className='flex_end'>
+                        <MyButtonTransparent onClick={() => {}} fontWeight='500' textTransform='uppercase'>
+                        Close
+                        </MyButtonTransparent>
+                        <MyButtonRed onClick={() => {setIsCancelled(true);setCanceledModal(false)}} fontWeight='500' textTransform='uppercase'>
+                        Cancel
+                        </MyButtonRed>
+                    </div>
+                </ModalCenterBasic>
+            }
+            {!disableAbsoluteItems && !hired && showCardManagerActions && !isCancelled && <div style={{display: isSelected ? 'flex' : 'none',...positionStyle}} className={styles.absolute_select}>
                 <div className={styles.gap_20}>
                     <Typography variant='body3' fontWeight='500'>Move</Typography>
                     <UserAvatar name={fakeUserConstant.name} active={true} 
@@ -92,16 +125,36 @@ const CardManager = ({
                         <AppColor.newIcon width={'22px'} />
                         <Typography variant='body4'>To New</Typography>
                     </div>
-                    <div className={styles.gap_10 + ' ' + styles.selection_activity}>
+                    <div onClick={() => {setCanceledModal(true)}} className={styles.gap_10 + ' ' + styles.selection_activity}>
                         <AppColor.close fill={AppColor.red} width={'25px'} height={'25px'} />
                         <Typography variant='body4' color={AppColor.red}>To Cancel</Typography>
                     </div>
-                    <div className={styles.gap_10 + ' ' + styles.selection_activity}>
+                    <div onClick={() => {setHired(true)}} className={styles.gap_10 + ' ' + styles.selection_activity}>
                         <AppColor.hired width={'18px'}/>
                         <Typography variant='body4' color={AppColor.green}>To Hire</Typography>
                     </div>
                 </div>
             </div>}
+            {hired && <div style={{...positionStyle}} className={styles.absolute_select}>
+                <div className={styles.gap_20}>
+                    <Typography variant='body3' fontWeight='500'>Moved</Typography>
+                    <UserAvatar name={fakeUserConstant.name} active={true} 
+                        flag={<AppColor.UkraineFlagIcon/>} role='Shortlisted' preventMobileNone={true}/>
+                    <AppColor.speficChevronRightFilled />
+                    <UserAvatar name={fakeUserConstant.name} active={true} 
+                        flag={<AppColor.UkraineFlagIcon/>} role='Hired' roleColor={AppColor.green} preventMobileNone={true}/>
+                </div>
+                </div>}
+
+            {isCancelled && isSelected && !disableAbsoluteItems &&  showCardManagerActions && <div style={{...positionStyle}} className={styles.absolute_select}>
+                <div className={styles.gap_20}>
+                    <Typography variant='body3' fontWeight='500'>Moved</Typography>
+                    <UserAvatar name={fakeUserConstant.name} active={true} 
+                        flag={<AppColor.UkraineFlagIcon/>} role='Shortlisted' preventMobileNone={true}/>
+                    <AppColor.speficChevronRightFilled />
+                    <Typography variant='body5' color={AppColor.red}>Cancelled</Typography>
+                </div>
+                </div>}
            {!disableAbsoluteItems && <span className={styles.shell_absolute}>
               <MyCheckbox
                 height='22px'

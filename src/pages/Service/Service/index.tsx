@@ -43,12 +43,17 @@ import LastSponsors from '@common/components/LastSponsors/index';
 import ModalCenterBasic from '@common/components/ModalPopUps/ModalCenter/components/ModalCenterBasic/index';
 import ContactModal from '@pages/Partnership/pages/Program/modals/contactModal/index';
 import { ButtonDropdownSelect } from '@common/components/ui/ThreeLinesPopUp/index';
+import HoverDotsBox, { HoverDotsBoxService } from '@common/components/ui/HoverDotsBox/index';
+import Roadmap, { RoadmapFlex } from '@common/components/Header/Header/components/NewsPopUp/components/Roadmap/index';
+import TrustScore from '@common/components/ui/TrustScore/index';
 
 const Service = () => {
     const arrayHistory = ['Service', 'Development', 'Web Development', 'WordPress'] 
     const title = 'Logo by sample in vector in maximum quality';
     const [activeBuyPlan,setActiveBuyPlan] = useState('Fixed');
     const [selectedPricePlan,setSelectedPricePlan] = useState('');
+
+    const [showMissionModal,setShowMissionModal] = useState(false);
 
     useEffect(() => {
         window.scrollTo({top: 0});
@@ -57,6 +62,36 @@ const Service = () => {
     
     return (
         <div>
+            {
+                showMissionModal && <ModalCenterBasic 
+                bottomPartPadding='0px' callbackClose={() => {setShowMissionModal(false)}} title='Pro Missions'
+                nodeAfterTitle={
+                    <ButtonChooseList
+                                    buttonPadding='4px 13px'
+                                    buttons={['Start','Pro', 'Ultimate']}
+                                    callback={() => {}}
+                                    gap='0px'
+                                    initValue='Fixed'
+                                />
+                }
+                >
+                    <Typography style={{padding: '30px 30px'}} variant='body4'>
+                    Freelancers create some tasks to achieve. After successful completion you can get valuable rewards.
+                    </Typography>
+                    <RoadmapFlex text='Provide complete information about yourself' title='Entrance challenge' completed={true}
+                    steps='1 of 12 completed'
+                    />
+                    <RoadmapFlex  text='Provide complete information about yourself' title='Entrance challenge' completed={true}
+                    steps='1 of 12 completed'
+                    />
+                  
+                    <div style={{padding: '30px'}} className='flex_end'>
+                        <MyButtonOrange onClick={() => {}} fontWeight='500' textTransform='uppercase'>
+                        Change pro plan $25/month
+                        </MyButtonOrange>
+                    </div> 
+                </ModalCenterBasic>
+            }
         <Header />
 
         <NavigationBarSelection
@@ -222,9 +257,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                         </div>
                         <div className='gap_10'>
                             <Typography variant='body4'>-20% sale for all packages till 13 Oct</Typography>
-                            <div className={styles.dot_wrapper}>
-                                <AppColor.threePoints/>
-                            </div>
+                           <HoverDotsBoxService />
                         </div>
 
                         <SizeBox height='15px'/>
@@ -333,6 +366,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                             <HorizontalLine/>
                             <DynamicPadding desktop='30px' mobile='20px'/>
                             <Typography variant='body3' fontWeight='500'>Subscription</Typography>
+                            <DynamicPadding desktop='30px' mobile='20px'/>
 
                            <div className='flex_space_between'>
                                 <ButtonChooseList
@@ -364,7 +398,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                                 </div>
                            </div>
                             <DynamicPadding desktop='20px' mobile='10px' />
-                            <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Missions</Typography>
+                           <span onClick={() => {setShowMissionModal(true)}}> <Typography variant='body4' fontWeight='500' color={AppColor.transparentBlack}>Missions</Typography></span>
                             <DynamicPadding desktop='30px' mobile='20px'/>
                             <HorizontalLine/>
                             <DynamicPadding desktop='30px' mobile='20px'/>
@@ -379,11 +413,7 @@ Nunc nunc, consequat porttitor sed tortor. Tempus mi sit blandit nibh fusce morb
                             <HorizontalLine/>
                             <DynamicPadding desktop='30px' mobile='20px'/>
 
-                            <div className="gap_5">
-                                <AppColor.likeRounded />
-                                <Typography variant='body4' fontWeight='500'><span style={{color: AppColor.green}}>96</span>Trust Score</Typography>
-                                <div className={styles.info_box}><AppColor.info/></div>
-                            </div>
+                            <TrustScore />
                             <DynamicPadding desktop='15px' mobile='10px'/>
                             <MyButtonOrange textTransform='uppercase' onClick={() => {}} width='100%'>Select pro $1500</MyButtonOrange>
                             <DynamicPadding desktop='15px' mobile='10px'/>

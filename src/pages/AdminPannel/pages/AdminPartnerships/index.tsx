@@ -384,6 +384,8 @@ type YesNoTableProps = {
     items: {
         text: string;
         initValue: boolean;
+        info?: boolean;
+        nodeAfterDots?: React.ReactNode;
     }[]
 }
 export const YesNoTable = ({items,title}:YesNoTableProps) => {
@@ -399,12 +401,47 @@ export const YesNoTable = ({items,title}:YesNoTableProps) => {
     )
 }
 
+type CombinedYesAndChangeTableProps = {
+    title: string;  
+    items: {
+        text: string;
+        isBoolean: boolean;
+        initValue: boolean;
+        items: string[];
+        info?: boolean;
+        nodeAfterDots?: React.ReactNode;
+    }[]
+}
+
+export const CombinedYesAndChangeTable = ({items,title}:CombinedYesAndChangeTableProps) => {
+    return (
+        <div>
+              <Typography textLineHeight='1' variant='body3' fontWeight='500'>{title}</Typography>
+            <DynamicPadding desktop='30px' mobile='20px' />
+
+            <div className={styles.column_15}>
+                {items.map(item => {
+                    if(item.isBoolean) {
+                        return (
+                            <YesNoItem item={item}/>
+                        )
+                    } else {
+                        return <ChosoeItem item={item}/>
+                    }
+                })}
+            </div>
+        </div>
+    )
+}
+
 
 type TableChooseDropdownProps = {
     title: string;  
     items: {
         items: string[];
         text: string;
+        info?: boolean;
+        nodeAfterDots?: React.ReactNode;
     }[]
 }
 
@@ -426,13 +463,18 @@ type ChooseItemProps = {
     item: {
         text: string;
         items: string[];
+        info?: boolean;
+        nodeAfterDots?: React.ReactNode;
     }
 }
 export const ChosoeItem = ({item}:ChooseItemProps) => {
     return (
         <div style={{width: '100%'}}>
-            <TextDotted text={item.text} endNode={
-               <ChooseItemDropdown value={item.items} />
+            <TextDotted info={item.info} text={item.text} endNode={
+               <div className='gap_10'>
+                <ChooseItemDropdown value={item.items} />
+                {item.nodeAfterDots}
+               </div>
             } />
         </div>
     )
@@ -473,13 +515,18 @@ type YesNoItemProps = {
     item: {
         text: string;
         initValue: boolean;
+        info?: boolean;
+        nodeAfterDots?: React.ReactNode;
     }
 }
 export const YesNoItem = ({item}:YesNoItemProps) => {
     return (
         <div style={{width: '100%'}}>
-            <TextDotted text={item.text} endNode={
-               <YesNoDropdown value={item.initValue} />
+            <TextDotted info={item.info} text={item.text} endNode={
+               <div className='gap_10'>
+                <YesNoDropdown value={item.initValue} />
+                {item.nodeAfterDots}
+               </div>
             } />
         </div>
     )
@@ -595,7 +642,7 @@ export const DropdownCustomNodesCenter = ({nodes}:DropdownCustomNodesProps) => {
     };
 
     return (
-       <div style={{position: 'relative',padding: '5px'}}>
+       <div className={styles.dropdown_wrapper_custom} style={{position: 'relative',padding: '5px'}}>
             <div 
                 onMouseEnter={() => {setHovered(true)}}
                 onMouseLeave={() => {setHovered(false)}}

@@ -39,7 +39,7 @@ export const FilterTemplateDropdown = () => {
 
     return (
       <div style={{position: 'relative'}}>
-          <div onClick={() => {setShowDropdown(prev => !prev)}} className='flex_space_between'>
+          <div onClick={() => {setShowDropdown(prev => !prev)}} className='flex_space_between cursor'>
             <AppColor.template />           
           </div>
 

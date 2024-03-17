@@ -3,6 +3,7 @@ import { useHover } from '@common/helpers/useHover';
 import styles from './style.module.scss';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { useEffect, useRef, useState } from 'react';
+import { useScreenSize } from '@common/helpers/useScreenSize';
 
 type PopUpBottomProps = {
         showNode: React.ReactNode;
@@ -17,7 +18,29 @@ const PopUpBottom = ({popUpNode,showNode,showBackgroundHover=false,topPaddingFro
 
     const [show,setShow] = useState(false);
 
+    const {height,width} = useScreenSize();
+    const [elementPosition, setElementPosition] = useState({top: 0, left: 0});
+    
+
     const nodeRef = useRef(null);
+
+    // useEffect(() => {
+    //     const updatePosition = () => {
+    //       const element = nodeRef.current;
+    //       if (element) {
+    //         const rect = element.getBoundingClientRect();
+    //         setElementPosition({
+    //             top: rect.top,
+    //             left: rect.left,
+    //         });
+    //       }
+    //     };
+    
+    //     updatePosition();
+    
+        
+    //   }, []);
+
     useEffect(() => {
      const handleOutsideClick = (event: MouseEvent) => {
         const clickedElement = event.target as HTMLElement;

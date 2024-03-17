@@ -5,6 +5,7 @@ import styles from './style.module.scss';
 import Typography from '@common/components/ui/Typography/Typography';
 import AppColor from '@common/styles/variables-static';
 import SizeBox from '@common/components/ui/SizeBox/index';
+import { useScreenSize } from '@common/helpers/useScreenSize';
 
 type ModalCenterBasicProps = {
     title: string;
@@ -25,6 +26,7 @@ type ModalCenterBasicProps = {
     mobileMaxWidth?: string;
 }
 const ModalCenterBasic = ({prevClose,desktopMinHeight,nodeAfterTitle,desktopMinWidth,desktopMaxWidth,mobileMaxWidth,mobileMinWidth,callbackClose,topPartPadding,bottomPartPadding,children,title,nodesBeforeClose,callbackPrev}:ModalCenterBasicProps) => {
+    const {height,width} = useScreenSize();
 
     const stylePass = {
         '--desktopWidthMin': desktopMinWidth,
@@ -34,10 +36,15 @@ const ModalCenterBasic = ({prevClose,desktopMinHeight,nodeAfterTitle,desktopMinW
         '--mobileMaxWidth':mobileMaxWidth,
         borderRadius: '20px',
     }
+
+    const modalWidth = (width+20) <= parseInt(desktopMinWidth) ? 'calc(100vw - 20px)' : 'auto';
+    const minWidthGetted = (width+20) <= parseInt(desktopMinWidth) ? 'calc(100vw - 20px)'  : desktopMinWidth;
+    const maxWidthGetter = (width+20) <= parseInt(desktopMaxWidth) ? 'calc(100vw - 20px)'  : desktopMaxWidth;
+
     return (
       <ModalCenter onClickHandler={callbackClose}>
-        <div style={{...stylePass}} className={styles.modal_center_basic}>
-            <div className={styles.top_part} style={{padding: topPartPadding}}>
+        <div style={{...stylePass,width: modalWidth,minWidth: minWidthGetted,maxWidth: maxWidthGetter}} className={styles.modal_center_basic}>
+            <div className={styles.top_part} style={{padding: topPartPadding ?? '20px 30px'}}>
                 {prevClose && <div style={{display: 'flex',alignItems: 'center'}}>
                     <AppColor.longChevronLeft className='cursor' fill={AppColor.text} onClick={() => {
                         if(callbackPrev) {
@@ -47,12 +54,12 @@ const ModalCenterBasic = ({prevClose,desktopMinHeight,nodeAfterTitle,desktopMinW
                         }
                     }} />
                     <SizeBox width='15px'/>
-                    <Typography style={{whiteSpace: 'nowrap'}} variant='body3' fontWeight='500'>{title}</Typography>
+                    {title != '' && <Typography textLineHeight='1' style={{whiteSpace: 'nowrap'}} variant='body3' fontWeight='500'>{title}</Typography>}
                     {nodeAfterTitle && <SizeBox width='15px'/>}
                     {nodeAfterTitle && nodeAfterTitle}
                     </div>}
                 {!prevClose &&  <div className='gap_15' style={{width: '100%'}}>
-                    <Typography style={{whiteSpace: 'nowrap'}} variant='body3' fontWeight='500'>{title}</Typography>
+                {title != '' && <Typography textLineHeight='1' style={{whiteSpace: 'nowrap'}} variant='body3' fontWeight='500'>{title}</Typography>}
                     {nodeAfterTitle && nodeAfterTitle}
                     </div>}
 

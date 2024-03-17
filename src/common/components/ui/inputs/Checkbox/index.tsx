@@ -10,6 +10,8 @@ type MyCheckboxProps = {
     checkWidth?: string;
     checkHeight?: string;
     borderRadius?: string;
+
+    disabled?: boolean;
 }
 const MyCheckbox = ({
     width,
@@ -19,6 +21,7 @@ const MyCheckbox = ({
     borderRadius='5px',
     checkWidth='12px',
     basicValue = false,
+    disabled=false
 }: MyCheckboxProps) => {
     const [isTrue, setIsTrue] = useState(basicValue)
 
@@ -26,10 +29,12 @@ const MyCheckbox = ({
         setIsTrue(basicValue);
     },[basicValue])
     function handleChange(item:boolean) {
-        if(callback != null) {
-            callback(item)
+        if(!disabled) {
+            if(callback != null) {
+                callback(item)
+            }
+            setIsTrue(item)
         }
-        setIsTrue(item)
     }
     return (
         <div

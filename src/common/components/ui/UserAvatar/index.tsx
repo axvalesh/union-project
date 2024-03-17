@@ -3,6 +3,7 @@ import AppColor from '@common/styles/variables-static';
 import Typography from '../Typography/Typography';
 import styles from './style.module.scss';
 import SizeBox from '../SizeBox';
+import { fakeUserConstant } from '@common/models/user';
 
 type UserAvatarProps = {
     url?: string;
@@ -27,7 +28,7 @@ type UserAvatarProps = {
 type UserAvatarVariants = "row" | "column" | "money" | 'image'
 
 
-const UserAvatar = ({gap,title,activeAgoRole='',noWrap,roleColor,active,name,role,url,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
+const UserAvatar = ({gap,title,activeAgoRole='',noWrap,roleColor,active,name,role,url=fakeUserConstant.image,variant='row',flag,money,preventMobileNone,height,width,activeAgo,nodeAfterText}:UserAvatarProps) => {
 
      switch (variant) {
         case "row":

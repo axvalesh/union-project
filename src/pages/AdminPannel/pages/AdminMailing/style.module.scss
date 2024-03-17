@@ -14,6 +14,18 @@
     border-bottom: 1px solid rgba($color: $text, $alpha: 0.1);
 }
 
+.top_grid_4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.grid_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
 .top_part {
     display: flex;
     flex-direction: column;

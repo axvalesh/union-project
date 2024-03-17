@@ -367,7 +367,10 @@ import { ReactComponent as external} from '@assets/svg/external.svg';
 
 import { ReactComponent as boxIcon} from '@assets/svg/box_icon.svg';
 
+import { ReactComponent as pigBonuses} from '@assets/svg/pig_bonuses.svg';
+
 class AppColor {
+    static pigBonuses = pigBonuses;
     static boxIcon = boxIcon;
     static internal = internal;
     static external = external;    

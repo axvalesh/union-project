@@ -43,6 +43,39 @@
     aspect-ratio: 1;
 }
 
+
+.top_grid_2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.white_box {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+.hover_text {
+    font-weight: 400;
+    color: rgba($color: black, $alpha: 0.5);
+    transition: 0.2s;
+
+    &:hover {
+        font-weight: 500;
+        color: $text;
+    }
+}
+
 .title_plus {
     display: flex;
     align-items: center;
